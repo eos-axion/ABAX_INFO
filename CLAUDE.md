@@ -58,6 +58,21 @@ workshop-abaxinfo-[type].html         # Présentations en mode slide deck
 ### `proposition/`
 Dossier réservé à la proposition commerciale en cours d'élaboration.
 
+### `client/` — Publication Netlify
+Contient uniquement les fichiers à partager avec le client (pas le diagnostic détaillé) :
+- `index.html` — Page d'accueil branded avec liens vers les 3 documents
+- `workshop-abaxinfo-presentation.html` — Copie depuis `workshop/`
+- `workshop-abaxinfo-compte-rendu.html` — Copie depuis `workshop/`
+- `abaxinfo-lead-magnet-seo-geo.html` — Copie depuis `diagnostic/`
+
+**Important :** `client/` est la source de vérité pour Netlify. Si un fichier source est mis à jour, penser à le recopier dans `client/`.
+
+## Déploiement Netlify
+
+`netlify.toml` à la racine configure le dossier de publication : `publish = "client"`.
+
+Pour connecter sur Netlify : importer le repo GitHub `eos-axion/ABAX_INFO` — Netlify détecte automatiquement `netlify.toml` et publie le dossier `client/`. Tout push sur `main` déclenche un redéploiement automatique.
+
 ## Système de design AXION (fichiers HTML)
 
 Palette CSS à conserver sur tous les nouveaux livrables HTML :

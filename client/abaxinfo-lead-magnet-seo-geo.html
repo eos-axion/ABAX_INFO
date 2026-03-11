@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic SEO & GEO — ABAX Info | AXION</title>
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-light: #1A2A42;
+    --slate: #2D3F5B;
+    --cyan: #00D4FF;
+    --cyan-10: rgba(0, 212, 255, 0.1);
+    --cyan-20: rgba(0, 212, 255, 0.2);
+    --white: #FFFFFF;
+    --white-80: rgba(255, 255, 255, 0.8);
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-30: rgba(255, 255, 255, 0.3);
+    --green: #00E68A;
+    --amber: #FFB800;
+    --red: #FF4757;
+    --red-10: rgba(255, 71, 87, 0.1);
+    --green-10: rgba(0, 230, 138, 0.1);
+    --amber-10: rgba(255, 184, 0, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--cyan-10);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--cyan);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 span { color: var(--cyan); }
+  .cover .subtitle {
+    font-size: 22px;
+    color: var(--white-80);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta-item {
+    text-align: center;
+  }
+  .cover-meta-item .label {
+    font-size: 12px;
+    color: var(--white-50);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cover-meta-item .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-top: 4px;
+  }
+  .cover-logo {
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-logo .axion-name {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+  }
+  .cover-logo .axion-tag {
+    font-size: 13px;
+    color: var(--white-50);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 60px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  p { margin-bottom: 16px; color: var(--white-80); font-size: 16px; }
+  .accent-line { width: 60px; height: 4px; background: var(--cyan); border-radius: 2px; margin-bottom: 24px; }
+
+  /* SCORE HERO */
+  .score-hero {
+    text-align: center;
+    padding: 60px 0;
+  }
+  .score-circle {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 8px solid var(--slate);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    position: relative;
+    background: var(--navy-light);
+  }
+  .score-circle::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    border-top-color: var(--red);
+    border-right-color: var(--red);
+    transform: rotate(-45deg);
+  }
+  .score-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1;
+  }
+  .score-total {
+    font-size: 20px;
+    color: var(--white-50);
+  }
+  .score-label {
+    display: inline-block;
+    background: var(--red-10);
+    color: var(--red);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* SCORE GRID */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .score-card {
+    background: var(--navy-light);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .score-card .sc-value {
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .score-card .sc-max { font-size: 16px; color: var(--white-50); }
+  .score-card .sc-label { font-size: 13px; color: var(--white-50); margin-top: 8px; }
+  .sc-red { color: var(--red); }
+  .sc-amber { color: var(--amber); }
+  .sc-green { color: var(--green); }
+
+  /* CARDS */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-icon.red { background: var(--red-10); }
+  .card-icon.amber { background: var(--amber-10); }
+  .card-icon.green { background: var(--green-10); }
+  .card-title { font-size: 18px; font-weight: 700; }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: var(--cyan-10);
+    border-left: 4px solid var(--cyan);
+    padding: 20px 24px;
+    border-radius: 0 12px 12px 0;
+    margin: 24px 0;
+  }
+  .highlight p { color: var(--white); margin: 0; }
+  .highlight strong { color: var(--cyan); }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  thead th {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--navy-light);
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--slate);
+  }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child { border-radius: 0 12px 0 0; }
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: var(--white-80);
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .status-ok { color: var(--green); font-weight: 700; }
+  .status-warn { color: var(--amber); font-weight: 700; }
+  .status-fail { color: var(--red); font-weight: 700; }
+
+  /* QUICK WINS */
+  .qw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .qw-card {
+    background: var(--navy-light);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(0,230,138,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .qw-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+  }
+  .qw-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(0,230,138,0.15);
+    position: absolute;
+    top: 8px; right: 16px;
+  }
+  .qw-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .qw-time { font-size: 13px; color: var(--green); margin-bottom: 8px; }
+  .qw-desc { font-size: 14px; color: var(--white-50); }
+
+  /* SITEMAP TREE */
+  .tree {
+    background: var(--navy-light);
+    border-radius: 16px;
+    padding: 28px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    color: var(--white-80);
+    line-height: 1.8;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .tree .folder { color: var(--cyan); font-weight: 600; }
+  .tree .file { color: var(--white-50); }
+  .tree .warn { color: var(--amber); }
+
+  /* GEO SECTION */
+  .geo-zero {
+    text-align: center;
+    padding: 40px;
+    background: var(--red-10);
+    border-radius: 16px;
+    border: 1px solid rgba(255,71,87,0.2);
+    margin: 32px 0;
+  }
+  .geo-zero .big-num {
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1;
+  }
+  .geo-zero .geo-text {
+    font-size: 18px;
+    color: var(--white-80);
+    margin-top: 12px;
+  }
+
+  /* COMPARISON TABLE (teaser) */
+  .compare-table { margin: 32px 0; }
+  .compare-table th, .compare-table td { text-align: center; }
+  .compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+  .check { color: var(--green); font-size: 18px; }
+  .cross { color: var(--white-30); font-size: 18px; }
+
+  /* CTA SECTION */
+  .cta-section {
+    text-align: center;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, var(--navy-light) 0%, rgba(0,212,255,0.08) 100%);
+    border-radius: 24px;
+    border: 1px solid rgba(0,212,255,0.2);
+    margin: 40px 0;
+  }
+  .cta-section h2 { margin-bottom: 16px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--navy);
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    margin-top: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,212,255,0.3);
+  }
+  .cta-price {
+    font-size: 14px;
+    color: var(--white-50);
+    margin-top: 12px;
+  }
+  .cta-price s { color: var(--white-30); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p { font-size: 13px; color: var(--white-30); }
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  /* MISSING PAGES GRID */
+  .missing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .missing-item {
+    background: var(--navy-light);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--red);
+  }
+  .missing-item .mi-page { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .missing-item .mi-kw { font-size: 12px; color: var(--cyan); }
+  .missing-item .mi-vol { font-size: 12px; color: var(--white-50); }
+
+  /* BENCHMARK BAR */
+  .bench-bars { margin: 32px 0; }
+  .bench-row { margin-bottom: 16px; }
+  .bench-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .bench-label span:first-child { font-weight: 600; }
+  .bench-label span:last-child { color: var(--white-50); }
+  .bench-track {
+    height: 8px;
+    background: var(--slate);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bench-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s;
+  }
+  .bench-fill.red { background: var(--red); }
+  .bench-fill.amber { background: var(--amber); }
+  .bench-fill.green { background: var(--green); }
+  .bench-marker {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 16px;
+    background: var(--white-50);
+  }
+
+  @media print {
+    body { background: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover { min-height: auto; page-break-after: always; padding: 100px 24px; }
+    section { page-break-inside: avoid; }
+  }
+  @media (max-width: 768px) {
+    .score-grid, .qw-grid, .missing-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 32px; }
+    .cover-meta { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge">Diagnostic Gratuit — Lead Magnet</div>
+  <h1>Diagnostic <span>SEO & GEO</span></h1>
+  <div class="subtitle">abaxinfo.com — ABAX Info, Services IT</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Client</div>
+      <div class="value">ABAX Info</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Secteur</div>
+      <div class="value">IT / Infogérance</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Localisation</div>
+      <div class="value">Carouge (GE), Suisse</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Date</div>
+      <div class="value">5 mars 2026</div>
+    </div>
+  </div>
+  <div class="cover-logo">
+    <div class="axion-name">AXION</div>
+    <div class="axion-tag">AI Automation Agency — Nyon, Suisse</div>
+  </div>
+</div>
+
+<!-- ==================== SCORE GLOBAL ==================== -->
+<section>
+  <div class="container">
+    <div class="score-hero">
+      <div class="section-label">Score global</div>
+      <div class="score-circle">
+        <div class="score-number">34</div>
+        <div class="score-total">/100</div>
+      </div>
+      <div class="score-label">⚠ Critique</div>
+      <p style="margin-top: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Votre site est actuellement <strong style="color:var(--red);">quasi invisible</strong> sur Google ET sur les moteurs IA (ChatGPT, Perplexity, Google AI Overviews).
+      </p>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="sc-value sc-amber">38</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">SEO Technique</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-value sc-red">18</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">Contenu & Éditorial</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-value sc-red">25</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">Autorité & Backlinks</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-value sc-red">15</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">GEO (Visibilité IA)</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-value sc-amber">45</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">Expérience Utilisateur</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-value sc-amber">42</div>
+        <div class="sc-max">/100</div>
+        <div class="sc-label">SEO Local (Suisse)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5 CONSTATS CRITIQUES ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">Constats</div>
+    <h2>5 problèmes critiques identifiés</h2>
+    <div class="accent-line"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">🔴</div>
+        <div class="card-title">Seulement 10 pages indexées</div>
+      </div>
+      <p>Un site IT devrait en avoir 30 à 50 minimum pour couvrir ses services. Vous ne ciblez quasiment aucun mot-clé stratégique.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">🔴</div>
+        <div class="card-title">2 articles de blog — dernier en juillet 2025</div>
+      </div>
+      <p>8 mois sans publication. Google considère votre site comme "inactif". Vos concurrents publient 2 à 4 articles par mois.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">🔴</div>
+        <div class="card-title">Aucune donnée structurée Schema.org</div>
+      </div>
+      <p>Les moteurs IA ne peuvent pas comprendre votre offre. Pas de rich snippets, pas de visibilité dans les réponses génératives.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">⚠️</div>
+        <div class="card-title">Plateforme Wix avec rendu JavaScript</div>
+      </div>
+      <p>Le contenu est rendu côté client (CSR). Google doit faire 2 passes pour l'indexer, et ChatGPT/Perplexity ne peuvent pas du tout le lire.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">⚠️</div>
+        <div class="card-title">Pas de hreflang malgré une activité CH + FR</div>
+      </div>
+      <p>Google ne sait pas quelle version afficher à quel marché. Vos pages de tarifs CHF/EUR se cannibalisent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== QUICK WINS ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">Actions immédiates</div>
+    <h2>3 Quick Wins à faire cette semaine</h2>
+    <div class="accent-line"></div>
+
+    <div class="qw-grid">
+      <div class="qw-card">
+        <div class="qw-number">1</div>
+        <div class="qw-title">Ajouter Schema.org</div>
+        <div class="qw-time">⏱ 30 minutes</div>
+        <div class="qw-desc">LocalBusiness + ITService via Wix Code. Impact immédiat sur Google Maps et la compréhension IA.</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-number">2</div>
+        <div class="qw-title">Publier 1 article / semaine</div>
+        <div class="qw-time">⏱ 2h / semaine</div>
+        <div class="qw-desc">Sur vos expertises IT. +30 à 50% de trafic organique en 90 jours.</div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-number">3</div>
+        <div class="qw-title">Configurer hreflang</div>
+        <div class="qw-time">⏱ 15 minutes</div>
+        <div class="qw-desc">FR-CH / FR-FR sur toutes les pages. Meilleur ciblage géographique immédiat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== AUDIT TECHNIQUE ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">SEO Technique</div>
+    <h2>Infrastructure & Performance</h2>
+    <div class="accent-line"></div>
+
+    <table>
+      <thead>
+        <tr><th>Critère</th><th>Statut</th><th>Détail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HTTPS / SSL</td><td class="status-ok">✅ Actif</td><td>Certificat valide</td></tr>
+        <tr><td>Plateforme</td><td class="status-warn">⚠️ Wix</td><td>Limitations SEO connues (JS rendering)</td></tr>
+        <tr><td>robots.txt</td><td class="status-ok">✅ OK</td><td>Autorise le crawl, sitemap référencé</td></tr>
+        <tr><td>Sitemap XML</td><td class="status-ok">✅ OK</td><td>3 sitemaps (pages, blog, catégories)</td></tr>
+        <tr><td>Nombre de pages</td><td class="status-fail">🔴 10</td><td>Très insuffisant (objectif : 30-50)</td></tr>
+        <tr><td>Blog actif</td><td class="status-fail">🔴 Non</td><td>2 articles, dernier : juil. 2025</td></tr>
+        <tr><td>Google Analytics</td><td class="status-ok">✅ Actif</td><td>GA4 configuré</td></tr>
+        <tr><td>Schema.org</td><td class="status-fail">🔴 Absent</td><td>Aucune donnée structurée</td></tr>
+        <tr><td>hreflang</td><td class="status-fail">🔴 Absent</td><td>Activité CH+FR sans ciblage</td></tr>
+        <tr><td>Rendu JavaScript</td><td class="status-fail">🔴 CSR</td><td>Wix Thunderbolt = invisible pour les IA</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Core Web Vitals (estimés)</h3>
+
+    <div class="bench-bars">
+      <div class="bench-row">
+        <div class="bench-label"><span>LCP — ~3.8s</span><span>Seuil : < 2.5s</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 76%;"></div>
+          <div class="bench-marker" style="left: 50%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>CLS — ~0.18</span><span>Seuil : < 0.1</span></div>
+        <div class="bench-track">
+          <div class="bench-fill amber" style="width: 60%;"></div>
+          <div class="bench-marker" style="left: 33%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>INP — ~320ms</span><span>Seuil : < 200ms</span></div>
+        <div class="bench-track">
+          <div class="bench-fill amber" style="width: 64%;"></div>
+          <div class="bench-marker" style="left: 40%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>FCP — ~3.0s</span><span>Seuil : < 1.8s</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 70%;"></div>
+          <div class="bench-marker" style="left: 42%;"></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--white-30);"><em>Trait blanc = seuil Google. Valeurs estimées sur base des benchmarks Wix 2025-2026.</em></p>
+  </div>
+</section>
+
+<!-- ==================== CONTENU & STRUCTURE ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">Contenu</div>
+    <h2>Structure du site & Pages manquantes</h2>
+    <div class="accent-line"></div>
+
+    <div class="tree">
+      <span class="folder">abaxinfo.com</span> <span class="warn">(10 pages — objectif : 30-50)</span><br>
+      ├── <span class="folder">/</span> <span class="file">Accueil</span><br>
+      ├── <span class="folder">/services</span> <span class="warn">← 1 page pour tous les services ⚠️</span><br>
+      ├── <span class="folder">/tarifs</span><br>
+      │ &nbsp; ├── <span class="file">/tarifs/chf</span><br>
+      │ &nbsp; └── <span class="file">/tarifs/eur</span><br>
+      ├── <span class="file">/assistance</span><br>
+      ├── <span class="file">/actualites</span><br>
+      ├── <span class="file">/politique-de-confidentialité</span><br>
+      ├── <span class="file">/mentions-légales</span><br>
+      ├── <span class="file">/politique-de-cookies</span><br>
+      └── <span class="folder">/blog</span> <span class="warn">(2 articles — dernier : juil. 2025)</span><br>
+      &nbsp; &nbsp; ├── <span class="file">/post/synology-office</span><br>
+      &nbsp; &nbsp; └── <span class="file">/post/office-365</span>
+    </div>
+
+    <h3>8 pages manquantes critiques</h3>
+    <p>Votre site devrait avoir au minimum ces pages pour couvrir vos services IT :</p>
+
+    <div class="missing-grid">
+      <div class="missing-item">
+        <div class="mi-page">/infogerance-pme-geneve</div>
+        <div class="mi-kw">infogérance PME Genève</div>
+        <div class="mi-vol">50-100 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/support-informatique-24-7</div>
+        <div class="mi-kw">support informatique 24h Genève</div>
+        <div class="mi-vol">30-70 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/dsi-externalise-suisse</div>
+        <div class="mi-kw">DSI externalisé Suisse</div>
+        <div class="mi-vol">20-50 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/integration-cloud-pme</div>
+        <div class="mi-kw">intégration cloud PME</div>
+        <div class="mi-vol">30-60 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/securite-informatique-pme</div>
+        <div class="mi-kw">cybersécurité PME Suisse</div>
+        <div class="mi-vol">40-80 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/maintenance-informatique-geneve</div>
+        <div class="mi-kw">maintenance info. Genève</div>
+        <div class="mi-vol">30-70 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/migration-cloud-office-365</div>
+        <div class="mi-kw">migration Office 365 Suisse</div>
+        <div class="mi-vol">20-50 recherches / mois</div>
+      </div>
+      <div class="missing-item">
+        <div class="mi-page">/sauvegarde-donnees-entreprise</div>
+        <div class="mi-kw">sauvegarde données Suisse</div>
+        <div class="mi-vol">20-40 recherches / mois</div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p><strong>Potentiel estimé :</strong> +250 à 500 visites organiques/mois en créant ces 8 pages optimisées.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GEO ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">GEO — Generative Engine Optimization</div>
+    <h2>Visibilité dans les moteurs IA</h2>
+    <div class="accent-line"></div>
+
+    <div class="geo-zero">
+      <div class="big-num">0<span style="font-size:40px;">/20</span></div>
+      <div class="geo-text">requêtes où ABAX Info est cité par ChatGPT ou Perplexity</div>
+    </div>
+
+    <p>Quand un prospect cherche <strong style="color:var(--cyan);">"infogérance PME Genève"</strong> sur ChatGPT ou Perplexity, ABAX Info n'apparaît dans aucune réponse. Vos concurrents avec du contenu structuré, des FAQ et des témoignages sont cités à votre place.</p>
+
+    <h3>Pourquoi vous êtes invisible</h3>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">🤖</div>
+        <div class="card-title">Contenu JavaScript = illisible pour les IA</div>
+      </div>
+      <p>ChatGPT, Perplexity et Claude ne peuvent pas parser le contenu Wix rendu en JavaScript. Votre site est littéralement vide pour eux.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">📋</div>
+        <div class="card-title">Pas de données structurées</div>
+      </div>
+      <p>Les IA cherchent des Schema.org pour comprendre les entités et services. Sans cela, elles ne savent pas que vous existez.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">📝</div>
+        <div class="card-title">Trop peu de contenu pour établir l'autorité</div>
+      </div>
+      <p>10 pages ne suffisent pas à créer une "empreinte de connaissance". Les IA citent les sources qui enseignent, pas les brochures.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BENCHMARK ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">Benchmark</div>
+    <h2>ABAX Info vs Marché IT Suisse</h2>
+    <div class="accent-line"></div>
+
+    <div class="bench-bars">
+      <div class="bench-row">
+        <div class="bench-label"><span>Pages indexées</span><span>10 vs 25-40 (médiane)</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 25%;"></div>
+          <div class="bench-marker" style="left: 62%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>Articles de blog</span><span>2 vs 15-30 (médiane)</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 7%;"></div>
+          <div class="bench-marker" style="left: 50%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>Score SEO estimé</span><span>34 vs 48 (médiane)</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 34%;"></div>
+          <div class="bench-marker" style="left: 48%;"></div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label"><span>Score GEO estimé</span><span>15 vs 35 (médiane)</span></div>
+        <div class="bench-track">
+          <div class="bench-fill red" style="width: 15%;"></div>
+          <div class="bench-marker" style="left: 35%;"></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--white-30);"><em>Trait blanc = médiane du secteur IT en Suisse romande.</em></p>
+  </div>
+</section>
+
+<!-- ==================== TEASER DIAGNOSTIC DÉTAILLÉ ==================== -->
+<section>
+  <div class="container">
+    <div class="section-label">Aller plus loin</div>
+    <h2>Ce que contient le Diagnostic Détaillé</h2>
+    <div class="accent-line"></div>
+
+    <p>Ce Lead Magnet couvre <strong style="color:var(--cyan);">~20%</strong> de notre analyse complète. Voici tout ce qui est inclus dans le Diagnostic Détaillé :</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Section</th><th>Lead Magnet</th><th style="color:var(--cyan);">Détaillé</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Score global /100</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Audit technique (résumé)</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td><strong>Audit technique avancé (50+ critères)</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Audit fonctionnel (UX & Conversion)</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Cocon sémantique complet (6 clusters, 18 pages)</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>50+ mots-clés avec volume & difficulté</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Analyse concurrentielle (3 concurrents)</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td>Analyse contenu page par page</td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td>Profil de backlinks</td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Score GEO (20 requêtes testées)</strong></td><td style="color:var(--white-50);">Résumé</td><td class="check">✓</td></tr>
+        <tr><td><strong>Analyse E-E-A-T détaillée</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Plan éditorial 6 mois (24 articles)</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Ligne éditoriale & Tone of Voice</strong></td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td><strong>Plan d'action 90 jours priorisé</strong></td><td style="color:var(--white-50);">3 quick wins</td><td class="check">✓</td></tr>
+        <tr><td>Présentation live 60 min</td><td class="cross">—</td><td class="check">✓</td></tr>
+        <tr><td>Support email 30 jours</td><td class="cross">—</td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cta-section">
+      <div class="section-label">Prochaine étape</div>
+      <h2>Obtenez votre Diagnostic Détaillé</h2>
+      <p style="color: var(--white-80); max-width: 500px; margin: 0 auto;">40+ pages d'analyse experte. Cocon sémantique, plan éditorial, et roadmap actionnable.</p>
+      <a href="https://cal.com/axion" class="cta-btn">Réserver mon appel stratégique →</a>
+      <div class="cta-price">
+        Standard : <strong style="color:var(--white);">249 CHF</strong> <s>1'490 CHF</s> &nbsp;|&nbsp;
+        Premium (+ call 60min) : <strong style="color:var(--white);">349 CHF</strong> <s>1'990 CHF</s>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <p style="font-size: 22px; font-weight: 900; letter-spacing: 3px; margin-bottom: 8px;">AXION</p>
+    <p>AI Automation Agency — Nyon, Suisse</p>
+    <p><a href="https://www.axion.supply/">axion.supply</a> &nbsp;|&nbsp; hello@axion.supply</p>
+    <p style="margin-top: 16px;">Diagnostic généré automatiquement par notre pipeline IA.<br>Les données sont collectées via des APIs publiques et l'analyse IA.</p>
+    <p style="margin-top: 8px;">© AXION 2026 — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
