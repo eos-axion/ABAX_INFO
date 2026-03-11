@@ -19,13 +19,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Diagnostic SEO & GEO (détaillé)** — Payant (rapport complet avec plan d'action)
 - **Proposition commerciale** — En cours d'élaboration
 
-## Fichiers & Nomenclature
+## Structure du projet
 
+```
+workshop/           → Atelier Discovery du 5 mars 2026
+diagnostic/         → Livrables SEO & GEO (lead magnet + détaillé)
+proposition/        → Proposition commerciale (à venir)
+```
+
+**Nomenclature des fichiers :**
 ```
 abaxinfo-[type]-[sujet].html          # Rapports HTML scrollables
 abaxinfo-[type]-[sujet].md.docx       # Documents Word (depuis Markdown)
 workshop-abaxinfo-[type].html         # Présentations en mode slide deck
-discovery-workshop-abaxinfo.md.docx   # Préparation atelier discovery
 ```
 
 **Deux modes HTML :**
@@ -34,15 +40,23 @@ discovery-workshop-abaxinfo.md.docx   # Préparation atelier discovery
 
 ## Inventaire des livrables
 
+### `workshop/`
+| Fichier | Contenu | Statut |
+|---------|---------|--------|
+| `workshop-abaxinfo-presentation.html` | Slide deck de présentation (pré-atelier) | Utilisé le 5 mars |
+| `workshop-abaxinfo-compte-rendu.html` | Compte rendu de l'atelier (post-workshop) | À envoyer au client |
+| `discovery-workshop-abaxinfo.md.docx` | Document de préparation de l'atelier | Interne |
+
+### `diagnostic/`
 | Fichier | Contenu | Statut |
 |---------|---------|--------|
 | `abaxinfo-lead-magnet-seo-geo.html` | Diagnostic SEO & GEO simplifié (lead magnet) | Offert au client |
 | `abaxinfo-lead-magnet-diagnostic-seo-geo.md.docx` | Version Word du lead magnet | Offert au client |
 | `abaxinfo-diagnostic-detaille-seo-geo.html` | Audit SEO & GEO complet avec scores et plan d'action | Payant |
 | `abaxinfo-diagnostic-detaille-seo-geo.md.docx` | Version Word du diagnostic détaillé | Payant |
-| `workshop-abaxinfo-presentation.html` | Slide deck de présentation (pré-atelier) | Utilisé le 5 mars |
-| `workshop-abaxinfo-compte-rendu.html` | Compte rendu de l'atelier (post-workshop) | À envoyer au client |
-| `discovery-workshop-abaxinfo.md.docx` | Document de préparation de l'atelier | Interne |
+
+### `proposition/`
+Dossier réservé à la proposition commerciale en cours d'élaboration.
 
 ## Système de design AXION (fichiers HTML)
 
