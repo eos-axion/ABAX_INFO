@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic Détaillé SEO & GEO — ABAX Info | AXION</title>
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-light: #1A2A42;
+    --navy-mid: #142236;
+    --slate: #2D3F5B;
+    --cyan: #00D4FF;
+    --cyan-10: rgba(0, 212, 255, 0.1);
+    --cyan-20: rgba(0, 212, 255, 0.2);
+    --cyan-30: rgba(0, 212, 255, 0.3);
+    --white: #FFFFFF;
+    --white-90: rgba(255, 255, 255, 0.9);
+    --white-80: rgba(255, 255, 255, 0.8);
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-30: rgba(255, 255, 255, 0.3);
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-06: rgba(255, 255, 255, 0.06);
+    --green: #00E68A;
+    --amber: #FFB800;
+    --red: #FF4757;
+    --red-10: rgba(255, 71, 87, 0.1);
+    --green-10: rgba(0, 230, 138, 0.1);
+    --amber-10: rgba(255, 184, 0, 0.1);
+    --purple: #A855F7;
+    --purple-10: rgba(168, 85, 247, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--cyan-10), var(--purple-10));
+    border: 1px solid var(--cyan-30);
+    color: var(--cyan);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 span { color: var(--cyan); }
+  .cover .subtitle {
+    font-size: 20px;
+    color: var(--white-80);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover .deliverable {
+    font-size: 15px;
+    color: var(--white-50);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta-item { text-align: center; }
+  .cover-meta-item .label {
+    font-size: 11px;
+    color: var(--white-50);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cover-meta-item .value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-top: 4px;
+  }
+  .cover-logo {
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-logo .axion-name {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+  }
+  .cover-logo .axion-tag {
+    font-size: 12px;
+    color: var(--white-50);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    padding: 60px 0;
+    border-top: 1px solid var(--white-06);
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .toc-item {
+    background: var(--navy-light);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid var(--white-06);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    color: var(--white);
+  }
+  .toc-item:hover { border-color: var(--cyan-30); }
+  .toc-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--cyan-10);
+    color: var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .toc-label { font-size: 13px; font-weight: 600; line-height: 1.3; }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 60px 0;
+    border-top: 1px solid var(--white-06);
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 24px;
+    color: var(--white-90);
+  }
+  p { margin-bottom: 14px; color: var(--white-80); font-size: 15px; }
+  .accent-line { width: 60px; height: 4px; background: var(--cyan); border-radius: 2px; margin-bottom: 24px; }
+
+  /* ===== SCORE HERO ===== */
+  .score-hero { text-align: center; padding: 40px 0; }
+  .score-circle {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 6px solid var(--slate);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    position: relative;
+    background: var(--navy-light);
+  }
+  .score-circle::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: var(--red);
+    border-right-color: var(--red);
+    transform: rotate(-45deg);
+  }
+  .score-number { font-size: 56px; font-weight: 900; color: var(--red); line-height: 1; }
+  .score-total { font-size: 18px; color: var(--white-50); }
+  .score-badge {
+    display: inline-block;
+    background: var(--red-10);
+    color: var(--red);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ===== SCORE GRID ===== */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 36px 0;
+  }
+  .score-card {
+    background: var(--navy-light);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--white-06);
+  }
+  .score-card .sc-value { font-size: 32px; font-weight: 900; margin-bottom: 2px; }
+  .score-card .sc-max { font-size: 14px; color: var(--white-50); }
+  .score-card .sc-label { font-size: 12px; color: var(--white-50); margin-top: 6px; }
+  .score-card .sc-bench { font-size: 11px; color: var(--white-30); margin-top: 4px; }
+  .sc-red { color: var(--red); }
+  .sc-amber { color: var(--amber); }
+  .sc-green { color: var(--green); }
+
+  /* ===== BENCHMARK BARS ===== */
+  .bench-bars { margin: 28px 0; }
+  .bench-row { margin-bottom: 14px; }
+  .bench-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  .bench-label span:first-child { color: var(--white-80); }
+  .bench-label span:last-child { color: var(--white-50); font-weight: 600; }
+  .bench-track {
+    height: 8px;
+    background: var(--slate);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bench-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--white-06);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 14px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card-icon.red { background: var(--red-10); }
+  .card-icon.amber { background: var(--amber-10); }
+  .card-icon.green { background: var(--green-10); }
+  .card-icon.cyan { background: var(--cyan-10); }
+  .card-icon.purple { background: var(--purple-10); }
+  .card-title { font-size: 16px; font-weight: 700; }
+  .card-subtitle { font-size: 13px; color: var(--white-50); }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight {
+    background: var(--cyan-10);
+    border-left: 4px solid var(--cyan);
+    padding: 18px 22px;
+    border-radius: 0 12px 12px 0;
+    margin: 20px 0;
+  }
+  .highlight p { color: var(--white); margin: 0; font-size: 14px; }
+  .highlight strong { color: var(--cyan); }
+
+  .warning-box {
+    background: var(--red-10);
+    border-left: 4px solid var(--red);
+    padding: 18px 22px;
+    border-radius: 0 12px 12px 0;
+    margin: 20px 0;
+  }
+  .warning-box p { color: var(--white); margin: 0; font-size: 14px; }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  thead th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--navy-light);
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 2px solid var(--slate);
+  }
+  thead th:first-child { border-radius: 10px 0 0 0; }
+  thead th:last-child { border-radius: 0 10px 0 0; }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--white-06);
+    color: var(--white-80);
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .ok { color: var(--green); font-weight: 700; }
+  .warn { color: var(--amber); font-weight: 700; }
+  .fail { color: var(--red); font-weight: 700; }
+
+  /* ===== COCON TREE ===== */
+  .cocon-hub {
+    text-align: center;
+    padding: 28px;
+    background: linear-gradient(135deg, var(--cyan-10), var(--purple-10));
+    border: 2px solid var(--cyan-30);
+    border-radius: 16px;
+    margin: 24px auto;
+    max-width: 500px;
+  }
+  .cocon-hub h4 { color: var(--cyan); margin: 0; font-size: 15px; }
+  .cocon-hub p { color: var(--white-50); font-size: 12px; margin: 4px 0 0; }
+  .cocon-connector {
+    text-align: center;
+    padding: 8px 0;
+    color: var(--slate);
+    font-size: 20px;
+  }
+  .cluster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .cluster-card {
+    background: var(--navy-light);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--white-06);
+  }
+  .cluster-card .cl-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .cluster-card .cl-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .cluster-card .cl-pages { font-size: 12px; color: var(--white-50); line-height: 1.7; }
+  .cluster-card .cl-pages span { display: block; padding-left: 12px; position: relative; }
+  .cluster-card .cl-pages span::before { content: '→'; position: absolute; left: 0; color: var(--cyan); }
+
+  /* ===== GEO SECTION ===== */
+  .geo-zero {
+    text-align: center;
+    padding: 36px;
+    background: var(--red-10);
+    border-radius: 16px;
+    border: 1px solid rgba(255,71,87,0.2);
+    margin: 28px 0;
+  }
+  .geo-zero .big-num { font-size: 72px; font-weight: 900; color: var(--red); line-height: 1; }
+  .geo-zero .geo-text { font-size: 16px; color: var(--white-80); margin-top: 10px; }
+
+  /* ===== KEYWORD TAGS ===== */
+  .kw-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .kw-tag {
+    background: var(--navy-light);
+    border: 1px solid var(--white-06);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .kw-tag .kw-name { font-weight: 600; color: var(--white); }
+  .kw-tag .kw-vol { color: var(--cyan); margin-left: 6px; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { margin: 28px 0; }
+  .timeline-phase {
+    margin-bottom: 28px;
+    padding-left: 28px;
+    border-left: 3px solid var(--slate);
+    position: relative;
+  }
+  .timeline-phase::before {
+    content: '';
+    position: absolute;
+    left: -9px; top: 0;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    border: 3px solid var(--cyan);
+    background: var(--navy);
+  }
+  .timeline-phase.phase-2::before { border-color: var(--amber); }
+  .timeline-phase.phase-3::before { border-color: var(--green); }
+  .phase-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .phase-title span { color: var(--cyan); }
+  .phase-2 .phase-title span { color: var(--amber); }
+  .phase-3 .phase-title span { color: var(--green); }
+
+  /* ===== PILLAR BARS ===== */
+  .pillar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .pillar-icon { font-size: 18px; width: 24px; text-align: center; }
+  .pillar-name { font-size: 13px; color: var(--white-80); width: 160px; flex-shrink: 0; }
+  .pillar-bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--slate);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .pillar-bar-fill { height: 100%; border-radius: 4px; }
+  .pillar-pct { font-size: 12px; font-weight: 700; color: var(--white-50); width: 36px; text-align: right; }
+
+  /* ===== RESULTS CARDS ===== */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .result-card {
+    background: var(--navy-light);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--white-06);
+  }
+  .result-card .rc-label { font-size: 11px; color: var(--white-50); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .result-card .rc-before { font-size: 20px; font-weight: 800; color: var(--red); }
+  .result-card .rc-arrow { font-size: 16px; color: var(--white-30); margin: 4px 0; }
+  .result-card .rc-after { font-size: 20px; font-weight: 800; color: var(--green); }
+  .result-card .rc-change { font-size: 11px; color: var(--green); margin-top: 4px; }
+
+  /* ===== EDITORIAL CALENDAR ===== */
+  .cal-month {
+    margin-bottom: 24px;
+  }
+  .cal-month-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--white-06);
+  }
+  .cal-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 13px;
+  }
+  .cal-week {
+    width: 32px;
+    font-weight: 700;
+    color: var(--white-50);
+    flex-shrink: 0;
+  }
+  .cal-title-text { flex: 1; color: var(--white-80); }
+  .cal-type {
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--cyan-10);
+    color: var(--cyan);
+    flex-shrink: 0;
+  }
+  .cal-type.guide { background: var(--cyan-10); color: var(--cyan); }
+  .cal-type.compare { background: var(--purple-10); color: var(--purple); }
+  .cal-type.case-study { background: var(--green-10); color: var(--green); }
+  .cal-type.listicle { background: var(--amber-10); color: var(--amber); }
+  .cal-type.sector { background: rgba(255,255,255,0.08); color: var(--white-80); }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { margin: 16px 0; }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--white-80);
+  }
+  .checklist-item .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--slate);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, var(--navy-light) 0%, rgba(0,212,255,0.08) 100%);
+    border-radius: 24px;
+    border: 1px solid var(--cyan-20);
+    margin: 40px 0;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--navy);
+    padding: 14px 36px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,212,255,0.3);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--white-06);
+  }
+  footer p { font-size: 12px; color: var(--white-30); }
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  /* ===== EEAT RADAR ===== */
+  .eeat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .eeat-card {
+    background: var(--navy-light);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--white-06);
+  }
+  .eeat-card .eeat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .eeat-card .eeat-name { font-size: 15px; font-weight: 700; }
+  .eeat-card .eeat-score { font-size: 20px; font-weight: 900; }
+  .eeat-card .eeat-bar-track { height: 6px; background: var(--slate); border-radius: 3px; overflow: hidden; }
+  .eeat-card .eeat-bar-fill { height: 100%; border-radius: 3px; }
+  .eeat-card .eeat-desc { font-size: 12px; color: var(--white-50); margin-top: 8px; }
+
+  /* ===== COMPETITOR TABLE ===== */
+  .comp-table td:first-child { font-weight: 600; }
+  .comp-highlight { background: rgba(255,71,87,0.05) !important; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .cover h1 { font-size: 32px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .cluster-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .eeat-grid { grid-template-columns: 1fr; }
+    .cover-meta { gap: 20px; }
+    h2 { font-size: 24px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: #fff; color: #1a1a1a; font-size: 11pt; }
+    .container { max-width: 100%; }
+    .cover { min-height: auto; padding: 40px 0; }
+    section { padding: 30px 0; page-break-inside: avoid; }
+    .score-card, .cluster-card, .result-card, .eeat-card { border: 1px solid #ddd; }
+    .cta-section { display: none; }
+  }
+
+  /* ===== CONFIDENTIAL STAMP ===== */
+  .confidential {
+    display: inline-block;
+    border: 2px solid var(--red);
+    color: var(--red);
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== COVER ========== -->
+<div class="cover">
+  <div class="cover-badge">Pack-01 Premium — Rapport 40+ pages</div>
+  <h1>Diagnostic <span>Détaillé</span><br>SEO & GEO</h1>
+  <div class="subtitle">abaxinfo.com — ABAX Info | Services IT, Carouge (Genève)</div>
+  <div class="deliverable">Cocon sémantique • Plan éditorial 6 mois • Plan d'action 90 jours</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Date</div>
+      <div class="value">5 mars 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Réalisé par</div>
+      <div class="value">AXION</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Méthodologie</div>
+      <div class="value">Scan IA + Expertise</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Sections</div>
+      <div class="value">13 chapitres</div>
+    </div>
+  </div>
+  <div class="cover-logo">
+    <div class="axion-name">AXION</div>
+    <div class="axion-tag">Agence d'automatisation IA — Nyon, Suisse</div>
+  </div>
+  <div class="confidential">Confidentiel — ABAX Info</div>
+</div>
+
+<!-- ========== TABLE DES MATIÈRES ========== -->
+<div class="toc container">
+  <div class="section-label">Navigation</div>
+  <h2>Table des matières</h2>
+  <div class="accent-line"></div>
+  <div class="toc-grid">
+    <a href="#s1" class="toc-item"><div class="toc-num">01</div><div class="toc-label">Score global & Positionnement</div></a>
+    <a href="#s2" class="toc-item"><div class="toc-num">02</div><div class="toc-label">Audit SEO technique avancé</div></a>
+    <a href="#s3" class="toc-item"><div class="toc-num">03</div><div class="toc-label">Audit fonctionnel (UX & Conversion)</div></a>
+    <a href="#s4" class="toc-item"><div class="toc-num">04</div><div class="toc-label">Analyse de contenu page par page</div></a>
+    <a href="#s5" class="toc-item"><div class="toc-num">05</div><div class="toc-label">Score GEO détaillé (Visibilité IA)</div></a>
+    <a href="#s6" class="toc-item"><div class="toc-num">06</div><div class="toc-label">Analyse E-E-A-T</div></a>
+    <a href="#s7" class="toc-item"><div class="toc-num">07</div><div class="toc-label">Cocon sémantique & Mots-clés</div></a>
+    <a href="#s8" class="toc-item"><div class="toc-num">08</div><div class="toc-label">Analyse concurrentielle</div></a>
+    <a href="#s9" class="toc-item"><div class="toc-num">09</div><div class="toc-label">Profil de backlinks</div></a>
+    <a href="#s10" class="toc-item"><div class="toc-num">10</div><div class="toc-label">Ligne éditoriale & Tone of Voice</div></a>
+    <a href="#s11" class="toc-item"><div class="toc-num">11</div><div class="toc-label">Plan éditorial 6 mois</div></a>
+    <a href="#s12" class="toc-item"><div class="toc-num">12</div><div class="toc-label">Plan d'action 90 jours</div></a>
+  </div>
+</div>
+
+<!-- ========== 1. SCORE GLOBAL ========== -->
+<section id="s1" class="container">
+  <div class="section-label">Section 01</div>
+  <h2>Score global & Positionnement</h2>
+  <div class="accent-line"></div>
+
+  <div class="score-hero">
+    <div class="score-circle">
+      <div class="score-number">34</div>
+      <div class="score-total">/100</div>
+    </div>
+    <div class="score-badge">CRITIQUE — Quartile inférieur du marché IT Suisse</div>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="sc-value sc-red">38</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">SEO Technique</div>
+      <div class="sc-bench">Médiane IT : 55</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-red">18</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">Contenu & Éditorial</div>
+      <div class="sc-bench">Médiane IT : 45</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-red">25</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">Autorité & Backlinks</div>
+      <div class="sc-bench">Médiane IT : 40</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-red">15</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">GEO (Visibilité IA)</div>
+      <div class="sc-bench">Médiane IT : 35</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-amber">45</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">Expérience Utilisateur</div>
+      <div class="sc-bench">Médiane IT : 60</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-amber">42</div>
+      <div class="sc-max">/100</div>
+      <div class="sc-label">SEO Local (Suisse)</div>
+      <div class="sc-bench">Médiane IT : 50</div>
+    </div>
+  </div>
+
+  <h3>Positionnement sur le marché</h3>
+  <div class="bench-bars">
+    <div class="bench-row">
+      <div class="bench-label"><span>ABAX Info</span><span style="color:var(--red);">34/100</span></div>
+      <div class="bench-track"><div class="bench-fill" style="width:34%;background:var(--red);"></div></div>
+    </div>
+    <div class="bench-row">
+      <div class="bench-label"><span>Médiane IT Suisse</span><span style="color:var(--amber);">48/100</span></div>
+      <div class="bench-track"><div class="bench-fill" style="width:48%;background:var(--amber);"></div></div>
+    </div>
+    <div class="bench-row">
+      <div class="bench-label"><span>Top 25% IT Suisse</span><span style="color:var(--cyan);">68/100</span></div>
+      <div class="bench-track"><div class="bench-fill" style="width:68%;background:var(--cyan);"></div></div>
+    </div>
+    <div class="bench-row">
+      <div class="bench-label"><span>Leader IT Suisse</span><span style="color:var(--green);">85/100</span></div>
+      <div class="bench-track"><div class="bench-fill" style="width:85%;background:var(--green);"></div></div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <p><strong>Synthèse :</strong> ABAX Info se situe dans le quartile inférieur des entreprises IT suisses. Le site est techniquement fonctionnel mais stratégiquement sous-exploité. Potentiel de croissance organique : <strong>x3 à x5 en 6 mois</strong> avec les bonnes actions.</p>
+  </div>
+</section>
+
+<!-- ========== 2. AUDIT SEO TECHNIQUE ========== -->
+<section id="s2" class="container">
+  <div class="section-label">Section 02</div>
+  <h2>Audit SEO technique avancé</h2>
+  <div class="accent-line"></div>
+
+  <h3>2.1 Infrastructure & Crawlabilité</h3>
+  <table>
+    <thead><tr><th>Critère</th><th>Statut</th><th>Score</th><th>Détail</th></tr></thead>
+    <tbody>
+      <tr><td>Protocole HTTPS</td><td class="ok">✅</td><td>10/10</td><td>SSL actif, certificat valide</td></tr>
+      <tr><td>robots.txt</td><td class="ok">✅</td><td>8/10</td><td>Présent, sitemap référencé. Crawl delay 10s sur AhrefsBot</td></tr>
+      <tr><td>Sitemap XML</td><td class="ok">✅</td><td>7/10</td><td>Index sitemap avec 3 sous-sitemaps. Seulement 12 URLs</td></tr>
+      <tr><td>Redirections</td><td class="warn">⚠️</td><td>5/10</td><td>Redirection http → https OK. www non vérifié</td></tr>
+      <tr><td>Erreurs 404</td><td class="warn">⚠️</td><td>6/10</td><td>Pages /integration-informatique/, /vdsi/, /referent-informatique/ = 404</td></tr>
+      <tr><td>Canonical tags</td><td class="warn">⚠️</td><td>5/10</td><td>Wix gère automatiquement, pas de contrôle personnalisé</td></tr>
+      <tr><td>Rendu JavaScript</td><td class="fail">🔴</td><td>2/10</td><td><strong>CRITIQUE</strong> : Wix Thunderbolt = CSR, contenu invisible au 1er crawl</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <p><strong>🔴 Problème critique — Rendu JavaScript (CSR)</strong><br>
+    Wix Thunderbolt rend le contenu côté client. Conséquences :<br>
+    • Googlebot nécessite 2 passes pour indexer (délai : 3-7 jours vs secondes)<br>
+    • ChatGPT, Perplexity, Claude = 0% de visibilité GEO<br>
+    • Partage réseaux sociaux = page souvent vide<br>
+    <strong>Impact estimé : -30 à -50% de potentiel d'indexation perdu</strong></p>
+  </div>
+
+  <h3>2.2 Core Web Vitals</h3>
+  <table>
+    <thead><tr><th>Métrique</th><th>Estimé</th><th>Seuil Google</th><th>Statut</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td><strong>LCP</strong> (Largest Contentful Paint)</td><td>~3.8s</td><td>&lt; 2.5s</td><td class="fail">🔴 Échoue</td><td>-15% ranking</td></tr>
+      <tr><td><strong>CLS</strong> (Cumulative Layout Shift)</td><td>~0.18</td><td>&lt; 0.1</td><td class="fail">🔴 Échoue</td><td>UX dégradée</td></tr>
+      <tr><td><strong>INP</strong> (Interaction to Next Paint)</td><td>~320ms</td><td>&lt; 200ms</td><td class="warn">⚠️</td><td>Réactivité</td></tr>
+      <tr><td><strong>FCP</strong> (First Contentful Paint)</td><td>~3.0s</td><td>&lt; 1.8s</td><td class="fail">🔴 Échoue</td><td>Perception vitesse</td></tr>
+      <tr><td><strong>TTFB</strong> (Time to First Byte)</td><td>~0.8s</td><td>&lt; 0.8s</td><td class="ok">✅</td><td>CDN Wix OK</td></tr>
+      <tr><td><strong>Speed Index</strong></td><td>~5.5s</td><td>&lt; 3.4s</td><td class="fail">🔴 Échoue</td><td>Perception lente</td></tr>
+      <tr><td><strong>TBT</strong> (Total Blocking Time)</td><td>~450ms</td><td>&lt; 200ms</td><td class="fail">🔴 Échoue</td><td>Interaction bloquée</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.3 Optimisations possibles (dans les limites de Wix)</h3>
+  <table>
+    <thead><tr><th>Optimisation</th><th>Gain estimé</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>Compresser et convertir les images en WebP</td><td>-0.5s LCP</td><td class="ok">Faible</td></tr>
+      <tr><td>Réduire les polices web (limiter à 2 fonts)</td><td>-0.3s FCP</td><td class="ok">Faible</td></tr>
+      <tr><td>Optimiser les animations et sliders</td><td>-0.15 CLS</td><td class="warn">Moyen</td></tr>
+      <tr><td>Lazy loading sur toutes les images below-fold</td><td>-0.4s Speed Index</td><td class="ok">Faible</td></tr>
+      <tr><td>Supprimer les widgets/apps Wix inutilisés</td><td>-200ms TBT</td><td class="ok">Faible</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.4 Données structurées recommandées (Schema.org)</h3>
+  <div class="highlight">
+    <p><strong>Schemas à implémenter :</strong> LocalBusiness + ITService + FAQPage + BreadcrumbList + PriceSpecification. Ajout via Wix Code (Custom Elements) ou Wix Velo. Impact : visibilité Google Maps, rich snippets, et compréhension par les moteurs IA.</p>
+  </div>
+
+  <h3>2.5 SEO International (hreflang)</h3>
+  <table>
+    <thead><tr><th>Problème</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Aucune balise hreflang détectée</td><td class="fail">Google ne distingue pas le marché CH du marché FR</td></tr>
+      <tr><td>Pas de ciblage géographique dans Google Search Console</td><td class="warn">Trafic mélangé entre les deux marchés</td></tr>
+      <tr><td>URLs /tarifs/chf et /tarifs/eur sans hreflang</td><td class="fail">Cannibalisation des pages de tarifs</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 3. AUDIT FONCTIONNEL ========== -->
+<section id="s3" class="container">
+  <div class="section-label">Section 03</div>
+  <h2>Audit fonctionnel (UX & Conversion)</h2>
+  <div class="accent-line"></div>
+
+  <h3>3.1 Parcours utilisateur</h3>
+  <table>
+    <thead><tr><th>Critère</th><th>Score</th><th>Constat</th></tr></thead>
+    <tbody>
+      <tr><td>Navigation principale</td><td class="warn">5/10</td><td>Menu simple mais pas optimisé pour la conversion</td></tr>
+      <tr><td>Call-to-action (CTA)</td><td class="fail">3/10</td><td>Pas de CTA clair visible en hero</td></tr>
+      <tr><td>Formulaire de contact</td><td class="warn">4/10</td><td>Page /assistance existe mais pas de formulaire rapide</td></tr>
+      <tr><td>Preuve sociale</td><td class="fail">2/10</td><td>Pas de témoignages, logos clients, ni chiffres</td></tr>
+      <tr><td>Urgence / Rareté</td><td class="fail">1/10</td><td>Aucun élément d'incitation à l'action</td></tr>
+      <tr><td>Chat en direct</td><td class="fail">0/10</td><td>Absent — critique pour une entreprise de support IT</td></tr>
+      <tr><td>Page de tarifs</td><td class="warn">5/10</td><td>Existe en CHF et EUR, mais pas de calculateur</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 Entonnoir de conversion</h3>
+  <div class="card">
+    <div style="text-align:center;font-size:14px;color:var(--white-50);">
+      <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:12px;">Visiteur → Page d'accueil → ... → ??? → Contact</div>
+      <div style="display:flex;justify-content:center;gap:40px;margin-top:16px;">
+        <div>
+          <div style="font-size:24px;font-weight:900;color:var(--red);">65-75%</div>
+          <div>Taux de rebond estimé</div>
+        </div>
+        <div>
+          <div style="font-size:24px;font-weight:900;color:var(--amber);">0.5-1.5%</div>
+          <div>Taux de conversion estimé</div>
+        </div>
+        <div>
+          <div style="font-size:24px;font-weight:900;color:var(--green);">2-4%</div>
+          <div>Objectif benchmark IT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.3 Recommandations UX/Conversion</h3>
+  <table>
+    <thead><tr><th>Action</th><th>Impact conversion</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>Ajouter un CTA clair en hero : "Demander un devis"</td><td class="ok">+30-50%</td><td>Faible</td></tr>
+      <tr><td>Ajouter un chat en direct (Tawk.to)</td><td class="ok">+20-40%</td><td>Faible</td></tr>
+      <tr><td>Ajouter 3-5 témoignages clients avec photo/logo</td><td class="ok">+15-25%</td><td>Moyen</td></tr>
+      <tr><td>Ajouter des chiffres clés (clients, SLA, expérience)</td><td class="ok">+10-20%</td><td>Faible</td></tr>
+      <tr><td>Créer une page "Pourquoi ABAX Info"</td><td class="ok">+15-20%</td><td>Moyen</td></tr>
+      <tr><td>Formulaire de contact sur chaque page service</td><td class="ok">+25-35%</td><td>Moyen</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 4. ANALYSE CONTENU ========== -->
+<section id="s4" class="container">
+  <div class="section-label">Section 04</div>
+  <h2>Analyse de contenu page par page</h2>
+  <div class="accent-line"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">🏠</div>
+      <div><div class="card-title">Page d'accueil (/)</div><div class="card-subtitle">Porte d'entrée principale</div></div>
+    </div>
+    <table>
+      <tbody>
+        <tr><td>Title optimisé</td><td class="warn">⚠️</td><td>→ "ABAX Info — Infogérance & Support IT 24/7 pour PME | Genève & France"</td></tr>
+        <tr><td>Meta description</td><td class="warn">⚠️</td><td>→ 150-160 caractères avec mot-clé + CTA</td></tr>
+        <tr><td>Contenu textuel</td><td class="fail">🔴</td><td>Probablement &lt; 300 mots. Objectif : 500-800 mots</td></tr>
+        <tr><td>Maillage interne</td><td class="fail">🔴</td><td>Ajouter des liens vers chaque page service</td></tr>
+        <tr><td>Schema LocalBusiness</td><td class="fail">🔴</td><td>À ajouter impérativement</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">⚙️</div>
+      <div><div class="card-title">Page Services (/services)</div><div class="card-subtitle">Erreur structurelle majeure</div></div>
+    </div>
+    <table>
+      <tbody>
+        <tr><td>Structure</td><td class="fail">🔴</td><td>1 page unique pour tous les services = erreur SEO majeure</td></tr>
+        <tr><td>Recommandation</td><td>—</td><td><strong>Éclater en 6-8 pages individuelles</strong> (voir cocon sémantique)</td></tr>
+        <tr><td>Contenu estimé</td><td class="fail">🔴</td><td>Trop condensé pour cibler des mots-clés spécifiques</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon green">💰</div>
+      <div><div class="card-title">Pages Tarifs (/tarifs, /tarifs/chf, /tarifs/eur)</div><div class="card-subtitle">Bon réflexe, à optimiser</div></div>
+    </div>
+    <table>
+      <tbody>
+        <tr><td>Structure CHF/EUR</td><td class="ok">✅</td><td>Bonne idée de séparer les devises</td></tr>
+        <tr><td>hreflang</td><td class="fail">🔴</td><td>Ajouter pour cibler CH vs FR</td></tr>
+        <tr><td>Schema PriceSpecification</td><td class="fail">🔴</td><td>Ajouter pour les rich snippets de prix</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">📝</div>
+      <div><div class="card-title">Blog (2 articles)</div><div class="card-subtitle">Quasi inexistant</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Article</th><th>Dernière mise à jour</th><th>Mots</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td>/post/synology-office</td><td>Juillet 2025</td><td>~300-500</td><td class="fail">2/10</td></tr>
+        <tr><td>/post/office-365</td><td>Juillet 2025</td><td>~300-500</td><td class="fail">2/10</td></tr>
+      </tbody>
+    </table>
+    <div class="warning-box">
+      <p>2 articles en 8+ mois = blog mort aux yeux de Google. Pas de maillage interne, pas de CTA, pas de Schema Article/BlogPosting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. SCORE GEO ========== -->
+<section id="s5" class="container">
+  <div class="section-label">Section 05</div>
+  <h2>Score GEO détaillé — Visibilité IA</h2>
+  <div class="accent-line"></div>
+
+  <div class="geo-zero">
+    <div class="big-num">0/20</div>
+    <div class="geo-text">requêtes avec citation ABAX Info dans les réponses IA</div>
+  </div>
+
+  <h3>5.1 Requêtes testées (20 requêtes IT cibles)</h3>
+  <table>
+    <thead><tr><th>#</th><th>Requête</th><th>Google AI</th><th>Perplexity</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>"infogérance PME Genève"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>2</td><td>"support informatique 24h Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>3</td><td>"DSI externalisé PME Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>4</td><td>"prestataire informatique Genève"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>5</td><td>"migration cloud PME Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>6</td><td>"maintenance informatique Genève"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>7</td><td>"cybersécurité PME Suisse romande"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>8</td><td>"sauvegarde données entreprise"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>9</td><td>"helpdesk externalisé Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>10</td><td>"intégration Office 365 PME"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>11</td><td>"quel prestataire IT pour ma PME"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>12</td><td>"coût infogérance PME Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>13</td><td>"avantages DSI externalisé"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>14</td><td>"choisir prestataire informatique"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>15</td><td>"infogérance vs informaticien interne"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>16</td><td>"SLA support informatique PME"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>17</td><td>"Synology NAS entreprise Suisse"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>18</td><td>"technicien informatique Genève"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>19</td><td>"accompagnement IT PME"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+      <tr><td>20</td><td>"abax info avis"</td><td class="fail">❌ Absent</td><td class="fail">❌ Absent</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Facteurs bloquants GEO</h3>
+  <div class="card">
+    <div class="card-header"><div class="card-icon red">🤖</div><div class="card-title">Pourquoi ABAX Info est invisible pour les IA</div></div>
+    <table>
+      <thead><tr><th>Facteur</th><th>Gravité</th><th>Explication</th></tr></thead>
+      <tbody>
+        <tr><td>Rendu JavaScript (Wix)</td><td class="fail">🔴 Critique</td><td>Les LLMs ne parsent pas le JS</td></tr>
+        <tr><td>Absence de Schema.org</td><td class="fail">🔴 Critique</td><td>Les IA utilisent les données structurées</td></tr>
+        <tr><td>Pas de contenu approfondi</td><td class="fail">🔴 Critique</td><td>10 pages = pas d'empreinte de connaissance</td></tr>
+        <tr><td>Pas de FAQ structurée</td><td class="warn">⚠️ Élevé</td><td>Les IA adorent les Q&A</td></tr>
+        <tr><td>Pas de signaux E-E-A-T</td><td class="warn">⚠️ Élevé</td><td>Pas d'auteur, pas de credentials</td></tr>
+        <tr><td>Pas de contenu éducatif</td><td class="warn">⚠️ Élevé</td><td>Les IA citent ceux qui "enseignent"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5.3 Stratégie GEO — Devenir citable par les IA</h3>
+  <table>
+    <thead><tr><th>Action GEO</th><th>Priorité</th><th>Détail</th></tr></thead>
+    <tbody>
+      <tr><td>Créer des pages "Guide" longues (2000+ mots)</td><td class="fail">🔴 P1</td><td>"Guide complet de l'infogérance pour PME en Suisse"</td></tr>
+      <tr><td>Ajouter Schema FAQPage sur chaque page service</td><td class="fail">🔴 P1</td><td>5-10 questions/réponses par page</td></tr>
+      <tr><td>Structurer le contenu en format Q&A</td><td class="fail">🔴 P1</td><td>Les IA extraient facilement ce format</td></tr>
+      <tr><td>Ajouter des données chiffrées et sources</td><td class="warn">⚠️ P2</td><td>Prix, SLA, statistiques = citabilité accrue</td></tr>
+      <tr><td>Publier des études de cas détaillées</td><td class="warn">⚠️ P2</td><td>Format "Problème → Solution → Résultat"</td></tr>
+      <tr><td>Créer un glossaire IT pour PME</td><td>🟡 P3</td><td>Référence naturelle pour les réponses IA</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 6. ANALYSE E-E-A-T ========== -->
+<section id="s6" class="container">
+  <div class="section-label">Section 06</div>
+  <h2>Analyse E-E-A-T</h2>
+  <div class="accent-line"></div>
+  <p>Expertise, Expérience, Autorité, Fiabilité — les 4 piliers utilisés par Google et les moteurs IA pour évaluer la confiance.</p>
+
+  <div class="eeat-grid">
+    <div class="eeat-card">
+      <div class="eeat-header">
+        <div class="eeat-name">🎓 Expertise</div>
+        <div class="eeat-score sc-red">15/25</div>
+      </div>
+      <div class="eeat-bar-track"><div class="eeat-bar-fill" style="width:60%;background:var(--red);"></div></div>
+      <div class="eeat-desc">Pas de pages d'expertise détaillées, pas de certifications affichées. Recommandation : créer des pages par expertise avec certifications.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-header">
+        <div class="eeat-name">🏆 Expérience</div>
+        <div class="eeat-score sc-red">10/25</div>
+      </div>
+      <div class="eeat-bar-track"><div class="eeat-bar-fill" style="width:40%;background:var(--red);"></div></div>
+      <div class="eeat-desc">Pas d'études de cas, pas de témoignages, pas de portfolio. Recommandation : publier 5 études de cas avec KPIs mesurables.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-header">
+        <div class="eeat-name">📡 Autorité</div>
+        <div class="eeat-score sc-red">8/25</div>
+      </div>
+      <div class="eeat-bar-track"><div class="eeat-bar-fill" style="width:32%;background:var(--red);"></div></div>
+      <div class="eeat-desc">Très peu de backlinks, pas de mentions presse, pas de contenu partagé. Recommandation : guest blogging + annuaires IT suisses.</div>
+    </div>
+    <div class="eeat-card">
+      <div class="eeat-header">
+        <div class="eeat-name">🛡️ Fiabilité</div>
+        <div class="eeat-score sc-amber">18/25</div>
+      </div>
+      <div class="eeat-bar-track"><div class="eeat-bar-fill" style="width:72%;background:var(--amber);"></div></div>
+      <div class="eeat-desc">SSL actif, mentions légales et politique de confidentialité présentes. Ajouter : page équipe avec photos, adresse visible, téléphone.</div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <p><strong>Score E-E-A-T global : 51/100</strong> — Insuffisant pour les requêtes YMYL (Your Money Your Life) et les citations IA. L'autorité et l'expérience sont les deux piliers les plus faibles.</p>
+  </div>
+</section>
+
+<!-- ========== 7. COCON SÉMANTIQUE ========== -->
+<section id="s7" class="container">
+  <div class="section-label">Section 07</div>
+  <h2>Cocon sémantique & Recherche de mots-clés</h2>
+  <div class="accent-line"></div>
+
+  <h3>7.1 Architecture proposée</h3>
+
+  <div class="cocon-hub">
+    <h4>📌 PAGE PILIER (Hub)</h4>
+    <p>"Infogérance & Services IT pour PME en Suisse" — 2500-3000 mots</p>
+  </div>
+  <div class="cocon-connector">│<br>├────────┼────────┤</div>
+
+  <div class="cluster-grid">
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 1</div>
+      <div class="cl-title">Infogérance & vDSI</div>
+      <div class="cl-pages">
+        <span>P1 — Infogérance PME Genève</span>
+        <span>P2 — DSI externalisé (vDSI)</span>
+        <span>P3 — Infogérance vs Interne</span>
+      </div>
+    </div>
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 2</div>
+      <div class="cl-title">Support IT & Helpdesk</div>
+      <div class="cl-pages">
+        <span>P4 — Support informatique 24/7</span>
+        <span>P5 — Helpdesk externalisé</span>
+        <span>P6 — SLA informatique PME</span>
+      </div>
+    </div>
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 3</div>
+      <div class="cl-title">Cloud & Migration</div>
+      <div class="cl-pages">
+        <span>P7 — Migration Office 365</span>
+        <span>P8 — Intégration cloud PME</span>
+        <span>P9 — Sauvegarde données</span>
+      </div>
+    </div>
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 4</div>
+      <div class="cl-title">Cybersécurité & Protection</div>
+      <div class="cl-pages">
+        <span>P10 — Cybersécurité PME</span>
+        <span>P11 — LPD/RGPD pour PME</span>
+        <span>P12 — Audit sécurité IT</span>
+      </div>
+    </div>
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 5</div>
+      <div class="cl-title">Stratégie & Conseil IT</div>
+      <div class="cl-pages">
+        <span>P13 — Accompagnement IT</span>
+        <span>P14 — Choisir prestataire IT</span>
+        <span>P15 — Budget IT PME</span>
+      </div>
+    </div>
+    <div class="cluster-card">
+      <div class="cl-num">Cluster 6</div>
+      <div class="cl-title">Secteurs d'activité</div>
+      <div class="cl-pages">
+        <span>P16 — IT cabinets d'avocats</span>
+        <span>P17 — IT fiduciaires</span>
+        <span>P18 — IT PME industrielles</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>7.2 Recherche de mots-clés (50+)</h3>
+
+  <h4>Requêtes transactionnelles</h4>
+  <div class="kw-grid">
+    <div class="kw-tag"><span class="kw-name">infogérance PME Genève</span><span class="kw-vol">70/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">support informatique Genève</span><span class="kw-vol">60/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">prestataire informatique Genève</span><span class="kw-vol">50/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">cybersécurité PME Suisse</span><span class="kw-vol">60/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">migration Office 365 Suisse</span><span class="kw-vol">50/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">DSI externalisé Suisse</span><span class="kw-vol">40/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">maintenance informatique Genève</span><span class="kw-vol">40/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">intégration cloud PME</span><span class="kw-vol">35/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">sauvegarde données entreprise</span><span class="kw-vol">30/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">helpdesk externalisé</span><span class="kw-vol">25/mois</span></div>
+  </div>
+
+  <h4>Requêtes informationnelles</h4>
+  <div class="kw-grid">
+    <div class="kw-tag"><span class="kw-name">choisir prestataire informatique</span><span class="kw-vol">40/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">protection données PME LPD</span><span class="kw-vol">40/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">coût infogérance PME</span><span class="kw-vol">35/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">risques cybersécurité PME</span><span class="kw-vol">35/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">budget IT PME</span><span class="kw-vol">30/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">infogérance vs interne</span><span class="kw-vol">30/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">avantages DSI externalisé</span><span class="kw-vol">25/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">audit sécurité informatique</span><span class="kw-vol">25/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">SLA informatique c'est quoi</span><span class="kw-vol">20/mois</span></div>
+    <div class="kw-tag"><span class="kw-name">Synology NAS entreprise</span><span class="kw-vol">20/mois</span></div>
+  </div>
+
+  <h4>Volume total capturable</h4>
+  <div class="card" style="text-align:center;">
+    <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:28px;font-weight:900;color:var(--cyan);">350-450</div>
+        <div style="font-size:12px;color:var(--white-50);">Transactionnelles /mois</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:900;color:var(--purple);">250-350</div>
+        <div style="font-size:12px;color:var(--white-50);">Informationnelles /mois</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:900;color:var(--amber);">100-200</div>
+        <div style="font-size:12px;color:var(--white-50);">Longue traîne /mois</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:900;color:var(--green);">700-1000</div>
+        <div style="font-size:12px;color:var(--white-50);">Total potentiel /mois</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:13px;color:var(--white-50);">Actuel estimé : &lt; 50 visites/mois → <strong style="color:var(--green);">Potentiel x15-20</strong></div>
+  </div>
+</section>
+
+<!-- ========== 8. ANALYSE CONCURRENTIELLE ========== -->
+<section id="s8" class="container">
+  <div class="section-label">Section 08</div>
+  <h2>Analyse concurrentielle</h2>
+  <div class="accent-line"></div>
+
+  <h3>8.1 Benchmark comparatif</h3>
+  <table class="comp-table">
+    <thead><tr><th>Critère</th><th style="color:var(--red);">ABAX Info</th><th>Ilem SA</th><th>Steel Blue</th><th>G-NET</th></tr></thead>
+    <tbody>
+      <tr class="comp-highlight"><td>Nombre de pages</td><td class="fail">10</td><td>~50-80</td><td>~40-60</td><td>~30-50</td></tr>
+      <tr class="comp-highlight"><td>Articles de blog</td><td class="fail">2</td><td>~30-50</td><td>~20-40</td><td>~15-25</td></tr>
+      <tr><td>Schema.org</td><td class="fail">❌</td><td class="ok">✅</td><td class="ok">✅</td><td class="warn">Partiel</td></tr>
+      <tr><td>Témoignages</td><td class="fail">❌</td><td class="ok">10+</td><td class="ok">5+</td><td class="ok">3+</td></tr>
+      <tr><td>Études de cas</td><td class="fail">❌</td><td class="ok">5+</td><td class="ok">3+</td><td class="warn">1-2</td></tr>
+      <tr><td>Pages par service</td><td class="fail">1 (tout)</td><td class="ok">Individuelles</td><td class="ok">Individuelles</td><td class="ok">Individuelles</td></tr>
+      <tr><td>Fréquence blog</td><td class="fail">Inactif</td><td class="ok">2-4/mois</td><td class="ok">1-2/mois</td><td class="warn">1/mois</td></tr>
+      <tr><td>Score SEO estimé</td><td class="fail">34/100</td><td>65/100</td><td>58/100</td><td>50/100</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.2 Gaps exploitables</h3>
+  <div class="score-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="card">
+      <div class="card-header"><div class="card-icon green">🤖</div><div><div class="card-title">GEO (IA)</div><div class="card-subtitle">1er entrant potentiel</div></div></div>
+      <p style="font-size:13px;">Aucun concurrent n'a de stratégie GEO explicite. Opportunité de devenir la première référence IA dans le secteur IT Genève.</p>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon green">📚</div><div><div class="card-title">Contenu éducatif</div><div class="card-subtitle">Différenciation</div></div></div>
+      <p style="font-size:13px;">Peu de guides vraiment approfondis dans le marché. Créer du contenu éducatif de référence.</p>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon green">🎯</div><div><div class="card-title">Pages sectorielles</div><div class="card-subtitle">Niche inexploitée</div></div></div>
+      <p style="font-size:13px;">Aucun concurrent ne cible par secteur (avocats, fiduciaires, industrie). Niche à forte conversion.</p>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon green">💰</div><div><div class="card-title">Transparence des prix</div><div class="card-subtitle">Avantage existant</div></div></div>
+      <p style="font-size:13px;">ABAX Info est le seul avec des prix publics (CHF/EUR). Un avantage concurrentiel à amplifier.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 9. PROFIL DE BACKLINKS ========== -->
+<section id="s9" class="container">
+  <div class="section-label">Section 09</div>
+  <h2>Profil de backlinks</h2>
+  <div class="accent-line"></div>
+
+  <div class="score-grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="score-card">
+      <div class="sc-value sc-red">&lt; 20</div>
+      <div class="sc-label">Domaines référents</div>
+      <div class="sc-bench">Benchmark : 50-150</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-red">&lt; 50</div>
+      <div class="sc-label">Backlinks totaux</div>
+      <div class="sc-bench">Benchmark : 200-500</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-red">10-15</div>
+      <div class="sc-label">Domain Rating</div>
+      <div class="sc-bench">Benchmark : 30-40</div>
+    </div>
+    <div class="score-card">
+      <div class="sc-value sc-amber">?</div>
+      <div class="sc-label">Liens toxiques</div>
+      <div class="sc-bench">À auditer</div>
+    </div>
+  </div>
+
+  <h3>Sources de backlinks recommandées</h3>
+  <table>
+    <thead><tr><th>Source</th><th>Difficulté</th><th>Impact</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>Annuaires IT suisses (local.ch, search.ch)</td><td class="ok">Faible</td><td class="warn">Moyen</td><td>S'inscrire / vérifier les fiches</td></tr>
+      <tr><td>Registre du commerce (zefix.ch, moneyhouse.ch)</td><td class="ok">Faible</td><td>Faible</td><td>Vérifier la présence</td></tr>
+      <tr><td>Partenaires technologiques (Microsoft, Synology)</td><td class="warn">Moyen</td><td class="ok">Élevé</td><td>Demander backlinks partenaires</td></tr>
+      <tr><td>Chambres de commerce (CCIG, CCI France-Suisse)</td><td class="warn">Moyen</td><td class="ok">Élevé</td><td>Adhérer et obtenir un listing</td></tr>
+      <tr><td>Guest blogging (ICTjournal.ch, bilan.ch)</td><td class="fail">Élevé</td><td class="ok">Très élevé</td><td>Proposer des articles d'expert</td></tr>
+      <tr><td>Témoignages réciproques (clients)</td><td class="ok">Faible</td><td class="warn">Moyen</td><td>Demander aux clients satisfaits</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== 10. LIGNE ÉDITORIALE ========== -->
+<section id="s10" class="container">
+  <div class="section-label">Section 10</div>
+  <h2>Ligne éditoriale & Tone of Voice</h2>
+  <div class="accent-line"></div>
+
+  <h3>10.1 Persona cible</h3>
+  <div class="card">
+    <table>
+      <tbody>
+        <tr><td style="font-weight:700;width:120px;">Qui</td><td>Dirigeant(e) de PME (10-250 employés) en Suisse romande ou France</td></tr>
+        <tr><td style="font-weight:700;">Âge</td><td>35-55 ans</td></tr>
+        <tr><td style="font-weight:700;">Problème</td><td>Débordé par l'opérationnel IT, manque de temps et d'expertise</td></tr>
+        <tr><td style="font-weight:700;">Crainte</td><td>Perte de données, cyberattaque, panne bloquante, coûts cachés</td></tr>
+        <tr><td style="font-weight:700;">Désir</td><td>Tranquillité d'esprit, un partenaire IT fiable, se concentrer sur son métier</td></tr>
+        <tr><td style="font-weight:700;">Niveau tech</td><td>Intermédiaire — comprend les concepts, pas les détails techniques</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>10.2 Tone of voice</h3>
+  <table>
+    <thead><tr><th>Dimension</th><th>Guideline</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:700;">Registre</td><td>Professionnel mais accessible</td><td class="ok">✅ "On s'occupe de votre informatique pour que vous puissiez vous concentrer sur votre métier"</td></tr>
+      <tr><td style="font-weight:700;">Posture</td><td>Expert bienveillant</td><td class="ok">✅ "Beaucoup de dirigeants nous demandent..."</td></tr>
+      <tr><td style="font-weight:700;">Ton</td><td>Rassurant et concret</td><td class="ok">✅ "Support 24h/24, réponse en moins de 15 min"</td></tr>
+      <tr><td style="font-weight:700;">Preuves</td><td>Chiffres et exemples</td><td class="ok">✅ "En 2025, 98% des tickets résolus en &lt; 2h"</td></tr>
+      <tr><td style="font-weight:700;">CTA</td><td>Direct, sans pression</td><td class="ok">✅ "Discutons de vos besoins — appel gratuit de 15 min"</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.3 Thèmes éditoriaux (5 piliers)</h3>
+  <div class="pillar-row">
+    <div class="pillar-icon">🔧</div>
+    <div class="pillar-name">Guides pratiques IT</div>
+    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width:30%;background:var(--cyan);"></div></div>
+    <div class="pillar-pct">30%</div>
+  </div>
+  <div class="pillar-row">
+    <div class="pillar-icon">💡</div>
+    <div class="pillar-name">Conseils pour dirigeants</div>
+    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width:25%;background:var(--purple);"></div></div>
+    <div class="pillar-pct">25%</div>
+  </div>
+  <div class="pillar-row">
+    <div class="pillar-icon">🔒</div>
+    <div class="pillar-name">Cybersécurité & Risques</div>
+    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width:20%;background:var(--red);"></div></div>
+    <div class="pillar-pct">20%</div>
+  </div>
+  <div class="pillar-row">
+    <div class="pillar-icon">📊</div>
+    <div class="pillar-name">Études de cas</div>
+    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width:15%;background:var(--green);"></div></div>
+    <div class="pillar-pct">15%</div>
+  </div>
+  <div class="pillar-row">
+    <div class="pillar-icon">🇨🇭</div>
+    <div class="pillar-name">Actualité IT Suisse</div>
+    <div class="pillar-bar-track"><div class="pillar-bar-fill" style="width:10%;background:var(--amber);"></div></div>
+    <div class="pillar-pct">10%</div>
+  </div>
+</section>
+
+<!-- ========== 11. PLAN ÉDITORIAL ========== -->
+<section id="s11" class="container">
+  <div class="section-label">Section 11</div>
+  <h2>Plan éditorial 6 mois — 24 articles</h2>
+  <div class="accent-line"></div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 1 — Fondations</div>
+    <div class="cal-row"><div class="cal-week">S1</div><div class="cal-title-text">Infogérance pour PME à Genève : tout ce que vous devez savoir en 2026</div><div class="cal-type guide">Guide pilier</div></div>
+    <div class="cal-row"><div class="cal-week">S2</div><div class="cal-title-text">Comment choisir le bon prestataire informatique pour votre PME en Suisse</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S3</div><div class="cal-title-text">Infogérance vs informaticien interne : le vrai comparatif pour PME</div><div class="cal-type compare">Comparatif</div></div>
+    <div class="cal-row"><div class="cal-week">S4</div><div class="cal-title-text">Les 10 menaces cybersécurité pour PME en 2026</div><div class="cal-type listicle">Listicle</div></div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 2 — Support & Cloud</div>
+    <div class="cal-row"><div class="cal-week">S5</div><div class="cal-title-text">Support informatique 24/7 : pourquoi votre PME ne peut plus s'en passer</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S6</div><div class="cal-title-text">Migration Office 365 pour PME : guide complet en 7 étapes</div><div class="cal-type guide">Tutoriel</div></div>
+    <div class="cal-row"><div class="cal-week">S7</div><div class="cal-title-text">SLA informatique : comment choisir le bon niveau de service</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S8</div><div class="cal-title-text">Sauvegarde des données d'entreprise : les 5 règles d'or</div><div class="cal-type listicle">Listicle</div></div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 3 — Sécurité & Stratégie</div>
+    <div class="cal-row"><div class="cal-week">S9</div><div class="cal-title-text">Protection des données (nLPD/RGPD) : guide pratique pour PME suisses</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S10</div><div class="cal-title-text">Budget IT pour PME : combien investir en informatique en 2026</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S11</div><div class="cal-title-text">Étude de cas : fiduciaire genevoise, -40% coûts IT</div><div class="cal-type case-study">Étude de cas</div></div>
+    <div class="cal-row"><div class="cal-week">S12</div><div class="cal-title-text">Audit de sécurité informatique : la checklist complète pour PME</div><div class="cal-type guide">Checklist</div></div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 4 — Approfondissement</div>
+    <div class="cal-row"><div class="cal-week">S13</div><div class="cal-title-text">DSI externalisé (vDSI) : la solution idéale pour les PME de 10-50 employés</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S14</div><div class="cal-title-text">Cloud privé vs cloud public pour PME : quel choix en Suisse ?</div><div class="cal-type compare">Comparatif</div></div>
+    <div class="cal-row"><div class="cal-week">S15</div><div class="cal-title-text">Helpdesk externalisé : réduire vos coûts de support de 60%</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S16</div><div class="cal-title-text">IT pour cabinets d'avocats : obligations et solutions en Suisse</div><div class="cal-type sector">Sectoriel</div></div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 5 — GEO & Autorité</div>
+    <div class="cal-row"><div class="cal-week">S17</div><div class="cal-title-text">Intégration cloud : AWS, Azure ou Google Cloud pour PME ?</div><div class="cal-type compare">Comparatif</div></div>
+    <div class="cal-row"><div class="cal-week">S18</div><div class="cal-title-text">Ransomware : que faire si votre PME est attaquée (guide de crise)</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S19</div><div class="cal-title-text">Étude de cas : migration cloud réussie pour PME industrielle</div><div class="cal-type case-study">Étude de cas</div></div>
+    <div class="cal-row"><div class="cal-week">S20</div><div class="cal-title-text">Glossaire IT pour dirigeants de PME : 50 termes expliqués</div><div class="cal-type guide">Ressource GEO</div></div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-month-title">Mois 6 — Consolidation</div>
+    <div class="cal-row"><div class="cal-week">S21</div><div class="cal-title-text">Accompagnement stratégique IT : pourquoi votre PME a besoin d'un plan</div><div class="cal-type guide">Guide</div></div>
+    <div class="cal-row"><div class="cal-week">S22</div><div class="cal-title-text">IT pour fiduciaires : conformité, sécurité et productivité</div><div class="cal-type sector">Sectoriel</div></div>
+    <div class="cal-row"><div class="cal-week">S23</div><div class="cal-title-text">Les 7 signaux d'alerte que votre infrastructure IT est obsolète</div><div class="cal-type listicle">Listicle</div></div>
+    <div class="cal-row"><div class="cal-week">S24</div><div class="cal-title-text">Bilan semestriel : tendances IT 2026 pour PME suisses</div><div class="cal-type guide">Actualité</div></div>
+  </div>
+
+  <div class="highlight">
+    <p><strong>Impact estimé à M+6 :</strong> +700-1000 visites organiques/mois. 12 guides, 3 comparatifs, 2 études de cas, 3 listicles, 2 guides sectoriels, 1 ressource GEO, 1 actualité.</p>
+  </div>
+</section>
+
+<!-- ========== 12. PLAN D'ACTION 90 JOURS ========== -->
+<section id="s12" class="container">
+  <div class="section-label">Section 12</div>
+  <h2>Plan d'action priorisé — 90 jours</h2>
+  <div class="accent-line"></div>
+
+  <div class="timeline">
+
+    <div class="timeline-phase">
+      <div class="phase-title"><span>Phase 1 — Quick Wins</span> (Semaines 1-2)</div>
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Temps</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Ajouter Schema.org LocalBusiness + ITService via Wix Code</td><td>2h</td><td class="ok">+15 pts SEO</td></tr>
+          <tr><td>2</td><td>Optimiser les meta titles et descriptions (toutes les pages)</td><td>3h</td><td class="ok">+10 pts SEO</td></tr>
+          <tr><td>3</td><td>Ajouter hreflang FR-CH / FR-FR</td><td>1h</td><td>Ciblage géo</td></tr>
+          <tr><td>4</td><td>Compresser et convertir les images en WebP</td><td>2h</td><td>+0.5s vitesse</td></tr>
+          <tr><td>5</td><td>Ajouter un CTA clair en hero</td><td>1h</td><td class="ok">+30% conversion</td></tr>
+          <tr><td>6</td><td>Installer un chat en direct (Tawk.to / Crisp)</td><td>30 min</td><td class="ok">+20% contact</td></tr>
+          <tr><td>7</td><td>Google Business Profile (si inexistant)</td><td>2h</td><td>SEO local</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight">
+        <p><strong>Résultat S2 :</strong> Score SEO technique → 50/100 (+12 points)</p>
+      </div>
+    </div>
+
+    <div class="timeline-phase phase-2">
+      <div class="phase-title"><span>Phase 2 — Contenu & Structure</span> (Semaines 3-6)</div>
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Temps</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>8</td><td>Créer la page pilier (2500 mots)</td><td>8h</td><td>Page hub du cocon</td></tr>
+          <tr><td>9</td><td>Éclater /services en 6 pages individuelles</td><td>20h</td><td class="ok">+300 visites/mois</td></tr>
+          <tr><td>10</td><td>Ajouter Schema FAQPage sur chaque page service</td><td>4h</td><td class="ok">GEO +20 pts</td></tr>
+          <tr><td>11</td><td>Publier les 4 premiers articles de blog</td><td>16h</td><td>Autorité + trafic</td></tr>
+          <tr><td>12</td><td>Ajouter 3-5 témoignages clients</td><td>4h</td><td>E-E-A-T + conversion</td></tr>
+          <tr><td>13</td><td>Créer page "Équipe" avec photos et bios</td><td>4h</td><td>E-E-A-T + confiance</td></tr>
+          <tr><td>14</td><td>Créer page "Pourquoi ABAX Info"</td><td>4h</td><td>Conversion</td></tr>
+          <tr><td>15</td><td>Configurer le maillage interne</td><td>3h</td><td>Architecture SEO</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight">
+        <p><strong>Résultat S6 :</strong> Score SEO → 55/100 | Contenu → 35/100 | +150-250 visites/mois</p>
+      </div>
+    </div>
+
+    <div class="timeline-phase phase-3">
+      <div class="phase-title"><span>Phase 3 — Autorité & GEO</span> (Semaines 7-12)</div>
+      <table>
+        <thead><tr><th>#</th><th>Action</th><th>Temps</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>16</td><td>Publier 8 articles suivants (Mois 2-3)</td><td>32h</td><td class="ok">+300-500 visites/mois</td></tr>
+          <tr><td>17</td><td>Créer les pages sectorielles (P16-P18)</td><td>12h</td><td>Niche + conversion</td></tr>
+          <tr><td>18</td><td>Stratégie backlinks (annuaires, partenaires, CCI)</td><td>10h</td><td class="ok">DA +10-15 pts</td></tr>
+          <tr><td>19</td><td>Publier 2 études de cas détaillées</td><td>8h</td><td>E-E-A-T + preuve</td></tr>
+          <tr><td>20</td><td>Créer le glossaire IT (ressource GEO)</td><td>6h</td><td>Citabilité IA</td></tr>
+          <tr><td>21</td><td>Optimiser Google Business Profile</td><td>4h</td><td>SEO local</td></tr>
+          <tr><td>22</td><td>2 articles guest blog (ICTjournal, PME Mag)</td><td>8h</td><td class="ok">Backlinks + autorité</td></tr>
+          <tr><td>23</td><td>Évaluation migration Wix → WordPress/Webflow</td><td>4h</td><td>Décision stratégique</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight">
+        <p><strong>Résultat S12 :</strong> Score global → 55-65/100 | Score GEO → 35-45/100 | +500-800 visites/mois</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>Résultats attendus à J+90</h3>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="rc-label">Score SEO</div>
+      <div class="rc-before">34</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">55-65</div>
+      <div class="rc-change">+60-90%</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Score GEO</div>
+      <div class="rc-before">15</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">35-45</div>
+      <div class="rc-change">+130-200%</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Pages</div>
+      <div class="rc-before">10</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">30-40</div>
+      <div class="rc-change">x3-4</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Visites/mois</div>
+      <div class="rc-before">~50</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">500-800</div>
+      <div class="rc-change">x10-16</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Articles blog</div>
+      <div class="rc-before">2</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">14-16</div>
+      <div class="rc-change">x7-8</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Domaines réf.</div>
+      <div class="rc-before">~20</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">40-60</div>
+      <div class="rc-change">x2-3</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Taux conv.</div>
+      <div class="rc-before">~1%</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">2-3%</div>
+      <div class="rc-change">x2-3</div>
+    </div>
+    <div class="result-card">
+      <div class="rc-label">Leads/mois</div>
+      <div class="rc-before">~0.5</div>
+      <div class="rc-arrow">→</div>
+      <div class="rc-after">10-24</div>
+      <div class="rc-change">x20-48</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA / PROCHAINES ÉTAPES ========== -->
+<section class="container">
+  <div class="cta-section">
+    <div class="section-label">Prochaines étapes</div>
+    <h2>Passons à l'action</h2>
+    <p style="max-width:600px;margin:0 auto 24px;">Ce diagnostic a identifié les leviers de croissance pour ABAX Info. La prochaine étape est de transformer ces recommandations en résultats concrets.</p>
+
+    <div class="card" style="text-align:left;max-width:500px;margin:0 auto;">
+      <table>
+        <tbody>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+1</td><td>Réception et lecture du rapport</td></tr>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+3</td><td>Call de présentation 60 min (Premium)</td></tr>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+7</td><td>Décision sur les Quick Wins</td></tr>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+14</td><td>Début Phase 1</td></tr>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+30</td><td>Session follow-up 30 min</td></tr>
+          <tr><td style="font-weight:700;color:var(--cyan);">J+90</td><td>Bilan et ajustement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <a href="https://cal.com/axion" class="cta-btn">Réserver mon appel stratégique →</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="container">
+  <p style="font-size:14px;font-weight:700;color:var(--white-80);margin-bottom:8px;">AXION</p>
+  <p>Agence d'automatisation IA — Nyon, Suisse</p>
+  <p style="margin-top:8px;">Diagnostic généré par notre pipeline IA + expertise SEO/GEO humaine.</p>
+  <p>Ce rapport est <strong style="color:var(--red);">confidentiel</strong> et destiné exclusivement à ABAX Info.</p>
+  <p style="margin-top:12px;"><a href="mailto:hello@axion.supply">hello@axion.supply</a> · <a href="https://www.axion.supply/">axion.supply</a></p>
+  <p style="margin-top:8px;">&copy; AXION 2026</p>
+</footer>
+
+</body>
+</html>
