@@ -267,7 +267,7 @@
         opacity: 0.75;
     }
     .brick-type.type-auto, .brick-type .type-auto { color: var(--cyan); }
-    .brick-type.type-consulting, .brick-type .type-consulting { color: #4A90D9; }
+    .brick-type.type-consulting, .brick-type .type-consulting { color: #3A7BD5; }
     .brick-type.type-act, .brick-type .type-act { color: var(--amber); }
 
     /* LEGEND */
@@ -335,8 +335,11 @@
         width: 9px; height: 9px; border-radius: 50%;
     }
     .legend-type-dot.auto { background: var(--cyan); }
-    .legend-type-dot.consulting { background: #4A90D9; }
+    .legend-type-dot.consulting { background: #3A7BD5; }
     .legend-type-dot.act { background: var(--amber); }
+    .legend-type-icon {
+        font-size: 11px; margin-right: 4px;
+    }
 
     /* PRINT */
     @media print {
@@ -414,7 +417,7 @@
                 </div>
                 <div class="brick-desc">Cartographie workflows, goulots, quick wins</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#128203;</span> Diagnostic complet</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
         </div>
 
@@ -428,7 +431,7 @@
                 </div>
                 <div class="brick-desc">Mod&egrave;les, checklists, proc&eacute;dures cl&eacute;s</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~2h/sem</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
             <a href="fiches/fiche-1.3-triage-auto-emails.html" class="brick p1 sz-m">
 
@@ -476,7 +479,7 @@
                 </div>
                 <div class="brick-desc">Playbooks, r&ocirc;les clairs, plan de backup</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#127919;</span> Autonomie &eacute;quipe</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
         </div>
 
@@ -521,7 +524,7 @@
                 </div>
                 <div class="brick-desc">Volumes, SLA, circuit appels</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#128203;</span> Visibilit&eacute; 360&deg;</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
         </div>
 
@@ -535,7 +538,7 @@
                 </div>
                 <div class="brick-desc">Wiki interne, proc&eacute;dures, FAQ</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> -30% temps r&eacute;solution</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
         </div>
 
@@ -573,7 +576,7 @@
                 </div>
                 <div class="brick-desc">R&eacute;ponses types, personnalisation IA</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~15min/ticket</div>
-                <div class="brick-type type-consulting">&#9679; Consulting</div>
+                <div class="brick-type type-consulting">&#128218; Consulting</div>
             </a>
         </div>
 
@@ -611,7 +614,7 @@
                 </div>
                 <div class="brick-desc">Audit SEO, plan &eacute;ditorial, pages techniques</div>
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> +200&ndash;500 visites/mois</div>
-                <div class="brick-type"><span class="type-consulting">&#9679; Consulting</span> + <span class="type-act">&#9679; Activation</span></div>
+                <div class="brick-type"><span class="type-consulting">&#128218; Consulting</span> + <span class="type-act">&#128640; Activation</span></div>
             </a>
         </div>
 
@@ -625,7 +628,7 @@
                 </div>
                 <div class="brick-desc">Google My Business + avis clients</div>
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> Top 3 local + avis</div>
-                <div class="brick-type"><span class="type-consulting">&#9679; Consulting</span> + <span class="type-act">&#9679; Activation</span></div>
+                <div class="brick-type"><span class="type-consulting">&#128218; Consulting</span> + <span class="type-act">&#128640; Activation</span></div>
             </a>
         </div>
 
@@ -684,9 +687,9 @@
         <div class="legend-divider"></div>
         <div class="legend-section">
             <div class="legend-title">Type intervention</div>
-            <div class="legend-item"><div class="legend-type-dot auto"></div>Automatisation</div>
-            <div class="legend-item"><div class="legend-type-dot consulting"></div>Consulting</div>
-            <div class="legend-item"><div class="legend-type-dot act"></div>Activation</div>
+            <div class="legend-item"><span class="legend-type-icon" style="color:var(--cyan)">&#9889;</span>Automatisation</div>
+            <div class="legend-item"><span class="legend-type-icon" style="color:#3A7BD5">&#128218;</span>Consulting</div>
+            <div class="legend-item"><span class="legend-type-icon" style="color:var(--amber)">&#128640;</span>Activation</div>
         </div>
     </div>
 </div>
