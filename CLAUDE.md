@@ -76,19 +76,23 @@ workshop-abaxinfo-[type].html         # Présentations en mode slide deck
 | Fichier | Contenu | Statut |
 |---------|---------|--------|
 | `abaxinfo-roadmap.html` | Roadmap visuelle v0 — 3 opportunités × 5 périodes (Capability Bricks) | Référence v0 |
-| `abaxinfo-roadmap-v1.html` | Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention | À partager |
+| `abaxinfo-roadmap-v1.html` | Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention | Référence v1 |
+| `abaxinfo-roadmap-v2.html` | Roadmap v2 — numéros briques, reorder Q2, VOIP→Q3, Base connaissances→Q2, Accompagnement→Consulting | À partager |
 | `fiches-capability-bricks.html` | Fiches détaillées v0 — 20 briques | Référence v0 |
-| `fiches-capability-bricks-v1.html` | Fiches v1 — 21 briques, 1.2 emails (nouveau), 1.6 délégation (nouveau), type d'intervention | À partager |
+| `fiches-capability-bricks-v1.html` | Fiches v1 (maj v2) — 21 briques, timings ajustés, Accompagnement fusionné dans Consulting | À partager |
+| `fiches/` | 21 fiches individuelles (1 fichier HTML par brique, navigation prev/next) | À partager |
 
 ### `client/` — Publication Netlify
 Contient uniquement les fichiers à partager avec le client (pas le diagnostic détaillé) :
-- `index.html` — Page d'accueil branded avec liens vers les 3 documents
+- `index.html` — Page d'accueil branded avec liens vers les documents
 - `workshop-abaxinfo-presentation.html` — Copie depuis `workshop/`
 - `workshop-abaxinfo-compte-rendu.html` — Copie depuis `workshop/`
 - `abaxinfo-lead-magnet-seo-geo.html` — Copie depuis `diagnostic/`
 - `abaxinfo-roadmap.html` — Copie depuis `proposition/` (v0)
 - `abaxinfo-roadmap-v1.html` — Copie depuis `proposition/` (v1)
-- `fiches-capability-bricks-v1.html` — Copie depuis `proposition/` (v1)
+- `abaxinfo-roadmap-v2.html` — Copie depuis `proposition/` (v2)
+- `fiches-capability-bricks-v1.html` — Copie depuis `proposition/` (v1, mis à jour)
+- `fiches/` — 21 fiches individuelles, copie depuis `proposition/fiches/`
 
 **Important :** `client/` est la source de vérité pour Netlify. Si un fichier source est mis à jour, penser à le recopier dans `client/`.
 
