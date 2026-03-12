@@ -204,23 +204,23 @@
     /* ========== COMPLEXITY FILL BAR (bottom) ========== */
     .brick::after {
         content: ''; position: absolute;
-        left: 0; bottom: 0; height: 3px;
-        background: rgba(255,255,255,0.4);
+        left: 0; bottom: 0; height: 5px;
+        background: rgba(255,255,255,0.45);
     }
-    .brick.sz-s::after { width: 33%; border-radius: 0 0 0 7px; }
-    .brick.sz-m::after { width: 66%; }
+    .brick.sz-s::after { width: 33.33%; border-radius: 0 0 0 7px; }
+    .brick.sz-m::after { width: 66.66%; }
     .brick.sz-l::after { width: 100%; border-radius: 0 0 7px 7px; }
 
     /* ========== COMPLEXITY GRADUATION MARKS ========== */
     .brick::before {
         content: ''; position: absolute;
-        left: 0; bottom: 0; height: 3px; width: 100%;
+        left: 0; bottom: 0; height: 5px; width: 100%;
         background:
             linear-gradient(90deg,
-                transparent calc(33.33% - 0.5px), rgba(255,255,255,0.25) calc(33.33% - 0.5px),
-                rgba(255,255,255,0.25) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px),
-                transparent calc(66.66% - 0.5px), rgba(255,255,255,0.25) calc(66.66% - 0.5px),
-                rgba(255,255,255,0.25) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)
+                transparent calc(33.33% - 1px), rgba(0,0,0,0.5) calc(33.33% - 1px),
+                rgba(0,0,0,0.5) calc(33.33% + 1px), transparent calc(33.33% + 1px),
+                transparent calc(66.66% - 1px), rgba(0,0,0,0.5) calc(66.66% - 1px),
+                rgba(0,0,0,0.5) calc(66.66% + 1px), transparent calc(66.66% + 1px)
             );
         z-index: 1; pointer-events: none;
     }
@@ -304,10 +304,10 @@
     .legend-brick.sz-l { height: 28px; }
     .legend-bar {
         position: absolute; left: 0; top: 0; bottom: 0;
-        background: rgba(255,255,255,0.35);
+        background: rgba(255,255,255,0.4);
     }
-    .legend-brick.sz-s .legend-bar { width: 33%; }
-    .legend-brick.sz-m .legend-bar { width: 66%; }
+    .legend-brick.sz-s .legend-bar { width: 33.33%; }
+    .legend-brick.sz-m .legend-bar { width: 66.66%; }
     .legend-brick.sz-l .legend-bar { width: 100%; }
     /* Graduation marks on legend bricks */
     .legend-brick::after {
@@ -315,10 +315,10 @@
         left: 0; top: 0; bottom: 0; width: 100%;
         background:
             linear-gradient(90deg,
-                transparent calc(33.33% - 0.5px), rgba(255,255,255,0.3) calc(33.33% - 0.5px),
-                rgba(255,255,255,0.3) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px),
-                transparent calc(66.66% - 0.5px), rgba(255,255,255,0.3) calc(66.66% - 0.5px),
-                rgba(255,255,255,0.3) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)
+                transparent calc(33.33% - 1px), rgba(0,0,0,0.45) calc(33.33% - 1px),
+                rgba(0,0,0,0.45) calc(33.33% + 1px), transparent calc(33.33% + 1px),
+                transparent calc(66.66% - 1px), rgba(0,0,0,0.45) calc(66.66% - 1px),
+                rgba(0,0,0,0.45) calc(66.66% + 1px), transparent calc(66.66% + 1px)
             );
         z-index: 1;
     }
@@ -409,7 +409,7 @@
             <a href="fiches/fiche-1.1-audit-processus-admin.html" class="brick p1 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.1</span> Audit processus admin</div>
+                    <div class="brick-name"><span class="brick-num">1.1</span> &mdash; Audit processus admin</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Cartographie workflows, goulots, quick wins</div>
@@ -423,7 +423,7 @@
             <a href="fiches/fiche-1.2-structuration-process.html" class="brick p1 sz-s">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.2</span> Structuration process</div>
+                    <div class="brick-name"><span class="brick-num">1.2</span> &mdash; Structuration process</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Mod&egrave;les, checklists, proc&eacute;dures cl&eacute;s</div>
@@ -433,7 +433,7 @@
             <a href="fiches/fiche-1.3-triage-auto-emails.html" class="brick p1 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.3</span> Triage &amp; auto emails</div>
+                    <div class="brick-name"><span class="brick-num">1.3</span> &mdash; Triage &amp; auto emails</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Tri intelligent, r&eacute;ponses auto, routage</div>
@@ -447,7 +447,7 @@
             <a href="fiches/fiche-1.4-automatisation-facturation.html" class="brick p1 sz-l">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.4</span> Automatisation facturation</div>
+                    <div class="brick-name"><span class="brick-num">1.4</span> &mdash; Automatisation facturation</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Penny Lane + Bexio, heures hors contrat</div>
@@ -461,7 +461,7 @@
             <a href="fiches/fiche-1.5-onboarding-client-auto.html" class="brick p2 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.5</span> Onboarding client auto</div>
+                    <div class="brick-name"><span class="brick-num">1.5</span> &mdash; Onboarding client auto</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">Signature &rarr; activation Autotask/Kaseya</div>
@@ -471,7 +471,7 @@
             <a href="fiches/fiche-1.6-delegation-continuite.html" class="brick p2 sz-s">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.6</span> D&eacute;l&eacute;gation &amp; continuit&eacute;</div>
+                    <div class="brick-name"><span class="brick-num">1.6</span> &mdash; D&eacute;l&eacute;gation &amp; continuit&eacute;</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">Playbooks, r&ocirc;les clairs, plan de backup</div>
@@ -485,7 +485,7 @@
             <a href="fiches/fiche-1.7-dashboard-kpi-temps.html" class="brick p3 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.7</span> Dashboard KPI &amp; temps</div>
+                    <div class="brick-name"><span class="brick-num">1.7</span> &mdash; Dashboard KPI &amp; temps</div>
                     <div class="badge-p p3">P3</div>
                 </div>
                 <div class="brick-desc">Suivi heures, rentabilit&eacute;, alertes</div>
@@ -495,7 +495,7 @@
             <a href="fiches/fiche-1.8-alertes-relances-auto.html" class="brick p3 sz-s">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">1.8</span> Alertes relances auto</div>
+                    <div class="brick-name"><span class="brick-num">1.8</span> &mdash; Alertes relances auto</div>
                     <div class="badge-p p3">P3</div>
                 </div>
                 <div class="brick-desc">Rappels paiement, renouvellements</div>
@@ -516,7 +516,7 @@
             <a href="fiches/fiche-2.1-cartographie-tickets-flux.html" class="brick p1 sz-l">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.1</span> Cartographie tickets &amp; flux</div>
+                    <div class="brick-name"><span class="brick-num">2.1</span> &mdash; Cartographie tickets &amp; flux</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Volumes, SLA, circuit appels</div>
@@ -530,7 +530,7 @@
             <a href="fiches/fiche-2.2-base-de-connaissances.html" class="brick p2 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.2</span> Base de connaissances</div>
+                    <div class="brick-name"><span class="brick-num">2.2</span> &mdash; Base de connaissances</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">Wiki interne, proc&eacute;dures, FAQ</div>
@@ -544,7 +544,7 @@
             <a href="fiches/fiche-2.3-filtrage-tri-appels-voip.html" class="brick p1 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.3</span> Filtrage &amp; tri appels VOIP</div>
+                    <div class="brick-name"><span class="brick-num">2.3</span> &mdash; Filtrage &amp; tri appels VOIP</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Pr&eacute;-qualification, routage intelligent</div>
@@ -554,7 +554,7 @@
             <a href="fiches/fiche-2.4-alertes-sla-auto.html" class="brick p2 sz-s">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.4</span> Alertes SLA auto</div>
+                    <div class="brick-name"><span class="brick-num">2.4</span> &mdash; Alertes SLA auto</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">Monitoring d&eacute;lais, escalade auto</div>
@@ -568,7 +568,7 @@
             <a href="fiches/fiche-2.5-templates-reponses.html" class="brick p2 sz-s">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.5</span> Templates r&eacute;ponses</div>
+                    <div class="brick-name"><span class="brick-num">2.5</span> &mdash; Templates r&eacute;ponses</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">R&eacute;ponses types, personnalisation IA</div>
@@ -582,7 +582,7 @@
             <a href="fiches/fiche-2.6-ordonnancement-intelligent.html" class="brick p3 sz-l">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">2.6</span> Ordonnancement intelligent</div>
+                    <div class="brick-name"><span class="brick-num">2.6</span> &mdash; Ordonnancement intelligent</div>
                     <div class="badge-p p3">P3</div>
                 </div>
                 <div class="brick-desc">Dispatch auto selon comp&eacute;tences</div>
@@ -606,7 +606,7 @@
             <a href="fiches/fiche-3.1-visibilite.html" class="brick p1 sz-l">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">3.1</span> Visibilit&eacute;</div>
+                    <div class="brick-name"><span class="brick-num">3.1</span> &mdash; Visibilit&eacute;</div>
                     <div class="badge-p p1">P1</div>
                 </div>
                 <div class="brick-desc">Audit SEO, plan &eacute;ditorial, pages techniques</div>
@@ -620,7 +620,7 @@
             <a href="fiches/fiche-3.2-reputation.html" class="brick p2 sz-l">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">3.2</span> R&eacute;putation</div>
+                    <div class="brick-name"><span class="brick-num">3.2</span> &mdash; R&eacute;putation</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">Google My Business + avis clients</div>
@@ -634,7 +634,7 @@
             <a href="fiches/fiche-3.3-posts-linkedin-auto.html" class="brick p2 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">3.3</span> Posts LinkedIn auto</div>
+                    <div class="brick-name"><span class="brick-num">3.3</span> &mdash; Posts LinkedIn auto</div>
                     <div class="badge-p p2">P2</div>
                 </div>
                 <div class="brick-desc">G&eacute;n&eacute;ration contenu, planification, publication</div>
@@ -648,7 +648,7 @@
             <a href="fiches/fiche-3.4-moteur-commercial-integre.html" class="brick p3 sz-m">
 
                 <div class="brick-top">
-                    <div class="brick-name"><span class="brick-num">3.4</span> Moteur commercial int&eacute;gr&eacute;</div>
+                    <div class="brick-name"><span class="brick-num">3.4</span> &mdash; Moteur commercial int&eacute;gr&eacute;</div>
                     <div class="badge-p p3">P3</div>
                 </div>
                 <div class="brick-desc">CRM, scoring leads, nurturing auto</div>
