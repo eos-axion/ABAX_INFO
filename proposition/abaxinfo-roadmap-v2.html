@@ -153,9 +153,10 @@
     }
     .brick:hover { transform: scale(1.02); }
 
-    .brick.sz-s { padding: 7px 10px 9px; gap: 3px; }
-    .brick.sz-m { padding: 9px 12px 11px; gap: 4px; }
-    .brick.sz-l { padding: 11px 12px 13px; gap: 4px; }
+    /* Uniform padding — sz classes only control complexity fill bar */
+    .brick.sz-s,
+    .brick.sz-m,
+    .brick.sz-l { padding: 9px 12px 11px; gap: 4px; }
 
     .brick.p1 {
         background: linear-gradient(135deg, rgba(255,71,87,0.12), rgba(255,71,87,0.05));
@@ -411,6 +412,7 @@
                     <div class="brick-name"><span class="brick-num">1.1</span> Audit processus admin</div>
                     <div class="badge-p p1">P1</div>
                 </div>
+                <div class="brick-desc">Cartographie workflows, goulots, quick wins</div>
                 <div class="brick-gain gain-diag"><span class="gain-icon">&#128203;</span> Diagnostic complet</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
@@ -424,6 +426,7 @@
                     <div class="brick-name"><span class="brick-num">1.2</span> Structuration process</div>
                     <div class="badge-p p1">P1</div>
                 </div>
+                <div class="brick-desc">Mod&egrave;les, checklists, proc&eacute;dures cl&eacute;s</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~2h/sem</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
@@ -433,6 +436,7 @@
                     <div class="brick-name"><span class="brick-num">1.3</span> Triage &amp; auto emails</div>
                     <div class="badge-p p1">P1</div>
                 </div>
+                <div class="brick-desc">Tri intelligent, r&eacute;ponses auto, routage</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~3&ndash;4h/sem</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -470,6 +474,7 @@
                     <div class="brick-name"><span class="brick-num">1.6</span> D&eacute;l&eacute;gation &amp; continuit&eacute;</div>
                     <div class="badge-p p2">P2</div>
                 </div>
+                <div class="brick-desc">Playbooks, r&ocirc;les clairs, plan de backup</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#127919;</span> Autonomie &eacute;quipe</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
@@ -483,6 +488,7 @@
                     <div class="brick-name"><span class="brick-num">1.7</span> Dashboard KPI &amp; temps</div>
                     <div class="badge-p p3">P3</div>
                 </div>
+                <div class="brick-desc">Suivi heures, rentabilit&eacute;, alertes</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#128202;</span> Pilotage temps r&eacute;el</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -492,6 +498,7 @@
                     <div class="brick-name"><span class="brick-num">1.8</span> Alertes relances auto</div>
                     <div class="badge-p p3">P3</div>
                 </div>
+                <div class="brick-desc">Rappels paiement, renouvellements</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~2h/sem</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -526,6 +533,7 @@
                     <div class="brick-name"><span class="brick-num">2.2</span> Base de connaissances</div>
                     <div class="badge-p p2">P2</div>
                 </div>
+                <div class="brick-desc">Wiki interne, proc&eacute;dures, FAQ</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> -30% temps r&eacute;solution</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
@@ -539,6 +547,7 @@
                     <div class="brick-name"><span class="brick-num">2.3</span> Filtrage &amp; tri appels VOIP</div>
                     <div class="badge-p p1">P1</div>
                 </div>
+                <div class="brick-desc">Pr&eacute;-qualification, routage intelligent</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> -50% interruptions</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -548,6 +557,7 @@
                     <div class="brick-name"><span class="brick-num">2.4</span> Alertes SLA auto</div>
                     <div class="badge-p p2">P2</div>
                 </div>
+                <div class="brick-desc">Monitoring d&eacute;lais, escalade auto</div>
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#127919;</span> 0 d&eacute;passement</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -561,6 +571,7 @@
                     <div class="brick-name"><span class="brick-num">2.5</span> Templates r&eacute;ponses</div>
                     <div class="badge-p p2">P2</div>
                 </div>
+                <div class="brick-desc">R&eacute;ponses types, personnalisation IA</div>
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~15min/ticket</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
@@ -614,7 +625,7 @@
                 </div>
                 <div class="brick-desc">Google My Business + avis clients</div>
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> Top 3 local + avis</div>
-                <div class="brick-type type-act">&#9670; Activation + Auto</div>
+                <div class="brick-type type-consulting">&#9679; Consulting + Activation</div>
             </a>
         </div>
 
@@ -626,6 +637,7 @@
                     <div class="brick-name"><span class="brick-num">3.3</span> Posts LinkedIn auto</div>
                     <div class="badge-p p2">P2</div>
                 </div>
+                <div class="brick-desc">G&eacute;n&eacute;ration contenu, planification, publication</div>
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> 4 posts/sem sans effort</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
@@ -639,6 +651,7 @@
                     <div class="brick-name"><span class="brick-num">3.4</span> Moteur commercial int&eacute;gr&eacute;</div>
                     <div class="badge-p p3">P3</div>
                 </div>
+                <div class="brick-desc">CRM, scoring leads, nurturing auto</div>
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> Pipeline leads auto</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
