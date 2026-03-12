@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches Capability Bricks — ABAX Info × AXION</title>
+<style>
+:root{
+--navy:#0A1628;--navy-light:#1A2A42;--navy-mid:#152236;--slate:#2D3F5B;
+--cyan:#00D4FF;--green:#00E68A;--amber:#FFB800;--red:#FF4757;--violet:#9B59FF;
+--white:#FFF;--w90:rgba(255,255,255,.9);--w80:rgba(255,255,255,.8);
+--w60:rgba(255,255,255,.6);--w50:rgba(255,255,255,.5);--w30:rgba(255,255,255,.3);
+--w20:rgba(255,255,255,.2);--w10:rgba(255,255,255,.1);--w06:rgba(255,255,255,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{max-width:1100px;margin:0 auto;padding:32px 28px 60px}
+
+/* ===== COVER ===== */
+.cover{text-align:center;padding:60px 20px 40px;margin-bottom:40px;border-bottom:1px solid var(--w10)}
+.cover .logo{font-size:13px;font-weight:800;letter-spacing:5px;color:var(--cyan);margin-bottom:10px}
+.cover h1{font-size:34px;font-weight:800;margin-bottom:8px}
+.cover h1 .accent{color:var(--cyan)}
+.cover .sub{font-size:15px;color:var(--w50);margin-bottom:20px}
+.cover .date{font-size:12px;color:var(--w30)}
+
+/* ===== SECTION HEADERS ===== */
+.opp-section{margin:48px 0 24px;padding:18px 24px;border-radius:12px;background:var(--navy-mid);border-left:5px solid;display:flex;align-items:center;gap:16px}
+.opp-section.opp1{border-color:var(--cyan)}
+.opp-section.opp2{border-color:var(--green)}
+.opp-section.opp3{border-color:var(--violet)}
+.opp-section .opp-ico{font-size:28px}
+.opp-section .opp-info{}
+.opp-section .opp-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:2px}
+.opp-section.opp1 .opp-label{color:var(--cyan)}
+.opp-section.opp2 .opp-label{color:var(--green)}
+.opp-section.opp3 .opp-label{color:var(--violet)}
+.opp-section .opp-name{font-size:20px;font-weight:800}
+
+/* ===== FICHE CARD ===== */
+.fiche{background:var(--navy-mid);border:1px solid var(--w10);border-radius:14px;margin-bottom:24px;overflow:hidden}
+.fiche-header{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--w06);gap:12px}
+.fiche-header .fiche-title{font-size:18px;font-weight:800;flex:1}
+.fiche-badges{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.badge{padding:3px 10px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.5px}
+.badge.bp1{background:rgba(255,71,87,.15);color:var(--red);border:1px solid rgba(255,71,87,.25)}
+.badge.bp2{background:rgba(255,184,0,.15);color:var(--amber);border:1px solid rgba(255,184,0,.25)}
+.badge.bp3{background:rgba(0,230,138,.12);color:var(--green);border:1px solid rgba(0,230,138,.2)}
+.badge.sz{background:var(--w06);color:var(--w60);border:1px solid var(--w10)}
+.badge.timing{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
+
+.fiche-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fiche-row{padding:14px 24px;border-bottom:1px solid var(--w06)}
+.fiche-row.full{grid-column:1/-1}
+.fiche-row:last-child{border-bottom:none}
+.fiche-row .row-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.fiche-row.douleur .row-label{color:var(--red)}
+.fiche-row.desir .row-label{color:var(--green)}
+.fiche-row.quoi .row-label{color:var(--cyan)}
+.fiche-row.comment .row-label{color:var(--amber)}
+.fiche-row.raci .row-label{color:var(--violet)}
+.fiche-row.gains .row-label{color:var(--cyan)}
+.fiche-row.prereq .row-label{color:var(--w50)}
+.fiche-row .row-text{font-size:13px;color:var(--w80);line-height:1.55}
+.fiche-row ul{list-style:none;padding:0}
+.fiche-row li{font-size:13px;color:var(--w80);line-height:1.55;padding-left:16px;position:relative;margin-bottom:3px}
+.fiche-row li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px}
+.fiche-row.quoi li::before{background:var(--cyan)}
+.fiche-row.comment li::before{background:var(--amber)}
+.fiche-row.gains li::before{background:var(--green)}
+.fiche-row.prereq li::before{background:var(--w30)}
+
+/* RACI TABLE */
+.raci-grid{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.raci-role{font-weight:700;color:var(--violet)}
+.raci-who{color:var(--w80)}
+
+/* GAIN TAGS */
+.gain-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin:2px 4px 2px 0}
+.gain-tag.time{background:rgba(0,212,255,.12);color:var(--cyan)}
+.gain-tag.perf{background:rgba(0,230,138,.1);color:var(--green)}
+.gain-tag.qual{background:rgba(155,89,255,.1);color:var(--violet)}
+.gain-tag.diag{background:rgba(255,184,0,.1);color:var(--amber)}
+
+/* ===== PRINT ===== */
+@media print{
+html,body{background:var(--navy)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+.fiche{break-inside:avoid;page-break-inside:avoid}
+.opp-section{break-before:page}
+}
+@page{size:A4 portrait;margin:12mm}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+<div class="logo">AXION</div>
+<h1>Fiches <span class="accent">Capability Bricks</span></h1>
+<div class="sub">ABAX Info &mdash; D&eacute;tail des 20 briques du Roadmap</div>
+<div class="date">Workshop du 6 mars 2026 &bull; Ferney-Voltaire</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- OPPORTUNIT&Eacute; 1 : PRODUCTIVIT&Eacute; & ADMIN           -->
+<!-- ============================================================ -->
+<div class="opp-section opp1">
+<div class="opp-ico">&#9881;&#65039;</div>
+<div class="opp-info">
+<div class="opp-label">Opportunit&eacute; 1</div>
+<div class="opp-name">Productivit&eacute; &amp; Admin</div>
+</div>
+</div>
+
+<!-- BRICK 1.1 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.1 &mdash; Audit processus admin</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Init &bull; Mars&ndash;Avril</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les processus administratifs (devis, facturation, relances) sont manuels, fragment&eacute;s entre plusieurs outils et d&eacute;pendent fortement d&rsquo;Eric. Aucune vision consolid&eacute;e du temps pass&eacute; ni des goulots d&rsquo;&eacute;tranglement.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Avoir une cartographie claire de tous les processus admin, identifier les quick wins d&rsquo;automatisation et lib&eacute;rer du temps pour le d&eacute;veloppement commercial.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Cartographie BPMN des processus actuels (devis, facturation, relances, onboarding)</li>
+<li>Matrice des irritants class&eacute;s par impact &times; effort</li>
+<li>Rapport diagnostic avec recommandations prioris&eacute;es</li>
+<li>Sch&eacute;ma cible des processus automatis&eacute;s</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Interviews Eric + &eacute;quipe (2&ndash;3 sessions de 1h)</li>
+<li>Observation des flux dans Autotask, Penny Lane, Bexio</li>
+<li>Mod&eacute;lisation BPMN as-is / to-be</li>
+<li>Restitution atelier avec priorisation collaborative</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb &amp; Djemel (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe ABAX (admin, technique)</span>
+<span class="raci-role">I</span><span class="raci-who">Cabinet CTF</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag diag">Diagnostic complet</span><span class="gain-tag qual">Visibilit&eacute; processus</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s aux outils existants (Autotask, Penny Lane, Bexio)</li>
+<li>Disponibilit&eacute; Eric + 1 personne admin pour interviews</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.2 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.2 &mdash; Acc&egrave;s &amp; setup outils</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Init &bull; Mars&ndash;Avril</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">AXION ne dispose pas encore des acc&egrave;s n&eacute;cessaires aux outils ABAX Info pour auditer, configurer et automatiser. Chaque d&eacute;marrage de chantier est ralenti par des &eacute;changes d&rsquo;identifiants.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un environnement pr&ecirc;t &agrave; l&rsquo;emploi avec tous les acc&egrave;s configur&eacute;s, pour d&eacute;marrer chaque brique sans friction.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Comptes AXION cr&eacute;&eacute;s sur Autotask / Kaseya, Penny Lane, Bexio</li>
+<li>Acc&egrave;s Google Workspace (Drive partag&eacute;, Search Console, Analytics)</li>
+<li>Acc&egrave;s VOIP / t&eacute;l&eacute;phonie pour observation</li>
+<li>Document r&eacute;capitulatif des acc&egrave;s et p&eacute;rim&egrave;tres</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Liste des acc&egrave;s n&eacute;cessaires envoy&eacute;e par AXION</li>
+<li>Eric cr&eacute;e les comptes / partage les acc&egrave;s</li>
+<li>AXION valide chaque acc&egrave;s et documente</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Seb &amp; Djemel (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag diag">Pr&eacute;requis d&eacute;bloqu&eacute;</span><span class="gain-tag time">0 friction au d&eacute;marrage</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Aucun &mdash; c&rsquo;est le point de d&eacute;part</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.3 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.3 &mdash; Structuration process</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q2 2026 &bull; Avr&ndash;Juin</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les processus identifi&eacute;s lors de l&rsquo;audit sont informels, non document&eacute;s. Chaque collaborateur a sa propre fa&ccedil;on de faire, ce qui g&eacute;n&egrave;re des erreurs et des oublis.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Des processus standardis&eacute;s, document&eacute;s et partag&eacute;s, qui permettent &agrave; n&rsquo;importe qui de reprendre une t&acirc;che sans perte d&rsquo;information.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Proc&eacute;dures op&eacute;rationnelles standardis&eacute;es (SOP) pour les 3&ndash;5 processus cl&eacute;s</li>
+<li>Templates de documents r&eacute;utilisables (devis, PV, relance)</li>
+<li>Checklist de contr&ocirc;le qualit&eacute; int&eacute;gr&eacute;e aux outils</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Reprendre les recommandations de l&rsquo;audit (brique 1.1)</li>
+<li>Co-r&eacute;daction des SOP avec l&rsquo;&eacute;quipe ABAX</li>
+<li>Int&eacute;gration dans Google Drive / Autotask</li>
+<li>Session de formation &eacute;quipe (1h)</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Djemel (AXION)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">~2h/sem r&eacute;cup&eacute;r&eacute;es</span><span class="gain-tag qual">Z&eacute;ro oubli</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Audit processus admin termin&eacute; (brique 1.1)</li>
+<li>Acc&egrave;s outils en place (brique 1.2)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.4 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.4 &mdash; Automatisation facturation</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Complexe</span>
+<span class="badge timing">Q3 2026 &bull; Juil&ndash;Sep</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">La facturation est manuelle entre Autotask (heures), Penny Lane et Bexio. Les heures hors contrat sont difficiles &agrave; tracer. Eric passe ~5h/semaine sur la facturation et les relances.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un flux automatis&eacute; : heures saisies dans Autotask &rarr; facture g&eacute;n&eacute;r&eacute;e &rarr; envoy&eacute;e au client &rarr; relance automatique. Z&eacute;ro ressaisie.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n : Autotask &rarr; Penny Lane / Bexio (cr&eacute;ation facture auto)</li>
+<li>D&eacute;tection automatique des heures hors contrat</li>
+<li>Envoi automatis&eacute; des factures par email</li>
+<li>S&eacute;quence de relance automatique (J+7, J+15, J+30)</li>
+<li>Dashboard suivi encaissements</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Mapping des champs Autotask &harr; Penny Lane &harr; Bexio</li>
+<li>D&eacute;veloppement workflow n8n avec API Autotask + API comptable</li>
+<li>Phase pilote sur 5 clients avant g&eacute;n&eacute;ralisation</li>
+<li>Tests de non-r&eacute;gression avec le cabinet CTF</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION) &mdash; d&eacute;v n8n</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Cabinet CTF, Seb (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX, clients pilotes</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">~5h/sem r&eacute;cup&eacute;r&eacute;es</span><span class="gain-tag qual">0 erreur de saisie</span><span class="gain-tag perf">D&eacute;lai encaissement -40%</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s API Autotask, Penny Lane, Bexio (brique 1.2)</li>
+<li>Processus de facturation document&eacute; (brique 1.3)</li>
+<li>Validation des r&egrave;gles m&eacute;tier avec Eric et CTF</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.5 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.5 &mdash; Onboarding client auto</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Complexe</span>
+<span class="badge timing">Q4 2026 &bull; Oct&ndash;D&eacute;c</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">L&rsquo;onboarding d&rsquo;un nouveau client prend plusieurs semaines : cr&eacute;ation manuelle dans Autotask/Kaseya, configuration des acc&egrave;s, documentation. Risque d&rsquo;oublis et mauvaise premi&egrave;re impression.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un onboarding fluide en quelques jours : signature du contrat &rarr; tout est configur&eacute; automatiquement. Le client re&ccedil;oit ses acc&egrave;s et sa documentation sans intervention manuelle.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n : signature contrat &rarr; cr&eacute;ation client Autotask/Kaseya</li>
+<li>G&eacute;n&eacute;ration automatique du kit de bienvenue (acc&egrave;s, docs, contacts)</li>
+<li>S&eacute;quence email d&rsquo;onboarding personnalis&eacute;e</li>
+<li>Checklist de suivi onboarding avec alertes</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Mapping du parcours onboarding actuel (irritants, d&eacute;lais)</li>
+<li>Conception du workflow n8n avec API Autotask + Kaseya</li>
+<li>Cr&eacute;ation des templates email et documents</li>
+<li>Pilote sur 3 nouveaux clients puis g&eacute;n&eacute;ralisation</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION) &mdash; d&eacute;v n8n</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Seb (AXION), &eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Nouveaux clients</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">Semaines &rarr; jours</span><span class="gain-tag qual">0 oubli configuration</span><span class="gain-tag perf">Meilleure 1&egrave;re impression client</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s API Autotask / Kaseya (brique 1.2)</li>
+<li>Processus onboarding document&eacute; (brique 1.3)</li>
+<li>Automatisation facturation en place (brique 1.4) pour le volet contrat</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.6 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.6 &mdash; Dashboard KPI &amp; temps</div>
+<div class="fiche-badges">
+<span class="badge bp3">P3</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Q1 2027 &bull; Jan&ndash;Mar</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Aucun tableau de bord consolid&eacute; pour piloter l&rsquo;activit&eacute;. Eric navigue entre plusieurs outils pour comprendre la rentabilit&eacute;, les temps pass&eacute;s et la charge de l&rsquo;&eacute;quipe.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un dashboard unique, mis &agrave; jour en temps r&eacute;el, avec les KPI cl&eacute;s : CA, rentabilit&eacute; par client, temps pass&eacute;s vs. contrat, charge &eacute;quipe.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Dashboard web temps r&eacute;el (Looker Studio ou app custom)</li>
+<li>Connecteurs n8n : Autotask + Penny Lane &rarr; dashboard</li>
+<li>Alertes automatiques sur d&eacute;passements et anomalies</li>
+<li>Vue mobile pour consultation rapide</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition des KPI avec Eric (atelier 1h)</li>
+<li>Extraction et normalisation des donn&eacute;es via n8n</li>
+<li>Construction du dashboard avec visualisations cl&eacute;s</li>
+<li>It&eacute;rations sur la base des retours utilisateur</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Seb (AXION), Cabinet CTF</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag qual">Pilotage temps r&eacute;el</span><span class="gain-tag time">~1h/sem de reporting en moins</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Automatisation facturation en place (brique 1.4) pour les donn&eacute;es fiables</li>
+<li>Acc&egrave;s API Autotask + Penny Lane (brique 1.2)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 1.7 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">1.7 &mdash; Alertes relances auto</div>
+<div class="fiche-badges">
+<span class="badge bp3">P3</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q1 2027 &bull; Jan&ndash;Mar</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les relances clients (factures impay&eacute;es, renouvellements contrats, &eacute;ch&eacute;ances) sont g&eacute;r&eacute;es manuellement. Certaines tombent dans l&rsquo;oubli, impactant la tr&eacute;sorerie.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Des relances automatiques et personnalis&eacute;es, avec escalade progressive, sans aucune action manuelle.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n de relance multi-canal (email, notification interne)</li>
+<li>Templates de relance personnalis&eacute;s par type (impay&eacute;, renouvellement, &eacute;ch&eacute;ance)</li>
+<li>Escalade automatique (J+7 &rarr; J+15 &rarr; J+30 &rarr; alerte Eric)</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition des r&egrave;gles de relance avec Eric</li>
+<li>Cr&eacute;ation des templates et s&eacute;quences dans n8n</li>
+<li>Connexion aux donn&eacute;es facturation (brique 1.4)</li>
+<li>Test sur un &eacute;chantillon avant activation globale</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe admin ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">~2h/sem</span><span class="gain-tag perf">0 relance oubli&eacute;e</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Automatisation facturation fonctionnelle (brique 1.4)</li>
+<li>Dashboard KPI en place pour le suivi (brique 1.6)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- OPPORTUNIT&Eacute; 2 : SUPPORT & GESTION DES TICKETS         -->
+<!-- ============================================================ -->
+<div class="opp-section opp2">
+<div class="opp-ico">&#127911;</div>
+<div class="opp-info">
+<div class="opp-label">Opportunit&eacute; 2</div>
+<div class="opp-name">Support &amp; Gestion des Tickets</div>
+</div>
+</div>
+
+<!-- BRICK 2.1 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.1 &mdash; Cartographie tickets &amp; flux</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Complexe</span>
+<span class="badge timing">Init &bull; Mars&ndash;Avril</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Aucune visibilit&eacute; globale sur le volume de tickets, les SLA, le circuit des appels t&eacute;l&eacute;phoniques. Impossible de savoir o&ugrave; se concentrent les probl&egrave;mes r&eacute;currents ni de mesurer la performance du support.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Une vision 360&deg; du support : volumes, cat&eacute;gories, temps de r&eacute;solution, respect des SLA, et circuit des appels entrants.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Cartographie compl&egrave;te des flux support (tickets, appels, emails)</li>
+<li>Analyse des volumes par cat&eacute;gorie, client, technicien</li>
+<li>Mesure des SLA actuels vs. engag&eacute;s</li>
+<li>Identification des tickets r&eacute;currents automatisables</li>
+<li>Rapport avec recommandations prioris&eacute;es</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Extraction des donn&eacute;es Autotask (tickets 6 derniers mois)</li>
+<li>Analyse du circuit t&eacute;l&eacute;phonique VOIP (logs appels)</li>
+<li>Interviews techniciens (pain points, irritants)</li>
+<li>Restitution avec matrice de priorisation</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb &amp; Djemel (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Clients cl&eacute;s (retour satisfaction)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag diag">Visibilit&eacute; 360&deg;</span><span class="gain-tag qual">Identification probl&egrave;mes r&eacute;currents</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s Autotask en lecture (brique 1.2)</li>
+<li>Acc&egrave;s logs t&eacute;l&eacute;phonie VOIP</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 2.2 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.2 &mdash; Filtrage &amp; tri appels VOIP</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Q2 2026 &bull; Avr&ndash;Juin</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les appels entrants interrompent les techniciens sans filtrage. Pas de SVI intelligent, pas de routage par comp&eacute;tence. Les appels non urgents perturbent le travail de fond.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un filtrage intelligent des appels avec pr&eacute;-qualification, routage par comp&eacute;tence et cr&eacute;ation automatique de ticket.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Configuration SVI (Serveur Vocal Interactif) avec menu de pr&eacute;-qualification</li>
+<li>R&egrave;gles de routage par comp&eacute;tence / disponibilit&eacute;</li>
+<li>Cr&eacute;ation automatique de ticket Autotask &agrave; chaque appel</li>
+<li>Plages horaires et messages d&rsquo;absence automatis&eacute;s</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Analyse des flux d&rsquo;appels (brique 2.1)</li>
+<li>Configuration du SVI sur la plateforme VOIP existante</li>
+<li>Int&eacute;gration VOIP &harr; Autotask via API / webhook</li>
+<li>Test avec l&rsquo;&eacute;quipe pendant 2 semaines avant ajustements</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION) &mdash; int&eacute;gration technique</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe technique ABAX, Seb (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">Clients (nouveau parcours appel)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">-50% interruptions</span><span class="gain-tag qual">Meilleur routage premier appel</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Cartographie tickets termin&eacute;e (brique 2.1)</li>
+<li>Acc&egrave;s admin plateforme VOIP</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 2.3 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.3 &mdash; Base de connaissances</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Q3 2026 &bull; Juil&ndash;Sep</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les solutions aux probl&egrave;mes r&eacute;currents ne sont pas document&eacute;es. Chaque technicien repart de z&eacute;ro, le temps de r&eacute;solution est trop long et la qualit&eacute; varie selon qui r&eacute;pond.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Une base de connaissances interne structur&eacute;e, facilement consultable, qui permet de r&eacute;soudre les probl&egrave;mes connus en quelques minutes.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Base de connaissances interne (wiki ou outil int&eacute;gr&eacute; Autotask)</li>
+<li>30&ndash;50 articles sur les probl&egrave;mes les plus fr&eacute;quents</li>
+<li>Proc&eacute;dure de contribution pour l&rsquo;&eacute;quipe</li>
+<li>Moteur de recherche et cat&eacute;gorisation</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Identifier les 50 tickets les plus r&eacute;currents (donn&eacute;es brique 2.1)</li>
+<li>R&eacute;daction collaborative des articles avec les techniciens</li>
+<li>Mise en place de la structure et du moteur de recherche</li>
+<li>Formation &eacute;quipe + process de mise &agrave; jour continue</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION) + &eacute;quipe technique ABAX</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">Tous les techniciens ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">-30% temps r&eacute;solution</span><span class="gain-tag qual">Qualit&eacute; homog&egrave;ne</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Cartographie tickets (brique 2.1) pour identifier les sujets cl&eacute;s</li>
+<li>Implication des techniciens (2h/sem pendant 4 semaines)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 2.4 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.4 &mdash; Alertes SLA auto</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q3 2026 &bull; Juil&ndash;Sep</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Les d&eacute;passements de SLA sont d&eacute;couverts trop tard, g&eacute;n&eacute;rant de l&rsquo;insatisfaction client. Aucun syst&egrave;me d&rsquo;alerte pr&eacute;ventive avant l&rsquo;&eacute;ch&eacute;ance.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Des alertes automatiques &agrave; 50%, 75% et 90% du SLA, avec escalade au manager si n&eacute;cessaire. Z&eacute;ro d&eacute;passement non anticip&eacute;.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n de monitoring SLA en temps r&eacute;el</li>
+<li>Notifications multi-canal (email, Slack/Teams, SMS critique)</li>
+<li>Escalade automatique selon le niveau d&rsquo;urgence</li>
+<li>Rapport hebdomadaire SLA automatis&eacute;</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition des seuils d&rsquo;alerte avec Eric</li>
+<li>Connexion n8n &harr; API Autotask (polling ou webhook)</li>
+<li>Configuration des canaux de notification</li>
+<li>Phase de test silencieux (alertes internes uniquement) pendant 2 semaines</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Seb (AXION)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag qual">0 d&eacute;passement SLA non anticip&eacute;</span><span class="gain-tag perf">Satisfaction client +</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>SLA d&eacute;finis et document&eacute;s par client (brique 2.1)</li>
+<li>Acc&egrave;s API Autotask (brique 1.2)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 2.5 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.5 &mdash; Templates r&eacute;ponses</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q4 2026 &bull; Oct&ndash;D&eacute;c</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Chaque technicien r&eacute;dige ses r&eacute;ponses de z&eacute;ro. Perte de temps, ton inconsistant, informations parfois incompl&egrave;tes. Les r&eacute;ponses aux questions fr&eacute;quentes prennent trop de temps.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Des templates de r&eacute;ponse pr&eacute;-r&eacute;dig&eacute;s, personnalisables en 2 clics, pour les sc&eacute;narios les plus fr&eacute;quents.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Biblioth&egrave;que de 20&ndash;30 templates de r&eacute;ponse (email, ticket)</li>
+<li>Variables dynamiques (nom client, num&eacute;ro ticket, technicien)</li>
+<li>Int&eacute;gration dans Autotask (quick insert)</li>
+<li>Guide d&rsquo;utilisation pour l&rsquo;&eacute;quipe</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Analyse des r&eacute;ponses les plus fr&eacute;quentes (base de connaissances brique 2.3)</li>
+<li>R&eacute;daction des templates avec ton professionnel ABAX</li>
+<li>Configuration dans Autotask avec variables dynamiques</li>
+<li>Formation &eacute;quipe (30 min)</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Djemel (AXION)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag time">~15 min/ticket</span><span class="gain-tag qual">Ton professionnel homog&egrave;ne</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Base de connaissances en place (brique 2.3)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 2.6 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">2.6 &mdash; Ordonnancement intelligent</div>
+<div class="fiche-badges">
+<span class="badge bp3">P3</span>
+<span class="badge sz">Complexe</span>
+<span class="badge timing">Q1 2027 &bull; Jan&ndash;Mar</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Le dispatch des tickets est manuel et bas&eacute; sur l&rsquo;intuition. Les tickets ne sont pas toujours assign&eacute;s au bon technicien, g&eacute;n&eacute;rant des allers-retours et une charge d&eacute;s&eacute;quilibr&eacute;e.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un dispatch automatique intelligent : le bon ticket, au bon technicien, au bon moment. &Eacute;quilibrage de charge et prise en compte des comp&eacute;tences.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Moteur de r&egrave;gles de dispatch (comp&eacute;tences &times; disponibilit&eacute; &times; charge)</li>
+<li>Workflow n8n d&rsquo;assignation automatique des tickets entrants</li>
+<li>Dashboard charge &eacute;quipe en temps r&eacute;el</li>
+<li>R&egrave;gles d&rsquo;escalade et de r&eacute;-assignation</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition de la matrice comp&eacute;tences &times; techniciens</li>
+<li>Conception des r&egrave;gles de dispatch avec &eacute;quipe ABAX</li>
+<li>D&eacute;veloppement du workflow n8n + IA de classification</li>
+<li>Phase pilote 1 mois avec ajustements</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION) &mdash; moteur IA + n8n</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Seb (AXION), &eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Clients (meilleur temps de r&eacute;ponse)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">+40% efficacit&eacute;</span><span class="gain-tag qual">Charge &eacute;quilibr&eacute;e</span><span class="gain-tag time">-50% r&eacute;-assignations</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Base de connaissances (brique 2.3) pour la classification</li>
+<li>Filtrage VOIP (brique 2.2) pour les tickets issus d&rsquo;appels</li>
+<li>Templates r&eacute;ponses (brique 2.5) pour l&rsquo;ex&eacute;cution rapide</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- OPPORTUNIT&Eacute; 3 : CROISSANCE & VISIBILIT&Eacute;        -->
+<!-- ============================================================ -->
+<div class="opp-section opp3">
+<div class="opp-ico">&#128200;</div>
+<div class="opp-info">
+<div class="opp-label">Opportunit&eacute; 3</div>
+<div class="opp-name">Croissance &amp; Visibilit&eacute;</div>
+</div>
+</div>
+
+<!-- BRICK 3.1 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.1 &mdash; Audit SEO/GEO</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Init &bull; Mars&ndash;Avril</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">ABAX Info n&rsquo;a aucune visibilit&eacute; sur son positionnement SEO ni sur sa pr&eacute;sence dans les r&eacute;sultats locaux (GEO). Le site web g&eacute;n&egrave;re peu de trafic organique et aucun lead entrant.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Conna&icirc;tre son score SEO actuel, son positionnement vs. concurrents locaux, et avoir une feuille de route claire pour gagner en visibilit&eacute;.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Audit technique SEO complet (vitesse, mobile, structure, balises)</li>
+<li>Analyse des mots-cl&eacute;s strat&eacute;giques (IT services Pays de Gex / Gen&egrave;ve)</li>
+<li>Benchmark concurrentiel local (5 concurrents)</li>
+<li>Score GEO : pr&eacute;sence Google Maps, fiche GMB, citations locales</li>
+<li>Rapport avec plan d&rsquo;action prioris&eacute;</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Crawl technique du site (Screaming Frog / Ahrefs)</li>
+<li>Analyse Search Console + Analytics</li>
+<li>Recherche de mots-cl&eacute;s locaux (SEMrush)</li>
+<li>Audit fiche Google My Business</li>
+<li>Restitution en 1 session avec priorisation</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION) &mdash; expertise SEO</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag diag">Score &amp; benchmark</span><span class="gain-tag qual">Feuille de route SEO claire</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s Google Search Console + Analytics (brique 1.2)</li>
+<li>Acc&egrave;s admin site web ABAX Info</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.2 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.2 &mdash; Plan &eacute;ditorial 6 mois</div>
+<div class="fiche-badges">
+<span class="badge bp1">P1</span>
+<span class="badge sz">Complexe</span>
+<span class="badge timing">Q2 2026 &bull; Avr&ndash;Juin</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Aucune strat&eacute;gie de contenu. Le site n&rsquo;a pas de blog, pas d&rsquo;articles optimis&eacute;s. Les prospects cherchent &laquo; d&eacute;pannage informatique Ferney-Voltaire &raquo; et ne trouvent pas ABAX Info.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un plan &eacute;ditorial structur&eacute; sur 6 mois, avec des contenus cibl&eacute;s qui attirent du trafic qualifi&eacute; et positionnent ABAX comme expert local.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Calendrier &eacute;ditorial 6 mois (2&ndash;4 contenus/mois)</li>
+<li>Liste de mots-cl&eacute;s cibles par article</li>
+<li>Briefs d&eacute;taill&eacute;s pour chaque contenu</li>
+<li>R&eacute;daction assist&eacute;e par IA des 6 premiers articles</li>
+<li>Optimisation SEO on-page de chaque publication</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>S&eacute;lection des th&egrave;mes &agrave; partir de l&rsquo;audit SEO (brique 3.1)</li>
+<li>Recherche d&rsquo;intention de recherche locale</li>
+<li>R&eacute;daction des contenus (IA + relecture humaine)</li>
+<li>Publication et suivi des performances (Search Console)</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION) &mdash; strat&eacute;gie &amp; r&eacute;daction</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info) &mdash; validation contenu</span>
+<span class="raci-role">C</span><span class="raci-who">Djemel (AXION), &eacute;quipe technique ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">+200&ndash;500 visites/mois</span><span class="gain-tag qual">Positionnement expert local</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Audit SEO/GEO termin&eacute; (brique 3.1)</li>
+<li>Acc&egrave;s CMS du site web pour publication</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.3 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.3 &mdash; Pages techniques SEO</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q2 2026 &bull; Avr&ndash;Juin</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Le site web manque de pages de services d&eacute;di&eacute;es. Pas de pages pour &laquo; infog&eacute;rance &raquo;, &laquo; cybrs&eacute;curit&eacute; &raquo;, &laquo; support informatique &raquo;, etc. Google n&rsquo;indexe presque rien.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Des pages de services optimis&eacute;es SEO qui se positionnent sur les requ&ecirc;tes cl&eacute;s et convertissent les visiteurs en leads.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>6&ndash;10 pages de services optimis&eacute;es (1 par offre cl&eacute;)</li>
+<li>Structure SEO : H1/H2, m&eacute;ta-descriptions, sch&eacute;ma markup</li>
+<li>Maillage interne entre pages</li>
+<li>CTA (appel &agrave; l&rsquo;action) optimis&eacute;s par page</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Identification des services prioritaires (audit brique 3.1)</li>
+<li>R&eacute;daction optimis&eacute;e SEO avec IA</li>
+<li>Int&eacute;gration CMS + tests de rendu</li>
+<li>Soumission &agrave; Google Search Console</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe technique ABAX (contenu m&eacute;tier)</span>
+<span class="raci-role">I</span><span class="raci-who">Djemel (AXION)</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">&times;3 pages index&eacute;es</span><span class="gain-tag perf">+leads organiques</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Audit SEO termin&eacute; (brique 3.1)</li>
+<li>Acc&egrave;s CMS site web</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.4 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.4 &mdash; Google My Business</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q3 2026 &bull; Juil&ndash;Sep</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">La fiche Google My Business est incompl&egrave;te ou sous-optimis&eacute;e. ABAX Info n&rsquo;appara&icirc;t pas dans le &laquo; pack local &raquo; quand on cherche un prestataire IT &agrave; Ferney-Voltaire.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Appara&icirc;tre dans le top 3 Google Maps pour les recherches IT locales (Pays de Gex, Gen&egrave;ve transfrontalier).</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Optimisation compl&egrave;te de la fiche GMB (cat&eacute;gories, description, horaires, photos)</li>
+<li>Strat&eacute;gie de posts GMB r&eacute;guliers (1&ndash;2/semaine)</li>
+<li>Mise en place d&rsquo;un processus de collecte d&rsquo;avis</li>
+<li>Cr&eacute;ation de citations locales (annuaires, PagesJaunes, etc.)</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Audit fiche GMB actuelle vs. bonnes pratiques</li>
+<li>Optimisation compl&egrave;te en 1 session</li>
+<li>Automatisation des posts GMB via n8n</li>
+<li>Inscription annuaires locaux</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Djemel (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">&Eacute;quipe ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">Visibilit&eacute; locale +</span><span class="gain-tag perf">Top 3 Google Maps</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Acc&egrave;s propri&eacute;taire fiche Google My Business</li>
+<li>Photos locaux / &eacute;quipe (fournies par Eric)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.5 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.5 &mdash; Posts LinkedIn auto</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Q4 2026 &bull; Oct&ndash;D&eacute;c</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">ABAX Info est absent de LinkedIn. Aucune publication, aucune visibilit&eacute; aupr&egrave;s des d&eacute;cideurs B2B de la r&eacute;gion. Eric n&rsquo;a pas le temps de publier r&eacute;guli&egrave;rement.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">4 posts LinkedIn par semaine, g&eacute;n&eacute;r&eacute;s automatiquement &agrave; partir des contenus du blog et de l&rsquo;actualit&eacute; IT, avec validation rapide par Eric.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n de g&eacute;n&eacute;ration automatique de posts LinkedIn</li>
+<li>Templates de posts par cat&eacute;gorie (astuce, actu, t&eacute;moignage, offre)</li>
+<li>Pipeline : brouillon IA &rarr; validation Eric &rarr; publication auto</li>
+<li>Dashboard de suivi engagement</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition de la ligne &eacute;ditoriale LinkedIn avec Eric</li>
+<li>Configuration du workflow n8n (IA g&eacute;n&eacute;rative + API LinkedIn)</li>
+<li>Cr&eacute;ation des templates et du pipeline de validation</li>
+<li>Phase de test 2 semaines avec ajustements du ton</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION) &mdash; strat&eacute;gie + Djemel (AXION) &mdash; workflow</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info) &mdash; validation</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe ABAX (sujets terrain)</span>
+<span class="raci-role">I</span><span class="raci-who">R&eacute;seau LinkedIn ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">4 posts/sem sans effort</span><span class="gain-tag perf">Visibilit&eacute; B2B locale</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Plan &eacute;ditorial en place (brique 3.2)</li>
+<li>Page LinkedIn entreprise ABAX Info cr&eacute;&eacute;e et configur&eacute;e</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.6 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.6 &mdash; Avis clients Google</div>
+<div class="fiche-badges">
+<span class="badge bp2">P2</span>
+<span class="badge sz">Simple</span>
+<span class="badge timing">Q4 2026 &bull; Oct&ndash;D&eacute;c</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">Tr&egrave;s peu d&rsquo;avis Google. Les clients satisfaits ne pensent pas &agrave; laisser un avis. Les concurrents avec plus d&rsquo;avis sont mieux positionn&eacute;s localement.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un flux r&eacute;gulier d&rsquo;avis positifs (+20/an) gr&acirc;ce &agrave; un processus automatique de sollicitation apr&egrave;s r&eacute;solution de ticket.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Workflow n8n : ticket r&eacute;solu &rarr; email de satisfaction &rarr; lien avis Google</li>
+<li>S&eacute;quence intelligente (ne sollicite que les clients satisfaits)</li>
+<li>Template email personnalis&eacute; et engageant</li>
+<li>Dashboard suivi avis (volume, note moyenne)</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>Cr&eacute;ation du workflow n8n (trigger : ticket clos dans Autotask)</li>
+<li>Logique de filtrage : NPS interne &ge; 8 &rarr; demande d&rsquo;avis</li>
+<li>A/B test du template email</li>
+<li>Suivi mensuel des r&eacute;sultats</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Djemel (AXION) &mdash; workflow n8n</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">Seb (AXION)</span>
+<span class="raci-role">I</span><span class="raci-who">Clients ABAX</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">+20 avis/an</span><span class="gain-tag perf">Note moyenne &ge; 4.5</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Fiche Google My Business optimis&eacute;e (brique 3.4)</li>
+<li>Acc&egrave;s API Autotask pour d&eacute;tection tickets clos</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- BRICK 3.7 -->
+<div class="fiche">
+<div class="fiche-header">
+<div class="fiche-title">3.7 &mdash; Moteur commercial int&eacute;gr&eacute;</div>
+<div class="fiche-badges">
+<span class="badge bp3">P3</span>
+<span class="badge sz">Moyen</span>
+<span class="badge timing">Q1 2027 &bull; Jan&ndash;Mar</span>
+</div>
+</div>
+<div class="fiche-body">
+<div class="fiche-row douleur">
+<div class="row-label">Douleur</div>
+<div class="row-text">La g&eacute;n&eacute;ration de leads est passive et d&eacute;sorganis&eacute;e. Pas de pipeline commercial structur&eacute;. Les opportunit&eacute;s viennent uniquement du bouche-&agrave;-oreille. Aucun suivi syst&eacute;matique.</div>
+</div>
+<div class="fiche-row desir">
+<div class="row-label">D&eacute;sir</div>
+<div class="row-text">Un moteur commercial automatis&eacute; : les contenus SEO + LinkedIn + GMB g&eacute;n&egrave;rent des leads qui entrent automatiquement dans un pipeline de suivi.</div>
+</div>
+<div class="fiche-row quoi full">
+<div class="row-label">Quoi &mdash; Livrables</div>
+<ul>
+<li>Pipeline commercial automatis&eacute; (formulaire site &rarr; CRM &rarr; s&eacute;quence nurturing)</li>
+<li>Workflow n8n de capture et qualification des leads</li>
+<li>S&eacute;quences email de nurturing automatis&eacute;es</li>
+<li>Dashboard pipeline avec alertes sur leads chauds</li>
+<li>Int&eacute;gration avec les sources : site, LinkedIn, GMB</li>
+</ul>
+</div>
+<div class="fiche-row comment full">
+<div class="row-label">Comment &mdash; Approche</div>
+<ul>
+<li>D&eacute;finition du parcours lead &rarr; prospect &rarr; client avec Eric</li>
+<li>Mise en place des formulaires de capture sur le site</li>
+<li>Cr&eacute;ation des workflows n8n de qualification et nurturing</li>
+<li>Construction du dashboard pipeline</li>
+<li>Test et optimisation sur 1 mois</li>
+</ul>
+</div>
+<div class="fiche-row raci">
+<div class="row-label">RACI</div>
+<div class="raci-grid">
+<span class="raci-role">R</span><span class="raci-who">Seb (AXION) &mdash; strat&eacute;gie + Djemel (AXION) &mdash; automatisation</span>
+<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
+<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe commerciale ABAX</span>
+<span class="raci-role">I</span><span class="raci-who">Leads et prospects</span>
+</div>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag perf">Pipeline leads automatique</span><span class="gain-tag time">0 lead perdu</span><span class="gain-tag perf">Pr&eacute;visibilit&eacute; commerciale</span></div>
+</div>
+<div class="fiche-row prereq full">
+<div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
+<ul>
+<li>Plan &eacute;ditorial actif (brique 3.2) pour le trafic entrant</li>
+<li>Posts LinkedIn auto (brique 3.5) pour la visibilit&eacute; B2B</li>
+<li>Google My Business optimis&eacute; (brique 3.4) pour le local</li>
+<li>Avis clients Google (brique 3.6) pour la cr&eacute;dibilit&eacute;</li>
+</ul>
+</div>
+</div>
+</div>
+
+</body>
+</html>
