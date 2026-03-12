@@ -73,7 +73,9 @@ workshop-abaxinfo-[type].html         # Présentations en mode slide deck
 | `abaxinfo-diagnostic-detaille-seo-geo.md.docx` | Version Word du diagnostic détaillé | Payant |
 
 ### `proposition/`
-Dossier réservé à la proposition commerciale en cours d'élaboration.
+| Fichier | Contenu | Statut |
+|---------|---------|--------|
+| `abaxinfo-roadmap.html` | Roadmap visuelle — 3 opportunités × 5 périodes (Capability Bricks) | À partager avec le client |
 
 ### `client/` — Publication Netlify
 Contient uniquement les fichiers à partager avec le client (pas le diagnostic détaillé) :
@@ -81,6 +83,7 @@ Contient uniquement les fichiers à partager avec le client (pas le diagnostic d
 - `workshop-abaxinfo-presentation.html` — Copie depuis `workshop/`
 - `workshop-abaxinfo-compte-rendu.html` — Copie depuis `workshop/`
 - `abaxinfo-lead-magnet-seo-geo.html` — Copie depuis `diagnostic/`
+- `abaxinfo-roadmap.html` — Copie depuis `proposition/`
 
 **Important :** `client/` est la source de vérité pour Netlify. Si un fichier source est mis à jour, penser à le recopier dans `client/`.
 
