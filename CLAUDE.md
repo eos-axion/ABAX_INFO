@@ -1,23 +1,40 @@
-# CLAUDE.md
+# ABAX Info — Contexte AXION
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Identité client
+- **Entreprise :** ABAX Info — informatique / IT — Suisse romande
+- **Contact principal :** À compléter — prénom/nom — email — téléphone
+- **Autres interlocuteurs :** À compléter
+- **Source :** À compléter
 
-## Contexte client
+## Relation commerciale
+- **Statut :** Prospect en cours de conversion
+- **Offre en cours :** Diagnostic SEO & GEO (livré) → Proposition commerciale à envoyer
+- **Montant :** À définir (proposition en cours)
+- **Date signature :** —
+- **Interlocuteur AXION :** Sébastien
 
-**Client :** ABAX Info (informatique, Suisse romande)
-**Relation :** Prospect en cours de conversion — proposition commerciale à venir
-**Engagement en cours :** Suite au Discovery Workshop du 5 mars 2026
+## Projet en cours
+- **Nom :** Discovery & Proposition commerciale ABAX Info
+- **Objectif :** Convertir le prospect suite au Discovery Workshop — vente d'une offre d'automatisation
+- **Phase actuelle :** Post-workshop → envoi compte rendu → élaboration proposition
+- **Prochaines étapes :**
+  1. Envoyer le compte rendu au client (`workshop-abaxinfo-compte-rendu.html`)
+  2. Élaborer et envoyer la proposition commerciale (`proposition/`)
 
-### Chronologie
-- **5 mars 2026** — Discovery Workshop (atelier de découverte)
-  - Génération du diagnostic SEO & GEO (version lead magnet + version détaillée)
-  - Compte rendu de l'atelier produit
-- **À venir** — Envoi du compte rendu au client, puis élaboration de la proposition commerciale
+## Stack technique
+- **Déploiement livrables :** Netlify (repo `eos-axion/ABAX_INFO`, publish = `client/`)
+- **Format livrables :** HTML scrollable + slide decks + Word (.docx)
 
-### Modèle commercial
-- **Diagnostic SEO & GEO (lead magnet)** — Offert (version simplifiée, outil d'acquisition)
-- **Diagnostic SEO & GEO (détaillé)** — Payant (rapport complet avec plan d'action)
-- **Proposition commerciale** — En cours d'élaboration
+## Conventions
+- **Langue :** Français
+- **Repo GitHub :** `eos-axion/ABAX_INFO`
+
+## Historique
+| Date | Événement |
+|------|-----------|
+| 05/03/2026 | Discovery Workshop — diagnostic SEO & GEO livré (lead magnet + détaillé) |
+
+---
 
 ## Structure du projet
 
