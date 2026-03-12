@@ -51,7 +51,7 @@ body{max-width:900px;margin:0 auto;padding:32px 28px 60px}
 .fiche-row.desir .row-label{color:var(--green)}
 .fiche-row.quoi .row-label{color:var(--cyan)}
 .fiche-row.comment .row-label{color:var(--amber)}
-.fiche-row.raci .row-label{color:var(--violet)}
+
 .fiche-row.gains .row-label{color:var(--cyan)}
 .fiche-row.prereq .row-label{color:var(--w50)}
 .fiche-row .row-text{font-size:13px;color:var(--w80);line-height:1.55}
@@ -68,10 +68,6 @@ body{max-width:900px;margin:0 auto;padding:32px 28px 60px}
 .nav a{color:var(--cyan);text-decoration:none;font-size:13px;font-weight:700}
 .nav a:hover{text-decoration:underline}
 
-/* RACI TABLE */
-.raci-grid{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
-.raci-role{font-weight:700;color:var(--violet)}
-.raci-who{color:var(--w80)}
 
 /* GAIN TAGS */
 .gain-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin:2px 4px 2px 0}
@@ -115,7 +111,7 @@ html,body{background:var(--navy)!important;-webkit-print-color-adjust:exact!impo
 <div class="row-label">D&eacute;sir</div>
 <div class="row-text">Avoir une cartographie claire de tous les processus admin, identifier les quick wins d&rsquo;automatisation et lib&eacute;rer du temps pour le d&eacute;veloppement commercial.</div>
 </div>
-<div class="fiche-row quoi full">
+<div class="fiche-row quoi">
 <div class="row-label">Quoi &mdash; Livrables</div>
 <ul>
 <li>Cartographie BPMN des processus actuels (devis, facturation, relances, onboarding)</li>
@@ -124,7 +120,7 @@ html,body{background:var(--navy)!important;-webkit-print-color-adjust:exact!impo
 <li>Sch&eacute;ma cible des processus automatis&eacute;s</li>
 </ul>
 </div>
-<div class="fiche-row comment full">
+<div class="fiche-row comment">
 <div class="row-label">Comment &mdash; Approche</div>
 <ul>
 <li>Interviews Eric + &eacute;quipe (2&ndash;3 sessions de 1h)</li>
@@ -133,25 +129,16 @@ html,body{background:var(--navy)!important;-webkit-print-color-adjust:exact!impo
 <li>Restitution atelier avec priorisation collaborative</li>
 </ul>
 </div>
-<div class="fiche-row raci">
-<div class="row-label">RACI</div>
-<div class="raci-grid">
-<span class="raci-role">R</span><span class="raci-who">Seb &amp; Djemel (AXION)</span>
-<span class="raci-role">A</span><span class="raci-who">Eric (ABAX Info)</span>
-<span class="raci-role">C</span><span class="raci-who">&Eacute;quipe ABAX (admin, technique)</span>
-<span class="raci-role">I</span><span class="raci-who">Direction ABAX</span>
-</div>
-</div>
-<div class="fiche-row gains">
-<div class="row-label">Gains estim&eacute;s</div>
-<div><span class="gain-tag diag">Diagnostic complet</span><span class="gain-tag qual">Visibilit&eacute; processus</span></div>
-</div>
-<div class="fiche-row prereq full">
+<div class="fiche-row prereq">
 <div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
 <ul>
 <li>Acc&egrave;s aux outils existants (Autotask, Penny Lane, Bexio)</li>
 <li>Disponibilit&eacute; Eric + 1 personne admin pour interviews</li>
 </ul>
+</div>
+<div class="fiche-row gains">
+<div class="row-label">Gains estim&eacute;s</div>
+<div><span class="gain-tag diag">Diagnostic complet</span><span class="gain-tag qual">Visibilit&eacute; processus</span></div>
 </div>
 </div>
 </div>
@@ -159,7 +146,7 @@ html,body{background:var(--navy)!important;-webkit-print-color-adjust:exact!impo
 <!-- NAV -->
 <div class="nav">
 <a href="fiche-3.7-moteur-commercial-integre.html">&larr; Fiche pr&eacute;c&eacute;dente</a>
-<a href="../fiches-capability-bricks-v1.html">Toutes les fiches</a>
+<a href="../abaxinfo-roadmap-v2.html">Retour &agrave; la roadmap</a>
 <a href="fiche-1.2-triage-auto-emails.html">Fiche suivante &rarr;</a>
 </div>
 </body>

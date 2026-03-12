@@ -153,9 +153,9 @@
     }
     .brick:hover { transform: scale(1.02); }
 
-    .brick.sz-s { padding: 7px 10px 7px 18px; gap: 3px; }
-    .brick.sz-m { padding: 9px 12px 9px 18px; gap: 4px; }
-    .brick.sz-l { padding: 11px 12px 11px 18px; gap: 4px; }
+    .brick.sz-s { padding: 7px 10px 7px 12px; gap: 3px; }
+    .brick.sz-m { padding: 9px 12px 9px 14px; gap: 4px; }
+    .brick.sz-l { padding: 11px 12px 11px 16px; gap: 4px; }
 
     .brick.p1 {
         background: linear-gradient(135deg, rgba(255,71,87,0.12), rgba(255,71,87,0.05));
@@ -200,19 +200,18 @@
 
     .brick-desc { font-size: 10px; color: var(--w50); line-height: 1.35; }
 
-    /* ========== GRADUATION MARKS ========== */
-    .grad {
-        position: absolute; left: 4px; top: 50%;
-        transform: translateY(-50%);
-        display: flex; flex-direction: column; gap: 3px;
+    /* ========== COMPLEXITY BAR (left side) ========== */
+    .brick::after {
+        content: ''; position: absolute;
+        left: 0; top: 0; bottom: 0;
+        border-radius: 7px 0 0 7px;
     }
-    .grad span {
-        display: block; width: 5px; height: 2px;
-        background: var(--w30); border-radius: 1px;
-    }
-    .brick.p1 .grad span { background: rgba(255,71,87,0.4); }
-    .brick.p2 .grad span { background: rgba(255,184,0,0.4); }
-    .brick.p3 .grad span { background: rgba(0,230,138,0.35); }
+    .brick.sz-s::after { width: 3px; }
+    .brick.sz-m::after { width: 5px; }
+    .brick.sz-l::after { width: 8px; }
+    .brick.p1::after { background: rgba(255,71,87,0.5); }
+    .brick.p2::after { background: rgba(255,184,0,0.5); }
+    .brick.p3::after { background: rgba(0,230,138,0.45); }
 
     /* ========== GAIN TAGS ========== */
     .brick-gain {
@@ -286,19 +285,18 @@
     .legend-brick {
         border-radius: 4px; background: var(--w10);
         border: 1px solid var(--w20); position: relative; flex-shrink: 0;
+        overflow: hidden;
     }
     .legend-brick.sz-s { width: 36px; height: 16px; }
     .legend-brick.sz-m { width: 42px; height: 22px; }
     .legend-brick.sz-l { width: 48px; height: 28px; }
-    .legend-grad {
-        position: absolute; left: 3px; top: 50%;
-        transform: translateY(-50%);
-        display: flex; flex-direction: column; gap: 2px;
+    .legend-bar {
+        position: absolute; left: 0; top: 0; bottom: 0;
+        background: var(--w50); border-radius: 4px 0 0 4px;
     }
-    .legend-grad span {
-        display: block; width: 4px; height: 1.5px;
-        background: var(--w50); border-radius: 1px;
-    }
+    .legend-brick.sz-s .legend-bar { width: 3px; }
+    .legend-brick.sz-m .legend-bar { width: 5px; }
+    .legend-brick.sz-l .legend-bar { width: 8px; }
 
     .legend-gain-dot {
         width: 9px; height: 9px; border-radius: 2px;
@@ -383,8 +381,8 @@
 
         <!-- Init: 1.1 Audit processus admin (M) -->
         <div class="cell init-cell">
-            <a href="fiches/fiche-1.1-audit-processus-admin.html" target="_blank" class="brick p1 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-1.1-audit-processus-admin.html" class="brick p1 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.1</span> Audit processus admin</div>
                     <div class="badge-p p1">P1</div>
@@ -396,8 +394,8 @@
 
         <!-- Q2: 1.3 Structuration process (S) + 1.2 Triage emails (M) -->
         <div class="cell">
-            <a href="fiches/fiche-1.3-structuration-process.html" target="_blank" class="brick p1 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-1.3-structuration-process.html" class="brick p1 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.3</span> Structuration process</div>
                     <div class="badge-p p1">P1</div>
@@ -405,8 +403,8 @@
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> ~2h/sem</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
-            <a href="fiches/fiche-1.2-triage-auto-emails.html" target="_blank" class="brick p1 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-1.2-triage-auto-emails.html" class="brick p1 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.2</span> Triage &amp; auto emails</div>
                     <div class="badge-p p1">P1</div>
@@ -418,8 +416,8 @@
 
         <!-- Q3: 1.4 Auto facturation (L) -->
         <div class="cell">
-            <a href="fiches/fiche-1.4-automatisation-facturation.html" target="_blank" class="brick p1 sz-l">
-                <div class="grad"><span></span><span></span><span></span></div>
+            <a href="fiches/fiche-1.4-automatisation-facturation.html" class="brick p1 sz-l">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.4</span> Automatisation facturation</div>
                     <div class="badge-p p1">P1</div>
@@ -432,8 +430,8 @@
 
         <!-- Q4: 1.5 Onboarding client (M) + 1.6 Délégation (S) -->
         <div class="cell">
-            <a href="fiches/fiche-1.5-onboarding-client-auto.html" target="_blank" class="brick p2 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-1.5-onboarding-client-auto.html" class="brick p2 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.5</span> Onboarding client auto</div>
                     <div class="badge-p p2">P2</div>
@@ -442,8 +440,8 @@
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> Semaines &rarr; jours</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
-            <a href="fiches/fiche-1.6-delegation-continuite.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-1.6-delegation-continuite.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.6</span> D&eacute;l&eacute;gation &amp; continuit&eacute;</div>
                     <div class="badge-p p2">P2</div>
@@ -455,8 +453,8 @@
 
         <!-- Q1-27: 1.7 Dashboard KPI (M) + 1.8 Alertes relances (S) -->
         <div class="cell">
-            <a href="fiches/fiche-1.7-dashboard-kpi-temps.html" target="_blank" class="brick p3 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-1.7-dashboard-kpi-temps.html" class="brick p3 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.7</span> Dashboard KPI &amp; temps</div>
                     <div class="badge-p p3">P3</div>
@@ -464,8 +462,8 @@
                 <div class="brick-gain gain-qual"><span class="gain-icon">&#128202;</span> Pilotage temps r&eacute;el</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
-            <a href="fiches/fiche-1.8-alertes-relances-auto.html" target="_blank" class="brick p3 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-1.8-alertes-relances-auto.html" class="brick p3 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">1.8</span> Alertes relances auto</div>
                     <div class="badge-p p3">P3</div>
@@ -484,8 +482,8 @@
 
         <!-- Init: 2.1 Cartographie tickets (L) -->
         <div class="cell init-cell">
-            <a href="fiches/fiche-2.1-cartographie-tickets-flux.html" target="_blank" class="brick p1 sz-l">
-                <div class="grad"><span></span><span></span><span></span></div>
+            <a href="fiches/fiche-2.1-cartographie-tickets-flux.html" class="brick p1 sz-l">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.1</span> Cartographie tickets &amp; flux</div>
                     <div class="badge-p p1">P1</div>
@@ -498,8 +496,8 @@
 
         <!-- Q2: 2.3 Base de connaissances (M) — avancée depuis Q3 -->
         <div class="cell">
-            <a href="fiches/fiche-2.3-base-de-connaissances.html" target="_blank" class="brick p2 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-2.3-base-de-connaissances.html" class="brick p2 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.3</span> Base de connaissances</div>
                     <div class="badge-p p2">P2</div>
@@ -511,8 +509,8 @@
 
         <!-- Q3: 2.2 Filtrage VOIP (M) + 2.4 Alertes SLA (S) — VOIP décalée depuis Q2 -->
         <div class="cell">
-            <a href="fiches/fiche-2.2-filtrage-tri-appels-voip.html" target="_blank" class="brick p1 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-2.2-filtrage-tri-appels-voip.html" class="brick p1 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.2</span> Filtrage &amp; tri appels VOIP</div>
                     <div class="badge-p p1">P1</div>
@@ -520,8 +518,8 @@
                 <div class="brick-gain gain-time"><span class="gain-icon">&#9201;</span> -50% interruptions</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
-            <a href="fiches/fiche-2.4-alertes-sla-auto.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-2.4-alertes-sla-auto.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.4</span> Alertes SLA auto</div>
                     <div class="badge-p p2">P2</div>
@@ -533,8 +531,8 @@
 
         <!-- Q4: 2.5 Templates réponses (S) -->
         <div class="cell">
-            <a href="fiches/fiche-2.5-templates-reponses.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-2.5-templates-reponses.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.5</span> Templates r&eacute;ponses</div>
                     <div class="badge-p p2">P2</div>
@@ -546,8 +544,8 @@
 
         <!-- Q1-27: 2.6 Ordonnancement intelligent (L) -->
         <div class="cell">
-            <a href="fiches/fiche-2.6-ordonnancement-intelligent.html" target="_blank" class="brick p3 sz-l">
-                <div class="grad"><span></span><span></span><span></span></div>
+            <a href="fiches/fiche-2.6-ordonnancement-intelligent.html" class="brick p3 sz-l">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">2.6</span> Ordonnancement intelligent</div>
                     <div class="badge-p p3">P3</div>
@@ -567,8 +565,8 @@
 
         <!-- Init: 3.1 Audit SEO/GEO (S) -->
         <div class="cell init-cell">
-            <a href="fiches/fiche-3.1-audit-seo-geo.html" target="_blank" class="brick p1 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-3.1-audit-seo-geo.html" class="brick p1 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.1</span> Audit SEO/GEO</div>
                     <div class="badge-p p1">P1</div>
@@ -580,8 +578,8 @@
 
         <!-- Q2: 3.2 Plan éditorial (L) + 3.3 Pages techniques SEO (S) -->
         <div class="cell">
-            <a href="fiches/fiche-3.2-plan-editorial-6-mois.html" target="_blank" class="brick p1 sz-l">
-                <div class="grad"><span></span><span></span><span></span></div>
+            <a href="fiches/fiche-3.2-plan-editorial-6-mois.html" class="brick p1 sz-l">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.2</span> Plan &eacute;ditorial 6 mois</div>
                     <div class="badge-p p1">P1</div>
@@ -590,8 +588,8 @@
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> +200-500 visites/mois</div>
                 <div class="brick-type type-consulting">&#9679; Consulting</div>
             </a>
-            <a href="fiches/fiche-3.3-pages-techniques-seo.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-3.3-pages-techniques-seo.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.3</span> Pages techniques SEO</div>
                     <div class="badge-p p2">P2</div>
@@ -603,8 +601,8 @@
 
         <!-- Q3: 3.4 Google My Business (S) -->
         <div class="cell">
-            <a href="fiches/fiche-3.4-google-my-business.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-3.4-google-my-business.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.4</span> Google My Business</div>
                     <div class="badge-p p2">P2</div>
@@ -616,8 +614,8 @@
 
         <!-- Q4: 3.5 Posts LinkedIn (M) + 3.6 Avis clients (S) -->
         <div class="cell">
-            <a href="fiches/fiche-3.5-posts-linkedin-auto.html" target="_blank" class="brick p2 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-3.5-posts-linkedin-auto.html" class="brick p2 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.5</span> Posts LinkedIn auto</div>
                     <div class="badge-p p2">P2</div>
@@ -625,8 +623,8 @@
                 <div class="brick-gain gain-perf"><span class="gain-icon">&#128200;</span> 4 posts/sem sans effort</div>
                 <div class="brick-type type-auto">&#9889; Automatisation</div>
             </a>
-            <a href="fiches/fiche-3.6-avis-clients-google.html" target="_blank" class="brick p2 sz-s">
-                <div class="grad"><span></span></div>
+            <a href="fiches/fiche-3.6-avis-clients-google.html" class="brick p2 sz-s">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.6</span> Avis clients Google</div>
                     <div class="badge-p p2">P2</div>
@@ -638,8 +636,8 @@
 
         <!-- Q1-27: 3.7 Moteur commercial (M) -->
         <div class="cell">
-            <a href="fiches/fiche-3.7-moteur-commercial-integre.html" target="_blank" class="brick p3 sz-m">
-                <div class="grad"><span></span><span></span></div>
+            <a href="fiches/fiche-3.7-moteur-commercial-integre.html" class="brick p3 sz-m">
+
                 <div class="brick-top">
                     <div class="brick-name"><span class="brick-num">3.7</span> Moteur commercial int&eacute;gr&eacute;</div>
                     <div class="badge-p p3">P3</div>
@@ -662,15 +660,9 @@
         <div class="legend-divider"></div>
         <div class="legend-section">
             <div class="legend-title">Complexit&eacute;</div>
-            <div class="legend-item"><div class="legend-brick sz-s"><div class="legend-grad"><span></span></div></div>Simple</div>
-            <div class="legend-item">
-                <div class="legend-brick sz-m"><div class="legend-grad"><span></span><span></span></div></div>
-                Moyen
-            </div>
-            <div class="legend-item">
-                <div class="legend-brick sz-l"><div class="legend-grad"><span></span><span></span><span></span></div></div>
-                Complexe
-            </div>
+            <div class="legend-item"><div class="legend-brick sz-s"><div class="legend-bar"></div></div>Simple</div>
+            <div class="legend-item"><div class="legend-brick sz-m"><div class="legend-bar"></div></div>Moyen</div>
+            <div class="legend-item"><div class="legend-brick sz-l"><div class="legend-bar"></div></div>Complexe</div>
         </div>
         <div class="legend-divider"></div>
         <div class="legend-section">
