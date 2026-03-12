@@ -54,7 +54,7 @@
 <div class="fiche-row comment">
 <div class="row-label">Comment &mdash; Approche</div>
 <ul>
-<li>Analyse des r&eacute;ponses les plus fr&eacute;quentes (base de connaissances brique 2.3)</li>
+<li>Analyse des r&eacute;ponses les plus fr&eacute;quentes (base de connaissances brique 2.2)</li>
 <li>R&eacute;daction des templates avec ton professionnel ABAX</li>
 <li>Configuration dans Autotask avec variables dynamiques</li>
 <li>Formation &eacute;quipe (30 min)</li>
@@ -63,7 +63,7 @@
 <div class="fiche-row prereq">
 <div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
 <ul>
-<li>Base de connaissances en place (brique 2.3)</li>
+<li>Base de connaissances en place (brique 2.2)</li>
 </ul>
 </div>
 <div class="fiche-row gains">
@@ -78,5 +78,22 @@
 <a href="../abaxinfo-roadmap-v2.html">Retour &agrave; la roadmap</a>
 <a href="fiche-2.6-ordonnancement-intelligent.html">Fiche suivante &rarr;</a>
 </div>
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+        var prev = document.querySelector('.nav a:first-child');
+        if (prev) window.location.href = prev.href;
+    } else if (e.key === 'ArrowRight') {
+        var next = document.querySelector('.nav a:last-child');
+        if (next) window.location.href = next.href;
+    } else if (e.key === 'f' || e.key === 'F') {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            document.documentElement.requestFullscreen();
+        }
+    }
+});
+</script>
 </body>
 </html>

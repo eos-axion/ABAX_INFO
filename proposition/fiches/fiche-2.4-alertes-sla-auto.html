@@ -75,9 +75,26 @@
 </div>
 
 <div class="nav">
-<a href="fiche-2.3-base-de-connaissances.html">&larr; Fiche pr&eacute;c&eacute;dente</a>
+<a href="fiche-2.3-filtrage-tri-appels-voip.html">&larr; Fiche pr&eacute;c&eacute;dente</a>
 <a href="../abaxinfo-roadmap-v2.html">Retour &agrave; la roadmap</a>
 <a href="fiche-2.5-templates-reponses.html">Fiche suivante &rarr;</a>
 </div>
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+        var prev = document.querySelector('.nav a:first-child');
+        if (prev) window.location.href = prev.href;
+    } else if (e.key === 'ArrowRight') {
+        var next = document.querySelector('.nav a:last-child');
+        if (next) window.location.href = next.href;
+    } else if (e.key === 'f' || e.key === 'F') {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            document.documentElement.requestFullscreen();
+        }
+    }
+});
+</script>
 </body>
 </html>

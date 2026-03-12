@@ -63,8 +63,8 @@
 <div class="fiche-row prereq">
 <div class="row-label">Pr&eacute;requis &amp; D&eacute;pendances</div>
 <ul>
-<li>Base de connaissances (brique 2.3) pour la classification</li>
-<li>Filtrage VOIP (brique 2.2) pour les tickets issus d&rsquo;appels</li>
+<li>Base de connaissances (brique 2.2) pour la classification</li>
+<li>Filtrage VOIP (brique 2.3) pour les tickets issus d&rsquo;appels</li>
 <li>Templates r&eacute;ponses (brique 2.5) pour l&rsquo;ex&eacute;cution rapide</li>
 </ul>
 </div>
@@ -78,7 +78,24 @@
 <div class="nav">
 <a href="fiche-2.5-templates-reponses.html">&larr; Fiche pr&eacute;c&eacute;dente</a>
 <a href="../abaxinfo-roadmap-v2.html">Retour &agrave; la roadmap</a>
-<a href="fiche-3.1-audit-seo-geo.html">Fiche suivante &rarr;</a>
+<a href="fiche-3.1-visibilite.html">Fiche suivante &rarr;</a>
 </div>
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {
+        var prev = document.querySelector('.nav a:first-child');
+        if (prev) window.location.href = prev.href;
+    } else if (e.key === 'ArrowRight') {
+        var next = document.querySelector('.nav a:last-child');
+        if (next) window.location.href = next.href;
+    } else if (e.key === 'f' || e.key === 'F') {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            document.documentElement.requestFullscreen();
+        }
+    }
+});
+</script>
 </body>
 </html>
