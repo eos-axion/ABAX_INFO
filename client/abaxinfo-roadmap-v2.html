@@ -204,13 +204,25 @@
     .brick::after {
         content: ''; position: absolute;
         left: 0; bottom: 0; height: 3px;
+        background: rgba(255,255,255,0.4);
     }
     .brick.sz-s::after { width: 33%; border-radius: 0 0 0 7px; }
     .brick.sz-m::after { width: 66%; }
     .brick.sz-l::after { width: 100%; border-radius: 0 0 7px 7px; }
-    .brick.p1::after { background: rgba(255,71,87,0.6); }
-    .brick.p2::after { background: rgba(255,184,0,0.6); }
-    .brick.p3::after { background: rgba(0,230,138,0.55); }
+
+    /* ========== COMPLEXITY GRADUATION MARKS ========== */
+    .brick::before {
+        content: ''; position: absolute;
+        left: 0; bottom: 0; height: 3px; width: 100%;
+        background:
+            linear-gradient(90deg,
+                transparent calc(33.33% - 0.5px), rgba(255,255,255,0.25) calc(33.33% - 0.5px),
+                rgba(255,255,255,0.25) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px),
+                transparent calc(66.66% - 0.5px), rgba(255,255,255,0.25) calc(66.66% - 0.5px),
+                rgba(255,255,255,0.25) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)
+            );
+        z-index: 1; pointer-events: none;
+    }
 
     /* ========== GAIN TAGS ========== */
     .brick-gain {
@@ -290,12 +302,25 @@
     .legend-brick.sz-m { height: 22px; }
     .legend-brick.sz-l { height: 28px; }
     .legend-bar {
-        position: absolute; left: 0; bottom: 0; height: 3px;
-        background: var(--w50);
+        position: absolute; left: 0; top: 0; bottom: 0;
+        background: rgba(255,255,255,0.35);
     }
     .legend-brick.sz-s .legend-bar { width: 33%; }
     .legend-brick.sz-m .legend-bar { width: 66%; }
     .legend-brick.sz-l .legend-bar { width: 100%; }
+    /* Graduation marks on legend bricks */
+    .legend-brick::after {
+        content: ''; position: absolute;
+        left: 0; top: 0; bottom: 0; width: 100%;
+        background:
+            linear-gradient(90deg,
+                transparent calc(33.33% - 0.5px), rgba(255,255,255,0.3) calc(33.33% - 0.5px),
+                rgba(255,255,255,0.3) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px),
+                transparent calc(66.66% - 0.5px), rgba(255,255,255,0.3) calc(66.66% - 0.5px),
+                rgba(255,255,255,0.3) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)
+            );
+        z-index: 1;
+    }
 
     .legend-gain-dot {
         width: 9px; height: 9px; border-radius: 2px;
@@ -563,7 +588,7 @@
         </div>
 
         <!-- Init: vide (audit SEO intégré dans Visibilité) -->
-        <div class="cell init-cell"></div>
+        <div class="cell"></div>
 
         <!-- Q2: 3.1 Visibilité (L) — audit SEO + plan éditorial + pages techniques -->
         <div class="cell">
