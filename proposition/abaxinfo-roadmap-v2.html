@@ -687,5 +687,16 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'f' || e.key === 'F') {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            document.documentElement.requestFullscreen();
+        }
+    }
+});
+</script>
 </body>
 </html>
