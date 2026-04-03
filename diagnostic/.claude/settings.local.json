@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nslookup -type=TXT abaxinfo.com 8.8.8.8)",
+      "Bash(nslookup -type=TXT _dmarc.abaxinfo.com 8.8.8.8)",
+      "Bash(nslookup -type=MX abaxinfo.com 8.8.8.8)",
+      "Bash(nslookup -type=TXT abaxinfo.com)",
+      "Bash(nslookup -type=MX abaxinfo.com)",
+      "Bash(nslookup -type=TXT _dmarc.abaxinfo.com)",
+      "WebFetch(domain:abax-info.netlify.app)"
+    ]
+  }
+}
