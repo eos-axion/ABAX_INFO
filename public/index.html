@@ -153,10 +153,10 @@ footer a{color:var(--cyan);text-decoration:none;}
 <!-- TABS -->
 <div class="ptabs">
   <button class="ptab active" onclick="switchTab('ateliers', this)">📋 Ateliers</button>
-  <button class="ptab" onclick="switchTab('proposition', this)">📈 Plans &amp; Roadmap</button>
-  <button class="ptab" onclick="switchTab('diagnostic', this)">🔍 Diagnostic</button>
+  <button class="ptab" onclick="switchTab('roadmap', this)">🗺️ Roadmap</button>
+  <button class="ptab" onclick="switchTab('visibilite', this)">🔍 Visibilité</button>
+  <button class="ptab" onclick="switchTab('croissance', this)">🌱 Croissance</button>
   <button class="ptab" onclick="switchTab('entreprise', this)">🏢 Entreprise</button>
-  <button class="ptab" onclick="switchTab('contrat', this)">📄 Contrat</button>
 </div>
 
 <!-- ===== TAB ATELIERS ===== -->
@@ -200,33 +200,11 @@ footer a{color:var(--cyan);text-decoration:none;}
 </div>
 </div>
 
-<!-- ===== TAB PROPOSITION ===== -->
-<div id="ptab-proposition" class="ptab-panel">
+<!-- ===== TAB ROADMAP ===== -->
+<div id="ptab-roadmap" class="ptab-panel">
 <div class="layout-wide">
 
-  <div class="section-label">Plans d'action</div>
-
-  <a href="abaxinfo-plan-visibilite-9mois.html" class="card cyan">
-    <div class="card-icon">🔍</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Pilier 1 — Visibilité</div>
-      <div class="card-title">Plan d'action 9 mois — Offre Visibilité</div>
-      <div class="card-desc">Méthodologie Tourbillon 5A · 5 dimensions du score visibilité · 3 phases (Fondations, Accélération, Dominance locale).</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <a href="abaxinfo-plan-croissance-90jours.html" class="card green">
-    <div class="card-icon">🚀</div>
-    <div class="card-body">
-      <div class="card-tag green">Pilier 2 — Croissance</div>
-      <div class="card-title">Plan d'action 90 jours — Offre Croissance</div>
-      <div class="card-desc">5 canaux d'acquisition · 4 sprints · Scoring prospects · KPIs 90 jours · Commission 20% sur CA nouveaux clients.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <div class="section-label mt">Roadmap — Capability Bricks</div>
+  <div class="section-label">Roadmap — Capability Bricks</div>
 
   <a href="abaxinfo-roadmap-v2.html" class="card cyan">
     <div class="card-icon">🗺️</div>
@@ -271,11 +249,23 @@ footer a{color:var(--cyan);text-decoration:none;}
 </div>
 </div>
 
-<!-- ===== TAB DIAGNOSTIC ===== -->
-<div id="ptab-diagnostic" class="ptab-panel">
+<!-- ===== TAB VISIBILITÉ ===== -->
+<div id="ptab-visibilite" class="ptab-panel">
 <div class="layout">
 
-  <div class="section-label">Rapports de diagnostic</div>
+  <div class="section-label">Plan d'action</div>
+
+  <a href="abaxinfo-plan-visibilite-9mois.html" class="card cyan">
+    <div class="card-icon">🔍</div>
+    <div class="card-body">
+      <div class="card-tag cyan">Pilier 1 — Visibilité</div>
+      <div class="card-title">Plan d'action 9 mois — Offre Visibilité</div>
+      <div class="card-desc">Méthodologie Tourbillon 5A · 5 dimensions du score visibilité · 3 phases (Fondations, Accélération, Dominance locale).</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <div class="section-label mt">Rapports de diagnostic</div>
 
   <a href="abaxinfo-pack-visibilite-l1.html" class="card amber">
     <div class="card-icon">⚡</div>
@@ -300,6 +290,37 @@ footer a{color:var(--cyan);text-decoration:none;}
 </div>
 </div>
 
+<!-- ===== TAB CROISSANCE ===== -->
+<div id="ptab-croissance" class="ptab-panel">
+<div class="layout">
+
+  <div class="section-label">Plan d'action</div>
+
+  <a href="abaxinfo-plan-croissance-90jours.html" class="card green">
+    <div class="card-icon">🚀</div>
+    <div class="card-body">
+      <div class="card-tag green">Pilier 2 — Croissance</div>
+      <div class="card-title">Plan d'action 90 jours — Offre Croissance</div>
+      <div class="card-desc">5 canaux d'acquisition · 4 sprints · Scoring prospects · KPIs 90 jours · Commission 20% sur CA nouveaux clients.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <div class="section-label mt">Intelligence concurrentielle</div>
+
+  <a href="abaxinfo-competitive-intelligence-xefi.html" class="card blue">
+    <div class="card-icon">🕵️</div>
+    <div class="card-body">
+      <div class="card-tag blue">Intelligence concurrentielle</div>
+      <div class="card-title">Analyse concurrentielle — XeFi</div>
+      <div class="card-desc">Positionnement, offres, forces &amp; faiblesses, opportunités de différenciation face à XeFi.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+</div>
+</div>
+
 <!-- ===== TAB ENTREPRISE ===== -->
 <div id="ptab-entreprise" class="ptab-panel">
 <div class="layout">
@@ -316,24 +337,7 @@ footer a{color:var(--cyan);text-decoration:none;}
     <div class="card-arrow">→</div>
   </a>
 
-  <a href="abaxinfo-competitive-intelligence-xefi.html" class="card blue">
-    <div class="card-icon">🕵️</div>
-    <div class="card-body">
-      <div class="card-tag blue">Intelligence concurrentielle</div>
-      <div class="card-title">Analyse concurrentielle — XeFi</div>
-      <div class="card-desc">Positionnement, offres, forces &amp; faiblesses, opportunités de différenciation face à XeFi.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-</div>
-</div>
-
-<!-- ===== TAB CONTRAT ===== -->
-<div id="ptab-contrat" class="ptab-panel">
-<div class="layout">
-
-  <div class="section-label">Documents contractuels</div>
+  <div class="section-label mt">Documents contractuels</div>
 
   <a href="docs/AXION_Offre_ABAX_INFO_Nexus_2026-001.pdf" target="_blank" class="card green">
     <div class="card-icon">📄</div>
