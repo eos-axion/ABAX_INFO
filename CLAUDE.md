@@ -16,10 +16,10 @@
 ## Projet en cours
 - **Nom :** Discovery & Proposition commerciale ABAX Info
 - **Objectif :** Convertir le prospect suite au Discovery Workshop — vente d'une offre d'automatisation
-- **Phase actuelle :** Post-workshop → envoi compte rendu → élaboration proposition
+- **Phase actuelle :** Proposition commerciale livrée → en attente de retour client
 - **Prochaines étapes :**
-  1. Envoyer le compte rendu au client (`workshop-abaxinfo-compte-rendu.html`)
-  2. Élaborer et envoyer la proposition commerciale (`proposition/`)
+  1. Suivi client suite à l'envoi de la proposition (3 piliers Visibilité / Croissance / Opérations)
+  2. Signature et démarrage Pilier 1 — Visibilité
 
 ## Stack technique
 - **Déploiement livrables :** Netlify (repo `eos-axion/ABAX_INFO`, publish = `client/`)
@@ -33,6 +33,8 @@
 | Date | Événement |
 |------|-----------|
 | 05/03/2026 | Discovery Workshop — diagnostic SEO & GEO livré (lead magnet + détaillé) |
+| 03/04/2026 | Atelier Discovery #2 — positionnement, méthodologie H/T, funnel CRM, offre AXION 3 piliers |
+| 09/04/2026 | Livraison compte-rendu atelier #2, plans d'action (Visibilité 9 mois, Croissance 90 jours), fiche entreprise |
 
 ---
 
@@ -63,6 +65,7 @@ workshop-abaxinfo-[type].html         # Présentations en mode slide deck
 | `workshop-abaxinfo-presentation.html` | Slide deck de présentation (pré-atelier) | Utilisé le 5 mars |
 | `workshop-abaxinfo-compte-rendu.html` | Compte rendu de l'atelier (post-workshop) | À envoyer au client |
 | `discovery-workshop-abaxinfo.md.docx` | Document de préparation de l'atelier | Interne |
+| `compte-rendu-atelier-20260403.html` | Compte rendu atelier #2 (3 avril) — positionnement, méthodologie, offre AXION | Partagé |
 
 ### `diagnostic/`
 | Fichier | Contenu | Statut |
@@ -81,6 +84,11 @@ workshop-abaxinfo-[type].html         # Présentations en mode slide deck
 | `fiches-capability-bricks.html` | Fiches détaillées v0 — 20 briques | Référence v0 |
 | `fiches-capability-bricks-v1.html` | Fiches v1 (maj v2) — 21 briques, timings ajustés, Accompagnement fusionné dans Consulting | À partager |
 | `fiches/` | 21 fiches individuelles (1 fichier HTML par brique, navigation prev/next) | À partager |
+| `abaxinfo-plan-visibilite-9mois.html` | Plan d'action 9 mois — Offre Visibilité (Tourbillon 5A, score /100, 3 phases) | Partagé |
+| `abaxinfo-plan-croissance-90jours.html` | Plan d'action 90 jours — Offre Croissance (5 canaux, 4 sprints, scoring) | Partagé |
+| `fiche-entreprise-abaxinfo.html` | Fiche entreprise vivante — identité, positionnement, services, personas, concurrence | Partagé |
+| `abaxinfo-offre-commerciale-v1.html` | Offre commerciale AXION — 3 piliers (Visibilité, Croissance, Opérations) | Partagé |
+| `abaxinfo-competitive-intelligence-xefi.html` | Intelligence concurrentielle — analyse XEFI (10 sections) | Interne |
 
 ### `client/` — Publication Netlify
 Contient uniquement les fichiers à partager avec le client (pas le diagnostic détaillé) :
@@ -93,6 +101,12 @@ Contient uniquement les fichiers à partager avec le client (pas le diagnostic d
 - `abaxinfo-roadmap-v2.html` — Copie depuis `proposition/` (v2)
 - `fiches-capability-bricks-v1.html` — Copie depuis `proposition/` (v1, mis à jour)
 - `fiches/` — 21 fiches individuelles, copie depuis `proposition/fiches/`
+- `compte-rendu-atelier-20260403.html` — Copie depuis `workshop/`
+- `abaxinfo-plan-visibilite-9mois.html` — Copie depuis `proposition/`
+- `abaxinfo-plan-croissance-90jours.html` — Copie depuis `proposition/`
+- `fiche-entreprise-abaxinfo.html` — Copie depuis `proposition/`
+- `abaxinfo-offre-commerciale-v1.html` — Copie depuis `proposition/`
+- `abaxinfo-pack-visibilite-l1.html` — Pack Visibilité L1 (scan SEO)
 
 **Important :** `client/` est la source de vérité pour Netlify. Si un fichier source est mis à jour, penser à le recopier dans `client/`.
 

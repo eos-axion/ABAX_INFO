@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche Entreprise — ABAX Info | AXION</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf2;
+  --border:#dde4ed;--border2:#c8d3e3;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.10);
+  --teal:#14b8a6;--teal-bg:rgba(20,184,166,.10);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.10);
+  --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.10);
+  --green:#10b981;--green-bg:rgba(16,185,129,.10);
+  --red:#ef4444;--red-bg:rgba(239,68,68,.10);
+  --orange:#f97316;--orange-bg:rgba(249,115,22,.10);
+  --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,.10);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ── TOP NAV ── */
+.topnav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:56px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{
+  width:32px;height:32px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;color:#fff;letter-spacing:1px;
+}
+.brand-name{font-size:15px;font-weight:700;letter-spacing:-.3px;color:var(--text);}
+.brand-name span{color:var(--blue);}
+.nav-meta{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--text3);}
+.nav-meta .sep{width:1px;height:14px;background:var(--border);}
+
+/* ── HERO ── */
+.hero{
+  padding:56px 32px 48px;
+  background:linear-gradient(135deg,#f0f4ff 0%,#f8fafc 50%,#f0fdf4 100%);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{max-width:900px;margin:0 auto;}
+.hero-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+  color:var(--blue);margin-bottom:16px;
+}
+.hero h1{font-size:36px;font-weight:800;line-height:1.15;margin-bottom:14px;color:var(--text);}
+.hero h1 span{color:var(--blue);}
+.hero-sub{font-size:15px;color:var(--text2);line-height:1.65;max-width:720px;margin-bottom:24px;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0;font-size:13px;}
+.hero-meta-item{display:flex;align-items:center;gap:6px;}
+.hero-meta-item .label{color:var(--text3);font-weight:500;}
+.hero-meta-item .value{color:var(--text);font-weight:600;}
+.hero-meta .divider{width:1px;height:16px;background:var(--border2);margin:0 16px;}
+
+/* ── LAYOUT ── */
+.layout{display:flex;max-width:1200px;margin:0 auto;min-height:calc(100vh - 56px);}
+
+/* Sidebar TOC */
+.sidebar{
+  width:240px;min-width:240px;
+  padding:32px 0 32px 24px;
+  position:sticky;top:56px;height:calc(100vh - 56px);
+  overflow-y:auto;
+  border-right:1px solid var(--border);
+}
+.sidebar-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:16px;}
+.toc-list{list-style:none;}
+.toc-list li{margin-bottom:2px;}
+.toc-list a{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 12px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--text2);
+  text-decoration:none;transition:all .15s;
+}
+.toc-list a:hover{background:var(--bg2);color:var(--text);}
+.toc-list a.active{background:var(--blue-bg);color:var(--blue);font-weight:600;}
+.toc-num{
+  font-size:10px;font-weight:700;
+  width:20px;height:20px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg2);color:var(--text3);flex-shrink:0;
+}
+.toc-list a.active .toc-num{background:var(--blue-bg);color:var(--blue);}
+
+/* Main content */
+.main{flex:1;padding:40px 48px 80px;max-width:900px;}
+
+/* Section */
+.section{margin-bottom:48px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--bg3);}
+.section-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.section-title{font-size:20px;font-weight:700;color:var(--text);}
+
+/* Badges */
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;
+}
+.badge-green{background:var(--green-bg);color:var(--green);}
+.badge-amber{background:var(--amber-bg);color:var(--amber);}
+.badge-red{background:var(--red-bg);color:var(--red);}
+.badge-blue{background:var(--blue-bg);color:var(--blue);}
+.badge-purple{background:var(--purple-bg);color:var(--purple);}
+.badge-teal{background:var(--teal-bg);color:var(--teal);}
+
+/* Info table */
+.info-table{width:100%;border-collapse:collapse;}
+.info-table tr{border-bottom:1px solid var(--border);}
+.info-table tr:last-child{border-bottom:none;}
+.info-table td{padding:12px 16px;font-size:14px;vertical-align:top;}
+.info-table td:first-child{
+  font-weight:600;color:var(--text2);white-space:nowrap;width:220px;
+  background:var(--bg1);border-right:1px solid var(--border);
+}
+.info-table td:last-child{color:var(--text);}
+.info-table-wrap{
+  background:var(--bg1);border:1px solid var(--border);border-radius:12px;overflow:hidden;
+}
+
+/* Cards */
+.card-grid{display:grid;gap:16px;}
+.card-grid.cols-2{grid-template-columns:1fr 1fr;}
+.card-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.card{
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  padding:20px 22px;position:relative;overflow:hidden;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;}
+.card.blue::before{background:var(--blue);}
+.card.teal::before{background:var(--teal);}
+.card.amber::before{background:var(--amber);}
+.card.green::before{background:var(--green);}
+.card.purple::before{background:var(--purple);}
+.card.red::before{background:var(--red);}
+.card.orange::before{background:var(--orange);}
+.card.cyan::before{background:var(--cyan);}
+.card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;}
+.card-label.blue{color:var(--blue);}
+.card-label.teal{color:var(--teal);}
+.card-label.amber{color:var(--amber);}
+.card-label.green{color:var(--green);}
+.card-label.purple{color:var(--purple);}
+.card-label.red{color:var(--red);}
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.6;}
+.card-icon{font-size:22px;margin-bottom:10px;}
+
+/* Persona cards */
+.persona-card{padding:24px;}
+.persona-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.persona-avatar{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.persona-name{font-size:16px;font-weight:700;color:var(--text);}
+.persona-role{font-size:12px;color:var(--text3);}
+.persona-traits{list-style:none;padding:0;}
+.persona-traits li{
+  padding:6px 0;font-size:13px;color:var(--text2);
+  display:flex;align-items:flex-start;gap:8px;
+  border-bottom:1px solid var(--bg2);
+}
+.persona-traits li:last-child{border-bottom:none;}
+.persona-traits li::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+
+/* Competitor table */
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table thead{background:var(--bg2);}
+.comp-table th{padding:10px 14px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
+.comp-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table-wrap{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--bg3);border-radius:1px;}
+.timeline-item{position:relative;margin-bottom:24px;}
+.timeline-item:last-child{margin-bottom:0;}
+.timeline-dot{
+  position:absolute;left:-32px;top:3px;
+  width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--border);background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+}
+.timeline-dot.active{border-color:var(--blue);background:var(--blue-bg);}
+.timeline-dot.active::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue);}
+.timeline-dot.future{border-color:var(--amber);background:var(--amber-bg);}
+.timeline-dot.future::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--amber);}
+.timeline-date{font-size:12px;font-weight:600;color:var(--blue);margin-bottom:2px;}
+.timeline-date.future{color:var(--amber);}
+.timeline-text{font-size:14px;color:var(--text);}
+.timeline-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+
+/* Service list */
+.service-list{display:flex;flex-direction:column;gap:10px;}
+.service-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 18px;background:var(--bg1);border:1px solid var(--border);
+  border-radius:10px;
+}
+.service-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.service-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.service-desc{font-size:13px;color:var(--text2);line-height:1.5;}
+
+/* Checklist */
+.checklist{list-style:none;}
+.checklist li{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-bottom:1px solid var(--bg2);
+  font-size:14px;
+}
+.checklist li:last-child{border-bottom:none;}
+.check-icon{
+  width:22px;height:22px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.check-done{background:var(--green-bg);color:var(--green);}
+.check-partial{background:var(--amber-bg);color:var(--amber);}
+.check-todo{background:var(--bg2);color:var(--text3);}
+
+/* Presence digitale */
+.presence-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.presence-item{
+  padding:16px 18px;background:var(--bg1);border:1px solid var(--border);border-radius:10px;
+}
+.presence-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.presence-value{font-size:14px;color:var(--text);margin-bottom:4px;}
+.presence-note{font-size:12px;color:var(--text3);}
+
+/* Project card */
+.project-grid{display:grid;gap:12px;}
+.project-item{
+  padding:16px 20px;background:var(--bg1);border:1px solid var(--border);border-radius:10px;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.project-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.project-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.project-desc{font-size:13px;color:var(--text2);}
+
+/* Footer */
+.footer{
+  padding:32px 48px;border-top:1px solid var(--border);
+  text-align:center;font-size:12px;color:var(--text3);
+  background:var(--bg1);
+}
+
+/* Living doc banner */
+.living-banner{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 20px;border-radius:10px;
+  background:var(--blue-bg);border:1px solid rgba(59,130,246,.2);
+  margin-bottom:32px;font-size:13px;color:var(--blue);
+}
+.living-banner strong{font-weight:700;}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .main{padding:24px 20px 60px;}
+  .hero{padding:40px 20px 36px;}
+  .card-grid.cols-2,.card-grid.cols-3{grid-template-columns:1fr;}
+  .presence-grid{grid-template-columns:1fr;}
+  .hero-meta{flex-direction:column;gap:8px;}
+  .hero-meta .divider{display:none;}
+}
+@media(max-width:600px){
+  .topnav{padding:0 16px;}
+  .nav-meta{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav class="topnav">
+  <div class="brand">
+    <div class="brand-mark">AX</div>
+    <div class="brand-name"><span>AXION</span> Smart Swiss Ops</div>
+  </div>
+  <div class="nav-meta">
+    <span>Fiche Entreprise</span>
+    <span class="sep"></span>
+    <span>ABAX Info</span>
+    <span class="sep"></span>
+    <span>v1.0 — 3 avril 2026</span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">&#x1F4C4; Document de reference</div>
+    <h1>Fiche Entreprise — <span>ABAX Info</span></h1>
+    <p class="hero-sub">Document de reference centralisant les informations cles d'ABAX Info pour la construction des plans Visibilite et Croissance. Mis a jour en continu au fil des ateliers de decouverte.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="label">Client</span><span class="value">ABAX Info</span></div>
+      <div class="divider"></div>
+      <div class="hero-meta-item"><span class="label">Secteur</span><span class="value">Services IT / Infogerance</span></div>
+      <div class="divider"></div>
+      <div class="hero-meta-item"><span class="label">Zone</span><span class="value">Suisse romande + France voisine</span></div>
+      <div class="divider"></div>
+      <div class="hero-meta-item"><span class="label">Derniere MAJ</span><span class="value">3 avril 2026</span></div>
+      <div class="divider"></div>
+      <div class="hero-meta-item"><span class="label">Statut</span><span class="badge badge-amber">En cours de completion</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LAYOUT ── -->
+<div class="layout">
+
+  <!-- Sidebar TOC -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Sommaire</div>
+    <ul class="toc-list">
+      <li><a href="#identite"><span class="toc-num">1</span>Identite</a></li>
+      <li><a href="#positionnement"><span class="toc-num">2</span>Positionnement</a></li>
+      <li><a href="#services"><span class="toc-num">3</span>Services & Offres</a></li>
+      <li><a href="#personas"><span class="toc-num">4</span>Personas cibles</a></li>
+      <li><a href="#concurrence"><span class="toc-num">5</span>Concurrence</a></li>
+      <li><a href="#presence"><span class="toc-num">6</span>Presence digitale</a></li>
+      <li><a href="#historique"><span class="toc-num">7</span>Historique</a></li>
+      <li><a href="#projets"><span class="toc-num">8</span>Projets en cours</a></li>
+      <li><a href="#completion"><span class="toc-num">9</span>A completer</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Living document banner -->
+    <div class="living-banner">
+      &#x1F501; <span><strong>Document vivant</strong> — Cette fiche est mise a jour apres chaque atelier de decouverte. Les sections marquees <span class="badge badge-amber" style="font-size:10px;">A completer</span> seront enrichies lors des prochaines sessions.</span>
+    </div>
+
+    <!-- ═══ 1. IDENTITE ═══ -->
+    <section class="section" id="identite">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--blue-bg);color:var(--blue);">&#x1F3E2;</div>
+        <div class="section-title">Identite de l'entreprise</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+      <div class="info-table-wrap">
+        <table class="info-table">
+          <tr><td>Raison sociale</td><td>ABAX Info <span class="badge badge-amber" style="margin-left:8px;">A confirmer</span></td></tr>
+          <tr><td>Date de fondation</td><td>Decembre 2005</td></tr>
+          <tr><td>Dirigeant</td><td>Sebastien (Seb) Fournier</td></tr>
+          <tr><td>Localisation</td><td>Ferney-Voltaire (France) + bureaux en Suisse</td></tr>
+          <tr><td>Zone de couverture</td><td>Suisse romande (Geneve, Vaud, Neuchatel, Valais) + France voisine (Pays de Gex, Haute-Savoie)</td></tr>
+          <tr><td>Numeros de telephone</td><td>+41 (Suisse) et +33 (France) — identite localisee <span class="badge badge-amber" style="margin-left:8px;">A completer</span></td></tr>
+          <tr><td>Email principal</td><td>eric.darien@abaxinfo.com (contact dans le systeme)</td></tr>
+          <tr><td>Effectif</td><td>Equipe technique + alternante en cours d'integration <span class="badge badge-amber" style="margin-left:8px;">A confirmer</span></td></tr>
+          <tr><td>Modele juridique</td><td>Entreprise franco-suisse <span class="badge badge-amber" style="margin-left:8px;">A confirmer</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ 2. POSITIONNEMENT ═══ -->
+    <section class="section" id="positionnement">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--purple-bg);color:var(--purple);">&#x1F3AF;</div>
+        <div class="section-title">Positionnement & Valeurs</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+      <div class="card-grid cols-2">
+        <div class="card purple">
+          <div class="card-label purple">Positionnement declare</div>
+          <div class="card-title">Partenaire IT local</div>
+          <div class="card-desc">Pas un sous-traitant executant. ABAX Info se positionne comme un veritable partenaire strategique pour ses clients, implique dans la prise de decision IT.</div>
+        </div>
+        <div class="card blue">
+          <div class="card-label blue">Valeurs fondamentales</div>
+          <div class="card-title">Proximite, expertise, transparence</div>
+          <div class="card-desc">Proximite geographique et relationnelle. Expertise humaine privilegiee. Conseil honnete et transparent sur les choix technologiques.</div>
+        </div>
+        <div class="card teal">
+          <div class="card-label teal">Double axe strategique</div>
+          <div class="card-title">Tranquillite + Performance</div>
+          <div class="card-desc">Offrir la tranquillite d'esprit aux dirigeants tout en faisant de l'informatique un levier de performance pour l'entreprise.</div>
+        </div>
+        <div class="card green">
+          <div class="card-label green">Methodologie</div>
+          <div class="card-title">Matrice H/T (Humain / Technique)</div>
+          <div class="card-desc">4 piliers en matrice 2&times;2 : Sauvegarde &amp; Resilience (T), Protection (T), Accompagnement Dirigeants (H), Accompagnement Equipe (H) — avec Infogerance comme socle commun.</div>
+        </div>
+        <div class="card amber">
+          <div class="card-label amber">Philosophie</div>
+          <div class="card-title">&laquo; Faire ce qu'il faut, pas ce que le client demande &raquo;</div>
+          <div class="card-desc">Approche consultative ou l'expertise prime sur la simple execution. ABAX Info challenge les demandes pour proposer la meilleure solution.</div>
+        </div>
+        <div class="card red">
+          <div class="card-label red">Selectivite client</div>
+          <div class="card-title">Refus des clients negligents</div>
+          <div class="card-desc">ABAX Info refuse les clients qui negligent la securite de base. Une selection qui renforce la credibilite et la qualite du parc gere.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. SERVICES ═══ -->
+    <section class="section" id="services">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--teal-bg);color:var(--teal);">&#x2699;&#xFE0F;</div>
+        <div class="section-title">Services & Offres</div>
+        <span class="badge badge-amber">Partiel</span>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--blue-bg);color:var(--blue);">&#x1F5A5;&#xFE0F;</div>
+          <div>
+            <div class="service-name">Infogerance</div>
+            <div class="service-desc">Maintenance proactive, supervision du parc informatique, support continu. Coeur de metier historique d'ABAX Info.</div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--red-bg);color:var(--red);">&#x1F6E1;&#xFE0F;</div>
+          <div>
+            <div class="service-name">Cybersecurite</div>
+            <div class="service-desc">Audit de securite, firewall, antivirus, sensibilisation des collaborateurs. Un pilier central du discours ABAX Info.</div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--cyan-bg);color:var(--cyan);">&#x2601;&#xFE0F;</div>
+          <div>
+            <div class="service-name">Cloud & Sauvegardes</div>
+            <div class="service-desc">Backup externalise, plan de reprise d'activite (PRA). Garantir la continuite des operations en cas d'incident.</div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--green-bg);color:var(--green);">&#x1F91D;</div>
+          <div>
+            <div class="service-name">Support utilisateurs</div>
+            <div class="service-desc">Assistance et depannage pour les equipes. Reactivite et proximite au quotidien.</div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--purple-bg);color:var(--purple);">&#x1F4CA;</div>
+          <div>
+            <div class="service-name">Conseil strategique</div>
+            <div class="service-desc">Bilan trimestriel, accompagnement des dirigeants dans leurs choix technologiques. Vision long terme.</div>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon" style="background:var(--orange-bg);color:var(--orange);">&#x1F680;</div>
+          <div>
+            <div class="service-name">Integration de nouveaux projets</div>
+            <div class="service-desc">Deploiement de nouvelles solutions, migration, accompagnement au changement.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:12px 16px;background:var(--amber-bg);border-radius:8px;font-size:13px;color:var(--amber);display:flex;align-items:center;gap:8px;">
+        &#x26A0;&#xFE0F; <span><strong>Note :</strong> Forfaitisation en cours — ABAX Info travaille sur des packs standard, premium et sur-mesure pour structurer son offre commerciale.</span>
+      </div>
+    </section>
+
+    <!-- ═══ 4. PERSONAS ═══ -->
+    <section class="section" id="personas">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--green-bg);color:var(--green);">&#x1F465;</div>
+        <div class="section-title">Personas cibles</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+
+      <!-- ICP -->
+      <div style="padding:16px 20px;background:var(--blue-bg);border:1px solid rgba(59,130,246,.15);border-radius:10px;margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:6px;">Profil client ideal (ICP)</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);">PME de 20 a 100 postes en Suisse romande, conscientes que l'IT est la colonne vertebrale de leur activite.</div>
+      </div>
+
+      <div class="card-grid cols-2" style="margin-bottom:16px;">
+        <!-- Persona 1 -->
+        <div class="card persona-card green">
+          <div class="persona-header">
+            <div class="persona-avatar" style="background:var(--green-bg);">&#x1F464;</div>
+            <div>
+              <div class="persona-name">Le Decideur conscient</div>
+              <div class="persona-role">Persona 1 — Client ideal</div>
+            </div>
+          </div>
+          <ul class="persona-traits">
+            <li style="--dot-color:var(--green);"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:6px;flex-shrink:0;"></span> Dirigeant qui comprend les enjeux IT et cybersecurite</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:6px;flex-shrink:0;"></span> Secteurs reglementes : notaires, avocats, fiduciaires, sante</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:6px;flex-shrink:0;"></span> Pret a investir dans un partenariat IT solide</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:6px;flex-shrink:0;"></span> Recherche la tranquillite d'esprit et la conformite</li>
+          </ul>
+        </div>
+
+        <!-- Persona 2 -->
+        <div class="card persona-card amber">
+          <div class="persona-header">
+            <div class="persona-avatar" style="background:var(--amber-bg);">&#x1F464;</div>
+            <div>
+              <div class="persona-name">Le Decideur a eduquer</div>
+              <div class="persona-role">Persona 2 — Prospect a convertir</div>
+            </div>
+          </div>
+          <ul class="persona-traits">
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;"></span> Voit l'IT comme un centre de couts</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;"></span> Ouvert a la discussion mais pas encore conscient des risques</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;"></span> Necessite un travail d'education et de sensibilisation</li>
+            <li><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;"></span> Peut devenir un Persona 1 avec le bon accompagnement</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Anti-persona -->
+      <div class="card red" style="border:1px solid rgba(239,68,68,.2);">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:18px;">&#x1F6AB;</span>
+          <div>
+            <div class="card-label red">Anti-persona</div>
+            <div class="card-title">Le Dirigeant qui refuse tout investissement IT</div>
+          </div>
+        </div>
+        <div class="card-desc">Aucune conscience des risques, refuse categoriquement tout budget securite ou maintenance. Typiquement le commerce de detail. ABAX Info ne travaille pas avec ce profil — c'est un choix delibere pour proteger la qualite de service.</div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. CONCURRENCE ═══ -->
+    <section class="section" id="concurrence">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--orange-bg);color:var(--orange);">&#x2694;&#xFE0F;</div>
+        <div class="section-title">Ecosysteme concurrentiel</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Acteur</th>
+              <th>Type</th>
+              <th>Cible</th>
+              <th>Commentaire</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>XEFI</strong></td>
+              <td><span class="badge badge-red">Concurrent direct</span></td>
+              <td>PME / TPE</td>
+              <td>Franchise internationale, 5 agences en Suisse. Machine marketing agressive mais offre percue comme &laquo; creuse &raquo;. Cible principale a contrer.</td>
+            </tr>
+            <tr>
+              <td><strong>Bechtle</strong></td>
+              <td><span class="badge badge-blue">Hors cible</span></td>
+              <td>ETI / Grandes entreprises</td>
+              <td>Groupe allemand, positionnement mid-to-enterprise. Pas en concurrence directe sur le segment PME.</td>
+            </tr>
+            <tr>
+              <td><strong>Aveniq</strong></td>
+              <td><span class="badge badge-blue">Hors cible</span></td>
+              <td>Mid-market</td>
+              <td>MSP suisse, mid-market. Pas sur le meme segment que ABAX Info.</td>
+            </tr>
+            <tr>
+              <td><strong>Swisscom IT</strong></td>
+              <td><span class="badge badge-amber">Concurrent indirect</span></td>
+              <td>Toutes tailles</td>
+              <td>La force de la marque et la confiance nationale. Present sur tous les segments.</td>
+            </tr>
+            <tr>
+              <td><strong>Freelances IT</strong></td>
+              <td><span class="badge badge-amber">Concurrent indirect</span></td>
+              <td>TPE</td>
+              <td>Concurrents sur le prix pour les tres petites structures. Manquent de structure et de continuite.</td>
+            </tr>
+            <tr>
+              <td><strong>Hermitage Solution</strong></td>
+              <td><span class="badge badge-teal">Partenaire</span></td>
+              <td>Grossiste MSP</td>
+              <td>Pas un concurrent — partenaire de Seb. Grossiste MSP qui fournit des outils et services.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ 6. PRESENCE DIGITALE ═══ -->
+    <section class="section" id="presence">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--cyan-bg);color:var(--cyan);">&#x1F310;</div>
+        <div class="section-title">Presence digitale actuelle</div>
+        <span class="badge badge-amber">A completer</span>
+      </div>
+      <div class="presence-grid">
+        <div class="presence-item">
+          <div class="presence-label">&#x1F310; Site web</div>
+          <div class="presence-value">URL a confirmer <span class="badge badge-amber" style="margin-left:6px;">A completer</span></div>
+          <div class="presence-note">CMS a identifier | Score visibilite estime : ~30/100</div>
+        </div>
+        <div class="presence-item">
+          <div class="presence-label">&#x1F4CD; Google My Business</div>
+          <div class="presence-value">A configurer / optimiser <span class="badge badge-amber" style="margin-left:6px;">A completer</span></div>
+          <div class="presence-note">Fiche a creer ou revendiquer pour chaque zone geographique</div>
+        </div>
+        <div class="presence-item">
+          <div class="presence-label">&#x1F4F1; LinkedIn</div>
+          <div class="presence-value">Profil de Seb Fournier actif</div>
+          <div class="presence-note">Posts a developper — frequence et strategie a definir</div>
+        </div>
+        <div class="presence-item">
+          <div class="presence-label">&#x1F3AC; YouTube</div>
+          <div class="presence-value">Pas encore present <span class="badge badge-amber" style="margin-left:6px;">A creer</span></div>
+          <div class="presence-note">Webinaires de sensibilisation prevus dans la roadmap</div>
+        </div>
+        <div class="presence-item">
+          <div class="presence-label">&#x2B50; Avis Google</div>
+          <div class="presence-value">Peu ou pas collectes <span class="badge badge-red" style="margin-left:6px;">Opportunite</span></div>
+          <div class="presence-note">Levier majeur face a XEFI — a structurer en priorite</div>
+        </div>
+        <div class="presence-item">
+          <div class="presence-label">&#x1F4DD; Contenu editorial</div>
+          <div class="presence-value">Quasi inexistant <span class="badge badge-red" style="margin-left:6px;">Critique</span></div>
+          <div class="presence-note">Derniers articles dates de juillet 2025 — pas de rythme de publication</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. HISTORIQUE ═══ -->
+    <section class="section" id="historique">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--amber-bg);color:var(--amber);">&#x1F4C5;</div>
+        <div class="section-title">Historique & Moments cles</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot active"></div>
+          <div class="timeline-date">Decembre 2005</div>
+          <div class="timeline-text">Fondation d'ABAX Info</div>
+          <div class="timeline-sub">Creation de l'entreprise par Sebastien Fournier</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot active"></div>
+          <div class="timeline-date">2021 – 2022</div>
+          <div class="timeline-text">Virage MSP (Managed Service Provider)</div>
+          <div class="timeline-sub">Post-Covid, pivot vers un modele de services manages pour plus de resilience</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot active"></div>
+          <div class="timeline-date">5 mars 2026</div>
+          <div class="timeline-text">Workshop Discovery initial avec AXION</div>
+          <div class="timeline-sub">Diagnostic SEO & GEO — premier contact structure</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot active"></div>
+          <div class="timeline-date">3 avril 2026</div>
+          <div class="timeline-text">Atelier decouverte 1</div>
+          <div class="timeline-sub">Positionnement, methodologie H/T, offre, intelligence concurrentielle</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot future"></div>
+          <div class="timeline-date future">10 avril 2026</div>
+          <div class="timeline-text">Atelier decouverte 2 (prevu)</div>
+          <div class="timeline-sub">Approfondissement du catalogue de services et de la presence digitale</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. PROJETS EN COURS ═══ -->
+    <section class="section" id="projets">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--green-bg);color:var(--green);">&#x1F6A7;</div>
+        <div class="section-title">Projets en cours</div>
+        <span class="badge badge-green">&#x2713; Confirme</span>
+      </div>
+      <div class="project-grid">
+        <div class="project-item">
+          <div class="project-icon">&#x1F4E6;</div>
+          <div>
+            <div class="project-name">Forfaitisation des services</div>
+            <div class="project-desc">Structuration de l'offre en packs d'accompagnement (standard, premium, sur-mesure) pour simplifier la proposition commerciale et ameliorer la previsibilite du revenu.</div>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-icon">&#x1F393;</div>
+          <div>
+            <div class="project-name">Integration alternante commerciale</div>
+            <div class="project-desc">Renforcement de l'equipe avec un profil commercial en alternance pour structurer la prospection et le suivi client.</div>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-icon">&#x1F3E0;</div>
+          <div>
+            <div class="project-name">Projet d'acquisition B2C</div>
+            <div class="project-desc">Opportunite de rachat d'une entreprise Apple dont le proprietaire part a la retraite. Diversification potentielle vers le segment B2C.</div>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-icon">&#x26A1;</div>
+          <div>
+            <div class="project-name">Collaboration AXION</div>
+            <div class="project-desc">Partenariat en cours de structuration couvrant trois axes : Visibilite (SEO, GEO, contenu), Croissance (automatisation, CRM), Operations (processus internes).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. POINTS A COMPLETER ═══ -->
+    <section class="section" id="completion">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--amber-bg);color:var(--amber);">&#x1F4CB;</div>
+        <div class="section-title">Points a completer</div>
+        <span class="badge badge-blue">Prochains ateliers</span>
+      </div>
+      <div style="background:var(--bg1);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <ul class="checklist">
+          <li>
+            <span class="check-icon check-done">&#x2713;</span>
+            <span>Positionnement et valeurs</span>
+            <span class="badge badge-green" style="margin-left:auto;">Fait</span>
+          </li>
+          <li>
+            <span class="check-icon check-done">&#x2713;</span>
+            <span>Methodologie H/T</span>
+            <span class="badge badge-green" style="margin-left:auto;">Fait</span>
+          </li>
+          <li>
+            <span class="check-icon check-done">&#x2713;</span>
+            <span>Intelligence concurrentielle XEFI</span>
+            <span class="badge badge-green" style="margin-left:auto;">Fait</span>
+          </li>
+          <li>
+            <span class="check-icon check-partial">&#x25CB;</span>
+            <span>Catalogue de services detaille</span>
+            <span class="badge badge-amber" style="margin-left:auto;">Partiel</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Analyse site web detaillee (URLs, CMS, hebergement)</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Audit Google My Business</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Analyse reseaux sociaux</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Liste des partenaires et certifications</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Organigramme et roles de l'equipe</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Chiffres cles (CA, nombre de clients, parc gere)</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Priorites et budget IT des clients types</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+          <li>
+            <span class="check-icon check-todo">—</span>
+            <span>Processus de vente actuel detaille</span>
+            <span class="badge badge-amber" style="margin-left:auto;">A faire</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  Confidentiel — AXION Smart Swiss Operations | Fiche Entreprise ABAX Info | Derniere mise a jour : 3 avril 2026
+</footer>
+
+<!-- ── TOC active highlight on scroll ── -->
+<script>
+(function(){
+  const sections = document.querySelectorAll('.section[id]');
+  const links = document.querySelectorAll('.toc-list a');
+  function onScroll(){
+    let current = '';
+    sections.forEach(s=>{
+      const top = s.getBoundingClientRect().top;
+      if(top < 200) current = s.id;
+    });
+    links.forEach(a=>{
+      a.classList.remove('active');
+      if(a.getAttribute('href') === '#'+current) a.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
