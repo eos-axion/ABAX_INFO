@@ -4,245 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Espace client — ABAX Info × AXION</title>
+<link rel="icon" type="image/png" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0A1628;
-    --navy-light: #1A2A42;
-    --slate: #2D3F5B;
-    --cyan: #00D4FF;
-    --cyan-10: rgba(0, 212, 255, 0.1);
-    --cyan-20: rgba(0, 212, 255, 0.2);
-    --cyan-30: rgba(0, 212, 255, 0.3);
-    --green: #00E68A;
-    --green-10: rgba(0, 230, 138, 0.1);
-    --amber: #FFB800;
-    --amber-10: rgba(255, 184, 0, 0.1);
-    --white: #FFFFFF;
-    --w80: rgba(255, 255, 255, 0.8);
-    --w60: rgba(255, 255, 255, 0.6);
-    --w50: rgba(255, 255, 255, 0.5);
-    --w20: rgba(255, 255, 255, 0.2);
-    --w08: rgba(255, 255, 255, 0.06);
-  }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --cyan:#0ea5e9;--cyan-10:rgba(14,165,233,.10);--cyan-20:rgba(14,165,233,.20);
+  --amber:#f59e0b;--amber-10:rgba(245,158,11,.10);--amber-20:rgba(245,158,11,.20);
+  --blue:#3b82f6;--blue-10:rgba(59,130,246,.10);--blue-20:rgba(59,130,246,.20);
+  --green:#10b981;--green-10:rgba(16,185,129,.10);--green-20:rgba(16,185,129,.20);
+  --purple:#8b5cf6;--purple-10:rgba(139,92,246,.10);--purple-20:rgba(139,92,246,.20);
+  --orange:#f97316;--orange-10:rgba(249,115,22,.10);--orange-20:rgba(249,115,22,.20);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* HEADER */
+header{border-bottom:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:13px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);}
+.header-badge{font-size:12px;color:var(--text3);font-weight:500;}
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+/* HERO */
+.hero{padding:52px 40px 36px;max-width:720px;margin:0 auto;width:100%;text-align:center;}
+.pill{display:inline-block;background:var(--cyan-10);border:1px solid var(--cyan-20);color:var(--cyan);padding:6px 18px;border-radius:50px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;}
+.hero h1{font-size:34px;font-weight:900;line-height:1.15;margin-bottom:10px;letter-spacing:-.5px;}
+.hero h1 span{color:var(--cyan);}
+.hero p{font-size:14px;color:var(--text2);line-height:1.7;max-width:500px;margin:0 auto;}
+.hero-meta{font-size:12px;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;}
 
-  /* HEADER */
-  header {
-    border-bottom: 1px solid var(--w08);
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--cyan);
-  }
-  .header-badge {
-    font-size: 12px;
-    color: var(--w50);
-    font-weight: 500;
-  }
+/* PORTAL TABS */
+.ptabs{border-bottom:2px solid var(--border);padding:0 40px;display:flex;gap:0;background:var(--bg);}
+.ptab{padding:14px 24px;font-size:13px;font-weight:700;color:var(--text3);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;font-family:'Inter',sans-serif;letter-spacing:.2px;}
+.ptab:hover{color:var(--text2);}
+.ptab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+.ptab-panel{display:none;padding-bottom:64px;}
+.ptab-panel.active{display:block;}
 
-  /* HERO */
-  .hero {
-    padding: 72px 40px 48px;
-    max-width: 760px;
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-  }
-  .pill {
-    display: inline-block;
-    background: var(--cyan-10);
-    border: 1px solid var(--cyan-20);
-    color: var(--cyan);
-    padding: 6px 18px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 28px;
-  }
-  .hero h1 {
-    font-size: 38px;
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .hero h1 span { color: var(--cyan); }
-  .hero p {
-    font-size: 16px;
-    color: var(--w60);
-    line-height: 1.7;
-    max-width: 520px;
-    margin: 0 auto 12px;
-  }
-  .hero-meta {
-    font-size: 13px;
-    color: var(--w50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 28px;
-    flex-wrap: wrap;
-  }
-  .hero-meta span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    display: inline-block;
-  }
+/* LAYOUT */
+.layout{max-width:720px;margin:0 auto;padding:40px 40px 0;width:100%;}
+.layout-wide{max-width:960px;margin:0 auto;padding:40px 40px 0;width:100%;}
 
-  /* DIVIDER */
-  .divider {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 40px;
-    width: 100%;
-  }
-  .divider-line {
-    height: 1px;
-    background: var(--w08);
-    margin-bottom: 40px;
-  }
+/* SECTION LABEL */
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:14px;}
+.section-label.mt{margin-top:36px;}
 
-  /* SECTION LABEL */
-  .section-label {
-    max-width: 760px;
-    margin: 0 auto 20px;
-    padding: 0 40px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--w50);
-  }
+/* HORIZONTAL CARD */
+.card{display:flex;align-items:center;gap:20px;background:var(--bg1);border:1px solid var(--border);border-radius:14px;padding:20px 22px;text-decoration:none;color:inherit;transition:border-color .18s,transform .15s,box-shadow .18s;position:relative;overflow:hidden;margin-bottom:10px;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;}
+.card.cyan::before{background:var(--cyan);}
+.card.amber::before{background:var(--amber);}
+.card.green::before{background:var(--green);}
+.card.blue::before{background:var(--blue);}
+.card.orange::before{background:var(--orange);}
+.card.purple::before{background:var(--purple);}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.07);}
+.card.cyan:hover{border-color:var(--cyan-20);}
+.card.amber:hover{border-color:var(--amber-20);}
+.card.green:hover{border-color:var(--green-20);}
+.card.blue:hover{border-color:var(--blue-20);}
+.card.orange:hover{border-color:var(--orange-20);}
+.card.purple:hover{border-color:var(--purple-20);}
+.card-icon{font-size:24px;width:48px;height:48px;background:var(--bg2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card-body{flex:1;}
+.card-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
+.card-tag.cyan{color:var(--cyan);}
+.card-tag.amber{color:var(--amber);}
+.card-tag.green{color:var(--green);}
+.card-tag.blue{color:var(--blue);}
+.card-tag.orange{color:var(--orange);}
+.card-tag.purple{color:var(--purple);}
+.card-title{font-size:15px;font-weight:700;margin-bottom:3px;line-height:1.3;}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.5;}
+.card-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle;text-transform:uppercase;letter-spacing:.8px;}
+.badge-current{background:var(--green-10);color:var(--green);border:1px solid var(--green-20);}
+.badge-archive{background:var(--bg2);color:var(--text3);border:1px solid var(--border2);}
+.card-arrow{font-size:16px;color:var(--text3);flex-shrink:0;transition:color .18s,transform .18s;}
+.card:hover .card-arrow{color:var(--cyan);transform:translateX(4px);}
+.card.archive{background:var(--bg);opacity:.72;}
+.card.archive:hover{opacity:1;}
+.card.archive .card-title{font-size:13px;font-weight:600;}
+.card.archive .card-icon{width:38px;height:38px;font-size:18px;}
 
-  /* CARDS */
-  .cards {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 40px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: var(--navy-light);
-    border: 1px solid var(--w08);
-    border-radius: 16px;
-    padding: 22px 24px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.2s ease, transform 0.15s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 16px 16px 0 0;
-  }
-  .card.cyan::before { background: var(--cyan); }
-  .card.green::before { background: var(--green); }
-  .card.amber::before { background: var(--amber); }
-  .card:hover {
-    border-color: var(--cyan-30);
-    transform: translateY(-2px);
-  }
-  .card-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-    width: 52px;
-    height: 52px;
-    background: var(--w08);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .card-body { flex: 1; }
-  .card-tag {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 5px;
-  }
-  .card-tag.cyan { color: var(--cyan); }
-  .card-tag.green { color: var(--green); }
-  .card-tag.amber { color: var(--amber); }
-  .card-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .card-desc {
-    font-size: 13px;
-    color: var(--w50);
-    line-height: 1.5;
-  }
-  .card-arrow {
-    font-size: 18px;
-    color: var(--w20);
-    flex-shrink: 0;
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  .card:hover .card-arrow {
-    color: var(--cyan);
-    transform: translateX(4px);
-  }
+/* VERTICAL CARD */
+.vcard{display:flex;flex-direction:column;background:var(--bg1);border:1px solid var(--border);border-radius:14px;padding:24px;text-decoration:none;color:inherit;transition:border-color .18s,transform .15s,box-shadow .18s;position:relative;overflow:hidden;}
+.vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;}
+.vcard.cyan::before{background:var(--cyan);}
+.vcard.amber::before{background:var(--amber);}
+.vcard.green::before{background:var(--green);}
+.vcard.orange::before{background:var(--orange);}
+.vcard.purple::before{background:var(--purple);}
+.vcard:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08);}
+.vcard.cyan:hover{border-color:var(--cyan-20);}
+.vcard.amber:hover{border-color:var(--amber-20);}
+.vcard.orange:hover{border-color:var(--orange-20);}
+.vcard.purple:hover{border-color:var(--purple-20);}
+.vcard-icon{font-size:28px;width:52px;height:52px;background:var(--bg2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.vcard-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.vcard-tag.cyan{color:var(--cyan);}
+.vcard-tag.amber{color:var(--amber);}
+.vcard-tag.green{color:var(--green);}
+.vcard-tag.orange{color:var(--orange);}
+.vcard-tag.purple{color:var(--purple);}
+.vcard-title{font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.35;}
+.vcard-desc{font-size:12px;color:var(--text2);line-height:1.55;flex:1;}
+.vcard-footer{margin-top:14px;display:flex;align-items:center;justify-content:space-between;}
+.vcard-arrow{font-size:14px;color:var(--text3);transition:color .18s,transform .18s;}
+.vcard:hover .vcard-arrow{color:var(--cyan);transform:translateX(4px);}
 
-  /* FOOTER */
-  footer {
-    margin-top: auto;
-    padding: 40px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--w50);
-    border-top: 1px solid var(--w08);
-    margin-top: 64px;
-  }
-  footer a {
-    color: var(--cyan);
-    text-decoration: none;
-  }
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 
-  @media (max-width: 600px) {
-    header { padding: 16px 20px; }
-    .hero { padding: 48px 20px 32px; }
-    .hero h1 { font-size: 28px; }
-    .cards, .section-label, .divider { padding: 0 20px; }
-    footer { padding: 32px 20px; }
-  }
+/* FOOTER */
+footer{padding:32px 40px;text-align:center;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:auto;}
+footer a{color:var(--cyan);text-decoration:none;}
+
+@media(max-width:640px){
+  header{padding:14px 20px;}
+  .hero{padding:40px 20px 28px;}
+  .hero h1{font-size:26px;}
+  .ptabs{padding:0 20px;overflow-x:auto;}
+  .ptab{padding:12px 16px;font-size:12px;white-space:nowrap;}
+  .layout,.layout-wide{padding:28px 20px 0;}
+  .grid-2{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -252,122 +139,227 @@
   <div class="header-badge">Espace client confidentiel</div>
 </header>
 
-<section class="hero">
-  <div class="pill">Discovery Workshop — 5 mars 2026</div>
-  <h1>Bienvenue sur votre<br>espace <span>ABAX Info</span></h1>
-  <p>Retrouvez ici les documents issus de notre atelier de découverte ainsi que votre diagnostic SEO & GEO offert.</p>
+<div class="hero">
+  <div class="pill">Projet Nexus · Phase Discovery · Proposition livrée</div>
+  <h1>Espace client<br><span>ABAX Info</span></h1>
+  <p>Livrables du projet — ateliers, plans d'action, roadmap, diagnostic et contrat.</p>
   <div class="hero-meta">
-    <span><span class="dot"></span> Documents mis à jour le 9 avril 2026</span>
-    <span>· Accès sécurisé ·</span>
+    <span><span class="dot"></span>Mis à jour le 9 avril 2026</span>
+    <span>·</span>
     <span>AXION × ABAX Info</span>
   </div>
-</section>
-
-<div class="divider"><div class="divider-line"></div></div>
-
-<div class="section-label">Atelier Discovery</div>
-<div class="cards">
-
-  <a class="card cyan" href="workshop-abaxinfo-presentation.html">
-    <div class="card-icon">📋</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Présentation</div>
-      <div class="card-title">Agenda & présentation de l'atelier</div>
-      <div class="card-desc">Déroulé du workshop, contexte et enjeux discutés le 5 mars 2026.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <a class="card green" href="workshop-abaxinfo-compte-rendu.html">
-    <div class="card-icon">✅</div>
-    <div class="card-body">
-      <div class="card-tag green">Compte rendu — 5 mars</div>
-      <div class="card-title">Synthèse de l'atelier Discovery</div>
-      <div class="card-desc">Points clés, décisions prises et prochaines étapes issues de l'atelier du 5 mars 2026.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <a class="card green" href="compte-rendu-atelier-20260403.html">
-    <div class="card-icon">📝</div>
-    <div class="card-body">
-      <div class="card-tag green">Compte rendu — 3 avril</div>
-      <div class="card-title">Positionnement · Méthodologie · Offre commerciale</div>
-      <div class="card-desc">Atelier 1 de la phase de découverte : positionnement, 5 piliers, funnel CRM, offre AXION en 3 piliers. 15 décisions actées.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
 </div>
 
-<div class="section-label" style="margin-top: 32px;">Proposition — Plans d'action</div>
-<div class="cards">
+<!-- TABS -->
+<div class="ptabs">
+  <button class="ptab active" onclick="switchTab('ateliers', this)">📋 Ateliers</button>
+  <button class="ptab" onclick="switchTab('proposition', this)">📈 Plans &amp; Roadmap</button>
+  <button class="ptab" onclick="switchTab('diagnostic', this)">🔍 Diagnostic</button>
+  <button class="ptab" onclick="switchTab('entreprise', this)">🏢 Entreprise</button>
+  <button class="ptab" onclick="switchTab('contrat', this)">📄 Contrat</button>
+</div>
 
-  <a class="card cyan" href="abaxinfo-plan-visibilite-9mois.html">
+<!-- ===== TAB ATELIERS ===== -->
+<div id="ptab-ateliers" class="ptab-panel active">
+<div class="layout-wide">
+
+  <div class="section-label">Agendas &amp; présentations</div>
+  <div class="grid-2">
+
+    <a href="workshop-abaxinfo-presentation.html" class="vcard green" style="opacity:.65;">
+      <div class="vcard-icon">📋</div>
+      <div class="vcard-tag green">Agenda · Archive</div>
+      <div class="vcard-title">Atelier 1 — Présentation Discovery · 5 mars 2026</div>
+      <div class="vcard-desc">Déroulé du workshop, contexte et enjeux — diagnostic SEO &amp; GEO offert.</div>
+      <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <div class="section-label mt">Comptes rendus</div>
+  <div class="grid-2">
+
+    <a href="compte-rendu-atelier-20260403.html" class="vcard cyan">
+      <div class="vcard-icon">✅</div>
+      <div class="vcard-tag cyan">Compte rendu · Dernier</div>
+      <div class="vcard-title">Atelier 2 — Positionnement · Méthodologie · Offre AXION · 3 avril 2026</div>
+      <div class="vcard-desc">Positionnement, 5 piliers, funnel CRM, offre AXION en 3 piliers. 15 décisions actées.</div>
+      <div class="vcard-footer"><span class="card-badge badge-current" style="margin-left:0;">Dernier</span><span class="vcard-arrow">→</span></div>
+    </a>
+
+    <a href="workshop-abaxinfo-compte-rendu.html" class="vcard cyan" style="opacity:.65;">
+      <div class="vcard-icon">📝</div>
+      <div class="vcard-tag cyan">Compte rendu · Archive</div>
+      <div class="vcard-title">Atelier 1 — Synthèse Discovery · 5 mars 2026</div>
+      <div class="vcard-desc">Points clés, décisions prises et prochaines étapes issues de l'atelier Discovery.</div>
+      <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
+    </a>
+
+  </div>
+
+</div>
+</div>
+
+<!-- ===== TAB PROPOSITION ===== -->
+<div id="ptab-proposition" class="ptab-panel">
+<div class="layout-wide">
+
+  <div class="section-label">Plans d'action</div>
+
+  <a href="abaxinfo-plan-visibilite-9mois.html" class="card cyan">
     <div class="card-icon">🔍</div>
     <div class="card-body">
       <div class="card-tag cyan">Pilier 1 — Visibilité</div>
       <div class="card-title">Plan d'action 9 mois — Offre Visibilité</div>
-      <div class="card-desc">Méthodologie Tourbillon 5A, 5 dimensions du score visibilité, 3 phases (Fondations, Accélération, Dominance locale).</div>
+      <div class="card-desc">Méthodologie Tourbillon 5A · 5 dimensions du score visibilité · 3 phases (Fondations, Accélération, Dominance locale).</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
 
-  <a class="card green" href="abaxinfo-plan-croissance-90jours.html">
+  <a href="abaxinfo-plan-croissance-90jours.html" class="card green">
     <div class="card-icon">🚀</div>
     <div class="card-body">
       <div class="card-tag green">Pilier 2 — Croissance</div>
       <div class="card-title">Plan d'action 90 jours — Offre Croissance</div>
-      <div class="card-desc">5 canaux d'acquisition, 4 sprints, scoring prospects, KPIs 90 jours. Commission 20% sur CA nouveaux clients.</div>
+      <div class="card-desc">5 canaux d'acquisition · 4 sprints · Scoring prospects · KPIs 90 jours · Commission 20% sur CA nouveaux clients.</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
 
-  <a class="card cyan" href="abaxinfo-roadmap-v2.html">
+  <div class="section-label mt">Roadmap — Capability Bricks</div>
+
+  <a href="abaxinfo-roadmap-v2.html" class="card cyan">
     <div class="card-icon">🗺️</div>
     <div class="card-body">
-      <div class="card-tag cyan">Roadmap</div>
-      <div class="card-title">Roadmap ABAX Info — Capability Bricks</div>
-      <div class="card-desc">3 opportunités × 5 périodes — vue d'ensemble des 21 briques avec gains estimés.</div>
+      <div class="card-tag cyan">Roadmap · Version actuelle<span class="card-badge badge-current">v2</span></div>
+      <div class="card-title">Roadmap ABAX Info — 21 briques · 3 opportunités × 5 périodes</div>
+      <div class="card-desc">Vue d'ensemble des 21 briques avec numérotation, gains estimés et type d'intervention.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="fiches-capability-bricks-v1.html" class="card cyan">
+    <div class="card-icon">🧱</div>
+    <div class="card-body">
+      <div class="card-tag cyan">Fiches détaillées · 21 briques</div>
+      <div class="card-title">Capability Bricks — Fiches complètes</div>
+      <div class="card-desc">Description, gains estimés, timing et type d'intervention pour chacune des 21 briques.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <div class="section-label mt">Versions archivées</div>
+
+  <a href="abaxinfo-roadmap-v1.html" class="card archive cyan">
+    <div class="card-icon">🗃️</div>
+    <div class="card-body">
+      <div class="card-tag cyan">Roadmap · Archive<span class="card-badge badge-archive">v1</span></div>
+      <div class="card-title">Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="abaxinfo-roadmap.html" class="card archive cyan">
+    <div class="card-icon">🗃️</div>
+    <div class="card-body">
+      <div class="card-tag cyan">Roadmap · Archive<span class="card-badge badge-archive">v0</span></div>
+      <div class="card-title">Roadmap v0 — 3 opportunités × 5 périodes (version initiale)</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
 
 </div>
+</div>
 
-<div class="section-label" style="margin-top: 32px;">Fiche entreprise</div>
-<div class="cards">
+<!-- ===== TAB DIAGNOSTIC ===== -->
+<div id="ptab-diagnostic" class="ptab-panel">
+<div class="layout">
 
-  <a class="card amber" href="fiche-entreprise-abaxinfo.html">
+  <div class="section-label">Rapports de diagnostic</div>
+
+  <a href="abaxinfo-pack-visibilite-l1.html" class="card amber">
+    <div class="card-icon">⚡</div>
+    <div class="card-body">
+      <div class="card-tag amber">Pack Visibilité L1 — Scan SEO</div>
+      <div class="card-title">Rapport Scan SEO — abaxinfo.com</div>
+      <div class="card-desc">Performance · SEO On-Page · GEO Readiness · Email Health · Checks techniques.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="abaxinfo-lead-magnet-seo-geo.html" class="card amber">
+    <div class="card-icon">🔎</div>
+    <div class="card-body">
+      <div class="card-tag amber">Diagnostic SEO &amp; GEO — Lead Magnet</div>
+      <div class="card-title">Diagnostic SEO &amp; GEO — abaxinfo.com</div>
+      <div class="card-desc">Synthèse du diagnostic SEO &amp; GEO offert suite au Discovery Workshop du 5 mars 2026.</div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+</div>
+</div>
+
+<!-- ===== TAB ENTREPRISE ===== -->
+<div id="ptab-entreprise" class="ptab-panel">
+<div class="layout">
+
+  <div class="section-label">Contexte &amp; positionnement</div>
+
+  <a href="fiche-entreprise-abaxinfo.html" class="card orange">
     <div class="card-icon">🏢</div>
     <div class="card-body">
-      <div class="card-tag amber">Document vivant</div>
+      <div class="card-tag orange">Document vivant</div>
       <div class="card-title">Fiche Entreprise — ABAX Info</div>
       <div class="card-desc">Identité, positionnement, services, personas, concurrence, présence digitale. Mis à jour au fil des ateliers.</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
 
-</div>
-
-<div class="section-label" style="margin-top: 32px;">Diagnostic offert</div>
-<div class="cards">
-
-  <a class="card amber" href="abaxinfo-pack-visibilite-l1.html">
-    <div class="card-icon">⚡</div>
+  <a href="abaxinfo-competitive-intelligence-xefi.html" class="card blue">
+    <div class="card-icon">🕵️</div>
     <div class="card-body">
-      <div class="card-tag amber">Pack Visibilité L1 — Scan SEO</div>
-      <div class="card-title">Rapport Scan SEO — abaxinfo.com</div>
-      <div class="card-desc">Performance, SEO On-Page, GEO Readiness, Email Health et checks techniques.</div>
+      <div class="card-tag blue">Intelligence concurrentielle</div>
+      <div class="card-title">Analyse concurrentielle — XeFi</div>
+      <div class="card-desc">Positionnement, offres, forces &amp; faiblesses, opportunités de différenciation face à XeFi.</div>
     </div>
     <div class="card-arrow">→</div>
   </a>
 
 </div>
+</div>
+
+<!-- ===== TAB CONTRAT ===== -->
+<div id="ptab-contrat" class="ptab-panel">
+<div class="layout">
+
+  <div class="section-label">Documents contractuels</div>
+
+  <a href="docs/AXION_Offre_ABAX_INFO_Nexus_2026-001.pdf" target="_blank" class="card green">
+    <div class="card-icon">📄</div>
+    <div class="card-body">
+      <div class="card-tag green">Offre · 2026-001</div>
+      <div class="card-title">Offre AXION — ABAX Info Nexus 2026-001</div>
+      <div class="card-desc">Document contractuel — offre de services AXION pour le projet Nexus. S'ouvre en PDF dans un nouvel onglet.</div>
+    </div>
+    <div class="card-arrow">↗</div>
+  </a>
+
+</div>
+</div>
 
 <footer>
-  Document confidentiel — Préparé par <a href="https://axion.supply" target="_blank">AXION</a> pour ABAX Info &nbsp;·&nbsp; Mars 2026
+  Document confidentiel — Préparé par <a href="https://axion.supply" target="_blank">AXION</a> pour ABAX Info &nbsp;·&nbsp; 2026
 </footer>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.ptab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  document.getElementById('ptab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 
 </body>
 </html>
