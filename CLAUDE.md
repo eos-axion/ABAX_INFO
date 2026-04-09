@@ -2,141 +2,133 @@
 
 ## Identité client
 - **Entreprise :** ABAX Info — informatique / IT — Suisse romande
-- **Contact principal :** À compléter — prénom/nom — email — téléphone
+- **Contact principal :** Eric Darien — Dirigeant — eric.darien@abaxinfo.com — +41 78 811 92 21 / +33 7 83 98 63 16
 - **Autres interlocuteurs :** À compléter
 - **Source :** À compléter
 
 ## Relation commerciale
 - **Statut :** Prospect en cours de conversion
-- **Offre en cours :** Diagnostic SEO & GEO (livré) → Proposition commerciale à envoyer
-- **Montant :** À définir (proposition en cours)
-- **Date signature :** —
-- **Interlocuteur AXION :** Sébastien
+- **Offre en cours :** Proposition commerciale livrée — 3 piliers (Visibilité, Croissance, Opérations)
+- **Montant :** À définir à la signature
+- **Date signature :** En attente
+- **Interlocuteur AXION :** Sébastien (+ Djemel)
 
 ## Projet en cours
-- **Nom :** Discovery & Proposition commerciale ABAX Info
-- **Objectif :** Convertir le prospect suite au Discovery Workshop — vente d'une offre d'automatisation
-- **Phase actuelle :** Proposition commerciale livrée → en attente de retour client
+- **Nom :** Discovery & Proposition commerciale ABAX Info — Projet Nexus
+- **Objectif :** Convertir le prospect — signature d'un ou plusieurs piliers de l'offre AXION
+- **Phase actuelle :** Atelier 3 (10 avril 2026, on-site chez Eric) — consolidation plan d'actions, présence digitale
 - **Prochaines étapes :**
-  1. Suivi client suite à l'envoi de la proposition (3 piliers Visibilité / Croissance / Opérations)
-  2. Signature et démarrage Pilier 1 — Visibilité
+  1. Atelier 3 — 10 avril 2026 à 10h (on-site)
+  2. Appels d'offres — discussion et planification (AO transmis par Eric le 3 avril)
+  3. Signature et démarrage Pilier 1 — Visibilité
 
 ## Stack technique
-- **Déploiement livrables :** Netlify (repo `eos-axion/ABAX_INFO`, publish = `client/`)
-- **Format livrables :** HTML scrollable + slide decks + Word (.docx)
+- **Déploiement livrables :** Cloudflare Pages — repo `eos-axion/ABAX_INFO`, build output = `public/`
+- **URL portail :** https://portal-abaxinfo.axion.supply (CNAME + Cloudflare Access à configurer)
+- **Format livrables :** HTML scrollable + slide decks + Word (.docx) + PDF
 
 ## Conventions
 - **Langue :** Français
 - **Repo GitHub :** `eos-axion/ABAX_INFO`
 
+## Portail client — Cloudflare Pages
+
+**Structure `public/` (source de vérité — ne jamais dupliquer ailleurs) :**
+
+```
+public/
+├── index.html                              ← portail client (5 onglets)
+├── docs/
+│   └── AXION_Offre_ABAX_INFO_Nexus_2026-001.pdf
+├── fiches/                                 ← 21 fiches Capability Bricks individuelles
+├── workshop-abaxinfo-presentation.html
+├── workshop-abaxinfo-compte-rendu.html
+├── compte-rendu-atelier-20260403.html
+├── abaxinfo-plan-visibilite-9mois.html
+├── abaxinfo-plan-croissance-90jours.html
+├── abaxinfo-roadmap-v2.html               ← version actuelle
+├── abaxinfo-roadmap-v1.html               ← archive
+├── abaxinfo-roadmap.html                  ← archive v0
+├── fiches-capability-bricks-v1.html
+├── abaxinfo-lead-magnet-seo-geo.html
+├── abaxinfo-pack-visibilite-l1.html
+├── fiche-entreprise-abaxinfo.html
+└── abaxinfo-competitive-intelligence-xefi.html
+```
+
+**Structure des onglets `index.html` :**
+| Onglet | Icône | Contenu |
+|--------|-------|---------|
+| Ateliers | 📋 | Agendas + comptes rendus (badges Dernier/Archive) |
+| Roadmap | 🗺️ | Roadmap v2 + fiches 21 briques + archives v1/v0 |
+| Visibilité | 🔍 | Plan d'action 9 mois + diagnostic SEO + pack L1 |
+| Croissance | 🌱 | Plan d'action 90 jours + analyse concurrentielle XEFI |
+| Entreprise | 🏢 | Fiche entreprise + contrat PDF |
+
+**Setup Cloudflare Pages (à faire) :**
+1. Dashboard Cloudflare → Pages → Create a project → Connect to Git → `eos-axion/ABAX_INFO`
+2. Build output directory : `public` — build command : vide
+3. Domaine custom : `portal-abaxinfo` → CNAME vers `{slug}.pages.dev` (DNS Cloudflare, proxy activé)
+4. Cloudflare Access : domaines `@abaxinfo.com` + `@axion.supply` — OTP email, session 7 jours
+
+## Dossiers internes (non publiés)
+
+```
+workshop/
+├── discovery-workshop-abaxinfo.md.docx    ← préparation atelier 1 (interne)
+
+diagnostic/
+├── abaxinfo-diagnostic-detaille-seo-geo.html    ← audit complet (payant, non partagé)
+├── abaxinfo-diagnostic-detaille-seo-geo.md.docx
+└── abaxinfo-lead-magnet-diagnostic-seo-geo.md.docx
+
+proposition/
+├── fiches-capability-bricks.html          ← v0 de référence (interne)
+├── abaxinfo-competitive-intelligence-xefi.md    ← source markdown (interne)
+├── AXION_Offre_ABAX_Acceleration_2026-001.docx  ← offre Word (interne)
+└── build-offre-docx.js                    ← script build (interne)
+```
+
 ## Historique
 | Date | Événement |
 |------|-----------|
-| 05/03/2026 | Discovery Workshop — diagnostic SEO & GEO livré (lead magnet + détaillé) |
-| 03/04/2026 | Atelier Discovery #2 — positionnement, méthodologie H/T, funnel CRM, offre AXION 3 piliers |
-| 09/04/2026 | Livraison compte-rendu atelier #2, plans d'action (Visibilité 9 mois, Croissance 90 jours), fiche entreprise |
+| 05/03/2026 | Atelier 1 — Discovery Workshop — diagnostic SEO & GEO livré |
+| 03/04/2026 | Atelier 2 — positionnement, méthodologie H/T, funnel CRM, offre AXION 3 piliers |
+| 09/04/2026 | Livraison portail client (Cloudflare Pages), contrat PDF, restructuration repo |
+| 10/04/2026 | Atelier 3 — on-site chez Eric, 10h — consolidation plan d'actions, présence digitale |
 
----
+## Notes importantes
+- **Attribution enregistrements :** Les compte-rendus générés depuis le laptop de Sébastien Fournier attribuaient parfois les propos d'Eric Darien à "Seb Fournier". Toujours vérifier et corriger en "Eric Darien" dans les sections 1-7 des compte-rendus.
+- **Appels d'offres :** Eric a transmis des AO le 3 avril — à discuter à l'atelier 3 et planifier la semaine du 13 avril.
+- **Spam :** Les emails AXION arrivent en spam chez ABAX Info (MailinBlack). Envoyer un WhatsApp en parallèle de chaque email important.
 
-## Structure du projet
+## Système de design AXION — Portail client (thème clair)
 
-```
-workshop/           → Atelier Discovery du 5 mars 2026
-diagnostic/         → Livrables SEO & GEO (lead magnet + détaillé)
-proposition/        → Proposition commerciale (à venir)
-```
-
-**Nomenclature des fichiers :**
-```
-abaxinfo-[type]-[sujet].html          # Rapports HTML scrollables
-abaxinfo-[type]-[sujet].md.docx       # Documents Word (depuis Markdown)
-workshop-abaxinfo-[type].html         # Présentations en mode slide deck
-```
-
-**Deux modes HTML :**
-- **Rapports scrollables** (`abaxinfo-*.html`) : conteneur `max-width: 900–960px`, scroll vertical classique
-- **Slide decks** (`workshop-*.html`) : plein écran `overflow: hidden`, slides en `position: absolute` avec transitions opacity/transform, navigation clavier/clic
-
-## Inventaire des livrables
-
-### `workshop/`
-| Fichier | Contenu | Statut |
-|---------|---------|--------|
-| `workshop-abaxinfo-presentation.html` | Slide deck de présentation (pré-atelier) | Utilisé le 5 mars |
-| `workshop-abaxinfo-compte-rendu.html` | Compte rendu de l'atelier (post-workshop) | À envoyer au client |
-| `discovery-workshop-abaxinfo.md.docx` | Document de préparation de l'atelier | Interne |
-| `compte-rendu-atelier-20260403.html` | Compte rendu atelier #2 (3 avril) — positionnement, méthodologie, offre AXION | Partagé |
-
-### `diagnostic/`
-| Fichier | Contenu | Statut |
-|---------|---------|--------|
-| `abaxinfo-lead-magnet-seo-geo.html` | Diagnostic SEO & GEO simplifié (lead magnet) | Offert au client |
-| `abaxinfo-lead-magnet-diagnostic-seo-geo.md.docx` | Version Word du lead magnet | Offert au client |
-| `abaxinfo-diagnostic-detaille-seo-geo.html` | Audit SEO & GEO complet avec scores et plan d'action | Payant |
-| `abaxinfo-diagnostic-detaille-seo-geo.md.docx` | Version Word du diagnostic détaillé | Payant |
-
-### `proposition/`
-| Fichier | Contenu | Statut |
-|---------|---------|--------|
-| `abaxinfo-roadmap.html` | Roadmap visuelle v0 — 3 opportunités × 5 périodes (Capability Bricks) | Référence v0 |
-| `abaxinfo-roadmap-v1.html` | Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention | Référence v1 |
-| `abaxinfo-roadmap-v2.html` | Roadmap v2 — numéros briques, reorder Q2, VOIP→Q3, Base connaissances→Q2, Accompagnement→Consulting | À partager |
-| `fiches-capability-bricks.html` | Fiches détaillées v0 — 20 briques | Référence v0 |
-| `fiches-capability-bricks-v1.html` | Fiches v1 (maj v2) — 21 briques, timings ajustés, Accompagnement fusionné dans Consulting | À partager |
-| `fiches/` | 21 fiches individuelles (1 fichier HTML par brique, navigation prev/next) | À partager |
-| `abaxinfo-plan-visibilite-9mois.html` | Plan d'action 9 mois — Offre Visibilité (Tourbillon 5A, score /100, 3 phases) | Partagé |
-| `abaxinfo-plan-croissance-90jours.html` | Plan d'action 90 jours — Offre Croissance (5 canaux, 4 sprints, scoring) | Partagé |
-| `fiche-entreprise-abaxinfo.html` | Fiche entreprise vivante — identité, positionnement, services, personas, concurrence | Partagé |
-| `abaxinfo-offre-commerciale-v1.html` | Offre commerciale AXION — 3 piliers (Visibilité, Croissance, Opérations) | Partagé |
-| `abaxinfo-competitive-intelligence-xefi.html` | Intelligence concurrentielle — analyse XEFI (10 sections) | Interne |
-
-### `client/` — Publication Netlify
-Contient uniquement les fichiers à partager avec le client (pas le diagnostic détaillé) :
-- `index.html` — Page d'accueil branded avec liens vers les documents
-- `workshop-abaxinfo-presentation.html` — Copie depuis `workshop/`
-- `workshop-abaxinfo-compte-rendu.html` — Copie depuis `workshop/`
-- `abaxinfo-lead-magnet-seo-geo.html` — Copie depuis `diagnostic/`
-- `abaxinfo-roadmap.html` — Copie depuis `proposition/` (v0)
-- `abaxinfo-roadmap-v1.html` — Copie depuis `proposition/` (v1)
-- `abaxinfo-roadmap-v2.html` — Copie depuis `proposition/` (v2)
-- `fiches-capability-bricks-v1.html` — Copie depuis `proposition/` (v1, mis à jour)
-- `fiches/` — 21 fiches individuelles, copie depuis `proposition/fiches/`
-- `compte-rendu-atelier-20260403.html` — Copie depuis `workshop/`
-- `abaxinfo-plan-visibilite-9mois.html` — Copie depuis `proposition/`
-- `abaxinfo-plan-croissance-90jours.html` — Copie depuis `proposition/`
-- `fiche-entreprise-abaxinfo.html` — Copie depuis `proposition/`
-- `abaxinfo-offre-commerciale-v1.html` — Copie depuis `proposition/`
-- `abaxinfo-pack-visibilite-l1.html` — Pack Visibilité L1 (scan SEO)
-
-**Important :** `client/` est la source de vérité pour Netlify. Si un fichier source est mis à jour, penser à le recopier dans `client/`.
-
-## Déploiement Netlify
-
-`netlify.toml` à la racine configure le dossier de publication : `publish = "client"`.
-
-Pour connecter sur Netlify : importer le repo GitHub `eos-axion/ABAX_INFO` — Netlify détecte automatiquement `netlify.toml` et publie le dossier `client/`. Tout push sur `main` déclenche un redéploiement automatique.
-
-## Système de design AXION (fichiers HTML)
-
-Palette CSS à conserver sur tous les nouveaux livrables HTML :
+Le portail client (`public/index.html` et livrables associés) utilise le thème clair Inter :
 
 ```css
 :root {
-  --navy: #0A1628;          /* fond principal */
-  --navy-light: #1A2A42;    /* fond des cartes */
-  --slate: #2D3F5B;
-  --cyan: #00D4FF;          /* accent principal */
-  --green: #00E68A;         /* positif / succès */
-  --amber: #FFB800;         /* avertissement */
-  --red: #FF4757;           /* critique / négatif */
-  --violet: #9B59FF;        /* accent optionnel */
-  --white: #FFFFFF;
-  /* Variantes alpha : --cyan-10, --white-80, etc. */
+  --bg:#ffffff; --bg1:#f8fafc; --bg2:#f1f5f9;
+  --border:#e2e8f0; --text:#0f172a; --text2:#475569; --text3:#94a3b8;
+  --cyan:#0ea5e9;   /* accent principal */
+  --green:#10b981;  --amber:#f59e0b;  --blue:#3b82f6;
+  --purple:#8b5cf6; --orange:#f97316;
+}
+```
+
+**Typographie :** `Inter` (Google Fonts)
+
+## Système de design AXION — Livrables HTML internes (thème sombre)
+
+```css
+:root {
+  --navy: #0A1628;       /* fond principal */
+  --navy-light: #1A2A42; /* fond des cartes */
+  --cyan: #00D4FF;       /* accent principal */
+  --green: #00E68A;      --amber: #FFB800;  --red: #FF4757;
 }
 ```
 
 **Typographie :** `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
-
-**Cartes :** `background: var(--navy-light); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06)` avec bordure top colorée (3px) selon la catégorie.
 
 **Langue :** Tout le contenu est en **français**.
