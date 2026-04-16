@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Mairies — Municipales 2026 — ABAX Info × AXION</title>
+<link rel="icon" type="image/png" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --cyan:#0ea5e9;--cyan-10:rgba(14,165,233,.10);--cyan-20:rgba(14,165,233,.20);
+  --green:#10b981;--green-10:rgba(16,185,129,.10);--green-20:rgba(16,185,129,.20);
+  --amber:#f59e0b;--amber-10:rgba(245,158,11,.10);--amber-20:rgba(245,158,11,.20);
+  --orange:#f97316;--orange-10:rgba(249,115,22,.10);--orange-20:rgba(249,115,22,.20);
+  --blue:#3b82f6;--blue-10:rgba(59,130,246,.10);--blue-20:rgba(59,130,246,.20);
+  --purple:#8b5cf6;--purple-10:rgba(139,92,246,.10);--purple-20:rgba(139,92,246,.20);
+  --red:#ef4444;--red-10:rgba(239,68,68,.10);--red-20:rgba(239,68,68,.20);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+header{border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:13px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--cyan)}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-badge{font-size:12px;color:var(--text3);font-weight:500}
+.back-link{font-size:12px;color:var(--cyan);text-decoration:none;font-weight:600;display:flex;align-items:center;gap:4px}
+.back-link:hover{text-decoration:underline}
+
+/* HERO */
+.hero{padding:40px 40px 32px;max-width:960px;margin:0 auto;width:100%}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hero h1{font-size:28px;font-weight:900;line-height:1.2;letter-spacing:-.5px}
+.hero h1 span{color:var(--cyan)}
+.hero p{font-size:14px;color:var(--text2);line-height:1.6;margin-top:8px;max-width:600px}
+
+/* KPI STRIP */
+.kpi-strip{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.kpi{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:14px 20px;text-align:center;min-width:120px;flex:1}
+.kpi-value{font-size:28px;font-weight:900;line-height:1}
+.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-top:4px}
+.kpi.highlight{border-color:var(--green-20);background:var(--green-10)}
+.kpi.highlight .kpi-value{color:var(--green)}
+
+/* CONTROLS */
+.controls{max-width:960px;margin:0 auto;padding:0 40px 16px;width:100%;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-box{flex:1;min-width:200px;padding:10px 16px;border:1px solid var(--border);border-radius:10px;font-size:13px;font-family:'Inter',sans-serif;background:var(--bg1);color:var(--text);outline:none;transition:border-color .15s}
+.search-box:focus{border-color:var(--cyan)}
+.filter-btn{padding:8px 16px;border:1px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.filter-btn:hover{border-color:var(--cyan-20);color:var(--text)}
+.filter-btn.active{background:var(--cyan-10);border-color:var(--cyan-20);color:var(--cyan)}
+
+/* TABS */
+.tabs{max-width:960px;margin:0 auto;padding:0 40px;width:100%;display:flex;gap:0;border-bottom:2px solid var(--border)}
+.tab{padding:12px 24px;font-size:13px;font-weight:700;color:var(--text3);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;font-family:'Inter',sans-serif}
+.tab:hover{color:var(--text2)}
+.tab.active{color:var(--green);border-bottom-color:var(--green)}
+.tab.tab-reelu.active{color:var(--amber);border-bottom-color:var(--amber)}
+.tab-count{font-size:11px;font-weight:800;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.tab.active .tab-count{background:var(--green-10);color:var(--green)}
+.tab.tab-reelu.active .tab-count{background:var(--amber-10);color:var(--amber)}
+
+/* TABLE */
+.table-wrap{max-width:960px;margin:0 auto;padding:16px 40px;width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{position:sticky;top:0;background:var(--bg2);padding:10px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);border-bottom:2px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+thead th:hover{color:var(--text)}
+thead th .sort-icon{margin-left:4px;opacity:.4}
+thead th.sorted .sort-icon{opacity:1;color:var(--cyan)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:hover{background:var(--cyan-10)}
+tbody td{padding:10px 12px;vertical-align:middle}
+.commune-name{font-weight:700;color:var(--text);white-space:nowrap}
+.dept-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+.dept-01{background:var(--blue-10);color:var(--blue)}
+.dept-74{background:var(--purple-10);color:var(--purple)}
+.pop{font-weight:700;font-variant-numeric:tabular-nums}
+.etiquette{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--bg2);color:var(--text2)}
+.maire-sortant{color:var(--text3)}
+.maire-elu{font-weight:700;color:var(--text)}
+.contact-info{font-size:11px;color:var(--text2)}
+.contact-info a{color:var(--cyan);text-decoration:none}
+.contact-info a:hover{text-decoration:underline}
+.priorite-haute{color:var(--green);font-weight:700}
+.priorite-moyenne{color:var(--amber);font-weight:700}
+.no-results{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px}
+
+/* DOWNLOAD BAR */
+.dl-bar{max-width:960px;margin:0 auto;padding:16px 40px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dl-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:10px;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;text-decoration:none;border:1px solid var(--border);background:var(--bg1);color:var(--text);cursor:pointer;transition:all .15s}
+.dl-btn:hover{border-color:var(--cyan-20);background:var(--cyan-10);color:var(--cyan)}
+.dl-btn.primary{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.dl-btn.primary:hover{opacity:.9}
+.dl-info{font-size:11px;color:var(--text3)}
+
+/* FOOTER */
+footer{padding:28px 40px;text-align:center;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:auto}
+footer a{color:var(--cyan);text-decoration:none}
+
+@media(max-width:768px){
+  header{padding:14px 20px}
+  .hero{padding:28px 20px 20px}
+  .hero h1{font-size:22px}
+  .kpi-strip{gap:8px}
+  .kpi{min-width:80px;padding:10px 12px}
+  .kpi-value{font-size:22px}
+  .controls{padding:0 20px 12px}
+  .tabs{padding:0 20px}
+  .table-wrap{padding:12px 20px}
+  .dl-bar{padding:12px 20px}
+  footer{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AXION</div>
+  <div class="header-right">
+    <a href="index.html" class="back-link">← Espace client</a>
+    <div class="header-badge">CRM Prospection</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>Base CRM <span>Mairies</span></h1>
+      <p>Municipales mars 2026 — Pays de Gex (01) &amp; Haute-Savoie (74). Communes avec changement de maire : cibles prioritaires pour une offre de services IT.</p>
+    </div>
+  </div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-value">87</div><div class="kpi-label">Communes</div></div>
+    <div class="kpi highlight"><div class="kpi-value">40</div><div class="kpi-label">Nouveau maire</div></div>
+    <div class="kpi"><div class="kpi-value">47</div><div class="kpi-label">Maire réélu</div></div>
+    <div class="kpi"><div class="kpi-value">15</div><div class="kpi-label">Pays de Gex</div></div>
+    <div class="kpi"><div class="kpi-value">25</div><div class="kpi-label">Haute-Savoie</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <input type="text" class="search-box" id="search" placeholder="Rechercher une commune, un maire, un code postal…">
+  <button class="filter-btn active" data-dept="all" onclick="filterDept(this)">Tous</button>
+  <button class="filter-btn" data-dept="01" onclick="filterDept(this)">01 — Ain</button>
+  <button class="filter-btn" data-dept="74" onclick="filterDept(this)">74 — Haute-Savoie</button>
+</div>
+
+<div class="tabs">
+  <button class="tab active" id="tab-nouveau" onclick="switchTab('nouveau')">🟢 Nouveau maire <span class="tab-count" id="count-nouveau">40</span></button>
+  <button class="tab tab-reelu" id="tab-reelu" onclick="switchTab('reelu')">🟡 Maire réélu <span class="tab-count" id="count-reelu">47</span></button>
+</div>
+
+<div class="table-wrap">
+<table id="crm-table">
+<thead>
+<tr>
+  <th data-col="commune" class="sorted" onclick="sortTable('commune')">Commune <span class="sort-icon">↕</span></th>
+  <th data-col="dept" onclick="sortTable('dept')">Dépt <span class="sort-icon">↕</span></th>
+  <th data-col="pop" onclick="sortTable('pop')">Pop. <span class="sort-icon">↕</span></th>
+  <th data-col="sortant">Maire sortant</th>
+  <th data-col="elu">Nouveau maire</th>
+  <th data-col="contact">Contact mairie</th>
+</tr>
+</thead>
+<tbody id="table-body">
+</tbody>
+</table>
+<div class="no-results" id="no-results" style="display:none">Aucune commune trouvée pour cette recherche.</div>
+</div>
+
+<div class="dl-bar">
+  <div class="dl-info">Données vérifiées sur <strong>resultats-elections.interieur.gouv.fr</strong> · 81/87 emails enrichis · Généré le 16 avril 2026</div>
+  <a href="crm-mairies-pays-de-gex-haute-savoie.xlsx" class="dl-btn primary" download>⬇ Télécharger .xlsx</a>
+</div>
+
+<footer>
+  Document confidentiel — Préparé par <a href="https://axion.supply" target="_blank">AXION</a> pour ABAX Info &nbsp;·&nbsp; 2026
+</footer>
+
+<script>
+const DATA_NOUVEAU = [
+  {commune:"Saint-Genis-Pouilly",cp:"01630",dept:"01",pop:14432,sortant:"Hubert Bertrand",etiqS:"PRG",elu:"Sylvie Durand",etiqE:"SE",tel:"04 50 42 10 33",email:"mairie@saint-genis-pouilly.fr",adresse:"100 rue de Genève, 01630 Saint-Genis-Pouilly",notes:"Plus grande commune du Pays de Gex"},
+  {commune:"Ferney-Voltaire",cp:"01210",dept:"01",pop:12094,sortant:"Daniel Raphoz",etiqS:"HOR",elu:"Pierre-Marie Philipps",etiqE:"NE",tel:"04 50 40 78 00",email:"mairie@ferney-voltaire.fr",adresse:"26 Grand'Rue, 01210 Ferney-Voltaire",notes:"Commune frontalière"},
+  {commune:"Prévessin-Moëns",cp:"01280",dept:"01",pop:9153,sortant:"Aurélie Charillon",etiqS:"LR",elu:"Bernard Chauvet",etiqE:"DVD",tel:"04 50 40 51 60",email:"mairie@prevessin-moens.fr",adresse:"Place de la Mairie, 01280 Prévessin-Moëns",notes:"Près du CERN — 62.84%"},
+  {commune:"Versonnex",cp:"01210",dept:"01",pop:2100,sortant:"Jacques Dubout",etiqS:"",elu:"Pierre Mader",etiqE:"SE",tel:"04 50 41 53 84",email:"mairie@versonnex.fr",adresse:"Mairie de Versonnex, 01210",notes:"75.81% au 1er tour"},
+  {commune:"Péron",cp:"01630",dept:"01",pop:2900,sortant:"Dominique Blanc",etiqS:"",elu:"Françoise Ferrolliet",etiqE:"SE",tel:"04 50 56 97 00",email:"accueil@mairieperon.fr",adresse:"Mairie de Péron, 01630",notes:"100% des suffrages"},
+  {commune:"Segny",cp:"01170",dept:"01",pop:2900,sortant:"Jean-Pierre Fouilloux",etiqS:"",elu:"Annick Grosroyat",etiqE:"SE",tel:"04 50 41 28 66",email:"mairie@segny.fr",adresse:"Mairie de Segny, 01170",notes:"100% — liste unique"},
+  {commune:"Crozet",cp:"01170",dept:"01",pop:2400,sortant:"Martine Jouannet",etiqS:"",elu:"Sophie Reboul Salze",etiqE:"SE",tel:"04 50 41 01 74",email:"mairie@crozet.fr",adresse:"Mairie de Crozet, 01170",notes:"69.70% au 1er tour"},
+  {commune:"Chevry",cp:"01170",dept:"01",pop:2300,sortant:"David Munier",etiqS:"",elu:"Stéphane Mitzas",etiqE:"SE",tel:"04 50 41 02 35",email:"mairie@ville-chevry.fr",adresse:"Mairie de Chevry, 01170",notes:"61.68% au 1er tour"},
+  {commune:"Échenevex",cp:"01170",dept:"01",pop:2300,sortant:"Isabelle Passuello",etiqS:"",elu:"Amélie Van Ettinger",etiqE:"SE",tel:"04 50 41 54 56",email:"mairie.echenevex@wanadoo.fr",adresse:"Mairie d'Échenevex, 01170",notes:"58.59%"},
+  {commune:"Sauverny",cp:"01220",dept:"01",pop:1000,sortant:"Isabelle Henniquau",etiqS:"",elu:"Julien Fournier",etiqE:"SE",tel:"04 50 41 13 80",email:"mairie@mairie-sauverny.fr",adresse:"Mairie de Sauverny, 01220",notes:"100% — liste unique"},
+  {commune:"Léaz",cp:"01200",dept:"01",pop:900,sortant:"Christine Blanc",etiqS:"",elu:"François Raisin",etiqE:"SE",tel:"04 50 59 40 10",email:"mairie.leaz@wanadoo.fr",adresse:"Mairie de Léaz, 01200",notes:"100% des suffrages"},
+  {commune:"Pougny",cp:"01550",dept:"01",pop:800,sortant:"Annie Marcelot",etiqS:"",elu:"Hervé Philippe",etiqE:"SE",tel:"04 50 59 40 45",email:"mairie.pougny@orange.fr",adresse:"Mairie de Pougny, 01550",notes:"100% des suffrages"},
+  {commune:"Vesancy",cp:"01170",dept:"01",pop:500,sortant:"Bernard Mugnier",etiqS:"",elu:"Arnaud Maillard",etiqE:"SE",tel:"04 50 41 53 85",email:"mairie-vesancy@wanadoo.fr",adresse:"Mairie de Vesancy, 01170",notes:"55.90% au 1er tour"},
+  {commune:"Lélex",cp:"01410",dept:"01",pop:200,sortant:"Roger Grossiord",etiqS:"",elu:"Patrick Lévrier",etiqE:"SE",tel:"04 50 20 91 43",email:"mairie.lelex@wanadoo.fr",adresse:"Mairie de Lélex, 01410",notes:"59.07% au 1er tour"},
+  {commune:"Mijoux",cp:"01410",dept:"01",pop:200,sortant:"Martine Viallet",etiqS:"",elu:"Guillaume Legay",etiqE:"SE",tel:"04 50 41 31 82",email:"mairie.mijoux@wanadoo.fr",adresse:"Mairie de Mijoux, 01410",notes:"100% des suffrages"},
+  {commune:"Annecy",cp:"74000",dept:"74",pop:132000,sortant:"François Astorg",etiqS:"ECO",elu:"Antoine Armand",etiqE:"RE",tel:"04 50 33 88 88",email:"info@annecy.fr",adresse:"Esplanade de l'Hôtel de Ville, 74000 Annecy",notes:"49.36% au 2nd tour"},
+  {commune:"Annemasse",cp:"74100",dept:"74",pop:38000,sortant:"Christian Dupessey",etiqS:"PS",elu:"Gabriel Doublet",etiqE:"HOR",tel:"04 50 95 07 00",email:"mairie@annemasse.fr",adresse:"Place de l'Hôtel de Ville, 74100",notes:"Bascule droite"},
+  {commune:"Thonon-les-Bains",cp:"74200",dept:"74",pop:36000,sortant:"Christophe Arminjon",etiqS:"DVD",elu:"Richard Baud",etiqE:"DVD",tel:"04 50 70 69 69",email:"mairie@ville-thonon.fr",adresse:"Place de l'Hôtel de Ville, 74200",notes:"Ancien adjoint"},
+  {commune:"Sallanches",cp:"74700",dept:"74",pop:16000,sortant:"Georges Morand",etiqS:"LR",elu:"Sylvia Perruchione-Kunegel",etiqE:"DVD",tel:"04 50 91 29 29",email:"mairie@sallanches.fr",adresse:"Mairie de Sallanches, 74700",notes:""},
+  {commune:"Saint-Julien-en-Genevois",cp:"74160",dept:"74",pop:16000,sortant:"Véronique Lecauchois",etiqS:"PS",elu:"Laurent Mivelle",etiqE:"DVD",tel:"04 50 35 20 00",email:"mairie@st-julien-en-genevois.fr",adresse:"Mairie, 74160",notes:"Bascule droite — frontalière"},
+  {commune:"La Roche-sur-Foron",cp:"74800",dept:"74",pop:12500,sortant:"Pierrick Ducimetière",etiqS:"DVD",elu:"Benoît Chambourdon",etiqE:"DIV",tel:"04 50 25 90 00",email:"mairie@la-roche-sur-foron.fr",adresse:"Mairie, 74800",notes:""},
+  {commune:"Chamonix-Mont-Blanc",cp:"74400",dept:"74",pop:9000,sortant:"Éric Fournier",etiqS:"UDI",elu:"François-Xavier Laffin",etiqE:"DVC",tel:"04 50 53 11 13",email:"mairie@chamonix.fr",adresse:"Place de l'Église, 74400",notes:"Fin de 18 ans de mandat"},
+  {commune:"Ville-la-Grand",cp:"74100",dept:"74",pop:8500,sortant:"Nadine Jacquier",etiqS:"SE",elu:"Christophe Callay",etiqE:"DVC",tel:"04 50 84 24 24",email:"mairie@ville-la-grand.fr",adresse:"Mairie, 74100",notes:""},
+  {commune:"Poisy",cp:"74330",dept:"74",pop:8000,sortant:"Pierre Bruyère",etiqS:"LR",elu:"Philippe Perret",etiqE:"DVD",tel:"04 50 46 20 06",email:"mairie@poisy.fr",adresse:"Mairie de Poisy, 74330",notes:""},
+  {commune:"Saint-Pierre-en-Faucigny",cp:"74800",dept:"74",pop:7500,sortant:"Marin Gaillard",etiqS:"DVD",elu:"Valérie Bouvier",etiqE:"DVD",tel:"04 50 25 92 30",email:"mairie@saint-pierre-en-faucigny.fr",adresse:"Mairie, 74800",notes:""},
+  {commune:"Faverges-Seythenex",cp:"74210",dept:"74",pop:7500,sortant:"Jacques Dalex",etiqS:"DVG",elu:"Yves Crépel",etiqE:"DIV",tel:"04 50 32 57 57",email:"mairie@faverges-seythenex.fr",adresse:"Mairie, 74210",notes:"Bascule — ex-gauche"},
+  {commune:"Thônes",cp:"74230",dept:"74",pop:6800,sortant:"Pierre Bibollet",etiqS:"UDI",elu:"Claude Collomb-Patton",etiqE:"DVD",tel:"04 50 02 00 21",email:"mairie@thones.fr",adresse:"Mairie de Thônes, 74230",notes:""},
+  {commune:"Ambilly",cp:"74100",dept:"74",pop:6500,sortant:"Guillaume Mathelier",etiqS:"PS",elu:"Cristian Guéret",etiqE:"DVC",tel:"04 50 92 22 14",email:"mairie@ambilly.fr",adresse:"Mairie d'Ambilly, 74100",notes:"Bascule centre"},
+  {commune:"Bons-en-Chablais",cp:"74890",dept:"74",pop:6200,sortant:"Olivier Jacquier",etiqS:"SE",elu:"Jérôme Hassan",etiqE:"DVD",tel:"04 50 36 11 76",email:"mairie@bons-en-chablais.fr",adresse:"Mairie, 74890",notes:""},
+  {commune:"Sillingy",cp:"74330",dept:"74",pop:5500,sortant:"Yvan Sonnerat",etiqS:"DVD",elu:"Jérôme Chamosset",etiqE:"DVD",tel:"04 50 68 81 99",email:"mairie@sillingy.fr",adresse:"Mairie de Sillingy, 74330",notes:""},
+  {commune:"Viry",cp:"74580",dept:"74",pop:5500,sortant:"Laurent Chevalier",etiqS:"SE",elu:"Cédric Merlot",etiqE:"DIV",tel:"04 50 04 80 11",email:"mairie@viry74.fr",adresse:"Mairie de Viry, 74580",notes:""},
+  {commune:"Saint-Cergues",cp:"74140",dept:"74",pop:4300,sortant:"Gabriel Doublet",etiqS:"UDI",elu:"Jean Combette",etiqE:"DVD",tel:"04 50 43 40 89",email:"mairie@saint-cergues.fr",adresse:"Mairie, 74140",notes:""},
+  {commune:"Bonne",cp:"74380",dept:"74",pop:4000,sortant:"Yves Cheminal",etiqS:"DVD",elu:"Denis Servage",etiqE:"SE",tel:"04 50 39 20 33",email:"accueil@mairie-bonne.fr",adresse:"Mairie de Bonne, 74380",notes:""},
+  {commune:"Fillinges",cp:"74250",dept:"74",pop:4000,sortant:"Bruno Forel",etiqS:"UDI",elu:"Richard Thomassier",etiqE:"DVD",tel:"04 50 35 42 00",email:"mairie@fillinges.fr",adresse:"Mairie, 74250",notes:""},
+  {commune:"Veigy-Foncenex",cp:"74140",dept:"74",pop:4000,sortant:"Catherine Bastard",etiqS:"DVD",elu:"Philipp Dalheimer",etiqE:"DIV",tel:"04 50 94 01 02",email:"mairie@veigy-foncenex.fr",adresse:"Mairie, 74140",notes:""},
+  {commune:"Villaz",cp:"74370",dept:"74",pop:3700,sortant:"Christian Martinod",etiqS:"DVD",elu:"Aurélia Gomila",etiqE:"DVC",tel:"04 50 67 55 44",email:"mairie@villaz.fr",adresse:"Mairie de Villaz, 74370",notes:""},
+  {commune:"Groisy",cp:"74570",dept:"74",pop:3500,sortant:"Henri Chaumontet",etiqS:"DVD",elu:"Christophe Sibille",etiqE:"DVD",tel:"04 50 68 00 12",email:"mairie@groisy.fr",adresse:"Mairie de Groisy, 74570",notes:""},
+  {commune:"Les Houches",cp:"74310",dept:"74",pop:3000,sortant:"Ghislaine Bossonney",etiqS:"SE",elu:"Stéphane Lagarde",etiqE:"DIV",tel:"04 50 54 40 07",email:"mairie@leshouches.fr",adresse:"Mairie des Houches, 74310",notes:""},
+  {commune:"Argonay",cp:"74370",dept:"74",pop:3000,sortant:"Gilles François",etiqS:"Cap21",elu:"Pierre Jacquet",etiqE:"DIV",tel:"04 50 27 18 73",email:"mairie@argonay.fr",adresse:"Mairie d'Argonay, 74370",notes:""},
+  {commune:"Chens-sur-Léman",cp:"74140",dept:"74",pop:2200,sortant:"Pascale Moriaud-Billod",etiqS:"DVD",elu:"Jérôme Tronchon",etiqE:"SE",tel:"04 50 94 01 73",email:"mairie@chens-sur-leman.fr",adresse:"Mairie, 74140",notes:""}
+];
+
+const DATA_REELU = [
+  {commune:"Gex",cp:"01170",dept:"01",pop:13627,sortant:"Patrice Dunand",etiqS:"DVD",elu:"Patrice Dunand",etiqE:"DVD",tel:"04 50 42 65 90",email:"mairie@gex.fr",adresse:"Mairie de Gex, 01170",notes:"Président Pays de Gex Agglo — 73.2%"},
+  {commune:"Divonne-les-Bains",cp:"01220",dept:"01",pop:10464,sortant:"Vincent Scattolin",etiqS:"LR",elu:"Vincent Scattolin",etiqE:"LR",tel:"04 50 20 32 00",email:"mairie@divonnelesbains.fr",adresse:"Mairie, 01220",notes:"52.79% au 1er tour"},
+  {commune:"Thoiry",cp:"01710",dept:"01",pop:6569,sortant:"Muriel Bénier",etiqS:"LR",elu:"Muriel Bénier",etiqE:"LR",tel:"04 50 41 26 54",email:"accueil@thoiry01.fr",adresse:"Mairie de Thoiry, 01710",notes:""},
+  {commune:"Cessy",cp:"01170",dept:"01",pop:5832,sortant:"Christophe Bouvier",etiqS:"DVD",elu:"Christophe Bouvier",etiqE:"SE",tel:"04 50 41 31 05",email:"mairie@cessy.fr",adresse:"Mairie de Cessy, 01170",notes:""},
+  {commune:"Ornex",cp:"01210",dept:"01",pop:5082,sortant:"Olivier Guichard",etiqS:"DVD",elu:"Olivier Guichard",etiqE:"DVC",tel:"04 50 40 67 61",email:"contact@ornex.fr",adresse:"Mairie d'Ornex, 01210",notes:""},
+  {commune:"Collonges",cp:"01550",dept:"01",pop:2300,sortant:"Lionel Perréal",etiqS:"",elu:"Lionel Perréal",etiqE:"SE",tel:"04 50 59 40 18",email:"mairie.collonges01@wanadoo.fr",adresse:"Mairie de Collonges, 01550",notes:"84.12%"},
+  {commune:"Sergy",cp:"01630",dept:"01",pop:2200,sortant:"Catherine Moine",etiqS:"",elu:"Catherine Moine",etiqE:"SE",tel:"04 50 56 97 01",email:"mairie@sergy.fr",adresse:"Mairie de Sergy, 01630",notes:"100%"},
+  {commune:"Saint-Jean-de-Gonville",cp:"01630",dept:"01",pop:2000,sortant:"Michel Brulhart",etiqS:"",elu:"Michel Brulhart",etiqE:"SE",tel:"04 50 56 36 71",email:"mairie-st-jean-de-gonville@wanadoo.fr",adresse:"Mairie, 01630",notes:"100%"},
+  {commune:"Challex",cp:"01630",dept:"01",pop:1600,sortant:"Aline Hofer Favre (depuis 2023)",etiqS:"",elu:"Aline Hofer Favre",etiqE:"SE",tel:"04 50 56 41 44",email:"",adresse:"Mairie de Challex, 01630",notes:"62.88%"},
+  {commune:"Farges",cp:"01550",dept:"01",pop:1000,sortant:"Monique Graziotti",etiqS:"",elu:"Monique Graziotti",etiqE:"SE",tel:"04 50 59 40 30",email:"mairie.farges@wanadoo.fr",adresse:"Mairie de Farges, 01550",notes:"100%"},
+  {commune:"Grilly",cp:"01220",dept:"01",pop:800,sortant:"Christine Dupenloup",etiqS:"",elu:"Christine Dupenloup",etiqE:"SE",tel:"04 50 41 22 13",email:"mairie@grilly.fr",adresse:"Mairie de Grilly, 01220",notes:"100%"},
+  {commune:"Chézery-Forens",cp:"01410",dept:"01",pop:400,sortant:"Bernard Vuaillat",etiqS:"",elu:"Bernard Vuaillat",etiqE:"SE",tel:"04 50 56 90 83",email:"mairie.chezery@wanadoo.fr",adresse:"Mairie, 01410",notes:"100%"},
+  {commune:"Bonneville",cp:"74130",dept:"74",pop:13000,sortant:"Stéphane Valli",etiqS:"LR",elu:"Stéphane Valli",etiqE:"LR",tel:"04 50 25 22 00",email:"accueil@ville-bonneville.fr",adresse:"Mairie, 74130",notes:""},
+  {commune:"Cluses",cp:"74300",dept:"74",pop:17000,sortant:"Jean-Philippe Mas",etiqS:"LR",elu:"Jean-Philippe Mas",etiqE:"LR",tel:"04 50 96 20 50",email:"mairie@cluses.fr",adresse:"Mairie de Cluses, 74300",notes:"Candidat unique"},
+  {commune:"Rumilly",cp:"74150",dept:"74",pop:16000,sortant:"Christian Dulac",etiqS:"SE",elu:"Christian Dulac",etiqE:"DIV",tel:"04 50 64 60 60",email:"mairie@ville-rumilly74.fr",adresse:"Mairie, 74150",notes:""},
+  {commune:"Passy",cp:"74190",dept:"74",pop:12000,sortant:"Raphaël Castéra",etiqS:"DVG",elu:"Raphaël Castéra",etiqE:"DVG",tel:"04 50 78 20 42",email:"mairie@passy.fr",adresse:"Mairie de Passy, 74190",notes:"Seule ville restée à gauche"},
+  {commune:"Gaillard",cp:"74240",dept:"74",pop:12000,sortant:"Antoine Blouin",etiqS:"DVD",elu:"Antoine Blouin",etiqE:"DVD",tel:"04 50 87 04 20",email:"mairie@ville-gaillard.fr",adresse:"Mairie, 74240",notes:""},
+  {commune:"Évian-les-Bains",cp:"74500",dept:"74",pop:9400,sortant:"Josiane Lei",etiqS:"LR",elu:"Josiane Lei",etiqE:"LR",tel:"04 50 83 10 00",email:"mairie@ville-evian.fr",adresse:"Mairie, 74500",notes:""},
+  {commune:"Scionzier",cp:"74950",dept:"74",pop:8500,sortant:"Sandro Pépin",etiqS:"DVD",elu:"Sandro Pépin",etiqE:"DVD",tel:"04 50 98 00 34",email:"mairie@scionzier.fr",adresse:"Mairie, 74950",notes:""},
+  {commune:"Reignier-Ésery",cp:"74930",dept:"74",pop:8000,sortant:"Lucas Pugin",etiqS:"DVD",elu:"Lucas Pugin",etiqE:"DVD",tel:"04 50 43 80 32",email:"mairie@reignier-esery.com",adresse:"Mairie, 74930",notes:""},
+  {commune:"Épagny Metz-Tessy",cp:"74330",dept:"74",pop:8000,sortant:"Roland Daviet",etiqS:"DVD",elu:"Roland Daviet",etiqE:"DVD",tel:"04 50 22 04 71",email:"mairie@epagny-metz-tessy.fr",adresse:"Mairie, 74330",notes:""},
+  {commune:"Vétraz-Monthoux",cp:"74100",dept:"74",pop:8000,sortant:"Patrick Antoine",etiqS:"DVD",elu:"Patrick Antoine",etiqE:"DVD",tel:"04 50 37 08 17",email:"mairie@vetraz-monthoux.fr",adresse:"Mairie, 74100",notes:""},
+  {commune:"Publier",cp:"74500",dept:"74",pop:7500,sortant:"Jacques Grandchamp",etiqS:"DVD",elu:"Jacques Grandchamp",etiqE:"DVD",tel:"04 50 70 86 86",email:"mairie@ville-publier.fr",adresse:"Mairie, 74500",notes:""},
+  {commune:"Marignier",cp:"74970",dept:"74",pop:7000,sortant:"Christophe Péry",etiqS:"SE",elu:"Christophe Péry",etiqE:"DVD",tel:"04 50 34 60 44",email:"mairie@marignier.fr",adresse:"Mairie, 74970",notes:""},
+  {commune:"Cranves-Sales",cp:"74380",dept:"74",pop:6000,sortant:"Bernard Boccard",etiqS:"LR",elu:"Bernard Boccard",etiqE:"LR",tel:"04 50 39 23 30",email:"accueil@cranves-sales.fr",adresse:"Mairie, 74380",notes:""},
+  {commune:"Douvaine",cp:"74140",dept:"74",pop:6000,sortant:"Claire Chuinard",etiqS:"DVC",elu:"Claire Chuinard",etiqE:"DVC",tel:"04 50 94 01 20",email:"mairie@douvaine.fr",adresse:"Mairie, 74140",notes:""},
+  {commune:"La Balme-de-Sillingy",cp:"74330",dept:"74",pop:6000,sortant:"Séverine Mugnier",etiqS:"DVD",elu:"Séverine Mugnier",etiqE:"DVD",tel:"04 50 68 78 60",email:"mairie@labalmedesillingy.fr",adresse:"Mairie, 74330",notes:""},
+  {commune:"Marnaz",cp:"74460",dept:"74",pop:6000,sortant:"Chantal Vannson",etiqS:"DVD",elu:"Chantal Vannson",etiqE:"DVD",tel:"04 50 98 66 33",email:"mairie@marnaz.fr",adresse:"Mairie, 74460",notes:""},
+  {commune:"Sciez",cp:"74140",dept:"74",pop:6000,sortant:"Cyril Démolis",etiqS:"DVD",elu:"Cyril Démolis",etiqE:"DVC",tel:"04 50 72 60 12",email:"mairie@sciez.fr",adresse:"Mairie, 74140",notes:""},
+  {commune:"Thyez",cp:"74300",dept:"74",pop:6000,sortant:"Fabrice Gyselinck",etiqS:"SE",elu:"Fabrice Gyselinck",etiqE:"DVD",tel:"04 50 98 00 38",email:"mairie@thyez.fr",adresse:"Mairie, 74300",notes:""},
+  {commune:"Saint-Gervais-les-Bains",cp:"74170",dept:"74",pop:5800,sortant:"Jean-Marc Peillex",etiqS:"RE",elu:"Jean-Marc Peillex",etiqE:"RE",tel:"04 50 47 75 57",email:"mairie@saintgervais.com",adresse:"Mairie, 74170",notes:""},
+  {commune:"Cruseilles",cp:"74350",dept:"74",pop:5000,sortant:"Sylvie Mermillod",etiqS:"DVD",elu:"Sylvie Mermillod",etiqE:"DVD",tel:"04 50 44 12 62",email:"mairie@cruseilles.fr",adresse:"Mairie, 74350",notes:""},
+  {commune:"Fillière",cp:"74570",dept:"74",pop:5000,sortant:"Christian Anselme",etiqS:"DVD",elu:"Christian Anselme",etiqE:"DVD",tel:"04 50 32 46 06",email:"mairie@commune-filliere.fr",adresse:"Mairie, 74570",notes:""},
+  {commune:"Sevrier",cp:"74320",dept:"74",pop:5000,sortant:"Bruno Lyonnaz",etiqS:"SE",elu:"Bruno Lyonnaz",etiqE:"DVD",tel:"04 50 52 40 56",email:"mairie@sevrier.fr",adresse:"Mairie, 74320",notes:""},
+  {commune:"Valleiry",cp:"74520",dept:"74",pop:5000,sortant:"Alban Magnin",etiqS:"UDI",elu:"Alban Magnin",etiqE:"UDI",tel:"04 50 04 28 30",email:"mairie@valleiry.fr",adresse:"Mairie, 74520",notes:""},
+  {commune:"Allinges",cp:"74200",dept:"74",pop:4500,sortant:"François Deville",etiqS:"DVD",elu:"François Deville",etiqE:"DVD",tel:"04 50 71 30 50",email:"mairie@allinges.fr",adresse:"Mairie, 74200",notes:""},
+  {commune:"Collonges-sous-Salève",cp:"74160",dept:"74",pop:4500,sortant:"Brigitte Gondouin",etiqS:"DVC",elu:"Brigitte Gondouin",etiqE:"DVC",tel:"04 50 43 62 37",email:"mairie@collonges-sous-saleve.fr",adresse:"Mairie, 74160",notes:""},
+  {commune:"Viuz-en-Sallaz",cp:"74250",dept:"74",pop:4500,sortant:"Pascal Pochat-Baron",etiqS:"SE",elu:"Pascal Pochat-Baron",etiqE:"DVC",tel:"04 50 36 80 32",email:"mairie@viuz-en-sallaz.fr",adresse:"Mairie, 74250",notes:""},
+  {commune:"Doussard",cp:"74210",dept:"74",pop:4000,sortant:"Marielle Juilien",etiqS:"SE",elu:"Marielle Juilien",etiqE:"SE",tel:"04 50 44 30 12",email:"mairie@doussard.fr",adresse:"Mairie, 74210",notes:""},
+  {commune:"Saint-Jeoire",cp:"74490",dept:"74",pop:4000,sortant:"Antoine Valentin",etiqS:"UDR",elu:"Antoine Valentin",etiqE:"UDR",tel:"04 50 35 81 00",email:"mairie@saint-jeoire.fr",adresse:"Mairie, 74490",notes:""},
+  {commune:"Saint-Jorioz",cp:"74410",dept:"74",pop:6000,sortant:"Michel Béal",etiqS:"DVD",elu:"Michel Béal",etiqE:"DVC",tel:"04 50 68 61 34",email:"mairie@saint-jorioz.fr",adresse:"Mairie, 74410",notes:""},
+  {commune:"Taninges",cp:"74440",dept:"74",pop:3700,sortant:"Gilles Péguet",etiqS:"SE",elu:"Gilles Péguet",etiqE:"SE",tel:"04 50 34 20 08",email:"mairie@taninges.fr",adresse:"Mairie, 74440",notes:""},
+  {commune:"Magland",cp:"74300",dept:"74",pop:3500,sortant:"Johann Ravailler",etiqS:"SE",elu:"Johann Ravailler",etiqE:"SE",tel:"04 50 34 42 30",email:"mairie@magland.fr",adresse:"Mairie, 74300",notes:""},
+  {commune:"Chavanod",cp:"74650",dept:"74",pop:3000,sortant:"Franck Bogey",etiqS:"SE",elu:"Franck Bogey",etiqE:"SE",tel:"04 50 69 08 38",email:"mairie@chavanod.fr",adresse:"Mairie, 74650",notes:""},
+  {commune:"Beaumont",cp:"74160",dept:"74",pop:3000,sortant:"Marc Genoud",etiqS:"SE",elu:"Marc Genoud",etiqE:"SE",tel:"04 50 39 29 02",email:"mairie@beaumont74.fr",adresse:"Mairie, 74160",notes:""},
+  {commune:"Neuvecelle",cp:"74500",dept:"74",pop:3000,sortant:"Nadine Wendling",etiqS:"DVD",elu:"Nadine Wendling",etiqE:"DVD",tel:"04 50 75 01 72",email:"mairie@neuvecelle.fr",adresse:"Mairie, 74500",notes:""},
+  {commune:"Pers-Jussy",cp:"74930",dept:"74",pop:3000,sortant:"Isabelle Roguet",etiqS:"DVD",elu:"Isabelle Roguet",etiqE:"DVD",tel:"04 50 36 72 44",email:"mairie@pers-jussy.fr",adresse:"Mairie, 74930",notes:""}
+];
+
+let currentTab = 'nouveau';
+let currentDept = 'all';
+let currentSort = {col:'pop', asc:false};
+let searchQuery = '';
+
+function getData() {
+  return currentTab === 'nouveau' ? DATA_NOUVEAU : DATA_REELU;
+}
+
+function filterAndSort() {
+  let data = getData();
+  if (currentDept !== 'all') data = data.filter(r => r.dept === currentDept);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    data = data.filter(r =>
+      r.commune.toLowerCase().includes(q) ||
+      r.elu.toLowerCase().includes(q) ||
+      r.sortant.toLowerCase().includes(q) ||
+      r.cp.includes(q) ||
+      (r.email && r.email.toLowerCase().includes(q)) ||
+      (r.notes && r.notes.toLowerCase().includes(q))
+    );
+  }
+  data.sort((a, b) => {
+    let va = a[currentSort.col], vb = b[currentSort.col];
+    if (currentSort.col === 'pop') return currentSort.asc ? va - vb : vb - va;
+    if (typeof va === 'string') va = va.toLowerCase();
+    if (typeof vb === 'string') vb = vb.toLowerCase();
+    if (va < vb) return currentSort.asc ? -1 : 1;
+    if (va > vb) return currentSort.asc ? 1 : -1;
+    return 0;
+  });
+  return data;
+}
+
+function renderTable() {
+  const data = filterAndSort();
+  const tbody = document.getElementById('table-body');
+  const noRes = document.getElementById('no-results');
+
+  // Update filtered counts
+  let allData = currentTab === 'nouveau' ? DATA_NOUVEAU : DATA_REELU;
+  if (currentDept !== 'all') allData = allData.filter(r => r.dept === currentDept);
+
+  if (data.length === 0) {
+    tbody.innerHTML = '';
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+
+  tbody.innerHTML = data.map(r => `<tr>
+    <td><span class="commune-name">${r.commune}</span><br><span style="font-size:10px;color:var(--text3)">${r.cp}</span></td>
+    <td><span class="dept-badge dept-${r.dept}">${r.dept}</span></td>
+    <td class="pop">${r.pop.toLocaleString('fr-FR')}</td>
+    <td><span class="maire-sortant">${r.sortant}</span>${r.etiqS ? ' <span class="etiquette">'+r.etiqS+'</span>' : ''}</td>
+    <td><span class="maire-elu">${r.elu}</span>${r.etiqE ? ' <span class="etiquette">'+r.etiqE+'</span>' : ''}</td>
+    <td class="contact-info">
+      ${r.tel ? '<div>📞 '+r.tel+'</div>' : ''}
+      ${r.email ? '<div>✉️ <a href="mailto:'+r.email+'">'+r.email+'</a></div>' : '<div style="color:var(--text3)">Email non disponible</div>'}
+    </td>
+  </tr>`).join('');
+
+  // Update sort indicators
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.col === currentSort.col);
+  });
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tab-nouveau').classList.toggle('active', tab === 'nouveau');
+  document.getElementById('tab-reelu').classList.toggle('active', tab === 'reelu');
+  renderTable();
+}
+
+function filterDept(btn) {
+  currentDept = btn.dataset.dept;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function sortTable(col) {
+  if (currentSort.col === col) {
+    currentSort.asc = !currentSort.asc;
+  } else {
+    currentSort = {col, asc: col === 'commune'};
+  }
+  renderTable();
+}
+
+document.getElementById('search').addEventListener('input', function() {
+  searchQuery = this.value;
+  renderTable();
+});
+
+// Init
+currentSort = {col:'pop', asc:false};
+renderTable();
+</script>
+
+</body>
+</html>
