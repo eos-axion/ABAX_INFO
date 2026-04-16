@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>AXION · Appel d'Offres — Fondation Trajet — ABAX Info</title>
+<link rel="icon" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf2;
+  --border:#dde4ed;--border2:#c8d3e3;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.10);
+  --teal:#14b8a6;--teal-bg:rgba(20,184,166,.10);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.10);
+  --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.10);
+  --green:#10b981;--green-bg:rgba(16,185,129,.10);
+  --red:#ef4444;--red-bg:rgba(239,68,68,.10);
+  --orange:#f97316;--orange-bg:rgba(249,115,22,.10);
+  --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,.10);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+
+.nav{background:var(--bg1);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.5px;color:var(--teal);}
+.nav-meta{font-size:12px;color:var(--text3);}
+.nav-meta span{color:var(--text2);}
+.nav-back{text-decoration:none;color:var(--teal);font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;transition:opacity .15s;}
+.nav-back:hover{opacity:.7;}
+
+.hero{background:linear-gradient(135deg, var(--bg1) 0%, #eef6f8 100%);border-bottom:1px solid var(--border);padding:40px 40px 32px;}
+.hero-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:10px;}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.6;max-width:700px;margin-bottom:20px;}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;}
+.meta-value{font-size:13px;font-weight:600;color:var(--text);}
+
+.page{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:0;}
+
+.toc{padding:32px 24px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);}
+.toc h3{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.toc a{display:block;font-size:12px;color:var(--text2);text-decoration:none;padding:5px 8px;border-radius:5px;margin-bottom:2px;transition:all .15s;}
+.toc a:hover{background:var(--bg2);color:var(--text);}
+.toc a.section{font-weight:700;color:var(--text);font-size:11px;margin-top:10px;margin-bottom:4px;}
+
+.content{padding:40px 48px;}
+
+.section{margin-bottom:48px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+.section-header.teal{border-bottom-color:var(--teal);}
+.section-header.blue{border-bottom-color:var(--blue);}
+.section-header.green{border-bottom-color:var(--green);}
+.section-header.purple{border-bottom-color:var(--purple);}
+.section-header.amber{border-bottom-color:var(--amber);}
+.section-header.orange{border-bottom-color:var(--orange);}
+.section-header.cyan{border-bottom-color:var(--cyan);}
+.section-header.red{border-bottom-color:var(--red);}
+.section-icon{font-size:20px;}
+.section-num{font-size:11px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.section h2{font-size:18px;font-weight:800;}
+
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.badge-decision{background:var(--green-bg);border:1px solid var(--green);color:var(--green);}
+.badge-open{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
+.badge-insight{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-question{background:var(--red-bg);border:1px solid var(--red);color:var(--red);}
+.badge-action-abax{background:var(--blue-bg);border:1px solid var(--blue);color:var(--blue);}
+.badge-action-axion{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2px 6px;color:var(--amber);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--bg2);}
+thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody td{padding:10px 14px;color:var(--text2);vertical-align:top;line-height:1.6;}
+tbody td:first-child{font-weight:600;color:var(--text);font-size:12px;}
+.table-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+
+.card{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:12px;}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.card-title{font-size:14px;font-weight:700;color:var(--text);}
+.card-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.card ul{margin-top:8px;padding-left:18px;}
+.card ul li{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:2px;}
+.card ul li strong{color:var(--text);font-weight:600;}
+
+.question-card{background:var(--bg1);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:10px;padding:18px;margin-bottom:12px;}
+.question-card .q-num{font-size:11px;font-weight:800;color:var(--red);font-family:'JetBrains Mono',monospace;margin-bottom:4px;}
+.question-card .q-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.question-card .q-context{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;}
+.question-card .q-why{font-size:11px;color:var(--amber);background:var(--amber-bg);border:1px solid rgba(245,158,11,.2);border-radius:6px;padding:6px 10px;line-height:1.5;}
+.question-card .q-why strong{color:var(--amber);font-weight:700;}
+
+.summary-box{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
+.summary-box p{font-size:14px;color:var(--text2);line-height:1.8;}
+.summary-stats{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;}
+.stat{text-align:center;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;flex:1;min-width:120px;}
+.stat .snum{font-size:22px;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.stat .slabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+.info-box{background:var(--blue-bg);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.info-box strong{color:var(--blue);}
+
+.note-box{background:var(--amber-bg);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.note-box strong{color:var(--amber);}
+
+.warning-box{background:var(--red-bg);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.warning-box strong{color:var(--red);}
+
+.sub-header{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:12px;margin-top:24px;text-transform:uppercase;letter-spacing:.8px;}
+
+.action-row{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2);}
+.action-row:last-child{border-bottom:none;}
+.action-row .badge{flex-shrink:0;}
+
+.next-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.next-step:last-child{border-bottom:none;}
+.ns-num{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--teal);min-width:28px;}
+.ns-body .ns-title{font-size:13px;font-weight:700;color:var(--text);}
+.ns-body .ns-desc{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.5;}
+
+/* Responsive */
+@media(max-width:768px){
+  .nav{padding:0 20px;}
+  .hero{padding:28px 20px;}
+  .page{grid-template-columns:1fr;}
+  .toc{display:none;}
+  .content{padding:24px 20px;}
+  .hero h1{font-size:22px;}
+  .summary-stats{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-back" href="index.html">← Retour portail</a>
+  <div class="nav-logo">AXION</div>
+  <div class="nav-meta">Confidentiel &nbsp;·&nbsp; <span>ABAX Info</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Appel d'Offres · Fondation Trajet · Pilier 2 Croissance</div>
+  <h1>Appel d'Offres — Fondation Trajet</h1>
+  <div class="hero-sub">Analyse de notre compréhension de l'AO, synthèse des enjeux, et liste des questions à poser au responsable avant soumission.</div>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-label">Source</div><div class="meta-value">Atelier 3 — 10 avril 2026</div></div>
+    <div class="meta-item"><div class="meta-label">Statut</div><div class="meta-value" style="color:var(--amber);">En cours — Clarification requise</div></div>
+    <div class="meta-item"><div class="meta-label">Deadline</div><div class="meta-value" style="color:var(--red);">~4 semaines (estimation)</div></div>
+    <div class="meta-item"><div class="meta-label">Budget estimé</div><div class="meta-value">400 000 – 800 000 CHF</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- TOC -->
+<div class="toc">
+  <h3>Sommaire</h3>
+  <a class="section" href="#resume">Résumé</a>
+  <a class="section" href="#contexte">Contexte</a>
+  <a class="section" href="#comprehension">Notre compréhension</a>
+  <a class="section" href="#briques">Répartition des briques</a>
+  <a class="section" href="#strategie">Stratégie de réponse</a>
+  <a class="section" href="#risques">Risques identifiés</a>
+  <a class="section" href="#questions">Questions au responsable</a>
+  <a class="section" href="#planning">Planning</a>
+  <a class="section" href="#actions">Actions immédiates</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- §1 RÉSUMÉ -->
+<div id="resume" class="section">
+  <div class="section-header teal">
+    <span class="section-icon">📋</span>
+    <span class="section-num">01</span>
+    <h2>Résumé exécutif</h2>
+  </div>
+
+  <div class="summary-box">
+    <p>La Fondation Trajet, organisation genevoise de 230 collaborateurs, a émis un appel d'offres non public couvrant 9 projets dans les domaines de l'automatisation, des chatbots, de la sécurité, de la résilience et de la formation. L'AO a été transmis à ABAX Info via Computer Shop (partenaire revendeur Apple). ABAX Info se positionne sur les briques IA, automatisation, résilience, sensibilisation sécurité et MDM, en collaboration avec Computer Shop pour le matériel.</p>
+    <div class="summary-stats">
+      <div class="stat"><div class="snum" style="color:var(--teal);">9</div><div class="slabel">Projets dans l'AO</div></div>
+      <div class="stat"><div class="snum" style="color:var(--amber);">400-800K</div><div class="slabel">Budget estimé (CHF)</div></div>
+      <div class="stat"><div class="snum" style="color:var(--blue);">10-12</div><div class="slabel">Mois (durée estimée)</div></div>
+      <div class="stat"><div class="snum" style="color:var(--purple);">230</div><div class="slabel">Collaborateurs Trajet</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- §2 CONTEXTE -->
+<div id="contexte" class="section">
+  <div class="section-header blue">
+    <span class="section-icon">🏢</span>
+    <span class="section-num">02</span>
+    <h2>Contexte de l'appel d'offres</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Fondation Trajet</div><span class="badge badge-insight">Fondation genevoise</span></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Organisation :</strong> Fondation genevoise, ~230 collaborateurs, active dans la réinsertion professionnelle</li>
+        <li><strong>Nature de l'AO :</strong> Non public (transmis de gré à gré via le réseau), ce qui indique un montant en dessous du seuil d'obligation de publication</li>
+        <li><strong>Source :</strong> Transmis par Computer Shop (revendeur Apple) — le directeur de Computer Shop fait gérer son Mac chez la Fondation, relation de confiance existante</li>
+        <li><strong>Rédaction :</strong> L'AO semble avoir été rédigé avec assistance IA (Claude/ChatGPT) — le document est très structuré mais présente des zones floues sur le périmètre</li>
+        <li><strong>Maturité :</strong> La Fondation est prête en termes de processus et d'adoption du changement, mais manque de compétences internes pour structurer et exécuter la transformation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Point clé :</strong> Eric Darien connaît la Fondation Trajet et confirme l'identification. La relation de confiance via Computer Shop est un atout stratégique pour obtenir un rendez-vous de clarification.
+  </div>
+</div>
+
+<!-- §3 COMPRÉHENSION -->
+<div id="comprehension" class="section">
+  <div class="section-header green">
+    <span class="section-icon">🔍</span>
+    <span class="section-num">03</span>
+    <h2>Notre compréhension de l'AO</h2>
+  </div>
+
+  <div class="sub-header">Structure de l'appel d'offres</div>
+  <div class="card">
+    <div class="card-body">L'AO est divisé en <strong>9 projets</strong> couvrant deux axes principaux :</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Axe</th><th>Description</th><th>Clarté</th></tr></thead>
+      <tbody>
+        <tr><td>Automatisation</td><td>Pilote d'automatisation des processus — environnement Microsoft privilégié (Power Automate, Power Apps, Power BI). Ouverture à d'autres outils si justifiés sécurité. Porte d'entrée principale : Copilot.</td><td style="color:var(--amber);font-weight:700;">Périmètre flou</td></tr>
+        <tr><td>Chatbots / IA</td><td>Déploiement d'assistants conversationnels pour les équipes internes et/ou les personnes en réinsertion.</td><td style="color:var(--green);font-weight:700;">Assez clair</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-header">Constats clés</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Besoin pyramidal sans gouvernance</div><span class="badge badge-open">Zone floue</span></div>
+    <div class="card-body">
+      <ul>
+        <li>L'AO présente <strong>9 projets séparés</strong> mais il <strong>manque une structure de programme</strong> au-dessus pour les orchestrer</li>
+        <li>Les différents éléments d'automatisation sont intrinsèquement liés à la sécurité et la résilience globale — ils ne peuvent pas être traités isolément</li>
+        <li>Des demandes de certains sous-projets découlent des réponses d'autres projets — interdépendance forte</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Environnement technologique</div><span class="badge badge-decision">Compris</span></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Environnement Microsoft :</strong> Power Automate, Power Apps, Power BI, Copilot</li>
+        <li><strong>Ouverture conditionnelle :</strong> Autres outils autorisés si justification sécurité + transfert de compétences</li>
+        <li><strong>Opportunité :</strong> Anthropic (Claude) est maintenant disponible via Copilot — si encapsulé dans l'environnement Microsoft, pas de blocage</li>
+        <li><strong>MacBook Pro Neo :</strong> Volet matériel — pris en charge par Computer Shop</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Forfait vs. modulaire — Le dilemme central</div><span class="badge badge-open">Critique</span></div>
+    <div class="card-body">
+      <ul>
+        <li>L'AO demande un <strong>forfait global</strong>, mais le périmètre et la timeline ne sont pas clairs</li>
+        <li>On ne peut pas chiffrer les use cases de la phase 2 tant que la phase 1 (diagnostic) n'est pas faite</li>
+        <li>L'AO mentionne 4 use cases d'automatisation, mais le mapping en révélera certainement d'autres</li>
+        <li>L'AO insiste sur <strong>l'absence de coûts cachés</strong> — contradiction avec un forfait sur périmètre flou</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Transfert de compétences — Engagement long terme</div><span class="badge badge-insight">Insight</span></div>
+    <div class="card-body">
+      <ul>
+        <li>Le projet inclut un volet <strong>transfert de compétences</strong> et <strong>amélioration continue</strong></li>
+        <li>L'objectif probable : former le pool informatique central de la Fondation pour qu'il puisse ensuite former les personnes en réinsertion</li>
+        <li>Ce n'est <strong>pas</strong> former directement les personnes en réinsertion (ce serait un tout autre projet)</li>
+        <li>Cela implique un engagement long terme, au-delà du simple déploiement</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- §4 BRIQUES -->
+<div id="briques" class="section">
+  <div class="section-header purple">
+    <span class="section-icon">🧱</span>
+    <span class="section-num">04</span>
+    <h2>Répartition des briques</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Brique</th><th>Responsable</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>MacBook Pro Neo (matériel)</td><td style="color:var(--blue);">Computer Shop</td><td>Revendeur Apple, relation existante avec la Fondation</td></tr>
+        <tr><td>Assistance IA / Chatbots</td><td style="color:var(--green);">ABAX Info</td><td>Copilot + Claude (Anthropic) encapsulé</td></tr>
+        <tr><td>Automatisation</td><td style="color:var(--green);">ABAX Info</td><td>Power Automate + outils complémentaires si justifiés</td></tr>
+        <tr><td>Résilience / Sécurité infra</td><td style="color:var(--green);">ABAX Info</td><td>Audit, conformité, plan de continuité</td></tr>
+        <tr><td>Sensibilisation sécurité</td><td style="color:var(--green);">ABAX Info</td><td>Formation des équipes internes</td></tr>
+        <tr><td>MDM (gestion appareils mobiles)</td><td style="color:var(--green);">ABAX Info</td><td>Déploiement et gestion de flotte</td></tr>
+        <tr><td>Formation Office 365</td><td style="color:var(--amber);">À clarifier</td><td>ABAX Info ou organisme de formation externe ? Pertinence à évaluer</td></tr>
+        <tr><td>Optimisation tenant</td><td style="color:var(--green);">ABAX Info</td><td>Configuration et optimisation environnement Microsoft</td></tr>
+        <tr><td>Cybersécurité</td><td style="color:var(--green);">ABAX Info</td><td>Stratégie cyber globale</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <strong>Point d'attention :</strong> La formation Office 365 est listée comme un projet à part entière dans l'AO, mais dans les faits, c'est un volet transversal présent dans chaque brique. YouTube propose déjà des formations complètes. Évaluer si cette brique fait sens en tant que projet autonome ou si elle devrait être intégrée dans l'accompagnement global.
+  </div>
+</div>
+
+<!-- §5 STRATÉGIE -->
+<div id="strategie" class="section">
+  <div class="section-header teal">
+    <span class="section-icon">🎯</span>
+    <span class="section-num">05</span>
+    <h2>Stratégie de réponse</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Approche recommandée : Pilote + Modulaire</div><span class="badge badge-decision">Décision</span></div>
+    <div class="card-body">
+      Notre réponse devrait s'articuler en 3 niveaux :
+      <ul>
+        <li><strong>Niveau 1 — Structure de programme :</strong> Proposer un chapeau de gouvernance au-dessus des 9 projets. C'est un élément absent de l'AO que nous pouvons apporter comme valeur ajoutée différenciante.</li>
+        <li><strong>Niveau 2 — Pilote forfaitaire :</strong> Chiffrer un pilote (diagnostic + mapping de la roadmap + use cases prioritaires) en forfait clair et borné.</li>
+        <li><strong>Niveau 3 — Réalisation modulaire :</strong> Proposer les use cases suivants en mode catalogue (simple / medium / complexe) avec des tarifs transparents plutôt qu'un forfait global.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Rendez-vous de clarification préalable</div><span class="badge badge-decision">Décision</span></div>
+    <div class="card-body">
+      <ul>
+        <li>Solliciter un rendez-vous avec le responsable de la Fondation <strong>avant</strong> de soumettre la réponse</li>
+        <li>Pratique courante en Suisse (contrairement à la France) — parfaitement acceptable</li>
+        <li>Contact via Michel de Computer Shop (relation de confiance existante)</li>
+        <li>Objectif : lever les incertitudes, éviter d'être hors sujet par mauvaises hypothèses</li>
+        <li>Se présenter à 3 (Eric, Sébastien, Djemel) pour montrer la solidité de l'équipe</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Option contre-proposition</div><span class="badge badge-insight">Tactique</span></div>
+    <div class="card-body">
+      Si le responsable accepte le rendez-vous, possibilité de faire une <strong>contre-proposition</strong> en disant : voici l'appel d'offres, et voici comment nous l'aurions structuré. Cela démontre l'expertise en gestion de programme et peut repositionner le projet dans une direction favorable.
+    </div>
+  </div>
+</div>
+
+<!-- §6 RISQUES -->
+<div id="risques" class="section">
+  <div class="section-header red">
+    <span class="section-icon">⚠️</span>
+    <span class="section-num">06</span>
+    <h2>Risques identifiés</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Risque</th><th>Impact</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td>Périmètre flou → dérive forfait</td><td style="color:var(--red);font-weight:700;">Élevé</td><td>Approche pilote + modulaire, pas de forfait global aveugle</td></tr>
+        <tr><td>Mauvaises hypothèses d'infra</td><td style="color:var(--red);font-weight:700;">Élevé</td><td>Rendez-vous de clarification préalable avec le responsable</td></tr>
+        <tr><td>Concurrence sur le prix</td><td style="color:var(--amber);font-weight:700;">Moyen</td><td>Se différencier par la gouvernance programme + valeur ajoutée IA</td></tr>
+        <tr><td>Formation = piège périmétrique</td><td style="color:var(--amber);font-weight:700;">Moyen</td><td>Clarifier si c'est former le pool IT ou les personnes en réinsertion</td></tr>
+        <tr><td>Interdépendance des sous-projets</td><td style="color:var(--amber);font-weight:700;">Moyen</td><td>Proposer la structure programme comme chapeau orchestrateur</td></tr>
+        <tr><td>Délai serré (~4 semaines)</td><td style="color:var(--amber);font-weight:700;">Moyen</td><td>Travailler en parallèle même sans rendez-vous confirmé</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- §7 QUESTIONS -->
+<div id="questions" class="section">
+  <div class="section-header red">
+    <span class="section-icon">❓</span>
+    <span class="section-num">07</span>
+    <h2>Questions au responsable de l'AO</h2>
+  </div>
+
+  <div class="warning-box">
+    <strong>Objectif :</strong> Ces questions doivent être posées lors du rendez-vous avec le responsable de la Fondation Trajet pour lever les incertitudes avant de soumettre une réponse calibrée.
+  </div>
+
+  <div class="sub-header">A. Périmètre et structure du projet</div>
+
+  <div class="question-card">
+    <div class="q-num">Q01</div>
+    <div class="q-title">Existe-t-il une structure de programme ou de gouvernance au-dessus des 9 projets ?</div>
+    <div class="q-context">L'AO présente 9 projets distincts mais nous ne voyons pas de mécanisme d'orchestration. Les interdépendances entre projets (ex: la sécurité impacte l'automatisation) nécessitent une coordination.</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si cette structure n'existe pas, nous pouvons la proposer comme valeur ajoutée différenciante dans notre réponse.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q02</div>
+    <div class="q-title">Quel est le périmètre exact du pilote d'automatisation ?</div>
+    <div class="q-context">Le document mentionne un pilote suivi d'un déploiement, mais le pilote n'est pas clairement délimité. Combien de processus sont concernés ? Quels services de la Fondation sont prioritaires ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Sans périmètre clair du pilote, il est impossible de chiffrer un forfait réaliste sans coûts cachés (comme exigé dans l'AO).</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q03</div>
+    <div class="q-title">Les 4 use cases d'automatisation mentionnés sont-ils exhaustifs ou indicatifs ?</div>
+    <div class="q-context">L'AO mentionne 4 cas d'utilisation. Le diagnostic (phase 1) en révélera probablement d'autres. Le forfait doit-il couvrir uniquement ces 4 cas ou l'ensemble des cas qui seront identifiés ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela détermine si l'approche modulaire (tarif par complexité de use case) est acceptable ou si un forfait global est attendu.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q04</div>
+    <div class="q-title">Quelle est la timeline attendue pour l'ensemble du programme ?</div>
+    <div class="q-context">Nos estimations convergent vers 10-12 mois. Est-ce aligné avec vos attentes ? Y a-t-il des jalons ou des dates butoirs internes à respecter ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> La timeline impacte directement le dimensionnement de l'équipe et la possibilité de paralléliser les briques.</div>
+  </div>
+
+  <div class="sub-header">B. Environnement technique et infrastructure</div>
+
+  <div class="question-card">
+    <div class="q-num">Q05</div>
+    <div class="q-title">Quel est l'état actuel de l'infrastructure Microsoft ?</div>
+    <div class="q-context">Licences en place (M365 E3/E5 ?), niveau de déploiement de Power Platform, Azure AD, Intune, SharePoint. Existe-t-il un état des lieux récent ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si l'infrastructure n'est pas conforme aux prérequis, une mise en conformité devra être chiffrée en amont — cela change significativement le budget.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q06</div>
+    <div class="q-title">Quelle est la tolérance pour des outils hors écosystème Microsoft ?</div>
+    <div class="q-context">L'AO mentionne une préférence Microsoft avec ouverture conditionnelle. Concrètement, si un outil comme Claude (Anthropic) via Copilot apporte un avantage significatif, est-ce acceptable ? Quel est le processus de validation ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela conditionne notre proposition technique sur la partie IA/chatbot et peut être un facteur de différenciation majeur.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q07</div>
+    <div class="q-title">Y a-t-il des contraintes de sécurité ou de conformité spécifiques (certifications, normes) ?</div>
+    <div class="q-context">Fondation active dans la réinsertion — données potentiellement sensibles (RH, parcours individuels). Y a-t-il des exigences RGPD, LPD, ou sectorielles spécifiques ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Les contraintes de conformité impactent le choix des outils et l'architecture de la solution.</div>
+  </div>
+
+  <div class="sub-header">C. Formation et transfert de compétences</div>
+
+  <div class="question-card">
+    <div class="q-num">Q08</div>
+    <div class="q-title">Qui doit être formé exactement : le pool IT central ou les personnes en réinsertion ?</div>
+    <div class="q-context">Notre compréhension : nous formons le pool IT central, qui ensuite forme les personnes en réinsertion. Si c'est l'inverse (former directement les personnes en réinsertion), c'est un projet radicalement différent en termes de pédagogie et de durée.</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela change complètement le dimensionnement du volet formation et le profil des intervenants nécessaires.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q09</div>
+    <div class="q-title">La formation Office 365 est-elle réellement un projet autonome ?</div>
+    <div class="q-context">La formation est transversale à tous les projets (chaque brique implique un volet formation). Pourquoi un projet dédié ? Y a-t-il un besoin de montée en compétences de base des collaborateurs sur la suite Microsoft ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si c'est de la formation basique (Outlook, Teams, SharePoint), un organisme spécialisé ou du e-learning serait plus adapté qu'un prestataire IT.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q10</div>
+    <div class="q-title">Quelle est la taille et la composition du pool informatique central ?</div>
+    <div class="q-context">Combien de personnes dans l'équipe IT ? Quelles compétences actuelles ? Quel est leur niveau de maturité sur Power Platform et les outils d'automatisation ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Le plan de transfert de compétences doit être calibré sur le niveau réel de l'équipe.</div>
+  </div>
+
+  <div class="sub-header">D. Budget, modalités et processus</div>
+
+  <div class="question-card">
+    <div class="q-num">Q11</div>
+    <div class="q-title">Un forfait global est-il impératif, ou une approche hybride (pilote forfaitaire + réalisation modulaire) est-elle acceptable ?</div>
+    <div class="q-context">Nous estimons qu'un forfait global sur un périmètre incertain crée un risque de coûts cachés — exactement ce que l'AO cherche à éviter. Une approche en deux temps (diagnostic forfaitaire, puis exécution à la carte) serait plus transparente.</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> C'est la question structurante de toute notre proposition financière.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q12</div>
+    <div class="q-title">Existe-t-il une enveloppe budgétaire définie ou une fourchette indicative ?</div>
+    <div class="q-context">Le fait que l'AO soit non public suggère un montant en dessous du seuil d'obligation de publication. Nos estimations convergent vers 400-800K CHF. Est-ce aligné ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet de calibrer le niveau de détail et d'ambition de notre proposition.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q13</div>
+    <div class="q-title">Comment la réponse doit-elle être soumise ?</div>
+    <div class="q-context">Plateforme dédiée, email, format papier ? Y a-t-il un template de réponse attendu ou sommes-nous libres dans la forme ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Impact sur le format et le timing de préparation de la réponse.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q14</div>
+    <div class="q-title">Combien de prestataires sont sollicités ? Quels sont les critères de sélection prioritaires ?</div>
+    <div class="q-context">Prix, expertise technique, proximité géographique, capacité d'accompagnement long terme, références sectorielles ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet d'ajuster le positionnement de notre réponse (prix vs. valeur).</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q15</div>
+    <div class="q-title">La Fondation envisage-t-elle un prestataire unique ou un groupement est-il acceptable ?</div>
+    <div class="q-context">Notre proposition implique ABAX Info (IT, IA, sécurité) + Computer Shop (matériel Apple). D'autres partenaires pourraient intervenir sur la formation O365.</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Valide notre modèle de collaboration multi-partenaires et clarifie les attentes sur le point de contact unique.</div>
+  </div>
+
+  <div class="sub-header">E. Vision et amélioration continue</div>
+
+  <div class="question-card">
+    <div class="q-num">Q16</div>
+    <div class="q-title">Quelle est la vision à 3-5 ans de la Fondation en matière de digitalisation ?</div>
+    <div class="q-context">L'AO mentionne une amélioration continue. Est-ce un projet ponctuel ou le début d'un partenariat long terme ? Y a-t-il d'autres projets de transformation prévus ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela impacte le niveau d'investissement que nous mettons dans la relation et la structure de notre proposition (projet vs. partenariat).</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Q17</div>
+    <div class="q-title">Quels sont les indicateurs de succès attendus pour ce programme ?</div>
+    <div class="q-context">Réduction de temps sur les processus ? Taux d'adoption des outils ? Satisfaction des équipes ? KPIs de sécurité ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet d'aligner notre proposition sur les résultats mesurables attendus par la direction de la Fondation.</div>
+  </div>
+</div>
+
+<!-- §8 PLANNING -->
+<div id="planning" class="section">
+  <div class="section-header amber">
+    <span class="section-icon">📅</span>
+    <span class="section-num">08</span>
+    <h2>Planning de travail</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Date</th><th>Action</th><th>Qui</th></tr></thead>
+      <tbody>
+        <tr><td>Sem. 14 avril</td><td>Appel Michel (Computer Shop) pour organiser RDV avec responsable Fondation</td><td style="color:var(--green);">Eric</td></tr>
+        <tr><td>Mardi/Mercredi</td><td>RDV avec le responsable Fondation Trajet (si disponible) — idéalement à 3</td><td style="color:var(--blue);">Eric + Seb + Djemel</td></tr>
+        <tr><td>Mercredi 16 avril 13h</td><td>Session de travail interne — préparation de la réponse AO</td><td style="color:var(--blue);">Eric + Seb + Djemel</td></tr>
+        <tr><td>Vendredi 18 avril</td><td>Session de travail (suite) ou atelier hebdomadaire</td><td style="color:var(--blue);">Eric + Seb + Djemel</td></tr>
+        <tr><td>Sem. suivantes</td><td>Rédaction et soumission de la réponse AO</td><td style="color:var(--blue);">Équipe</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- §9 ACTIONS -->
+<div id="actions" class="section">
+  <div class="section-header green">
+    <span class="section-icon">✅</span>
+    <span class="section-num">09</span>
+    <h2>Actions immédiates</h2>
+  </div>
+
+  <div class="sub-header">Actions ABAX Info</div>
+  <div class="action-row"><span class="badge badge-action-abax">ABAX</span> Appeler Michel (Computer Shop) pour déclencher le rendez-vous avec le responsable Fondation Trajet</div>
+  <div class="action-row"><span class="badge badge-action-abax">ABAX</span> Vérifier auprès de Michel si la soumission se fait via plateforme ou par email</div>
+  <div class="action-row"><span class="badge badge-action-abax">ABAX</span> Partager les certifications et documents de partenariats pertinents</div>
+  <div class="action-row"><span class="badge badge-action-abax">ABAX</span> Confirmer la répartition des briques avec Computer Shop</div>
+
+  <div class="sub-header">Actions AXION</div>
+  <div class="action-row"><span class="badge badge-action-axion">AXION</span> Préparer la liste détaillée des questions pour le rendez-vous Fondation Trajet</div>
+  <div class="action-row"><span class="badge badge-action-axion">AXION</span> Ébaucher la structure de programme (gouvernance) à proposer en valeur ajoutée</div>
+  <div class="action-row"><span class="badge badge-action-axion">AXION</span> Préparer le template de réponse à l'AO</div>
+  <div class="action-row"><span class="badge badge-action-axion">AXION</span> Évaluer la pertinence du pilier formation O365 (interne vs. organisme spécialisé)</div>
+
+  <div class="sub-header">Actions communes</div>
+  <div class="action-row"><span class="badge badge-decision">COMMUN</span> Session de travail mercredi 16 avril 13h — préparation réponse AO</div>
+  <div class="action-row"><span class="badge badge-decision">COMMUN</span> Travailler en parallèle même sans confirmation du rendez-vous Fondation</div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /page -->
+
+<footer style="padding:32px 40px;text-align:center;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:48px;">
+  Document confidentiel — Préparé par <a href="https://axion.supply" target="_blank" style="color:var(--teal);text-decoration:none;">AXION</a> pour ABAX Info &nbsp;·&nbsp; Avril 2026
+</footer>
+
+</body>
+</html>
