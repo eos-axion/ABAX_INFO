@@ -67,6 +67,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .badge-open{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
 .badge-insight{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
 .badge-question{background:var(--red-bg);border:1px solid var(--red);color:var(--red);}
+.badge-p1{background:var(--red-bg);border:1px solid var(--red);color:var(--red);}
+.badge-p2{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
+.badge-p3{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0 24px;padding:14px 18px;background:var(--bg1);border:1px solid var(--border);border-radius:10px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);font-weight:600;}
 .badge-action-abax{background:var(--blue-bg);border:1px solid var(--blue);color:var(--blue);}
 .badge-action-axion{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
 
@@ -399,130 +404,141 @@ tbody td:first-child{font-weight:600;color:var(--text);font-size:12px;}
     <strong>Objectif :</strong> Ces questions doivent être posées lors du rendez-vous avec le responsable de la Fondation Trajet pour lever les incertitudes avant de soumettre une réponse calibrée.
   </div>
 
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-p1">P1</span> Question obligatoire</div>
+    <div class="legend-item"><span class="badge badge-p2">P2</span> Question optionnelle</div>
+    <div class="legend-item"><span class="badge badge-p3">P3</span> Point interne AXION</div>
+  </div>
+
+  <!-- ═══════ A. PÉRIMÈTRE ET STRUCTURE ═══════ -->
   <div class="sub-header">A. Périmètre et structure du projet</div>
 
   <div class="question-card">
-    <div class="q-num">Q01</div>
+    <div class="q-num">Q01 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Existe-t-il une structure de programme ou de gouvernance au-dessus des 9 projets ?</div>
     <div class="q-context">L'AO présente 9 projets distincts mais nous ne voyons pas de mécanisme d'orchestration. Les interdépendances entre projets (ex: la sécurité impacte l'automatisation) nécessitent une coordination.</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Si cette structure n'existe pas, nous pouvons la proposer comme valeur ajoutée différenciante dans notre réponse.</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q02</div>
+    <div class="q-num">Q02 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Quel est le périmètre exact du pilote d'automatisation ?</div>
     <div class="q-context">Le document mentionne un pilote suivi d'un déploiement, mais le pilote n'est pas clairement délimité. Combien de processus sont concernés ? Quels services de la Fondation sont prioritaires ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Sans périmètre clair du pilote, il est impossible de chiffrer un forfait réaliste sans coûts cachés (comme exigé dans l'AO).</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q03</div>
+    <div class="q-num">Q03 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Les 4 use cases d'automatisation mentionnés sont-ils exhaustifs ou indicatifs ?</div>
     <div class="q-context">L'AO mentionne 4 cas d'utilisation. Le diagnostic (phase 1) en révélera probablement d'autres. Le forfait doit-il couvrir uniquement ces 4 cas ou l'ensemble des cas qui seront identifiés ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela détermine si l'approche modulaire (tarif par complexité de use case) est acceptable ou si un forfait global est attendu.</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q04</div>
+    <div class="q-num">Q04 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Quelle est la timeline attendue pour l'ensemble du programme ?</div>
     <div class="q-context">Nos estimations convergent vers 10-12 mois. Est-ce aligné avec vos attentes ? Y a-t-il des jalons ou des dates butoirs internes à respecter ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> La timeline impacte directement le dimensionnement de l'équipe et la possibilité de paralléliser les briques.</div>
   </div>
 
+  <!-- ═══════ B. ENVIRONNEMENT TECHNIQUE ═══════ -->
   <div class="sub-header">B. Environnement technique et infrastructure</div>
 
   <div class="question-card">
-    <div class="q-num">Q05</div>
-    <div class="q-title">Quel est l'état actuel de l'infrastructure Microsoft ?</div>
-    <div class="q-context">Licences en place (M365 E3/E5 ?), niveau de déploiement de Power Platform, Azure AD, Intune, SharePoint. Existe-t-il un état des lieux récent ?</div>
-    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si l'infrastructure n'est pas conforme aux prérequis, une mise en conformité devra être chiffrée en amont — cela change significativement le budget.</div>
-  </div>
-
-  <div class="question-card">
-    <div class="q-num">Q06</div>
+    <div class="q-num">Q05 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Quelle est la tolérance pour des outils hors écosystème Microsoft ?</div>
     <div class="q-context">L'AO mentionne une préférence Microsoft avec ouverture conditionnelle. Concrètement, si un outil comme Claude (Anthropic) via Copilot apporte un avantage significatif, est-ce acceptable ? Quel est le processus de validation ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela conditionne notre proposition technique sur la partie IA/chatbot et peut être un facteur de différenciation majeur.</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q07</div>
+    <div class="q-num">Q06 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Y a-t-il des contraintes de sécurité ou de conformité spécifiques (certifications, normes) ?</div>
     <div class="q-context">Fondation active dans la réinsertion — données potentiellement sensibles (RH, parcours individuels). Y a-t-il des exigences RGPD, LPD, ou sectorielles spécifiques ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Les contraintes de conformité impactent le choix des outils et l'architecture de la solution.</div>
   </div>
 
+  <div class="question-card" style="border-left-color:var(--purple);">
+    <div class="q-num">Q07 <span class="badge badge-p3">P3</span></div>
+    <div class="q-title">Quel est l'état actuel de l'infrastructure Microsoft ?</div>
+    <div class="q-context">Licences en place (M365 E3/E5 ?), niveau de déploiement de Power Platform, Azure AD, Intune, SharePoint. Existe-t-il un état des lieux récent ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si l'infrastructure n'est pas conforme aux prérequis, une mise en conformité devra être chiffrée en amont — cela change significativement le budget.</div>
+  </div>
+
+  <!-- ═══════ C. FORMATION ET TRANSFERT ═══════ -->
   <div class="sub-header">C. Formation et transfert de compétences</div>
 
   <div class="question-card">
-    <div class="q-num">Q08</div>
-    <div class="q-title">Qui doit être formé exactement : le pool IT central ou les personnes en réinsertion ?</div>
-    <div class="q-context">Notre compréhension : nous formons le pool IT central, qui ensuite forme les personnes en réinsertion. Si c'est l'inverse (former directement les personnes en réinsertion), c'est un projet radicalement différent en termes de pédagogie et de durée.</div>
-    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela change complètement le dimensionnement du volet formation et le profil des intervenants nécessaires.</div>
-  </div>
-
-  <div class="question-card">
-    <div class="q-num">Q09</div>
-    <div class="q-title">La formation Office 365 est-elle réellement un projet autonome ?</div>
-    <div class="q-context">La formation est transversale à tous les projets (chaque brique implique un volet formation). Pourquoi un projet dédié ? Y a-t-il un besoin de montée en compétences de base des collaborateurs sur la suite Microsoft ?</div>
-    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si c'est de la formation basique (Outlook, Teams, SharePoint), un organisme spécialisé ou du e-learning serait plus adapté qu'un prestataire IT.</div>
-  </div>
-
-  <div class="question-card">
-    <div class="q-num">Q10</div>
+    <div class="q-num">Q08 <span class="badge badge-p2">P2</span></div>
     <div class="q-title">Quelle est la taille et la composition du pool informatique central ?</div>
     <div class="q-context">Combien de personnes dans l'équipe IT ? Quelles compétences actuelles ? Quel est leur niveau de maturité sur Power Platform et les outils d'automatisation ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Le plan de transfert de compétences doit être calibré sur le niveau réel de l'équipe.</div>
   </div>
 
+  <div class="question-card" style="border-left-color:var(--purple);">
+    <div class="q-num">Q09 <span class="badge badge-p3">P3</span></div>
+    <div class="q-title">Qui doit être formé exactement : le pool IT central ou les personnes en réinsertion ?</div>
+    <div class="q-context">Notre compréhension : nous formons le pool IT central, qui ensuite forme les personnes en réinsertion. Si c'est l'inverse (former directement les personnes en réinsertion), c'est un projet radicalement différent en termes de pédagogie et de durée.</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela change complètement le dimensionnement du volet formation et le profil des intervenants nécessaires.</div>
+  </div>
+
+  <div class="question-card" style="border-left-color:var(--purple);">
+    <div class="q-num">Q10 <span class="badge badge-p3">P3</span></div>
+    <div class="q-title">La formation Office 365 est-elle réellement un projet autonome ?</div>
+    <div class="q-context">La formation est transversale à tous les projets (chaque brique implique un volet formation). Pourquoi un projet dédié ? Y a-t-il un besoin de montée en compétences de base des collaborateurs sur la suite Microsoft ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Si c'est de la formation basique (Outlook, Teams, SharePoint), un organisme spécialisé ou du e-learning serait plus adapté qu'un prestataire IT.</div>
+  </div>
+
+  <!-- ═══════ D. BUDGET, MODALITÉS ET PROCESSUS ═══════ -->
   <div class="sub-header">D. Budget, modalités et processus</div>
 
   <div class="question-card">
-    <div class="q-num">Q11</div>
+    <div class="q-num">Q11 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Un forfait global est-il impératif, ou une approche hybride (pilote forfaitaire + réalisation modulaire) est-elle acceptable ?</div>
     <div class="q-context">Nous estimons qu'un forfait global sur un périmètre incertain crée un risque de coûts cachés — exactement ce que l'AO cherche à éviter. Une approche en deux temps (diagnostic forfaitaire, puis exécution à la carte) serait plus transparente.</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> C'est la question structurante de toute notre proposition financière.</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q12</div>
-    <div class="q-title">Existe-t-il une enveloppe budgétaire définie ou une fourchette indicative ?</div>
-    <div class="q-context">Le fait que l'AO soit non public suggère un montant en dessous du seuil d'obligation de publication. Nos estimations convergent vers 400-800K CHF. Est-ce aligné ?</div>
-    <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet de calibrer le niveau de détail et d'ambition de notre proposition.</div>
-  </div>
-
-  <div class="question-card">
-    <div class="q-num">Q13</div>
-    <div class="q-title">Comment la réponse doit-elle être soumise ?</div>
-    <div class="q-context">Plateforme dédiée, email, format papier ? Y a-t-il un template de réponse attendu ou sommes-nous libres dans la forme ?</div>
-    <div class="q-why"><strong>Pourquoi c'est important :</strong> Impact sur le format et le timing de préparation de la réponse.</div>
-  </div>
-
-  <div class="question-card">
-    <div class="q-num">Q14</div>
-    <div class="q-title">Combien de prestataires sont sollicités ? Quels sont les critères de sélection prioritaires ?</div>
+    <div class="q-num">Q12 <span class="badge badge-p1">P1</span></div>
+    <div class="q-title">Quels sont les critères de sélection prioritaires ?</div>
     <div class="q-context">Prix, expertise technique, proximité géographique, capacité d'accompagnement long terme, références sectorielles ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet d'ajuster le positionnement de notre réponse (prix vs. valeur).</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q15</div>
+    <div class="q-num">Q13 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">La Fondation envisage-t-elle un prestataire unique ou un groupement est-il acceptable ?</div>
-    <div class="q-context">Notre proposition implique ABAX Info (IT, IA, sécurité) + Computer Shop (matériel Apple). D'autres partenaires pourraient intervenir sur la formation O365.</div>
+    <div class="q-context">Notre proposition implique un groupement : ABAX Info (IT, sécurité, MDM), AXION (IA, automatisation, chatbots) et Computer Shop (matériel Apple). D'autres partenaires pourraient intervenir sur la formation O365.</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Valide notre modèle de collaboration multi-partenaires et clarifie les attentes sur le point de contact unique.</div>
   </div>
 
+  <div class="question-card">
+    <div class="q-num">Q14 <span class="badge badge-p2">P2</span></div>
+    <div class="q-title">Existe-t-il une enveloppe budgétaire définie ou une fourchette indicative ?</div>
+    <div class="q-context">Le fait que l'AO soit non public suggère un montant en dessous du seuil d'obligation de publication. Nos estimations convergent vers 400-800K CHF. Est-ce aligné ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet de calibrer le niveau de détail et d'ambition de notre proposition.</div>
+  </div>
+
+  <div class="question-card" style="border-left-color:var(--purple);">
+    <div class="q-num">Q15 <span class="badge badge-p3">P3</span></div>
+    <div class="q-title">Comment la réponse doit-elle être soumise ?</div>
+    <div class="q-context">Plateforme dédiée, email, format papier ? Y a-t-il un template de réponse attendu ou sommes-nous libres dans la forme ?</div>
+    <div class="q-why"><strong>Pourquoi c'est important :</strong> Impact sur le format et le timing de préparation de la réponse.</div>
+  </div>
+
+  <!-- ═══════ E. VISION ET AMÉLIORATION CONTINUE ═══════ -->
   <div class="sub-header">E. Vision et amélioration continue</div>
 
   <div class="question-card">
-    <div class="q-num">Q16</div>
+    <div class="q-num">Q16 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Quelle est la vision à 3-5 ans de la Fondation en matière de digitalisation ?</div>
     <div class="q-context">L'AO mentionne une amélioration continue. Est-ce un projet ponctuel ou le début d'un partenariat long terme ? Y a-t-il d'autres projets de transformation prévus ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Cela impacte le niveau d'investissement que nous mettons dans la relation et la structure de notre proposition (projet vs. partenariat).</div>
   </div>
 
   <div class="question-card">
-    <div class="q-num">Q17</div>
+    <div class="q-num">Q17 <span class="badge badge-p1">P1</span></div>
     <div class="q-title">Quels sont les indicateurs de succès attendus pour ce programme ?</div>
     <div class="q-context">Réduction de temps sur les processus ? Taux d'adoption des outils ? Satisfaction des équipes ? KPIs de sécurité ?</div>
     <div class="q-why"><strong>Pourquoi c'est important :</strong> Permet d'aligner notre proposition sur les résultats mesurables attendus par la direction de la Fondation.</div>
