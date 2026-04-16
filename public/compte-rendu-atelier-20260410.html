@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>AXION · Compte rendu atelier — 10 avril 2026 — ABAX Info</title>
+<link rel="icon" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf2;
+  --border:#dde4ed;--border2:#c8d3e3;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.10);
+  --teal:#14b8a6;--teal-bg:rgba(20,184,166,.10);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.10);
+  --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.10);
+  --green:#10b981;--green-bg:rgba(16,185,129,.10);
+  --red:#ef4444;--red-bg:rgba(239,68,68,.10);
+  --orange:#f97316;--orange-bg:rgba(249,115,22,.10);
+  --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,.10);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+
+.nav{background:var(--bg1);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.5px;color:var(--teal);}
+.nav-meta{font-size:12px;color:var(--text3);}
+.nav-meta span{color:var(--text2);}
+
+.hero{background:var(--bg1);border-bottom:1px solid var(--border);padding:32px 40px;}
+.hero-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:10px;}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.6;max-width:700px;margin-bottom:20px;}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;}
+.meta-value{font-size:13px;font-weight:600;color:var(--text);}
+
+.page{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:0;}
+
+.toc{padding:32px 24px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);}
+.toc h3{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.toc a{display:block;font-size:12px;color:var(--text2);text-decoration:none;padding:5px 8px;border-radius:5px;margin-bottom:2px;transition:all .15s;}
+.toc a:hover{background:var(--bg2);color:var(--text);}
+.toc a.section{font-weight:700;color:var(--text);font-size:11px;margin-top:10px;margin-bottom:4px;}
+.toc a.sub{padding-left:16px;font-size:11px;}
+
+.content{padding:40px 48px;}
+
+.section{margin-bottom:48px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+.section-header.teal{border-bottom-color:var(--teal);}
+.section-header.blue{border-bottom-color:var(--blue);}
+.section-header.green{border-bottom-color:var(--green);}
+.section-header.purple{border-bottom-color:var(--purple);}
+.section-header.amber{border-bottom-color:var(--amber);}
+.section-header.orange{border-bottom-color:var(--orange);}
+.section-header.cyan{border-bottom-color:var(--cyan);}
+.section-header.red{border-bottom-color:var(--red);}
+.section-icon{font-size:20px;}
+.section-num{font-size:11px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.section h2{font-size:18px;font-weight:800;}
+
+.decision{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:12px;}
+.decision-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.decision-title{font-size:14px;font-weight:700;color:var(--text);}
+.decision-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.decision-impact{margin-top:10px;padding:8px 12px;background:var(--teal-bg);border:1px solid rgba(20,184,166,.2);border-radius:6px;font-size:11px;color:var(--teal);}
+.decision-impact strong{color:var(--teal);font-weight:700;}
+.decision-impact.amber{background:var(--amber-bg);border-color:rgba(245,158,11,.2);color:var(--amber);}
+.decision-impact.amber strong{color:var(--amber);}
+.decision ul{margin-top:8px;padding-left:18px;}
+.decision ul li{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:2px;}
+.decision ul li strong{color:var(--text);font-weight:600;}
+
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.badge-decision{background:var(--green-bg);border:1px solid var(--green);color:var(--green);}
+.badge-open{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
+.badge-insight{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-action-abax{background:var(--blue-bg);border:1px solid var(--blue);color:var(--blue);}
+.badge-action-axion{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-livrable{background:var(--cyan-bg);border:1px solid var(--cyan);color:var(--cyan);}
+
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2px 6px;color:var(--amber);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--bg2);}
+thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody td{padding:10px 14px;color:var(--text2);vertical-align:top;line-height:1.6;}
+tbody td:first-child{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;font-size:11px;}
+.table-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+
+.summary-box{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
+.summary-box p{font-size:14px;color:var(--text2);line-height:1.8;}
+.summary-stats{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.stat{text-align:center;padding:12px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;}
+.stat .snum{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.stat .slabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+.participants{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.participant{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;}
+.p-name{font-size:13px;font-weight:700;color:var(--text);}
+.p-role{font-size:11px;color:var(--text3);margin-top:2px;}
+
+.next-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.next-step:last-child{border-bottom:none;}
+.ns-num{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--teal);min-width:28px;}
+.ns-body .ns-title{font-size:13px;font-weight:700;color:var(--text);}
+.ns-body .ns-desc{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.5;}
+.ns-body .ns-livrable{margin-top:4px;font-size:11px;color:var(--cyan);background:var(--cyan-bg);border:1px solid rgba(6,182,212,.2);border-radius:5px;padding:3px 8px;display:inline-block;}
+
+.info-box{background:var(--blue-bg);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.info-box strong{color:var(--blue);}
+
+.note-box{background:var(--amber-bg);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.note-box strong{color:var(--amber);}
+
+.sub-header{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:12px;margin-top:24px;text-transform:uppercase;letter-spacing:.8px;}
+
+.action-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.action-row:last-child{border-bottom:none;}
+.action-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--text3);min-width:80px;}
+.action-body{flex:1;}
+.action-title{font-size:13px;color:var(--text);font-weight:600;margin-bottom:2px;}
+.action-owner{font-size:11px;color:var(--text3);}
+
+.pillar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0;}
+.pillar-node{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px 14px;text-align:center;}
+.pillar-icon{font-size:24px;margin-bottom:8px;}
+.pillar-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.pillar-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+.pillar-desc{font-size:11px;color:var(--text3);line-height:1.4;}
+
+.quote-box{background:var(--bg1);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0;font-size:14px;font-style:italic;color:var(--text2);line-height:1.7;}
+.quote-box .quote-author{font-size:11px;color:var(--text3);font-style:normal;margin-top:6px;}
+
+.agenda-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);align-items:center;}
+.agenda-item:last-child{border-bottom:none;}
+.agenda-check{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.agenda-check.done{background:var(--green-bg);color:var(--green);border:1px solid var(--green);}
+.agenda-check.partial{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);}
+.agenda-check.todo{background:var(--bg2);color:var(--text3);border:1px solid var(--border);}
+.agenda-text{font-size:13px;color:var(--text);flex:1;}
+.agenda-status{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr;}
+  .toc{display:none;}
+  .content{padding:24px 20px;}
+  .pillar-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">AXION</div>
+  <div class="nav-meta">Compte rendu atelier · <span>10 avril 2026</span> · ABAX Info</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Compte rendu officiel — Phase de decouverte, Atelier 3</div>
+  <h1>Appel d'offres &middot; Visibilite &middot; Forfaitisation des services</h1>
+  <div class="hero-sub">
+    Troisieme atelier de la phase de decouverte (~1h50). Revue approfondie de l'appel d'offres Fondation Trajet
+    (automatisation, chatbots, gouvernance), definition de la strategie de visibilite immediate (LinkedIn, Google My Business),
+    analyse de l'environnement concurrentiel (France et Suisse), identification d'opportunites municipales post-elections,
+    et pivot strategique vers la forfaitisation des services autour de 3 piliers : Hardware, Users, Data.
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">10 avril 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Atelier visio (Google Meet) — on-site</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Duree</span>
+      <span class="meta-value">~1h50</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Phase</span>
+      <span class="meta-value" style="color:var(--teal);">Decouverte (2/3)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Prochain atelier</span>
+      <span class="meta-value" style="color:var(--amber);">Semaine du 14 avril 2026</span>
+    </div>
+  </div>
+
+  <div class="participants" style="margin-top:20px;">
+    <div class="participant">
+      <div class="p-name">Sebastien Fournier</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Djemel Chaouche</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Eric Darien</div>
+      <div class="p-role">ABAX Info</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <nav class="toc">
+    <h3>Sommaire</h3>
+    <a href="#resume" class="section">Resume executif</a>
+    <a href="#agenda" class="section">Agenda de la decouverte</a>
+    <a href="#s1" class="section">1. Appel d'offres Fondation Trajet</a>
+    <a href="#s1-perimetre" class="sub">Perimetre et budget</a>
+    <a href="#s1-strategie" class="sub">Strategie de reponse</a>
+    <a href="#s1-repartition" class="sub">Repartition des briques</a>
+    <a href="#s2" class="section">2. Portail client &amp; contrat</a>
+    <a href="#s3" class="section">3. Visibilite — LinkedIn &amp; reseaux</a>
+    <a href="#s3-linkedin" class="sub">Premier post LinkedIn</a>
+    <a href="#s3-animation" class="sub">Animation &amp; automatisation</a>
+    <a href="#s4" class="section">4. Storytelling &amp; personas</a>
+    <a href="#s4-cas" class="sub">Cas reels &amp; fausses croyances</a>
+    <a href="#s4-persona" class="sub">Persona temporel</a>
+    <a href="#s5" class="section">5. Concurrence</a>
+    <a href="#s5-france" class="sub">France (Pays de Gex)</a>
+    <a href="#s5-suisse" class="sub">Suisse</a>
+    <a href="#s6" class="section">6. Opportunites municipales</a>
+    <a href="#s7" class="section">7. Presence digitale — Priorite zero</a>
+    <a href="#s7-gmb" class="sub">Google My Business</a>
+    <a href="#s8" class="section">8. Forfaitisation des services</a>
+    <a href="#s8-piliers" class="sub">3 piliers : Hardware, Users, Data</a>
+    <a href="#s8-niveaux" class="sub">Niveaux de service</a>
+    <a href="#s9" class="section">9. Plan d'action &amp; livrables</a>
+    <a href="#s10" class="section">10. Communication &amp; tracking</a>
+    <a href="#decisions" class="section">11. Decisions actees</a>
+    <a href="#actions" class="section">12. Plan d'actions</a>
+    <a href="#suivant" class="section">13. Prochaines etapes</a>
+  </nav>
+
+  <div class="content">
+
+    <!-- RÉSUMÉ -->
+    <div id="resume" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">RESUME</div>
+          <h2>Resume executif</h2>
+        </div>
+      </div>
+      <div class="summary-box">
+        <p>
+          Ce troisieme atelier de decouverte a couvert trois axes majeurs. D'abord, la <strong>revue de l'appel d'offres
+          Fondation Trajet</strong> (400-800k CHF) : approche modulaire retenue, gouvernance manquante identifiee,
+          rendez-vous de clarification a solliciter avant reponse. Ensuite, la <strong>strategie de visibilite immediate</strong> :
+          LinkedIn comme priorite zero, capitalisation sur l'article PME Magazine, Google My Business a renforcer.
+          L'<strong>environnement concurrentiel</strong> a ete cartographie (France et Suisse) avec des opportunites
+          municipales post-elections. Enfin, le <strong>pivot strategique vers la forfaitisation</strong> a ete valide :
+          abandon de la vente d'outils techniques au profit de 3 piliers de valeur (Hardware, Users, Data)
+          avec niveaux de service progressifs.
+        </p>
+        <div class="summary-stats">
+          <div class="stat"><div class="snum" style="color:var(--teal);">12</div><div class="slabel">Decisions actees</div></div>
+          <div class="stat"><div class="snum" style="color:var(--purple);">8</div><div class="slabel">Actions AXION</div></div>
+          <div class="stat"><div class="snum" style="color:var(--blue);">6</div><div class="slabel">Actions ABAX</div></div>
+          <div class="stat"><div class="snum" style="color:var(--amber);">10</div><div class="slabel">Sujets couverts</div></div>
+          <div class="stat"><div class="snum" style="color:var(--text2);">2/3</div><div class="slabel">Phase decouverte</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="agenda" class="section">
+      <div class="section-header amber">
+        <div>
+          <div class="section-num">AGENDA</div>
+          <h2>Avancement de la phase de decouverte</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6;">
+        La phase de decouverte progresse bien. L'atelier 3 a couvert la visibilite, l'ecosysteme concurrentiel, les opportunites et la forfaitisation des services. Le portail client est operationnel et le contrat est en cours de validation.
+      </p>
+
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Decouverte de l'ecosysteme ABAX Info</strong> — Produits &amp; services cles, positionnement, presence en ligne</div>
+        <div class="agenda-status" style="color:var(--green);">Couvert</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Analyse de l'organisation</strong> — Organisation interne, processus, marche, tendances, contraintes IT</div>
+        <div class="agenda-status" style="color:var(--green);">Couvert</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Environnement concurrentiel</strong> — Concurrents France &amp; Suisse, positionnement, opportunites</div>
+        <div class="agenda-status" style="color:var(--green);">Couvert</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Presence digitale &amp; visibilite</strong> — LinkedIn, Google My Business, site web, reseaux sociaux</div>
+        <div class="agenda-status" style="color:var(--green);">Couvert</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check partial">&#9679;</div>
+        <div class="agenda-text"><strong>Forfaitisation des services</strong> — Pivot vers la valeur, 3 piliers, niveaux de service</div>
+        <div class="agenda-status" style="color:var(--amber);">En cours</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check partial">&#9679;</div>
+        <div class="agenda-text"><strong>Appel d'offres Fondation Trajet</strong> — Revue, strategie, repartition, session de travail planifiee</div>
+        <div class="agenda-status" style="color:var(--amber);">En cours</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 : APPEL D'OFFRES -->
+    <div id="s1" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 01</div>
+          <h2>Appel d'offres — Fondation Trajet</h2>
+        </div>
+      </div>
+
+      <div id="s1-perimetre">
+        <div class="sub-header">Perimetre et budget</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">AO non public recu via Computer Shop — 2 volets principaux</div>
+            <span class="badge badge-decision">D-01</span>
+          </div>
+          <div class="decision-body">
+            L'appel d'offres de la <strong>Fondation Trajet</strong> (230 collaborateurs) a ete recu via
+            Computer Shop (revendeur Apple). Le document est structure en deux volets principaux :
+            <ul>
+              <li><strong>Automatisation :</strong> Power Automate / environnement Microsoft, avec ouverture a d'autres outils si justifie (Copilot comme porte d'entree, Claude/Anthropic encapsule)</li>
+              <li><strong>Chatbots :</strong> perimetre plus clair que l'automatisation</li>
+            </ul>
+            Le budget estime se situe entre <strong>400k et 800k CHF</strong> pour une duree de <strong>10-12 mois</strong>.
+            L'AO n'etant pas public, cela donne une indication sur le montant du projet.
+          </div>
+          <div class="decision-impact">
+            <strong>Constat cle :</strong> Le perimetre et la timeline de la partie automatisation sont flous.
+            Le document semble avoir ete genere par IA (mise en forme, couleurs, cartouches identiques a des sorties Claude).
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Structure pyramidale manquante — besoin de gouvernance</div>
+            <span class="badge badge-decision">D-02</span>
+          </div>
+          <div class="decision-body">
+            Le document presente <strong>9 projets</strong> mais sans structure de programme ni gouvernance
+            pour les orchestrer. Le besoin est pyramidal mais l'architecture de gestion fait defaut.
+            <ul>
+              <li><strong>Proposition AXION :</strong> inclure une structure de programme en chapeau dans la reponse</li>
+              <li><strong>Differentiation :</strong> se positionner comme orchestrateur global (securite, resilience, digitalisation) plutot que simple executant</li>
+              <li><strong>Remarque :</strong> mentionner dans la reponse que cette couche de gouvernance n'apparait pas dans l'AO mais qu'AXION/ABAX la propose</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="s1-strategie">
+        <div class="sub-header">Strategie de reponse</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Approche modulaire : diagnostic forfaitaire + use cases a la carte</div>
+            <span class="badge badge-decision">D-01</span>
+          </div>
+          <div class="decision-body">
+            Plutot qu'un forfait global sur un perimetre flou, l'approche retenue est <strong>modulaire</strong> :
+            <ul>
+              <li><strong>Phase 1 — Diagnostic :</strong> forfaitaire, mapping de la roadmap et des use cases</li>
+              <li><strong>Phase 2 — Realisation :</strong> a la carte, use cases simples / medium / complexes avec tarification par niveau</li>
+              <li><strong>Phase 3 — Transfert de competences :</strong> former le pool informatique central (pas les personnes en reinsertion directement)</li>
+            </ul>
+            Un <strong>pilote clair</strong> doit etre defini avant tout deploiement — le document actuel ne le formalise pas suffisamment.
+          </div>
+          <div class="decision-impact">
+            <strong>Principe :</strong> Ne pas proposer un prix forfaitaire tant que le diagnostic n'a pas ete realise.
+            La proposition de valeur depend du resultat de l'etat des lieux.
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Solliciter un rendez-vous de clarification avant reponse</div>
+            <span class="badge badge-decision">D-03</span>
+          </div>
+          <div class="decision-body">
+            Eric Darien va solliciter via Michel (Computer Shop) un <strong>rendez-vous avec le responsable
+            de la Fondation Trajet</strong> pour lever les incertitudes sur le perimetre et les hypotheses.
+            <ul>
+              <li><strong>Objectif :</strong> eviter d'etre hors sujet par de mauvaises hypotheses</li>
+              <li><strong>Format :</strong> reunion avec les 3 (Eric, Sebastien, Djemel) — presentation de l'equipe</li>
+              <li><strong>Timing :</strong> semaine du 14 avril (mardi ou mercredi ideal)</li>
+            </ul>
+            Cette pratique est courante en Suisse. La relation de confiance existante (via Computer Shop) facilite la demarche.
+          </div>
+        </div>
+      </div>
+
+      <div id="s1-repartition">
+        <div class="sub-header">Repartition des briques</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Repartition claire entre Computer Shop et ABAX Info</div>
+            <span class="badge badge-decision">D-04</span>
+          </div>
+          <div class="decision-body">
+            <ul>
+              <li><strong>Computer Shop :</strong> materiel (MacBook Pro Neo)</li>
+              <li><strong>ABAX Info :</strong> assistance IA, automatisation, resilience, sensibilisation securite, MDM (gestion des appareils mobiles)</li>
+              <li><strong>A evaluer :</strong> formation Office 365 — potentiellement sous-traitee a un organisme de formation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <strong>Sessions de travail planifiees :</strong> Mercredi 16 avril 13h-16h (session interne AO) + Vendredi 18 avril (slot de travail supplementaire si necessaire). Preparation de la liste de questions/sujets pour le rendez-vous Fondation Trajet.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 : PORTAIL & CONTRAT -->
+    <div id="s2" class="section">
+      <div class="section-header blue">
+        <div>
+          <div class="section-num">SECTION 02</div>
+          <h2>Portail client &amp; contrat</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Eric a acces au portail nexus-abaxinfo.axion.supply</div>
+          <span class="badge badge-decision">D-05</span>
+        </div>
+        <div class="decision-body">
+          Tour d'horizon du portail client realise en seance :
+          <ul>
+            <li><strong>Ateliers :</strong> comptes rendus et agendas</li>
+            <li><strong>Roadmap :</strong> briques et fiches capability</li>
+            <li><strong>Visibilite :</strong> rapports SEO, plan d'action 9 mois</li>
+            <li><strong>Croissance :</strong> plan d'action 90 jours, analyse concurrentielle XEFI</li>
+            <li><strong>Entreprise :</strong> fiche entreprise (graine de la future base de connaissance) + contrat amende</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Contrat amende a relire pour signature debut de semaine</div>
+          <span class="badge badge-open">En attente</span>
+        </div>
+        <div class="decision-body">
+          Le contrat amende (perimetre commission sur CA service uniquement) est disponible sur le portail.
+          Eric Darien s'engage a le <strong>relire ce weekend</strong> pour validation et signature en debut de semaine.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 : VISIBILITÉ -->
+    <div id="s3" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 03</div>
+          <h2>Visibilite — LinkedIn &amp; reseaux sociaux</h2>
+        </div>
+      </div>
+
+      <div id="s3-linkedin">
+        <div class="sub-header">Premier post LinkedIn</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Capitaliser sur l'article PME Magazine — premier post LinkedIn</div>
+            <span class="badge badge-decision">D-06</span>
+          </div>
+          <div class="decision-body">
+            L'interview d'Eric Darien dans <strong>PME Magazine</strong> (publiee le 30 mars, version papier +
+            version numerique sur Focus.swiss) est le contenu ideal pour le premier post LinkedIn :
+            <ul>
+              <li><strong>Themes :</strong> presentation d'ABAX Info, valeurs de l'entreprise, positionnement</li>
+              <li><strong>Version numerique :</strong> disponible sur Focus.swiss (site partenaire de PME Magazine pour la Suisse)</li>
+              <li><strong>Mention existante :</strong> Nathan Joulin a deja mentionne ABAX Info dans un post lie a l'article</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Decision :</strong> Publier sur le compte ABAX Info (55 followers), Eric relaie sur son compte personnel (226 followers).
+            AXION preparera egalement les accroches pour le repost d'Eric.
+          </div>
+        </div>
+      </div>
+
+      <div id="s3-animation">
+        <div class="sub-header">Animation et automatisation</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">AXION demande acces delegue aux comptes sociaux ABAX Info</div>
+            <span class="badge badge-decision">D-07</span>
+          </div>
+          <div class="decision-body">
+            Pour une execution efficace, AXION a besoin d'un <strong>acces delegue</strong> aux comptes
+            sociaux ABAX Info (pas a un compte Gmail personnel). Cela permet :
+            <ul>
+              <li><strong>Publication :</strong> alimenter et publier les posts directement</li>
+              <li><strong>Animation :</strong> repondre aux commentaires dans les premieres heures (critique pour l'algorithme LinkedIn)</li>
+              <li><strong>Timing :</strong> scheduler les publications au bon moment (les 2 premieres heures sont determinantes)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Jade (DA/charte graphique) a contacter pour coherence visuelle</div>
+            <span class="badge badge-open">A planifier</span>
+          </div>
+          <div class="decision-body">
+            Jade gere la <strong>direction artistique</strong> chez ABAX Info. Elle a realise la charte graphique
+            (document DA formalise avec couleurs, polices, etc.) et doit etre impliquee pour assurer la coherence
+            visuelle des posts LinkedIn avec l'identite de marque existante. Eric met l'equipe AXION en relation avec Jade.
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>Etape 2 — Automatisation :</strong> Une fois le format, le style et la forme valides,
+          l'objectif est d'automatiser la publication a 2-3 posts par semaine. D'abord lancer la machine manuellement,
+          puis automatiser progressivement.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 : STORYTELLING & PERSONAS -->
+    <div id="s4" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 04</div>
+          <h2>Storytelling &amp; personas</h2>
+        </div>
+      </div>
+
+      <div id="s4-cas">
+        <div class="sub-header">Cas reels et fausses croyances</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Fausse croyance a casser : "je suis en SaaS donc je suis en securite"</div>
+            <span class="badge badge-insight">Insight</span>
+          </div>
+          <div class="decision-body">
+            Eric Darien partage deux cas concrets illustrant cette fausse croyance :
+            <ul>
+              <li><strong>Cas 1 — Dirigeante (ancienne ingenieuse IT) :</strong> a perdu ses donnees sur Google.
+                Pensait que le SaaS = securite. En realite, Google stocke mais ne fait pas de sauvegarde.
+                Pas de gestion des droits, un seul abonnement Microsoft pour plusieurs collaborateurs,
+                documents RH visibles par tous. Nom de domaine en risque medium.</li>
+              <li><strong>Cas 2 — Client hacke via surtension electrique :</strong> electricien partenaire fait un controle,
+                mauvais branchement pete le serveur. Donnees OK mais 3 mois plus tard, suspicion de hack confirmee.
+                Deroulement du protocole complet &rarr; signature de contrat.</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Accroche pour le contenu :</strong> "Vous etes en SaaS ? Ce n'est pas une garantie de securite."
+            Le SaaS couvre une partie de la solution, mais pas la securite globale. Ne pas confondre facilite d'utilisation et securite.
+          </div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; Ce n'est pas une option, ca doit etre prevu des le depart. &raquo;
+          <div class="quote-author">— Eric Darien, sur la securite des donnees</div>
+        </div>
+      </div>
+
+      <div id="s4-persona">
+        <div class="sub-header">Persona additionnel — dimension temporelle</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Nouveau persona : "le decideur qui vient de souffrir"</div>
+            <span class="badge badge-insight">Persona</span>
+          </div>
+          <div class="decision-body">
+            Au-dela des personas classiques (conscient, a eduquer, anti-investissement), une <strong>dimension temporelle</strong>
+            a ete identifiee. Le decideur qui vient de subir un incident (perte de donnees, hack, panne) est un prospect
+            extremement chaud :
+            <ul>
+              <li><strong>Analogie :</strong> les vendeurs d'alarmes font du business juste apres un cambriolage dans le quartier</li>
+              <li><strong>Realite ABAX :</strong> la majorite des clients arrivent par bouche-a-oreille suite a un incident — parce que la visibilite est insuffisante</li>
+              <li><strong>Opportunite :</strong> si la visibilite est amelioree, ce segment peut passer de l'exception a 10-30% du flux</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>Reference :</strong> Un serrurier TikTok/YouTube qui cartonne en region parisienne grace a la visibilite,
+          la rapidite et la transparence des prix (forfait 160 EUR vs 700-800 EUR chez les concurrents).
+          Preuve que la visibilite digitale transforme un metier de service local.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 : CONCURRENCE -->
+    <div id="s5" class="section">
+      <div class="section-header orange">
+        <div>
+          <div class="section-num">SECTION 05</div>
+          <h2>Environnement concurrentiel</h2>
+        </div>
+      </div>
+
+      <div id="s5-france">
+        <div class="sub-header">France (Pays de Gex)</div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Concurrent</th>
+                <th>Positionnement</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>XPI</td>
+                <td>IT entreprises, visible dans la zone</td>
+                <td>Concurrent direct frequemment rencontre</td>
+              </tr>
+              <tr>
+                <td>NBM Europe</td>
+                <td>Historiquement fort, en retrait</td>
+                <td>A delaise le marche local — ABAX recupere des clients. NBM mecontent de ces pertes.</td>
+              </tr>
+              <tr>
+                <td>Microsenter</td>
+                <td>Microinformatique, communication forte</td>
+                <td>Plus oriente particuliers mais attaque aussi les PME. Situe a cote de Brico.</td>
+              </tr>
+              <tr>
+                <td>Rex Rotary</td>
+                <td>Copieurs qui attaquent le marche IT/services</td>
+                <td>Diversification depuis les copieurs vers les services informatiques.</td>
+              </tr>
+              <tr>
+                <td>MBI</td>
+                <td>Base a Bourg-en-Bresse</td>
+                <td>Present a la mairie de Pontarlier. Eloignement geographique = risque d'intervention lente.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="s5-suisse">
+        <div class="sub-header">Suisse — marche dilue</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Marche suisse tres dilue — pas de concurrent dominant sauf XeFi</div>
+            <span class="badge badge-insight">Marche</span>
+          </div>
+          <div class="decision-body">
+            Le marche suisse (Geneve) est decrit comme <strong>tres dilue</strong> avec de nombreuses petites
+            societes informatiques. Aucun nom ne ressort vraiment en termes de visibilite ou d'offre percutante :
+            <ul>
+              <li><strong>XeFi :</strong> present aussi cote suisse (deja analyse dans l'intelligence concurrentielle)</li>
+              <li><strong>Evoque :</strong> base a Lausanne, pas de presence locale forte</li>
+              <li><strong>DigitalG :</strong> plus gros mais pas dans la meme cour</li>
+              <li><strong>NBM :</strong> aussi present cote suisse, achete des jetons Google pour remonter</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Opportunite :</strong> L'absence de concurrent dominant cree un espace pour ABAX Info
+            si la visibilite est travaillee. Le stress au niveau visibilite et offre percutante est quasi inexistant chez les concurrents.
+          </div>
+        </div>
+
+        <div class="note-box">
+          <strong>Probleme de la concurrence eloignee :</strong> Certaines entreprises du Pays de Gex
+          prennent des prestataires a Lyon ou Bourg-en-Bresse pour le cout. Mais l'eloignement entraine
+          un risque d'intervention lente avec impact business. Argument fort pour la proximite d'ABAX Info :
+          "Loin des yeux, loin du coeur — loin du client, loin du soin."
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6 : OPPORTUNITÉS MUNICIPALES -->
+    <div id="s6" class="section">
+      <div class="section-header cyan">
+        <div>
+          <div class="section-num">SECTION 06</div>
+          <h2>Opportunites municipales post-elections</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Cibler les mairies ayant change de maire</div>
+          <span class="badge badge-decision">D-12</span>
+        </div>
+        <div class="decision-body">
+          Les recentes elections ont entraine des changements de direction dans plusieurs municipalites :
+          <ul>
+            <li><strong>Ferney-Voltaire :</strong> changement de maire — opportunite d'approche</li>
+            <li><strong>Prevessin-Moens :</strong> changement — a cibler egalement</li>
+            <li><strong>Gex :</strong> pas de changement — Eric s'etait deja "casse les dents" (blocage administratif)</li>
+            <li><strong>Pontarlier :</strong> Eric recommande d'ecrire a Pont (mairie de Pontarlier)</li>
+          </ul>
+          <strong>Approche proposee :</strong> cibler les responsables infrastructure IT, proposer un diagnostic flash
+          ou un audit de 30 minutes. Un nouveau maire est plus ouvert au changement de prestataire qu'un maire reconduit.
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Canal d'approche :</strong> Eric Darien est tres actif sur le groupe WhatsApp local.
+        Il recoit deja "3 messages par jour" de personnes qui veulent le voir suite aux elections.
+        Ce canal informel est un excellent point d'entree pour la prospection municipale.
+      </div>
+    </div>
+
+    <!-- SECTION 7 : PRÉSENCE DIGITALE -->
+    <div id="s7" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 07</div>
+          <h2>Presence digitale — Priorite zero</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Priorite zero : LinkedIn + Google My Business — actions immediates</div>
+          <span class="badge badge-decision">D-05</span>
+        </div>
+        <div class="decision-body">
+          La hierarchie des priorites de presence digitale est clarifiee :
+          <ul>
+            <li><strong>Priorite 0 (immediate) :</strong> LinkedIn (compte ABAX Info) + Google My Business</li>
+            <li><strong>Priorite 1 (quelques semaines) :</strong> site web — decale pour aligner la proposition de valeur d'abord</li>
+            <li><strong>Pas encore :</strong> YouTube — d'abord avoir de la matiere via LinkedIn</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="s7-gmb">
+        <div class="sub-header">Google My Business — etat des lieux</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Google My Business : 3 avis (5/5), reponses existantes mais mal visibles</div>
+            <span class="badge badge-open">A ameliorer</span>
+          </div>
+          <div class="decision-body">
+            Etat des lieux de la fiche Google My Business :
+            <ul>
+              <li><strong>Avis :</strong> 3 avis de clients (tous 5/5) datant d'octobre 2025</li>
+              <li><strong>Reponses :</strong> Jade a bien repondu aux avis, mais l'interface Google ne les montre pas facilement (12 clics pour voir les reponses)</li>
+              <li><strong>Cote suisse vs cote francais :</strong> verifier les deux fiches</li>
+              <li><strong>Automatisation :</strong> envisagee — l'IA propose une reponse, le proprietaire valide avant publication</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Actions :</strong> Demander activement des avis aux clients existants (preparation d'emails).
+            Retravailler la fiche pour ameliorer la visibilite. Verifier et repondre sur les plateformes tierces (Pages Jaunes, etc.).
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>Plateformes tierces :</strong> Google est legalement oblige d'afficher les resultats des "sites de lieu"
+          concurrents (Pages Jaunes, etc.) sur les ecrans de recherche. Il est donc important d'etre bien reference
+          et de collecter des avis sur ces plateformes egalement.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 8 : FORFAITISATION -->
+    <div id="s8" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 08</div>
+          <h2>Forfaitisation des services — 3 piliers</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Pivot strategique : vendre le "pourquoi", pas le "quoi" ni le "comment"</div>
+          <span class="badge badge-decision">D-08</span>
+        </div>
+        <div class="decision-body">
+          Eric Darien reconnait que son approche etait trop orientee solution technique. Le pivot consiste a :
+          <ul>
+            <li><strong>Avant :</strong> vendre des outils (antivirus, agent de supervision, licences) — percu comme un cout</li>
+            <li><strong>Apres :</strong> vendre de la valeur (supervision du parc, protection des donnees, serenite) — percu comme un investissement</li>
+          </ul>
+          Les briques technologiques deviennent un <strong>support invisible</strong> qui aide l'equipe interne
+          a monitorer les KPI, mais ce n'est plus l'argument de vente face au client.
+        </div>
+      </div>
+
+      <div class="quote-box">
+        &laquo; Je me rends compte que mon approche est trop orientee solution technique
+        alors qu'elle doit etre orientee valeur. &raquo;
+        <div class="quote-author">— Eric Darien, sur la forfaitisation</div>
+      </div>
+
+      <div class="quote-box">
+        &laquo; On ne vend plus un quoi ou un comment, on vend un pourquoi. &raquo;
+        <div class="quote-author">— Sebastien Fournier, sur la proposition de valeur</div>
+      </div>
+
+      <div id="s8-piliers">
+        <div class="sub-header">Les 3 piliers : Hardware, Users, Data</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Forfaitisation autour de 3 piliers fondamentaux</div>
+            <span class="badge badge-decision">D-08</span>
+          </div>
+          <div class="decision-body">
+            L'offre sera structuree autour de <strong>3 piliers dissocies</strong> qui adressent chacun un domaine specifique :
+          </div>
+        </div>
+
+        <div class="pillar-grid" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="pillar-node" style="border-color:rgba(245,158,11,.3);">
+            <div class="pillar-icon">&#128187;</div>
+            <div class="pillar-num" style="color:var(--amber);">Pilier 1</div>
+            <div class="pillar-title">Hardware</div>
+            <div class="pillar-desc">Supervision du parc, mises a jour, securite antivirus, gestion des postes. Le niveau "mort" — le materiel.</div>
+          </div>
+          <div class="pillar-node" style="border-color:rgba(59,130,246,.3);">
+            <div class="pillar-icon">&#128101;</div>
+            <div class="pillar-num" style="color:var(--blue);">Pilier 2</div>
+            <div class="pillar-title">Users</div>
+            <div class="pillar-desc">Protection des communications (anti-phishing), support utilisateurs, accompagnement. Le niveau "vivant".</div>
+          </div>
+          <div class="pillar-node" style="border-color:rgba(16,185,129,.3);">
+            <div class="pillar-icon">&#128274;</div>
+            <div class="pillar-num" style="color:var(--green);">Pilier 3</div>
+            <div class="pillar-title">Data</div>
+            <div class="pillar-desc">Backup, resilience, business continuity. Le plus important — "le sang" qui circule dans l'infra.</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>Metaphore d'Eric Darien :</strong> Hardware = le niveau mort (le materiel), Users = le niveau vivant
+          (les personnes), Data = le sang (ce qui circule dans l'infrastructure). La Data est supportee par les deux autres piliers.
+          Un pilier seul ne permet pas de perenniser l'entreprise.
+        </div>
+      </div>
+
+      <div id="s8-niveaux">
+        <div class="sub-header">Niveaux de service progressifs</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Niveaux de service par pilier pour upsell progressif</div>
+            <span class="badge badge-decision">D-10</span>
+          </div>
+          <div class="decision-body">
+            Chaque pilier propose des <strong>niveaux de service progressifs</strong> (niveau 1, 2, 3) :
+            <ul>
+              <li><strong>Naming :</strong> pas "standard/premium" mais plutot "serenite" — le client achete sa tranquillite</li>
+              <li><strong>Upsell naturel :</strong> commencer avec le basique dans chaque pilier et monter progressivement</li>
+              <li><strong>Tarification :</strong> par poste (ex : 50 EUR/poste pour la supervision)</li>
+              <li><strong>Visualisation :</strong> envisagee sur le site web — interface interactive ou le client voit ce qu'il obtient a chaque niveau</li>
+            </ul>
+            Les briques technologiques soutiennent chaque niveau mais ne sont pas l'argument commercial.
+            A chaque niveau superieur, la valeur ajoutee augmente significativement (pas lineairement avec le cout technique).
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Site web decale pour aligner la proposition de valeur</div>
+            <span class="badge badge-decision">D-11</span>
+          </div>
+          <div class="decision-body">
+            La mise a jour du site web est <strong>decalee de quelques semaines</strong> pour :
+            <ul>
+              <li>Finaliser la forfaitisation des services sur les 3 piliers</li>
+              <li>Avoir les visuels interactifs (niveaux de service, temoignages, references)</li>
+              <li>Aligner avec Jade sur l'identite visuelle</li>
+            </ul>
+            L'objectif est que le site reflète la nouvelle proposition de valeur orientee "pourquoi" et non "quoi".
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 9 : PLAN D'ACTION & LIVRABLES -->
+    <div id="s9" class="section">
+      <div class="section-header amber">
+        <div>
+          <div class="section-num">SECTION 09</div>
+          <h2>Plan d'action &amp; livrables</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Documents a partager par Eric Darien</div>
+          <span class="badge badge-action-abax">ABAX Info</span>
+        </div>
+        <div class="decision-body">
+          <ul>
+            <li><strong>Premier jet forfaitisation :</strong> liste des services avec premier essai de forfaitisation</li>
+            <li><strong>Certifications et partenariats :</strong> documents a mettre en valeur sur le site et les communications</li>
+            <li><strong>Contrat avocat :</strong> contrat type en cours de formalisation — les contrats actuels sont des factures, pas de vrais contrats</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>Contrats actuels = factures :</strong> Une avocate a ete mandatee pour articuler des conditions de vente
+        claires et un perimetre d'action precis. Le contrat type decoulera de l'offre de services clarifiee.
+        C'est un prerequis pour l'arrivee de l'assistante commerciale en septembre.
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Presentation a l'equipe ABAX prevue en mai</div>
+          <span class="badge badge-open">A planifier</span>
+        </div>
+        <div class="decision-body">
+          Eric souhaite qu'AXION fasse une <strong>presentation a l'equipe ABAX Info en mai</strong>.
+          D'ici la, l'offre de services, les personas et la presence digitale doivent etre suffisamment avances
+          pour presenter un plan coherent et actionnable.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 10 : COMMUNICATION & TRACKING -->
+    <div id="s10" class="section">
+      <div class="section-header cyan">
+        <div>
+          <div class="section-num">SECTION 10</div>
+          <h2>Communication &amp; tracking</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Article PME Magazine = ligne de credit communication annuelle</div>
+          <span class="badge badge-insight">Budget</span>
+        </div>
+        <div class="decision-body">
+          Eric Darien revele que l'article PME Magazine est une <strong>publicite payante</strong> (ligne de credit communication annuelle).
+          Comme les classements Forbes ou les emissions du Figaro, ces publications sont des placements publicitaires.
+          <ul>
+            <li><strong>Le Figaro :</strong> Eric a ete contacte pour une emission — reporte a 2027 (timing pas adapte, ABAX en cours de restructuration)</li>
+            <li><strong>Focus.swiss :</strong> version numerique de l'article, support supplementaire</li>
+            <li><strong>RTS :</strong> piste a explorer pour la Suisse</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Tracking des canaux d'acquisition — systeme en cours</div>
+          <span class="badge badge-decision">D-09</span>
+        </div>
+        <div class="decision-body">
+          Il est essentiel de mesurer l'origine des leads pour optimiser les investissements :
+          <ul>
+            <li><strong>Canaux a tracker :</strong> LinkedIn, Google My Business, Meta, email, bouche-a-oreille</li>
+            <li><strong>Metriques :</strong> cout par clic, cout par client, ROI par canal</li>
+            <li><strong>Objectif :</strong> identifier les canaux les plus rentables et corriger ceux qui sous-performent</li>
+          </ul>
+          AXION est en train de mettre en place ce systeme de tracking, d'abord en interne puis deploye pour ABAX Info.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 11 : DÉCISIONS -->
+    <div id="decisions" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 11</div>
+          <h2>Decisions actees</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Decision</th>
+              <th>Section</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>D-01</td><td>AO Fondation Trajet — approche modulaire : diagnostic forfaitaire + use cases a la carte</td><td>Appel d'offres</td></tr>
+            <tr><td>D-02</td><td>Proposer une structure de programme (gouvernance) en chapeau des 9 projets</td><td>Appel d'offres</td></tr>
+            <tr><td>D-03</td><td>Solliciter un rendez-vous de clarification avec la Fondation Trajet avant reponse</td><td>Appel d'offres</td></tr>
+            <tr><td>D-04</td><td>Repartition AO : Computer Shop (materiel), ABAX Info (IA, automatisation, resilience, MDM, sensibilisation)</td><td>Appel d'offres</td></tr>
+            <tr><td>D-05</td><td>Priorite zero : LinkedIn (compte ABAX Info) + Google My Business — actions immediates</td><td>Visibilite</td></tr>
+            <tr><td>D-06</td><td>Premier post LinkedIn : capitaliser sur l'article PME Magazine (30 mars)</td><td>Visibilite</td></tr>
+            <tr><td>D-07</td><td>Publier sur ABAX Info, Eric relaie sur son compte personnel</td><td>Visibilite</td></tr>
+            <tr><td>D-08</td><td>Forfaitisation des services autour de 3 piliers : Hardware, Users, Data</td><td>Forfaitisation</td></tr>
+            <tr><td>D-09</td><td>Vente orientee valeur (pourquoi) et non outils techniques (quoi/comment)</td><td>Forfaitisation</td></tr>
+            <tr><td>D-10</td><td>Niveaux de service progressifs par pilier (niveau 1, 2, 3) pour upsell</td><td>Forfaitisation</td></tr>
+            <tr><td>D-11</td><td>Site web decale de quelques semaines — aligner la proposition de valeur d'abord</td><td>Visibilite</td></tr>
+            <tr><td>D-12</td><td>Cibler les mairies ayant change de maire (Ferney-Voltaire, etc.) pour prospection IT</td><td>Opportunites</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 12 : ACTIONS -->
+    <div id="actions" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 12</div>
+          <h2>Plan d'actions</h2>
+        </div>
+      </div>
+
+      <div class="sub-header">Actions AXION</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-01</span></div>
+        <div class="action-body">
+          <div class="action-title">Planifier rdv avec responsable Fondation Trajet (via Michel/Computer Shop)</div>
+          <div class="action-owner">Sebastien Fournier &middot; Semaine du 14 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-02</span></div>
+        <div class="action-body">
+          <div class="action-title">Preparer liste de questions/sujets pour le rdv Fondation Trajet</div>
+          <div class="action-owner">Equipe AXION &middot; Avant mercredi 16 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-03</span></div>
+        <div class="action-body">
+          <div class="action-title">Session de travail interne mercredi 16/04 13h-16h sur l'AO</div>
+          <div class="action-owner">Equipe AXION + Eric Darien &middot; 16 avril 2026</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-04</span></div>
+        <div class="action-body">
+          <div class="action-title">Verifier format soumission AO (plateforme ou email)</div>
+          <div class="action-owner">Eric Darien (via Michel) &middot; Debut de semaine</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-05</span></div>
+        <div class="action-body">
+          <div class="action-title">Preparer premier post LinkedIn (article PME Magazine)</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 14 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-06</span></div>
+        <div class="action-body">
+          <div class="action-title">Contacter Jade pour recuperer la DA (charte graphique ABAX Info)</div>
+          <div class="action-owner">Equipe AXION &middot; Des que mise en relation</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-07</span></div>
+        <div class="action-body">
+          <div class="action-title">Preparer emails pour demander avis clients (Google My Business)</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 14 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-08</span></div>
+        <div class="action-body">
+          <div class="action-title">Mettre en place tracking des canaux d'acquisition</div>
+          <div class="action-owner">Equipe AXION &middot; En cours</div>
+        </div>
+      </div>
+
+      <div class="sub-header" style="margin-top:32px;">Actions ABAX Info (Eric Darien)</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-09</span></div>
+        <div class="action-body">
+          <div class="action-title">Relire et valider le contrat de services (weekend) — signature debut semaine</div>
+          <div class="action-owner">Eric Darien &middot; Weekend du 12-13 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-10</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager acces LinkedIn ABAX Info a AXION</div>
+          <div class="action-owner">Eric Darien &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-11</span></div>
+        <div class="action-body">
+          <div class="action-title">Envoyer premier jet forfaitisation des services</div>
+          <div class="action-owner">Eric Darien &middot; Rapidement</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-12</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager documents de certifications et partenariats</div>
+          <div class="action-owner">Eric Darien &middot; Rapidement</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-13</span></div>
+        <div class="action-body">
+          <div class="action-title">Mettre l'equipe AXION en relation avec Jade (DA/charte graphique)</div>
+          <div class="action-owner">Eric Darien &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-14</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager l'interview et la version numerique de l'article PME Magazine</div>
+          <div class="action-owner">Eric Darien &middot; Immediat</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 13 : PROCHAINES ÉTAPES -->
+    <div id="suivant" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 13</div>
+          <h2>Prochaines etapes</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6;">
+        Les actions se concentrent sur trois fronts simultanement : l'appel d'offres Fondation Trajet (urgence timeline),
+        la visibilite immediate (LinkedIn + Google My Business), et la formalisation de l'offre de services (3 piliers).
+      </p>
+
+      <div class="next-step">
+        <div class="ns-num">1</div>
+        <div class="ns-body">
+          <div class="ns-title">Session de travail AO Fondation Trajet — mercredi 16 avril 13h-16h</div>
+          <div class="ns-desc">
+            Preparation de la reponse a l'appel d'offres. Structuration de la proposition modulaire
+            (diagnostic forfaitaire + use cases a la carte + structure de gouvernance).
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">2</div>
+        <div class="ns-body">
+          <div class="ns-title">Rendez-vous de clarification avec Fondation Trajet — semaine du 14 avril</div>
+          <div class="ns-desc">
+            Sollicite via Michel (Computer Shop). Objectif : lever les incertitudes sur le perimetre,
+            la timeline et les hypotheses d'infrastructure avant de formaliser la reponse.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">3</div>
+        <div class="ns-body">
+          <div class="ns-title">Publication premier post LinkedIn ABAX Info</div>
+          <div class="ns-desc">
+            Capitaliser sur l'article PME Magazine. Preparer le contenu, coordonner avec Jade
+            pour la coherence visuelle, publier sur ABAX Info + repost par Eric.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">4</div>
+        <div class="ns-body">
+          <div class="ns-title">Evaluation du pilier formation (AO) — sous-traiter ou faire en interne</div>
+          <div class="ns-desc">
+            Examiner si la formation Office 365 fait sens dans le cadre de la reponse AO
+            ou s'il vaut mieux la sous-traiter via un organisme de formation specialise.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">5</div>
+        <div class="ns-body">
+          <div class="ns-title">Forfaitisation des services — formalisation sur les 3 piliers</div>
+          <div class="ns-desc">
+            Eric envoie son premier jet. AXION aide a iterer sur l'architecture
+            Hardware / Users / Data avec les niveaux de service et la visualisation interactive.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">6</div>
+        <div class="ns-body">
+          <div class="ns-title">Signature du contrat AXION &times; ABAX Info</div>
+          <div class="ns-desc">
+            Eric relit le contrat amende ce weekend. Signature attendue debut de semaine
+            (semaine du 14 avril). Le contrat est disponible sur le portail client.
+          </div>
+          <div class="ns-livrable">Livrable : contrat signe</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top:48px;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:var(--text3);font-size:11px;">
+      Confidentiel — AXION Smart Swiss Operations &middot; Compte rendu atelier ABAX Info du 10 avril 2026<br>
+      Source : enregistrement Google Meet, transcription Gemini, notes AXION
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
