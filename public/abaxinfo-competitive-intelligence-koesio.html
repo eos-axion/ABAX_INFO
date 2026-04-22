@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyse Concurrentielle KOESIO — AXION pour ABAX Info</title>
+<style>
+:root {
+    --navy: #0A1628;
+    --navy-light: #1A2A42;
+    --slate: #2D3F5B;
+    --cyan: #00D4FF;
+    --cyan-10: rgba(0,212,255,0.1);
+    --cyan-20: rgba(0,212,255,0.2);
+    --green: #00E68A;
+    --green-10: rgba(0,230,138,0.1);
+    --green-20: rgba(0,230,138,0.2);
+    --amber: #FFB800;
+    --amber-10: rgba(255,184,0,0.1);
+    --amber-20: rgba(255,184,0,0.2);
+    --red: #FF4757;
+    --red-10: rgba(255,71,87,0.1);
+    --red-20: rgba(255,71,87,0.2);
+    --violet: #9B59FF;
+    --violet-10: rgba(155,89,255,0.1);
+    --violet-20: rgba(155,89,255,0.2);
+    --white: #FFFFFF;
+    --w90: rgba(255,255,255,0.9);
+    --w80: rgba(255,255,255,0.8);
+    --w60: rgba(255,255,255,0.6);
+    --w50: rgba(255,255,255,0.5);
+    --w30: rgba(255,255,255,0.3);
+    --w20: rgba(255,255,255,0.2);
+    --w10: rgba(255,255,255,0.1);
+    --w06: rgba(255,255,255,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--navy); color: var(--white); line-height:1.65;
+}
+.container { max-width:940px; margin:0 auto; padding:48px 32px; }
+
+/* ── NAV ── */
+.toc {
+    background: var(--navy-light); border-radius:14px; border:1px solid var(--w06);
+    padding:28px 32px; margin-bottom:48px;
+}
+.toc h3 { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:var(--cyan); margin-bottom:14px; }
+.toc ol { margin-left:20px; }
+.toc li { margin-bottom:6px; font-size:14px; }
+.toc a { color:var(--w60); text-decoration:none; transition:color .2s; }
+.toc a:hover { color:var(--cyan); }
+
+/* ── COVER ── */
+.cover {
+    text-align:center; padding:60px 0 48px;
+    border-bottom:1px solid var(--w06); margin-bottom:48px;
+}
+.cover .logo { font-size:14px; font-weight:800; letter-spacing:6px; text-transform:uppercase; color:var(--cyan); margin-bottom:24px; }
+.cover h1 { font-size:36px; font-weight:800; line-height:1.2; margin-bottom:10px; }
+.cover h1 .accent { color:var(--cyan); }
+.cover .sub { font-size:18px; color:var(--w50); font-style:italic; margin-bottom:8px; }
+.cover .meta { font-size:13px; color:var(--w30); }
+
+/* ── HEADINGS ── */
+h2 {
+    font-size:26px; font-weight:800; margin:56px 0 20px;
+    padding-bottom:10px; border-bottom:2px solid var(--cyan-20);
+    scroll-margin-top:24px;
+}
+h2 .num { color:var(--cyan); margin-right:6px; }
+h3 { font-size:18px; font-weight:700; margin:28px 0 12px; color:var(--w90); }
+h4 { font-size:15px; font-weight:700; margin:16px 0 8px; color:var(--cyan); }
+
+/* ── TEXT ── */
+p { color:var(--w80); margin-bottom:14px; font-size:15px; }
+p strong, li strong { color:var(--white); }
+ul,ol { margin:0 0 18px 22px; color:var(--w80); font-size:15px; }
+li { margin-bottom:6px; }
+blockquote {
+    border-left:3px solid var(--cyan); padding:12px 20px; margin:20px 0;
+    background:var(--cyan-10); border-radius:0 10px 10px 0;
+    font-size:16px; font-weight:600; color:var(--white); font-style:italic;
+}
+
+/* ── CARDS ── */
+.card {
+    background:var(--navy-light); border-radius:14px;
+    border:1px solid var(--w06); padding:24px 28px; margin-bottom:18px;
+}
+.card.cyan  { border-top:3px solid var(--cyan); }
+.card.green { border-top:3px solid var(--green); }
+.card.amber { border-top:3px solid var(--amber); }
+.card.red   { border-top:3px solid var(--red); }
+.card.violet{ border-top:3px solid var(--violet); }
+
+/* ── TABLES ── */
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
+thead th {
+    background:var(--slate); color:var(--white);
+    padding:10px 14px; text-align:left; font-weight:700;
+    font-size:12px; text-transform:uppercase; letter-spacing:.8px;
+}
+thead th:first-child { border-radius:8px 0 0 0; }
+thead th:last-child  { border-radius:0 8px 0 0; }
+tbody td { padding:10px 14px; border-bottom:1px solid var(--w06); color:var(--w80); vertical-align:top; }
+tbody tr:hover { background:var(--w06); }
+tbody td strong { color:var(--white); }
+
+/* ── HIGHLIGHT BOXES ── */
+.highlight {
+    border-radius:12px; padding:18px 22px; margin:20px 0; font-size:14px; color:var(--w80);
+}
+.highlight strong { font-weight:700; }
+.highlight.cyan-box  { background:var(--cyan-10); border:1px solid var(--cyan-20); }
+.highlight.cyan-box strong { color:var(--cyan); }
+.highlight.green-box { background:var(--green-10); border:1px solid var(--green-20); }
+.highlight.green-box strong { color:var(--green); }
+.highlight.amber-box { background:var(--amber-10); border:1px solid rgba(255,184,0,.2); }
+.highlight.amber-box strong { color:var(--amber); }
+.highlight.red-box   { background:var(--red-10); border:1px solid var(--red-20); }
+.highlight.red-box strong { color:var(--red); }
+
+/* ── BATTLE CARDS ── */
+.battle-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+.battle {
+    background:var(--navy-light); border-radius:12px; border:1px solid var(--w06);
+    padding:20px; position:relative; overflow:hidden;
+}
+.battle::before {
+    content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+}
+.battle.b1::before { background:var(--cyan); }
+.battle.b2::before { background:var(--green); }
+.battle.b3::before { background:var(--amber); }
+.battle.b4::before { background:var(--violet); }
+.battle.b5::before { background:var(--red); }
+.battle.b6::before { background:var(--cyan); }
+.battle .b-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+.battle.b1 .b-num { color:var(--cyan); }
+.battle.b2 .b-num { color:var(--green); }
+.battle.b3 .b-num { color:var(--amber); }
+.battle.b4 .b-num { color:var(--violet); }
+.battle.b5 .b-num { color:var(--red); }
+.battle.b6 .b-num { color:var(--cyan); }
+.battle .b-title { font-size:15px; font-weight:700; margin-bottom:8px; }
+.battle .b-desc  { font-size:13px; color:var(--w60); line-height:1.5; }
+
+/* ── SWOT ── */
+.swot { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+.swot-cell {
+    background:var(--navy-light); border-radius:12px; border:1px solid var(--w06);
+    padding:20px;
+}
+.swot-cell .sw-label {
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px;
+    margin-bottom:10px;
+}
+
+/* ── FOOTER ── */
+.footer {
+    margin-top:56px; padding-top:20px; border-top:1px solid var(--w06);
+    text-align:center; color:var(--w30); font-size:12px;
+}
+
+@media (max-width:700px) {
+    .battle-grid, .swot { grid-template-columns:1fr; }
+    .container { padding:24px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ════════ COVER ════════ -->
+<div class="cover">
+    <div class="logo">AXION</div>
+    <h1>Analyse Concurrentielle<br><span class="accent">KOESIO</span></h1>
+    <div class="sub">Intelligence Marche &mdash; Services IT PME en Suisse romande</div>
+    <div class="meta">Prepare pour ABAX Info | Avril 2026 | Confidentiel</div>
+</div>
+
+<!-- ════════ TOC ════════ -->
+<div class="toc">
+    <h3>Sommaire</h3>
+    <ol>
+        <li><a href="#s1">Profil entreprise &mdash; Groupe Koesio</a></li>
+        <li><a href="#s2">Implantation en Suisse &mdash; KCT Switzerland</a></li>
+        <li><a href="#s3">Catalogue de services</a></li>
+        <li><a href="#s4">Modele d'affaires et pricing</a></li>
+        <li><a href="#s5">Presence digitale</a></li>
+        <li><a href="#s6">Reputation et avis clients</a></li>
+        <li><a href="#s7">Partenaires et certifications</a></li>
+        <li><a href="#s8">Comparaison Koesio vs XEFI vs ABAX Info</a></li>
+        <li><a href="#s9">Forces et faiblesses de Koesio</a></li>
+        <li><a href="#s10">Opportunites strategiques pour ABAX Info</a></li>
+    </ol>
+</div>
+
+<!-- ════════ 1. PROFIL ════════ -->
+<h2 id="s1"><span class="num">1.</span> Profil entreprise &mdash; Groupe Koesio</h2>
+
+<div class="card cyan">
+    <h4>Chiffres cles &mdash; Groupe</h4>
+    <table>
+        <thead><tr><th>Indicateur</th><th>Valeur</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Fondation</strong></td><td>1991 a Valence (France) &mdash; sous le nom <em>C'PRO</em></td></tr>
+            <tr><td><strong>Fondateur et PDG</strong></td><td>Pieric Brenier</td></tr>
+            <tr><td><strong>Rebranding</strong></td><td>Septembre 2021 &mdash; C'PRO devient <strong>Koesio</strong></td></tr>
+            <tr><td><strong>Positionnement declare</strong></td><td>&laquo; N&deg;1 des services numeriques des PME et collectivites &raquo;</td></tr>
+            <tr><td><strong>Effectif (2024)</strong></td><td>~2'700 collaborateurs</td></tr>
+            <tr><td><strong>Reseau d'agences</strong></td><td>180 agences (France majoritairement)</td></tr>
+            <tr><td><strong>Clients</strong></td><td>80'000+ entreprises</td></tr>
+            <tr><td><strong>CA 2022/2023</strong></td><td><strong>1,055 milliard EUR</strong> &mdash; +40% (dont 22% organique)</td></tr>
+            <tr><td><strong>Acquisitions cumulees</strong></td><td>250+ depuis 1991 (84 sur les 4 dernieres annees)</td></tr>
+            <tr><td><strong>Couverture geographique</strong></td><td>France, Belgique, Luxembourg, Monaco, Suisse</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Chronologie</h3>
+<ul>
+    <li><strong>1991</strong> &mdash; Fondation de C'PRO a Valence (initialement focalise impression bureautique)</li>
+    <li><strong>1998</strong> &mdash; Creation d'AXONE Group (futur KCT) comme SSII specialisee infrastructure</li>
+    <li><strong>2010-2020</strong> &mdash; Phase d'acquisitions massives (130 societes consolidees)</li>
+    <li><strong>2017</strong> &mdash; Creation de <strong>Koesio Corporate Technologies Switzerland Sarl</strong> a Nyon</li>
+    <li><strong>2021</strong> &mdash; Rebranding C'PRO &rarr; Koesio (415 M EUR de CA)</li>
+    <li><strong>2023</strong> &mdash; Franchissement du milliard EUR de CA</li>
+    <li><strong>2024-2026</strong> &mdash; Plan strategique 3 ans : consolidation, montee en gamme cyber/cloud</li>
+</ul>
+
+<h3>Modele d'organisation &mdash; Croissance par acquisition</h3>
+<p>Contrairement a XEFI (modele franchise pur), Koesio est un <strong>groupe integre</strong> qui croit par <strong>acquisition de PME locales</strong> du numerique (impression, infogerance, telecom, ERP). Les societes acquises gardent souvent leur ancrage local et leur equipe, puis sont federees sous une marque commune.</p>
+<p>Cette strategie cree un <strong>maillage tres dense en France</strong> mais reste tres minoritaire en Suisse (<strong>1 seule entite operationnelle</strong> a Nyon en avril 2026).</p>
+
+<div class="highlight cyan-box">
+    <strong>A retenir :</strong> Koesio est un <strong>geant europeen</strong> du numerique pour PME, mais sa presence suisse est <strong>embryonnaire</strong> &mdash; bien plus petite que celle de XEFI (5 agences). En Suisse romande, Koesio se comporte plus comme un challenger discret que comme un leader.
+</div>
+
+<!-- ════════ 2. IMPLANTATIONS ════════ -->
+<h2 id="s2"><span class="num">2.</span> Implantation en Suisse &mdash; KCT Switzerland</h2>
+
+<p>La presence suisse de Koesio se reduit a <strong>une unique entite</strong>, operee par la filiale <strong>Koesio Corporate Technologies (KCT)</strong>, branche du groupe dediee aux infrastructures, cloud et services manages.</p>
+
+<table>
+    <thead><tr><th>Element</th><th>Valeur</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Entite</strong></td><td>Koesio Corporate Technologies Switzerland Sarl</td></tr>
+        <tr><td><strong>Adresse</strong></td><td>Route de Champ-Colin 12, 1260 Nyon</td></tr>
+        <tr><td><strong>Telephone</strong></td><td>+41 22 519 66 96</td></tr>
+        <tr><td><strong>Horaires</strong></td><td>Lundi &ndash; Vendredi, 8h00 &ndash; 18h00</td></tr>
+        <tr><td><strong>UID Suisse</strong></td><td>CHE-476.734.243 (RC Vaud)</td></tr>
+        <tr><td><strong>Date de creation</strong></td><td>2017 (8 ans d'anciennete)</td></tr>
+        <tr><td><strong>Forme juridique</strong></td><td>Sarl</td></tr>
+        <tr><td><strong>Direction Suisse</strong></td><td>3 personnes a la direction (RC)</td></tr>
+        <tr><td><strong>Branche d'activite</strong></td><td>Commerce de produits informatiques et de telecommunications</td></tr>
+        <tr><td><strong>Zone de chalandise declaree</strong></td><td>Nyon, Signy-Avenex, Prangins, region La Cote &mdash; bassin lemanique</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight red-box">
+    <strong>Couverture territoriale tres limitee :</strong> KCT n'est pas implante a Geneve intra-muros (l'agence est commercialisee comme &laquo; agence Geneve &raquo; mais physiquement situee a <strong>Nyon, 25 km de Geneve</strong>). Aucune presence dans le canton de Vaud (Lausanne, Vevey), Fribourg, Neuchatel, Valais, Jura, Berne francophone, ni en Suisse alemanique. <strong>Le rayon d'action operationnel reel se limite au district de Nyon</strong>.
+</div>
+
+<div class="highlight amber-box">
+    <strong>Structure groupe vs realite locale :</strong> Le site corporate koesio.com met en avant 2'700 collaborateurs et 180 agences, mais la <strong>realite suisse</strong> est celle d'une PME locale d'une dizaine de personnes. La promesse de marque (puissance d'un groupe europeen) est donc largement <strong>marketing</strong> &mdash; le client suisse est servi par une equipe restreinte qui depend des ressources techniques basees en France.
+</div>
+
+<!-- ════════ 3. CATALOGUE ════════ -->
+<h2 id="s3"><span class="num">3.</span> Catalogue de services</h2>
+
+<p>L'offre Koesio est structuree en <strong>6 grands piliers</strong> au niveau groupe. En Suisse, KCT se concentre principalement sur <strong>3 piliers</strong> (informatique, cloud, securite).</p>
+
+<div class="card cyan">
+    <h4>3.1 Informatique &amp; Services manages (offre phare KCT)</h4>
+    <ul>
+        <li>Infogerance &laquo; tout-inclus &raquo; (forfait mensuel par poste)</li>
+        <li>Supervision proactive 24/7 (agents installes sur chaque poste)</li>
+        <li>Helpdesk &laquo; support illimite &raquo; (telephone + remote)</li>
+        <li>Inventaire de parc automatise</li>
+        <li>Patch management et MAJ automatisees</li>
+        <li>Sauvegardes managees + restauration</li>
+        <li>Approche &laquo; user-centric &raquo; (centree poste utilisateur, pas serveur)</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--amber)">Force :</strong> tres mature operationnellement (heritage AXONE/AVITI &mdash; SSII depuis 1998).</p>
+</div>
+
+<div class="card">
+    <h4>3.2 Cloud &amp; Infrastructure</h4>
+    <ul>
+        <li>IAAS &mdash; Infrastructure as a Service</li>
+        <li>BAAS &mdash; Backup as a Service</li>
+        <li>PCA / PRA aaS &mdash; Plan de continuite et de reprise</li>
+        <li>DAAS &mdash; Desktop as a Service (postes virtuels)</li>
+        <li>SECaaS &mdash; Security as a Service</li>
+        <li>Migration et exploitation Microsoft Azure</li>
+        <li>Hebergement infrastructures HPE/serveurs prives</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--red)">Limitation Suisse :</strong> pas de datacenter detenu en propre en Suisse (a la difference de XEFI qui possede son DC chez Equinix Geneve). L'hebergement est generalement assure depuis la France &mdash; <strong>question de souverainete des donnees pour les clients suisses</strong>.</p>
+</div>
+
+<div class="card">
+    <h4>3.3 Cybersecurite</h4>
+    <ul>
+        <li>Securite reseau (Fortinet Security Fabric &mdash; partenaire principal)</li>
+        <li>Protection des donnees (Veeam)</li>
+        <li>Securite cloud (integration native Fortinet/Azure)</li>
+        <li>Securite des infrastructures</li>
+        <li>Surveillance (canal-securite.koesio.biz)</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--red)">Absent :</strong> Pas de SOC dedie suisse, pas de pentest ni red team affichee, pas de certification ISO 27001 specifique a l'entite suisse.</p>
+</div>
+
+<div class="card">
+    <h4>3.4 Communication unifiee &amp; Telecom</h4>
+    <ul>
+        <li>Telephonie fixe &amp; mobile</li>
+        <li>VoIP, 3CX, Mitel, Avaya</li>
+        <li>Visioconference (HP Poly, Jabra, Plantronics)</li>
+        <li>Connectivite (acces internet, MPLS, SD-WAN)</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--amber)">Note :</strong> Offre tres developpee en France, mais peu mise en avant cote Suisse &mdash; le marche telco suisse est domine par Swisscom/Salt/Sunrise.</p>
+</div>
+
+<div class="card">
+    <h4>3.5 Impression &amp; Gestion documentaire (heritage C'PRO)</h4>
+    <ul>
+        <li>Parc d'impression manage (Canon, Konica Minolta, HP, Sharp, Kyocera, Ricoh, Toshiba)</li>
+        <li>Dematerialisation documentaire</li>
+        <li>Archivage electronique a valeur probante</li>
+        <li>Signature electronique</li>
+        <li>Plateforme SUMMEO (facture electronique reforme 2026 France)</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--amber)">Pertinence Suisse :</strong> Limitee &mdash; la reforme facture electronique 2026 est francaise. SUMMEO n'est pas adapte au contexte suisse (eBill, QR-facture).</p>
+</div>
+
+<div class="card">
+    <h4>3.6 Gestion &amp; Data (ERP, CRM, BI)</h4>
+    <ul>
+        <li>ERP : Sage</li>
+        <li>CRM : Salesforce, partenaire integrateur</li>
+        <li>Solutions RH/Paie (Lucca, Silae, PennyLane)</li>
+        <li>Business Intelligence</li>
+    </ul>
+    <p style="margin-bottom:0"><strong style="color:var(--red)">Limitation Suisse :</strong> Sage et les solutions paie/RH ne sont pas adaptees au contexte suisse (Crealogix, Abacus dominent localement). Offre essentiellement francaise.</p>
+</div>
+
+<!-- ════════ 4. PRICING ════════ -->
+<h2 id="s4"><span class="num">4.</span> Modele d'affaires et pricing</h2>
+
+<p>Comme XEFI, Koesio <strong>ne publie aucun tarif</strong> sur ses sites publics. Le modele commercial repose sur une demande de devis personnalisee.</p>
+
+<div class="card">
+    <h4>Proposition de valeur commerciale declaree</h4>
+    <ul>
+        <li><strong>&laquo; Tout-inclus &raquo;</strong> &mdash; modele forfaitaire mensuel par utilisateur, sans surfacturation horaire</li>
+        <li><strong>&laquo; Support illimite dans un budget defini &raquo;</strong> &mdash; previsibilite budgetaire</li>
+        <li><strong>&laquo; Approche utilisateur &raquo;</strong> (vs centree serveur) &mdash; differenciateur revendique</li>
+        <li><strong>&laquo; Industrialisation &raquo;</strong> &mdash; processus automatises, environnements standardises</li>
+        <li><strong>&laquo; Puissance d'un groupe europeen &raquo;</strong> &mdash; argument groupe (a contraster avec realite locale)</li>
+    </ul>
+</div>
+
+<div class="highlight cyan-box">
+    <strong>Difference fondamentale avec XEFI :</strong> Koesio mise sur l'<strong>industrialisation et l'automatisation</strong> (heritage MSP americain &mdash; agents installes, scripts de deploiement, monitoring centralise). XEFI mise sur la <strong>proximite physique</strong> (rappel dans l'heure, intervention sur site sous 4-36h). Deux philosophies opposees.
+</div>
+
+<!-- ════════ 5. DIGITAL ════════ -->
+<h2 id="s5"><span class="num">5.</span> Presence digitale</h2>
+
+<h3>Site web &mdash; presence multiple</h3>
+
+<table>
+    <thead><tr><th>Site</th><th>Role</th><th>Pertinence Suisse</th></tr></thead>
+    <tbody>
+        <tr><td><strong>koesio.com</strong></td><td>Site corporate groupe</td><td style="color:var(--amber)">Faible &mdash; orientation France</td></tr>
+        <tr><td><strong>kct.fr</strong></td><td>Site KCT (entite IT du groupe)</td><td style="color:var(--amber)">Faible &mdash; en .fr</td></tr>
+        <tr><td><strong>services-manages-informatique.koesio.com</strong></td><td>Site dedie offre managed services</td><td style="color:var(--green)">Moyenne &mdash; contenu generique</td></tr>
+        <tr><td><strong>canal-securite.koesio.biz</strong></td><td>Site cybersecurite</td><td style="color:var(--amber)">Faible &mdash; orientation France</td></tr>
+        <tr><td><strong>team.koesio.com</strong></td><td>Site recrutement</td><td>N/A</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight red-box">
+    <strong>Lacune SEO majeure pour la Suisse :</strong>
+    <ul style="margin-top:8px;margin-bottom:0">
+        <li><strong>Aucun site .ch dedie</strong> a la presence suisse &mdash; tout passe par koesio.com (FR)</li>
+        <li><strong>Une seule page agence</strong> mentionne la Suisse (<code>/agence/kct-geneve/</code>)</li>
+        <li>Pas de strategie de contenu local (mots-cles &laquo; infogerance Geneve PME &raquo;, &laquo; MSP Vaud &raquo;)</li>
+        <li>Aucune adaptation au contexte juridique suisse (nDSG/LPD vs RGPD, eBill, AFC)</li>
+        <li>Hreflang fr-CH absent &mdash; les moteurs ne savent pas que des pages ciblent la Suisse</li>
+        <li>Domaine principal koesio.com positionne avant tout sur les requetes francaises</li>
+    </ul>
+</div>
+
+<h3>Google My Business &mdash; KCT Geneve / Nyon</h3>
+
+<table>
+    <thead><tr><th>Fiche</th><th>Note</th><th>Avis</th><th>Statut</th></tr></thead>
+    <tbody>
+        <tr><td>KCT Geneve (Nyon)</td><td>N/A</td><td><strong>Tres faible voire 0</strong></td><td style="color:var(--red)">Quasi inexistant en local search</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight amber-box">
+    <strong>Observation :</strong> A la difference de XEFI qui multiplie les fiches GMB pour chaque agence (5 fiches), Koesio en Suisse repose sur <strong>une fiche locale unique et peu animee</strong>. Pas d'alimentation en posts, pas d'incitation a deposer des avis. <strong>Total des avis Google KCT Suisse : tres marginal.</strong>
+</div>
+
+<h3>Reseaux sociaux</h3>
+<ul>
+    <li><strong>LinkedIn :</strong> presence groupe forte (Koesio + Koesio Corporate IT) &mdash; mais aucune page dediee a l'entite suisse</li>
+    <li><strong>X (Twitter) :</strong> @kct_fr &mdash; compte France, peu actif sur la Suisse</li>
+    <li><strong>YouTube/Instagram :</strong> activite groupe FR, rien de localise CH</li>
+</ul>
+
+<!-- ════════ 6. REPUTATION ════════ -->
+<h2 id="s6"><span class="num">6.</span> Reputation et avis clients</h2>
+
+<div class="card red">
+    <h4>Constat : reputation France contrastee, vide en Suisse</h4>
+    <ul>
+        <li><strong>Trustpilot :</strong> aucune fiche dediee Koesio Suisse</li>
+        <li><strong>Google :</strong> tres peu d'avis sur la fiche KCT Nyon (entite trop discrete)</li>
+        <li><strong>France :</strong> avis Indeed/Glassdoor/GoWork mixtes &mdash; un fond commun de plaintes recurrentes :
+            <ul>
+                <li>Augmentations tarifaires en cours de contrat</li>
+                <li>Reconductions tacites avec frais de resiliation eleves</li>
+                <li>Turn-over eleve cote technicien (continuite d'interlocuteur fragile)</li>
+                <li>Heterogeneite forte selon l'agence (heritage des nombreuses acquisitions)</li>
+            </ul>
+        </li>
+        <li><strong>Cloudtango :</strong> Koesio est reference dans le Global 100 2026 (signal positif sur le marche corporate)</li>
+        <li><strong>Page &laquo; Nos avis clients &raquo;</strong> sur koesio.com : majoritairement temoignages francais, peu de cas clients chiffres</li>
+    </ul>
+</div>
+
+<div class="highlight amber-box">
+    <strong>Insight strategique :</strong> Le risque reputationnel principal de Koesio &mdash; les <strong>plaintes recurrentes sur les augmentations tarifaires et les reconductions tacites</strong> &mdash; est un argument exploitable par ABAX Info. Un contrat <strong>transparent, sans clause de reconduction tacite cachee, sans hausse unilaterale</strong> est un contre-positionnement direct.
+</div>
+
+<!-- ════════ 7. PARTENAIRES ════════ -->
+<h2 id="s7"><span class="num">7.</span> Partenaires et certifications</h2>
+
+<table>
+    <thead><tr><th>Categorie</th><th>Partenaires</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Cloud / Productivite</strong></td><td>Microsoft (Azure, M365)</td></tr>
+        <tr><td><strong>Cybersecurite</strong></td><td>Fortinet (Security Fabric &mdash; partenaire phare), WatchGuard, Netwrix</td></tr>
+        <tr><td><strong>Infrastructure</strong></td><td>HPE, Lenovo, Intel, HP Inc.</td></tr>
+        <tr><td><strong>Backup &amp; PRA</strong></td><td>Veeam</td></tr>
+        <tr><td><strong>Telephonie / UC</strong></td><td>Avaya, Mitel, 3CX, Alcatel-Lucent, Jabra, Plantronics</td></tr>
+        <tr><td><strong>Impression</strong></td><td>Canon, Konica Minolta, Toshiba, HP, Sharp, Kyocera, Ricoh</td></tr>
+        <tr><td><strong>ERP / CRM / RH</strong></td><td>Sage, Salesforce, Lucca, Silae, PennyLane</td></tr>
+        <tr><td><strong>Surveillance physique</strong></td><td>Hikvision</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight green-box">
+    <strong>Force :</strong> Koesio est nettement plus <strong>multi-vendor et agnostique</strong> que XEFI (qui est ultra-concentre HP/HPE/Sophos). Spectre couvert plus large : du poste de travail au datacenter, du print a l'ERP. <strong>C'est sa principale superiorite catalogue face a XEFI.</strong>
+</div>
+
+<!-- ════════ 8. COMPARAISON ════════ -->
+<h2 id="s8"><span class="num">8.</span> Comparaison Koesio vs XEFI vs ABAX Info</h2>
+
+<table>
+    <thead><tr><th>Critere</th><th>Koesio (KCT)</th><th>XEFI</th><th>ABAX Info</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Modele</strong></td><td>Groupe integre, croissance par acquisition</td><td>Franchise pure</td><td>PME independante</td></tr>
+        <tr><td><strong>Anciennete groupe</strong></td><td>1991 (35 ans)</td><td>1997 (29 ans)</td><td>Etabli localement, anteriorite forte</td></tr>
+        <tr><td><strong>Agences en Suisse</strong></td><td><strong>1</strong> (Nyon)</td><td><strong>5</strong> (GE, VD, NE, VS)</td><td>1 (couverture etendue par proximite client)</td></tr>
+        <tr><td><strong>Anciennete CH</strong></td><td>2017 (8 ans)</td><td>2021 (5 ans)</td><td>+ longue, ancrage romand</td></tr>
+        <tr><td><strong>Datacenter Suisse</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--green)">Oui (Equinix GV2 Geneve)</td><td>N/A</td></tr>
+        <tr><td><strong>Couverture geo</strong></td><td>District de Nyon uniquement</td><td>Toute la Suisse romande</td><td>Suisse romande + France voisine</td></tr>
+        <tr><td><strong>Specialite forte</strong></td><td>MSP industrialise + impression</td><td>Maintenance + equipement HP</td><td>Relation client, sur-mesure PME</td></tr>
+        <tr><td><strong>Multi-vendor</strong></td><td style="color:var(--green)">Oui &mdash; tres large</td><td style="color:var(--red)">Non &mdash; concentre HP/HPE</td><td>Agnostique</td></tr>
+        <tr><td><strong>Modele de pricing</strong></td><td>Forfait tout-inclus / utilisateur</td><td>Contrat tout-inclus opaque</td><td>A definir, opportunite SLA transparent</td></tr>
+        <tr><td><strong>Avis clients CH</strong></td><td style="color:var(--red)">Quasi inexistants</td><td style="color:var(--red)">5 avis tous sites confondus</td><td style="color:var(--amber)">A collecter activement</td></tr>
+        <tr><td><strong>Site .ch</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--green)">Oui (xefi.ch)</td><td style="color:var(--amber)">A consolider</td></tr>
+        <tr><td><strong>Souverainete donnees CH</strong></td><td style="color:var(--red)">Faible (hebergement FR)</td><td style="color:var(--green)">Forte (DC Geneve)</td><td>A formaliser dans l'offre</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight cyan-box">
+    <strong>Lecture strategique :</strong> Koesio est le <strong>concurrent le moins menacant</strong> des trois grands en Suisse romande &mdash; presence operationnelle minimale, marketing local quasi nul, pas de DC suisse. <strong>XEFI reste l'adversaire prioritaire</strong>. Mais Koesio reste a surveiller : son modele MSP industrialise est mature et un changement de strategie (acquisition d'un MSP romand par exemple) pourrait changer la donne rapidement.
+</div>
+
+<!-- ════════ 9. FORCES / FAIBLESSES ════════ -->
+<h2 id="s9"><span class="num">9.</span> Forces et faiblesses de Koesio</h2>
+
+<h3>Forces</h3>
+<table>
+    <thead><tr><th style="width:30px">#</th><th>Force</th><th>Impact</th></tr></thead>
+    <tbody>
+        <tr><td>F1</td><td><strong>Geant europeen</strong> (1 Md EUR CA, 2'700 salaries)</td><td>Capacite d'investissement R&amp;D, formation, certifications</td></tr>
+        <tr><td>F2</td><td><strong>Catalogue tres large multi-vendor</strong></td><td>Reponse a tous les besoins (IT, print, telecom, ERP, securite)</td></tr>
+        <tr><td>F3</td><td><strong>Heritage MSP mature</strong> (AVITI/AXONE depuis 1998)</td><td>Processus industrialises, automatisation eprouvee</td></tr>
+        <tr><td>F4</td><td><strong>Modele forfaitaire previsible</strong></td><td>Argument financier fort pour DAF / dirigeants PME</td></tr>
+        <tr><td>F5</td><td><strong>Partenariats Microsoft, Fortinet, HPE haut de gamme</strong></td><td>Credibilite technique sur cloud et cybersecurite</td></tr>
+        <tr><td>F6</td><td><strong>Strategie d'acquisition prouvee</strong></td><td>Pourrait racheter un MSP romand a tout moment</td></tr>
+        <tr><td>F7</td><td><strong>Approche &laquo; user-centric &raquo; differenciante</strong></td><td>Argument marketing fort vs concurrents serveur-centric</td></tr>
+    </tbody>
+</table>
+
+<h3>Faiblesses &mdash; Opportunites pour ABAX Info</h3>
+<table>
+    <thead><tr><th style="width:30px">#</th><th>Faiblesse</th><th>Opportunite pour ABAX Info</th></tr></thead>
+    <tbody>
+        <tr><td><strong>W1</strong></td><td>Une seule entite en CH, basee a Nyon &mdash; pas a Geneve intra-muros</td><td>ABAX Info couvre une zone bien plus large et reactive</td></tr>
+        <tr><td><strong>W2</strong></td><td>Aucun datacenter suisse &mdash; donnees hebergees en France</td><td>Argument souverainete nDSG/LPD a positionner fort</td></tr>
+        <tr><td><strong>W3</strong></td><td>Aucun site .ch dedie, pas de SEO local</td><td>Occupation directe des requetes &laquo; infogerance Geneve PME &raquo;</td></tr>
+        <tr><td><strong>W4</strong></td><td>Reputation FR : plaintes sur reconductions tacites et hausses tarifaires</td><td>Engagement de transparence tarifaire pluriannuelle</td></tr>
+        <tr><td><strong>W5</strong></td><td>Promesse marketing &laquo; groupe &raquo; vs realite locale (~10 personnes a Nyon)</td><td>Honnetete sur la taille reelle de l'equipe = confiance</td></tr>
+        <tr><td><strong>W6</strong></td><td>Offre ERP/RH/Paie inadaptee au contexte suisse (Sage, Silae, PennyLane)</td><td>Privilegier integrations Abacus, Crealogix, eBill, QR-facture</td></tr>
+        <tr><td><strong>W7</strong></td><td>Page temoignages dominee par cas clients francais</td><td>Capitaliser sur references PME romandes locales</td></tr>
+        <tr><td><strong>W8</strong></td><td>Pas de fiche Trustpilot Suisse, peu d'avis Google</td><td>Occupation du terrain avis en ligne</td></tr>
+        <tr><td><strong>W9</strong></td><td>Turn-over technicien &mdash; risque sur la continuite d'interlocuteur</td><td>Argument &laquo; meme equipe depuis X annees &raquo;</td></tr>
+        <tr><td><strong>W10</strong></td><td>Heritage impression / print management peu pertinent en Suisse</td><td>ABAX Info ne porte pas ce poids historique</td></tr>
+        <tr><td><strong>W11</strong></td><td>Pas de communication active sur LinkedIn/medias suisses</td><td>Strategie social selling locale &mdash; territoire libre</td></tr>
+        <tr><td><strong>W12</strong></td><td>Pas de SOC ni pentest dans l'offre suisse</td><td>Differenciation cyber &mdash; partenariat MSSP local</td></tr>
+    </tbody>
+</table>
+
+<!-- ════════ 10. OPPORTUNITES ════════ -->
+<h2 id="s10"><span class="num">10.</span> Opportunites strategiques pour ABAX Info</h2>
+
+<h3>Positionnement differenciant recommande</h3>
+
+<blockquote>&laquo; Une equipe IT romande qui repond au telephone &mdash; pas un ticket dans un groupe de 2'700 salaries dont 10 sont en Suisse. &raquo;</blockquote>
+
+<p>Koesio vend la <strong>puissance industrielle d'un groupe europeen</strong>. ABAX Info doit vendre la <strong>realite operationnelle d'une equipe locale qui maitrise toute la chaine de service, sans escalade transfrontaliere</strong>.</p>
+
+<h3>Les 6 batailles a gagner face a Koesio</h3>
+
+<div class="battle-grid">
+    <div class="battle b1">
+        <div class="b-num">Bataille 1</div>
+        <div class="b-title">La souverainete des donnees</div>
+        <div class="b-desc">Koesio n'a pas de DC en Suisse. ABAX Info doit afficher clairement ou les donnees clients sont hebergees (DC suisse partenaire), avec engagements nDSG/LPD ecrits. C'est le sujet sensible n&deg;1 pour les fiduciaires, cabinets medicaux, etudes notariales.</div>
+    </div>
+    <div class="battle b2">
+        <div class="b-num">Bataille 2</div>
+        <div class="b-title">La transparence tarifaire</div>
+        <div class="b-desc">Koesio est critique sur les reconductions tacites et les hausses unilaterales. ABAX Info doit s'engager sur un cadre clair : pas de reconduction tacite cachee, indexation contractuelle plafonnee, preavis de revision tarifaire de 6 mois.</div>
+    </div>
+    <div class="battle b3">
+        <div class="b-num">Bataille 3</div>
+        <div class="b-title">La realite vs le marketing</div>
+        <div class="b-desc">Koesio se vend &laquo; 2'700 salaries, 180 agences &raquo; mais sert le client suisse avec une dizaine de personnes a Nyon. ABAX Info doit nommer ses interlocuteurs reels, presenter son organigramme, eviter le storytelling groupe creux.</div>
+    </div>
+    <div class="battle b4">
+        <div class="b-num">Bataille 4</div>
+        <div class="b-title">L'ancrage suisse authentique</div>
+        <div class="b-desc">Koesio recycle un contenu et des outils pensus pour la France (Sage, Silae, SUMMEO, reforme facture FR). ABAX Info doit montrer sa maitrise des specificites suisses : Abacus, Crealogix, eBill, QR-facture, swissdec, AFC.</div>
+    </div>
+    <div class="battle b5">
+        <div class="b-num">Bataille 5</div>
+        <div class="b-title">La continuite d'interlocuteur</div>
+        <div class="b-desc">Le turn-over Koesio (acquisitions multiples, restructurations) fragilise la continuite. ABAX Info doit valoriser le fait que les interlocuteurs sont stables, connaissent l'historique de chaque client et ne tournent pas.</div>
+    </div>
+    <div class="battle b6">
+        <div class="b-num">Bataille 6</div>
+        <div class="b-title">La preuve sociale locale</div>
+        <div class="b-desc">Koesio Suisse a quasi zero avis publics. ABAX Info doit collecter avis Google et temoignages chiffres de PME romandes &mdash; chaque avis est un differenciateur que Koesio ne peut pas repliquer rapidement avec une seule equipe locale.</div>
+    </div>
+</div>
+
+<h3>Recommandations tactiques immediates</h3>
+
+<table>
+    <thead><tr><th>Priorite</th><th>Action</th><th>Pourquoi</th></tr></thead>
+    <tbody>
+        <tr><td><strong style="color:var(--red)">P1</strong></td><td><strong>Publier une page &laquo; Souverainete donnees &amp; nDSG &raquo;</strong> avec hebergeur suisse identifie</td><td>Argument structurant face a Koesio (DC France) &mdash; cible directe : fiduciaires, sante, juridique</td></tr>
+        <tr><td><strong style="color:var(--red)">P2</strong></td><td><strong>Etablir un &laquo; Engagement transparence tarifaire &raquo;</strong> contractuel</td><td>Contre-positionnement direct sur le point faible reputationnel de Koesio</td></tr>
+        <tr><td><strong style="color:var(--amber)">P3</strong></td><td><strong>Creer un kit &laquo; Specificites suisses &raquo;</strong> (Abacus, eBill, QR-facture, swissdec)</td><td>Demontrer la connaissance terrain que Koesio n'a pas industrialisee</td></tr>
+        <tr><td><strong style="color:var(--amber)">P4</strong></td><td><strong>Publier un trombinoscope equipe</strong> avec photos, roles, anciennete</td><td>Casser le marketing &laquo; groupe &raquo; de Koesio par l'authenticite locale</td></tr>
+        <tr><td><strong style="color:var(--amber)">P5</strong></td><td><strong>Activer une page agence Geneve sur Google Business</strong> avec collecte d'avis</td><td>Koesio (Nyon) a une fiche peu animee &mdash; opportunite de domination locale</td></tr>
+        <tr><td><strong style="color:var(--cyan)">P6</strong></td><td><strong>Renforcer la cybersecurite (SOC partenaire, pentest annuel)</strong></td><td>Gap visible chez Koesio Suisse (offre cyber surtout produits Fortinet)</td></tr>
+    </tbody>
+</table>
+
+<h3>Veille a maintenir</h3>
+<ul>
+    <li><strong>Acquisitions :</strong> Koesio a fait 84 acquisitions en 4 ans. Surveiller toute annonce d'acquisition d'un MSP romand &mdash; ce serait un changement majeur.</li>
+    <li><strong>Recrutements :</strong> surveillance LinkedIn de KCT Suisse &mdash; signal d'expansion (commercial Suisse romande, technicien Lausanne, etc.).</li>
+    <li><strong>Site web :</strong> apparition d'un domaine .ch dedie ou de pages locales nouvelles.</li>
+    <li><strong>Datacenter :</strong> tout signal d'ouverture d'une infrastructure suisse (souverainete).</li>
+</ul>
+
+<h3>Messages a eviter</h3>
+<ul>
+    <li>Ne pas attaquer Koesio nominativement &mdash; risque legal et contre-productif</li>
+    <li>Ne pas se comparer en taille (combat perdu d'avance contre 1 Md EUR CA)</li>
+    <li>Ne pas se positionner sur l'industrialisation pure (force de Koesio) &mdash; positionner sur la <strong>relation &amp; expertise locale</strong></li>
+    <li>Eviter les superlatifs &laquo; n&deg;1 &raquo; ou &laquo; leader &raquo; &mdash; Koesio les utilise et ils sonnent creux</li>
+</ul>
+
+<!-- ════════ SWOT ════════ -->
+<h3>Synthese SWOT &mdash; ABAX Info face a Koesio</h3>
+
+<div class="swot">
+    <div class="swot-cell" style="border-top:3px solid var(--green)">
+        <div class="sw-label" style="color:var(--green)">Forces</div>
+        <ul style="margin-bottom:0">
+            <li>Equipe romande accessible et stable</li>
+            <li>Connaissance fine du contexte suisse (juridique, fiscal, RH)</li>
+            <li>Souverainete des donnees maitrisee localement</li>
+            <li>Transparence tarifaire sans clauses cachees</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--amber)">
+        <div class="sw-label" style="color:var(--amber)">Faiblesses</div>
+        <ul style="margin-bottom:0">
+            <li>Pas la puissance d'achat d'un groupe d'1 Md EUR</li>
+            <li>Catalogue moins industrialise que le MSP Koesio</li>
+            <li>Visibilite digitale a construire</li>
+            <li>Process MSP a formaliser</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--cyan)">
+        <div class="sw-label" style="color:var(--cyan)">Opportunites</div>
+        <ul style="margin-bottom:0">
+            <li>Koesio Suisse = entite minimale, terrain non occupe en local</li>
+            <li>Pas de DC suisse Koesio &mdash; argument souverainete dominant</li>
+            <li>Plaintes Koesio sur reconductions/hausses = contre-pos clair</li>
+            <li>Aucun marketing digital local de Koesio = SEO accessible</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--red)">
+        <div class="sw-label" style="color:var(--red)">Menaces</div>
+        <ul style="margin-bottom:0">
+            <li>Koesio peut acquerir un MSP romand a tout moment</li>
+            <li>Force de frappe groupe sur appels d'offres ETI/secteur public</li>
+            <li>Modele forfaitaire seduisant pour DAF cherchant la previsibilite</li>
+            <li>Marque puissante sur les requetes corporate</li>
+        </ul>
+    </div>
+</div>
+
+<div class="highlight green-box" style="margin-top:28px">
+    <strong>Recommandation centrale :</strong> Koesio est un <strong>geant marketing avec un pied tres leger en Suisse</strong>. Le risque immediat est faible &mdash; le risque a moyen terme est une acquisition. ABAX Info doit <strong>occuper le terrain local maintenant</strong> (avis Google, contenu SEO romand, page souverainete, transparence tarifaire) pour rendre une eventuelle expansion Koesio beaucoup plus couteuse. <strong>La priorite reste XEFI</strong> (5 agences actives, croissance visible), mais Koesio sert d'antidote au discours &laquo; nous sommes un grand groupe &raquo; : montrer que la taille europeenne ne se traduit pas mecaniquement en service local.
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<div class="footer">
+    Confidentiel &mdash; AXION Smart Swiss Operations | Analyse concurrentielle KOESIO pour ABAX Info<br>
+    Sources : koesio.com, kct.fr, services-manages-informatique.koesio.com, canal-securite.koesio.biz, moneyhouse.ch, northdata.com, registre du commerce VD (CHE-476.734.243), pappers.fr, channelnews.fr, cloudtango.net, indeed.com, glassdoor.com &mdash; analyse directe avril 2026
+</div>
+
+</div>
+</body>
+</html>
