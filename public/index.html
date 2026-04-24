@@ -117,6 +117,11 @@ header{border-bottom:1px solid var(--border);padding:18px 40px;display:flex;alig
 /* GRIDS */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 
+/* COLUMN LAYOUT */
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:2px;}
+
 /* FOOTER */
 footer{padding:32px 40px;text-align:center;font-size:12px;color:var(--text3);border-top:1px solid var(--border);margin-top:auto;}
 footer a{color:var(--cyan);text-decoration:none;}
@@ -129,6 +134,7 @@ footer a{color:var(--cyan);text-decoration:none;}
   .ptab{padding:12px 16px;font-size:12px;white-space:nowrap;}
   .layout,.layout-wide{padding:28px 20px 0;}
   .grid-2{grid-template-columns:1fr;}
+  .cols-2{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -144,7 +150,7 @@ footer a{color:var(--cyan);text-decoration:none;}
   <h1>Espace client<br><span>ABAX Info</span></h1>
   <p>Livrables du projet — ateliers, plans d'action, roadmap, diagnostic et contrat.</p>
   <div class="hero-meta">
-    <span><span class="dot"></span>Mis à jour le 17 avril 2026</span>
+    <span><span class="dot"></span>Mis à jour le 24 avril 2026</span>
     <span>·</span>
     <span>AXION × ABAX Info</span>
   </div>
@@ -162,235 +168,229 @@ footer a{color:var(--cyan);text-decoration:none;}
 <!-- ===== TAB ATELIERS ===== -->
 <div id="ptab-ateliers" class="ptab-panel active">
 <div class="layout-wide">
+  <div class="cols-2">
 
-  <div class="section-label">Comptes rendus</div>
-  <div class="grid-2">
+    <div class="col">
+      <div class="col-label">Ateliers</div>
 
-    <a href="compte-rendu-atelier-20260410.html" class="vcard cyan">
-      <div class="vcard-icon">✅</div>
-      <div class="vcard-tag cyan">Compte rendu · Dernier</div>
-      <div class="vcard-title">Atelier 3 — AO Fondation Trajet · Visibilité · Forfaitisation · 10 avril 2026</div>
-      <div class="vcard-desc">Appel d'offres Fondation Trajet, LinkedIn &amp; Google My Business, forfaitisation 3 piliers (Hardware, Users, Data). 12 décisions actées.</div>
-      <div class="vcard-footer"><span class="card-badge badge-current" style="margin-left:0;">Dernier</span><span class="vcard-arrow">→</span></div>
-    </a>
+      <a href="workshop-abaxinfo-presentation.html" class="vcard green" style="opacity:.65;">
+        <div class="vcard-icon">📋</div>
+        <div class="vcard-tag green">Agenda · Archive</div>
+        <div class="vcard-title">Atelier 1 — Présentation Discovery · 5 mars 2026</div>
+        <div class="vcard-desc">Déroulé du workshop, contexte et enjeux — diagnostic SEO &amp; GEO offert.</div>
+        <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
+      </a>
+    </div>
 
-    <a href="compte-rendu-atelier-20260403.html" class="vcard cyan" style="opacity:.65;">
-      <div class="vcard-icon">📝</div>
-      <div class="vcard-tag cyan">Compte rendu · Archive</div>
-      <div class="vcard-title">Atelier 2 — Positionnement · Méthodologie · Offre AXION · 3 avril 2026</div>
-      <div class="vcard-desc">Positionnement, 5 piliers, funnel CRM, offre AXION en 3 piliers. 15 décisions actées.</div>
-      <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
-    </a>
+    <div class="col">
+      <div class="col-label">Comptes rendus</div>
 
-    <a href="workshop-abaxinfo-compte-rendu.html" class="vcard cyan" style="opacity:.65;">
-      <div class="vcard-icon">📝</div>
-      <div class="vcard-tag cyan">Compte rendu · Archive</div>
-      <div class="vcard-title">Atelier 1 — Synthèse Discovery · 5 mars 2026</div>
-      <div class="vcard-desc">Points clés, décisions prises et prochaines étapes issues de l'atelier Discovery.</div>
-      <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
-    </a>
+      <a href="compte-rendu-atelier-20260410.html" class="vcard cyan">
+        <div class="vcard-icon">✅</div>
+        <div class="vcard-tag cyan">Compte rendu · Dernier</div>
+        <div class="vcard-title">Atelier 3 — AO Fondation Trajet · Visibilité · Forfaitisation · 10 avril 2026</div>
+        <div class="vcard-desc">Appel d'offres Fondation Trajet, LinkedIn &amp; Google My Business, forfaitisation 3 piliers (Hardware, Users, Data). 12 décisions actées.</div>
+        <div class="vcard-footer"><span class="card-badge badge-current" style="margin-left:0;">Dernier</span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="compte-rendu-atelier-20260403.html" class="vcard cyan" style="opacity:.72;">
+        <div class="vcard-icon">📝</div>
+        <div class="vcard-tag cyan">Compte rendu · Archive</div>
+        <div class="vcard-title">Atelier 2 — Positionnement · Méthodologie · Offre AXION · 3 avril 2026</div>
+        <div class="vcard-desc">Positionnement, 5 piliers, funnel CRM, offre AXION en 3 piliers. 15 décisions actées.</div>
+        <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="workshop-abaxinfo-compte-rendu.html" class="vcard cyan" style="opacity:.50;">
+        <div class="vcard-icon">📝</div>
+        <div class="vcard-tag cyan">Compte rendu · Archive</div>
+        <div class="vcard-title">Atelier 1 — Synthèse Discovery · 5 mars 2026</div>
+        <div class="vcard-desc">Points clés, décisions prises et prochaines étapes issues de l'atelier Discovery.</div>
+        <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
+      </a>
+    </div>
 
   </div>
-
-  <div class="section-label mt">Agendas &amp; présentations</div>
-  <div class="grid-2">
-
-    <a href="workshop-abaxinfo-presentation.html" class="vcard green" style="opacity:.65;">
-      <div class="vcard-icon">📋</div>
-      <div class="vcard-tag green">Agenda · Archive</div>
-      <div class="vcard-title">Atelier 1 — Présentation Discovery · 5 mars 2026</div>
-      <div class="vcard-desc">Déroulé du workshop, contexte et enjeux — diagnostic SEO &amp; GEO offert.</div>
-      <div class="vcard-footer"><span class="card-badge badge-archive" style="margin-left:0;">Archive</span><span class="vcard-arrow">→</span></div>
-    </a>
-
-  </div>
-
 </div>
 </div>
 
 <!-- ===== TAB ROADMAP ===== -->
 <div id="ptab-roadmap" class="ptab-panel">
 <div class="layout-wide">
+  <div class="cols-2">
 
-  <div class="section-label">Roadmap — Capability Bricks</div>
+    <div class="col">
+      <div class="col-label">Version actuelle</div>
 
-  <a href="abaxinfo-roadmap-v2.html" class="card cyan">
-    <div class="card-icon">🗺️</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Roadmap · Version actuelle<span class="card-badge badge-current">v2</span></div>
-      <div class="card-title">Roadmap ABAX Info — 21 briques · 3 opportunités × 5 périodes</div>
-      <div class="card-desc">Vue d'ensemble des 21 briques avec numérotation, gains estimés et type d'intervention.</div>
+      <a href="abaxinfo-roadmap-v2.html" class="vcard cyan">
+        <div class="vcard-icon">🗺️</div>
+        <div class="vcard-tag cyan">Roadmap · Version actuelle <span class="card-badge badge-current">v2</span></div>
+        <div class="vcard-title">Roadmap ABAX Info — 21 briques · 3 opportunités × 5 périodes</div>
+        <div class="vcard-desc">Vue d'ensemble des 21 briques avec numérotation, gains estimés et type d'intervention.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="fiches-capability-bricks-v1.html" class="vcard cyan" style="opacity:.85;">
+        <div class="vcard-icon">🧱</div>
+        <div class="vcard-tag cyan">Fiches détaillées · 21 briques</div>
+        <div class="vcard-title">Capability Bricks — Fiches complètes</div>
+        <div class="vcard-desc">Description, gains estimés, timing et type d'intervention pour chacune des 21 briques.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <a href="fiches-capability-bricks-v1.html" class="card cyan">
-    <div class="card-icon">🧱</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Fiches détaillées · 21 briques</div>
-      <div class="card-title">Capability Bricks — Fiches complètes</div>
-      <div class="card-desc">Description, gains estimés, timing et type d'intervention pour chacune des 21 briques.</div>
+    <div class="col">
+      <div class="col-label">Archives</div>
+
+      <a href="abaxinfo-roadmap-v1.html" class="vcard cyan" style="opacity:.65;">
+        <div class="vcard-icon">🗃️</div>
+        <div class="vcard-tag cyan">Roadmap · Archive <span class="card-badge badge-archive">v1</span></div>
+        <div class="vcard-title">Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention</div>
+        <div class="vcard-desc">Ajout de 2 briques Pilier 1 et introduction de la dimension Type d'intervention.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="abaxinfo-roadmap.html" class="vcard cyan" style="opacity:.45;">
+        <div class="vcard-icon">🗃️</div>
+        <div class="vcard-tag cyan">Roadmap · Archive <span class="card-badge badge-archive">v0</span></div>
+        <div class="vcard-title">Roadmap v0 — 3 opportunités × 5 périodes (version initiale)</div>
+        <div class="vcard-desc">Version initiale de la roadmap — structure de base 3 opportunités × 5 périodes.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <div class="section-label mt">Versions archivées</div>
-
-  <a href="abaxinfo-roadmap-v1.html" class="card archive cyan">
-    <div class="card-icon">🗃️</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Roadmap · Archive<span class="card-badge badge-archive">v1</span></div>
-      <div class="card-title">Roadmap v1 — +2 briques Pilier 1, dimension Type d'intervention</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <a href="abaxinfo-roadmap.html" class="card archive cyan">
-    <div class="card-icon">🗃️</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Roadmap · Archive<span class="card-badge badge-archive">v0</span></div>
-      <div class="card-title">Roadmap v0 — 3 opportunités × 5 périodes (version initiale)</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
+  </div>
 </div>
 </div>
 
 <!-- ===== TAB VISIBILITÉ ===== -->
 <div id="ptab-visibilite" class="ptab-panel">
-<div class="layout">
+<div class="layout-wide">
+  <div class="cols-2">
 
-  <div class="section-label">Plan d'action</div>
+    <div class="col">
+      <div class="col-label">Plans d'action</div>
 
-  <a href="abaxinfo-plan-visibilite-9mois.html" class="card cyan">
-    <div class="card-icon">🔍</div>
-    <div class="card-body">
-      <div class="card-tag cyan">Pilier 1 — Visibilité</div>
-      <div class="card-title">Plan d'action 9 mois — Offre Visibilité</div>
-      <div class="card-desc">Méthodologie Tourbillon 5A · 5 dimensions du score visibilité · 3 phases (Fondations, Accélération, Dominance locale).</div>
+      <a href="abaxinfo-plan-visibilite-9mois.html" class="vcard cyan">
+        <div class="vcard-icon">🔍</div>
+        <div class="vcard-tag cyan">Pilier 1 — Visibilité</div>
+        <div class="vcard-title">Plan d'action 9 mois — Offre Visibilité</div>
+        <div class="vcard-desc">Méthodologie Tourbillon 5A · 5 dimensions du score visibilité · 3 phases (Fondations, Accélération, Dominance locale).</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <div class="section-label mt">Rapports de diagnostic</div>
+    <div class="col">
+      <div class="col-label">Diagnostics</div>
 
-  <a href="abaxinfo-pack-visibilite-l1.html" class="card amber">
-    <div class="card-icon">⚡</div>
-    <div class="card-body">
-      <div class="card-tag amber">Pack Visibilité L1 — Scan SEO</div>
-      <div class="card-title">Rapport Scan SEO — abaxinfo.com</div>
-      <div class="card-desc">Performance · SEO On-Page · GEO Readiness · Email Health · Checks techniques.</div>
+      <a href="abaxinfo-pack-visibilite-l1.html" class="vcard amber">
+        <div class="vcard-icon">⚡</div>
+        <div class="vcard-tag amber">Pack Visibilité L1 — Scan SEO</div>
+        <div class="vcard-title">Rapport Scan SEO — abaxinfo.com</div>
+        <div class="vcard-desc">Performance · SEO On-Page · GEO Readiness · Email Health · Checks techniques.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="abaxinfo-lead-magnet-seo-geo.html" class="vcard amber" style="opacity:.72;">
+        <div class="vcard-icon">🔎</div>
+        <div class="vcard-tag amber">Diagnostic SEO &amp; GEO — Lead Magnet</div>
+        <div class="vcard-title">Diagnostic SEO &amp; GEO — abaxinfo.com</div>
+        <div class="vcard-desc">Synthèse du diagnostic SEO &amp; GEO offert suite au Discovery Workshop du 5 mars 2026.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <a href="abaxinfo-lead-magnet-seo-geo.html" class="card amber">
-    <div class="card-icon">🔎</div>
-    <div class="card-body">
-      <div class="card-tag amber">Diagnostic SEO &amp; GEO — Lead Magnet</div>
-      <div class="card-title">Diagnostic SEO &amp; GEO — abaxinfo.com</div>
-      <div class="card-desc">Synthèse du diagnostic SEO &amp; GEO offert suite au Discovery Workshop du 5 mars 2026.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
+  </div>
 </div>
 </div>
 
 <!-- ===== TAB CROISSANCE ===== -->
 <div id="ptab-croissance" class="ptab-panel">
-<div class="layout">
+<div class="layout-wide">
+  <div class="cols-2">
 
-  <div class="section-label">Appels d'offres</div>
+    <div class="col">
+      <div class="col-label">Appels d'offres &amp; Plans</div>
 
-  <a href="ao-fondation-trajet.html" class="card orange">
-    <div class="card-icon">📋</div>
-    <div class="card-body">
-      <div class="card-tag orange">Appel d'Offres · En cours<span class="card-badge badge-current">Actif</span></div>
-      <div class="card-title">AO Fondation Trajet — Automatisation, IA &amp; Sécurité</div>
-      <div class="card-desc">9 projets · Budget 400-800K CHF · Analyse, questions au responsable, stratégie de réponse. Rendez-vous de clarification à planifier.</div>
+      <a href="ao-fondation-trajet.html" class="vcard orange">
+        <div class="vcard-icon">📋</div>
+        <div class="vcard-tag orange">Appel d'Offres · En cours <span class="card-badge badge-current">Actif</span></div>
+        <div class="vcard-title">AO Fondation Trajet — Automatisation, IA &amp; Sécurité</div>
+        <div class="vcard-desc">9 projets · Budget 400-800K CHF · Analyse, questions au responsable, stratégie de réponse. Rendez-vous de clarification à planifier.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="abaxinfo-plan-croissance-90jours.html" class="vcard green" style="opacity:.85;">
+        <div class="vcard-icon">🚀</div>
+        <div class="vcard-tag green">Pilier 2 — Croissance</div>
+        <div class="vcard-title">Plan d'action 90 jours — Offre Croissance</div>
+        <div class="vcard-desc">5 canaux d'acquisition · 4 sprints · Scoring prospects · KPIs 90 jours · Commission 20% sur CA nouveaux clients.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="crm-mairies-municipales-2026.html" class="vcard green" style="opacity:.72;">
+        <div class="vcard-icon">🏛️</div>
+        <div class="vcard-tag green">CRM Mairies — Municipales 2026</div>
+        <div class="vcard-title">Base CRM — Pays de Gex (01) &amp; Haute-Savoie (74)</div>
+        <div class="vcard-desc">87 communes · 40 nouveaux maires (cibles prioritaires) · 47 réélus · Données vérifiées sur interieur.gouv.fr.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <div class="section-label mt">Plan d'action</div>
+    <div class="col">
+      <div class="col-label">Intelligence concurrentielle</div>
 
-  <a href="abaxinfo-plan-croissance-90jours.html" class="card green">
-    <div class="card-icon">🚀</div>
-    <div class="card-body">
-      <div class="card-tag green">Pilier 2 — Croissance</div>
-      <div class="card-title">Plan d'action 90 jours — Offre Croissance</div>
-      <div class="card-desc">5 canaux d'acquisition · 4 sprints · Scoring prospects · KPIs 90 jours · Commission 20% sur CA nouveaux clients.</div>
+      <a href="abaxinfo-competitive-intelligence-xefi.html" class="vcard blue">
+        <div class="vcard-icon">🕵️</div>
+        <div class="vcard-tag blue">Intelligence concurrentielle</div>
+        <div class="vcard-title">Analyse concurrentielle — XEFI (CH + France voisine)</div>
+        <div class="vcard-desc">Réseau de franchises en installation en Suisse romande (5 agences) + 11 agences en Auvergne-Rhône-Alpes — mais 1 seule en Haute-Savoie (Annemasse). Pack transfrontalier comme différenciateur clé.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
+
+      <a href="abaxinfo-competitive-intelligence-koesio.html" class="vcard blue" style="opacity:.72;">
+        <div class="vcard-icon">🕵️</div>
+        <div class="vcard-tag blue">Intelligence concurrentielle</div>
+        <div class="vcard-title">Analyse concurrentielle — Koesio (CH + France voisine)</div>
+        <div class="vcard-desc">Géant européen (1 Md€ CA) — minimal en Suisse (KCT Nyon) mais dominant en France voisine (Annecy, Ville-la-Grand 15 km de Genève, Bourg-en-Bresse). Pack transfrontalier comme différenciateur clé.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <div class="section-label mt">Base CRM — Prospection mairies</div>
-
-  <a href="crm-mairies-municipales-2026.html" class="card green">
-    <div class="card-icon">🏛️</div>
-    <div class="card-body">
-      <div class="card-tag green">CRM Mairies — Municipales 2026</div>
-      <div class="card-title">Base CRM — Pays de Gex (01) &amp; Haute-Savoie (74)</div>
-      <div class="card-desc">87 communes · 40 nouveaux maires (cibles prioritaires) · 47 réélus · Données vérifiées sur interieur.gouv.fr.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <div class="section-label mt">Intelligence concurrentielle</div>
-
-  <a href="abaxinfo-competitive-intelligence-xefi.html" class="card blue">
-    <div class="card-icon">🕵️</div>
-    <div class="card-body">
-      <div class="card-tag blue">Intelligence concurrentielle</div>
-      <div class="card-title">Analyse concurrentielle — XEFI (CH + France voisine)</div>
-      <div class="card-desc">Réseau de franchises en installation en Suisse romande (5 agences) + 11 agences en Auvergne-Rhône-Alpes — mais 1 seule en Haute-Savoie (Annemasse). Pack transfrontalier comme différenciateur clé face à des franchises CH/FR non intégrées.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <a href="abaxinfo-competitive-intelligence-koesio.html" class="card blue">
-    <div class="card-icon">🕵️</div>
-    <div class="card-body">
-      <div class="card-tag blue">Intelligence concurrentielle</div>
-      <div class="card-title">Analyse concurrentielle — Koesio (CH + France voisine)</div>
-      <div class="card-desc">Géant européen (1 Md€ CA) — minimal en Suisse (KCT Nyon) mais dominant en France voisine (Annecy, Ville-la-Grand 15 km de Genève, Bourg-en-Bresse). Pack transfrontalier comme différenciateur clé.</div>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-
+  </div>
 </div>
 </div>
 
 <!-- ===== TAB ENTREPRISE ===== -->
 <div id="ptab-entreprise" class="ptab-panel">
-<div class="layout">
+<div class="layout-wide">
+  <div class="cols-2">
 
-  <div class="section-label">Contexte &amp; positionnement</div>
+    <div class="col">
+      <div class="col-label">Entreprise</div>
 
-  <a href="fiche-entreprise-abaxinfo.html" class="card orange">
-    <div class="card-icon">🏢</div>
-    <div class="card-body">
-      <div class="card-tag orange">Document vivant</div>
-      <div class="card-title">Fiche Entreprise — ABAX Info</div>
-      <div class="card-desc">Identité, positionnement, services, personas, concurrence, présence digitale. Mis à jour au fil des ateliers.</div>
+      <a href="fiche-entreprise-abaxinfo.html" class="vcard orange">
+        <div class="vcard-icon">🏢</div>
+        <div class="vcard-tag orange">Document vivant</div>
+        <div class="vcard-title">Fiche Entreprise — ABAX Info</div>
+        <div class="vcard-desc">Identité, positionnement, services, personas, concurrence, présence digitale. Mis à jour au fil des ateliers.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">→</span></div>
+      </a>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
 
-  <div class="section-label mt">Documents contractuels</div>
+    <div class="col">
+      <div class="col-label">Documents</div>
 
-  <a href="docs/AXION_Offre_ABAX_INFO_Nexus_2026-001.pdf" target="_blank" class="card green">
-    <div class="card-icon">📄</div>
-    <div class="card-body">
-      <div class="card-tag green">Offre · 2026-001</div>
-      <div class="card-title">Offre AXION — ABAX Info Nexus 2026-001</div>
-      <div class="card-desc">Document contractuel — offre de services AXION pour le projet Nexus. S'ouvre en PDF dans un nouvel onglet.</div>
+      <a href="docs/AXION_Offre_ABAX_INFO_Nexus_2026-001.pdf" target="_blank" class="vcard green">
+        <div class="vcard-icon">📄</div>
+        <div class="vcard-tag green">Offre · 2026-001</div>
+        <div class="vcard-title">Offre AXION — ABAX Info Nexus 2026-001</div>
+        <div class="vcard-desc">Document contractuel — offre de services AXION pour le projet Nexus. S'ouvre en PDF dans un nouvel onglet.</div>
+        <div class="vcard-footer"><span></span><span class="vcard-arrow">↗</span></div>
+      </a>
     </div>
-    <div class="card-arrow">↗</div>
-  </a>
 
+  </div>
 </div>
 </div>
 
