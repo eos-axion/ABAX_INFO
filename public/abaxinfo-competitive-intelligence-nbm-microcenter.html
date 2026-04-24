@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyse Concurrentielle NBM & Micro Center — AXION pour ABAX Info</title>
+<style>
+:root {
+    --navy: #0A1628;
+    --navy-light: #1A2A42;
+    --slate: #2D3F5B;
+    --cyan: #00D4FF;
+    --cyan-10: rgba(0,212,255,0.1);
+    --cyan-20: rgba(0,212,255,0.2);
+    --green: #00E68A;
+    --green-10: rgba(0,230,138,0.1);
+    --green-20: rgba(0,230,138,0.2);
+    --amber: #FFB800;
+    --amber-10: rgba(255,184,0,0.1);
+    --amber-20: rgba(255,184,0,0.2);
+    --red: #FF4757;
+    --red-10: rgba(255,71,87,0.1);
+    --red-20: rgba(255,71,87,0.2);
+    --violet: #9B59FF;
+    --violet-10: rgba(155,89,255,0.1);
+    --violet-20: rgba(155,89,255,0.2);
+    --white: #FFFFFF;
+    --w90: rgba(255,255,255,0.9);
+    --w80: rgba(255,255,255,0.8);
+    --w60: rgba(255,255,255,0.6);
+    --w50: rgba(255,255,255,0.5);
+    --w30: rgba(255,255,255,0.3);
+    --w20: rgba(255,255,255,0.2);
+    --w10: rgba(255,255,255,0.1);
+    --w06: rgba(255,255,255,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--navy); color: var(--white); line-height:1.65;
+}
+.container { max-width:940px; margin:0 auto; padding:48px 32px; }
+
+.toc {
+    background: var(--navy-light); border-radius:14px; border:1px solid var(--w06);
+    padding:28px 32px; margin-bottom:48px;
+}
+.toc h3 { font-size:14px; text-transform:uppercase; letter-spacing:2px; color:var(--cyan); margin-bottom:14px; }
+.toc ol { margin-left:20px; }
+.toc li { margin-bottom:6px; font-size:14px; }
+.toc a { color:var(--w60); text-decoration:none; transition:color .2s; }
+.toc a:hover { color:var(--cyan); }
+
+.cover {
+    text-align:center; padding:60px 0 48px;
+    border-bottom:1px solid var(--w06); margin-bottom:48px;
+}
+.cover .logo { font-size:14px; font-weight:800; letter-spacing:6px; text-transform:uppercase; color:var(--cyan); margin-bottom:24px; }
+.cover h1 { font-size:36px; font-weight:800; line-height:1.2; margin-bottom:10px; }
+.cover h1 .accent { color:var(--cyan); }
+.cover .sub { font-size:18px; color:var(--w50); font-style:italic; margin-bottom:8px; }
+.cover .meta { font-size:13px; color:var(--w30); }
+
+h2 {
+    font-size:26px; font-weight:800; margin:56px 0 20px;
+    padding-bottom:10px; border-bottom:2px solid var(--cyan-20);
+    scroll-margin-top:24px;
+}
+h2 .num { color:var(--cyan); margin-right:6px; }
+h3 { font-size:18px; font-weight:700; margin:28px 0 12px; color:var(--w90); }
+h4 { font-size:15px; font-weight:700; margin:16px 0 8px; color:var(--cyan); }
+
+p { color:var(--w80); margin-bottom:14px; font-size:15px; }
+p strong, li strong { color:var(--white); }
+ul,ol { margin:0 0 18px 22px; color:var(--w80); font-size:15px; }
+li { margin-bottom:6px; }
+blockquote {
+    border-left:3px solid var(--cyan); padding:12px 20px; margin:20px 0;
+    background:var(--cyan-10); border-radius:0 10px 10px 0;
+    font-size:16px; font-weight:600; color:var(--white); font-style:italic;
+}
+
+.card {
+    background:var(--navy-light); border-radius:14px;
+    border:1px solid var(--w06); padding:24px 28px; margin-bottom:18px;
+}
+.card.cyan  { border-top:3px solid var(--cyan); }
+.card.green { border-top:3px solid var(--green); }
+.card.amber { border-top:3px solid var(--amber); }
+.card.red   { border-top:3px solid var(--red); }
+.card.violet{ border-top:3px solid var(--violet); }
+
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
+thead th {
+    background:var(--slate); color:var(--white);
+    padding:10px 14px; text-align:left; font-weight:700;
+    font-size:12px; text-transform:uppercase; letter-spacing:.8px;
+}
+thead th:first-child { border-radius:8px 0 0 0; }
+thead th:last-child  { border-radius:0 8px 0 0; }
+tbody td { padding:10px 14px; border-bottom:1px solid var(--w06); color:var(--w80); vertical-align:top; }
+tbody tr:hover { background:var(--w06); }
+tbody td strong { color:var(--white); }
+
+.highlight {
+    border-radius:12px; padding:18px 22px; margin:20px 0; font-size:14px; color:var(--w80);
+}
+.highlight strong { font-weight:700; }
+.highlight.cyan-box  { background:var(--cyan-10); border:1px solid var(--cyan-20); }
+.highlight.cyan-box strong { color:var(--cyan); }
+.highlight.green-box { background:var(--green-10); border:1px solid var(--green-20); }
+.highlight.green-box strong { color:var(--green); }
+.highlight.amber-box { background:var(--amber-10); border:1px solid rgba(255,184,0,.2); }
+.highlight.amber-box strong { color:var(--amber); }
+.highlight.red-box   { background:var(--red-10); border:1px solid var(--red-20); }
+.highlight.red-box strong { color:var(--red); }
+
+.swot { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+.swot-cell {
+    background:var(--navy-light); border-radius:12px; border:1px solid var(--w06);
+    padding:20px;
+}
+.swot-cell .sw-label {
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px;
+    margin-bottom:10px;
+}
+
+.client-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:20px 0;
+}
+.client-chip {
+    background:var(--navy-light); border:1px solid var(--w06);
+    border-radius:10px; padding:12px 14px; font-size:13px;
+    color:var(--w80); text-align:center;
+}
+.client-chip strong { color:var(--cyan); display:block; font-size:11px; margin-bottom:4px; text-transform:uppercase; letter-spacing:.8px; }
+
+.footer {
+    margin-top:56px; padding-top:20px; border-top:1px solid var(--w06);
+    text-align:center; color:var(--w30); font-size:12px;
+}
+
+@media (max-width:700px) {
+    .swot, .client-grid { grid-template-columns:1fr; }
+    .client-grid { grid-template-columns:repeat(2,1fr); }
+    .container { padding:24px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover">
+    <div class="logo">AXION</div>
+    <h1>Analyse Concurrentielle<br><span class="accent">NBM &amp; Micro Center</span></h1>
+    <div class="sub">Concurrents locaux &mdash; Pays de Gex &amp; bassin genevois</div>
+    <div class="meta">Prepare pour ABAX Info &middot; 24 avril 2026 &middot; Confidentiel</div>
+</div>
+
+<div class="toc">
+    <h3>Sommaire</h3>
+    <ol>
+        <li><a href="#s1">Synthese executive</a></li>
+        <li><a href="#s2">NBM Europe &mdash; Prevessin-Moens (01)</a></li>
+        <li><a href="#s3">NBM Suisse &mdash; Geneve (Acacias)</a></li>
+        <li><a href="#s4">Micro Center &mdash; Divonne &amp; Cessy</a></li>
+        <li><a href="#s5">Clients references sur micro-center.fr</a></li>
+        <li><a href="#s6">Tableau comparatif des trois acteurs</a></li>
+        <li><a href="#s7">Cartographie concurrentielle elargie</a></li>
+        <li><a href="#s8">SWOT ABAX Info face a ce trio</a></li>
+        <li><a href="#s9">Opportunites strategiques</a></li>
+    </ol>
+</div>
+
+<!-- ════════ 1. SYNTHESE ════════ -->
+<h2 id="s1"><span class="num">1.</span> Synthese executive</h2>
+
+<p>Contrairement a XEFI et Koesio (analyses dediees) qui sont des <strong>reseaux structures regionaux ou europeens</strong>, les trois acteurs analyses ici partagent le meme ADN qu'ABAX Info : <strong>IT de proximite, equipe a taille humaine, ancrage local fort</strong> sur le Pays de Gex et le bassin genevois. Ils constituent le <em>marche de reference directe</em> que les clients ABAX vont comparer.</p>
+
+<div class="highlight cyan-box">
+    <strong>Lecture rapide :</strong>
+    <ul style="margin-top:8px;margin-bottom:0">
+        <li><strong>NBM (Europe + Suisse)</strong> &mdash; Meme profil qu'ABAX Info : infogerance B2B PME, 20-25 ans d'anciennete, structure binationale FR+CH. <strong>Concurrent frontal direct.</strong></li>
+        <li><strong>Micro Center</strong> &mdash; Positionnement plus large incluant reparation, videosurveillance, creation de sites. Cible mixte B2B/B2C, forte visibilite sur commerces locaux (restaurateurs, immobilier, retail).</li>
+        <li><strong>Differenciateur ABAX Info :</strong> aucun des trois ne propose une offre integree <em>Visibilite + Croissance + Operations</em> ni d'automatisation/IA. Tous restent sur un catalogue &laquo; IT classique &raquo; (infra + telephonie + cyber).</li>
+    </ul>
+</div>
+
+<!-- ════════ 2. NBM EUROPE ════════ -->
+<h2 id="s2"><span class="num">2.</span> NBM Europe &mdash; Prevessin-Moens (01)</h2>
+
+<div class="card cyan">
+    <h4>Carte d'identite</h4>
+    <table>
+        <thead><tr><th>Indicateur</th><th>Valeur</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Site</strong></td><td>nbm-europe.com</td></tr>
+            <tr><td><strong>Anciennete</strong></td><td>25+ ans</td></tr>
+            <tr><td><strong>Siege</strong></td><td>Prevessin-Moens (01280, Ain)</td></tr>
+            <tr><td><strong>Zone d'intervention</strong></td><td>Pays de Gex + departements limitrophes (Ferney-Voltaire, Thoiry, Divonne, Ornex, Saint-Genis-Pouilly)</td></tr>
+            <tr><td><strong>Positionnement</strong></td><td>Partenaire IT local a taille humaine pour PME</td></tr>
+            <tr><td><strong>Entite sceur</strong></td><td>NBM Suisse (nbm-suisse.ch &mdash; Geneve)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Catalogue de services</h3>
+<ul>
+    <li><strong>Infogerance</strong> &mdash; audit, installation, maintenance, supervision</li>
+    <li><strong>Cybersecurite et sauvegarde</strong> &mdash; protection des donnees</li>
+    <li><strong>Internet pro</strong> &mdash; FTTH/FTTO, 4G/5G de secours</li>
+    <li><strong>Telephonie IP/VoIP</strong></li>
+    <li><strong>Hebergement cloud &amp; SaaS</strong></li>
+    <li><strong>Licences Microsoft Windows</strong></li>
+</ul>
+
+<h3>Clients visibles sur le site</h3>
+<ul>
+    <li><strong>CCPB</strong> (Communaute de Communes du Pays Bellegardien &mdash; collectivite)</li>
+    <li><strong>Centre de l'Oeil</strong> (sante / optique)</li>
+    <li><strong>Bellegarde-sur-Valserine</strong> (mairie &mdash; collectivite)</li>
+    <li><strong>Girafood</strong> (restauration)</li>
+</ul>
+
+<div class="highlight amber-box">
+    <strong>Signal collectivites :</strong> NBM Europe affiche deux references de <strong>collectivites territoriales</strong> (CCPB, Bellegarde). C'est un axe strategique identifie chez ABAX Info (voir <em>CRM Mairies Municipales 2026</em>) &mdash; <strong>NBM est deja installe sur ce segment</strong>. Attention a ne pas attaquer frontalement leur perimetre, mais au contraire se positionner en alternative sur les communes non encore equipees ou avec nouveaux maires (40 elus en 2026).
+</div>
+
+<h3>Evaluation digitale</h3>
+<ul>
+    <li>Structure de site claire, meta-descriptions presentes, balises H2/H3 propres</li>
+    <li>Mots-cles locaux (Pays de Gex, Ferney, Thoiry) bien positionnes</li>
+    <li>Avis Google 5/5 avec temoignages clients</li>
+    <li><strong>Faiblesses :</strong> pas de schema markup, pas de blog, pas de FAQ, peu de contenu long-form</li>
+</ul>
+
+<!-- ════════ 3. NBM SUISSE ════════ -->
+<h2 id="s3"><span class="num">3.</span> NBM Suisse &mdash; Geneve (Acacias)</h2>
+
+<div class="card cyan">
+    <h4>Carte d'identite</h4>
+    <table>
+        <thead><tr><th>Indicateur</th><th>Valeur</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Site</strong></td><td>nbm-suisse.ch</td></tr>
+            <tr><td><strong>Anciennete</strong></td><td>20+ ans</td></tr>
+            <tr><td><strong>Adresse</strong></td><td>Route des Jeunes 4bis, 1227 Les Acacias (Geneve)</td></tr>
+            <tr><td><strong>Zone d'intervention</strong></td><td>Geneve et canton + mentions France voisine</td></tr>
+            <tr><td><strong>Positionnement</strong></td><td>&laquo; Votre partenaire informatique et telephonique depuis plus de 20 ans &raquo;</td></tr>
+            <tr><td><strong>Entite sceur</strong></td><td>NBM Europe (Prevessin-Moens)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Catalogue de services</h3>
+<ul>
+    <li>Infogerance complete (audit, install, maintenance, supervision)</li>
+    <li>Cybersecurite &amp; sauvegarde</li>
+    <li>Hebergement SaaS</li>
+    <li>Fibre FTTH/FTTO, box 4G/5G</li>
+    <li>Telephonie IP (cablage, installation, support)</li>
+    <li>Licences Microsoft</li>
+    <li>Support a distance via TeamViewer</li>
+</ul>
+
+<h3>Clients visibles sur le site</h3>
+<ul>
+    <li><strong>Transit Air</strong> (logistique/transport)</li>
+    <li><strong>Terco</strong></li>
+    <li><strong>SEV</strong></li>
+    <li><strong>PESA</strong></li>
+</ul>
+
+<div class="highlight red-box">
+    <strong>Concurrent frontal n&deg;1 pour ABAX Info :</strong> NBM Suisse partage le <strong>meme ADN exact</strong> qu'ABAX Info :
+    <ul style="margin-top:8px;margin-bottom:0">
+        <li>Anciennete equivalente (20+ ans)</li>
+        <li>Implantation Geneve &rarr; zone de chasse identique</li>
+        <li>Structure binationale France/Suisse &rarr; meme promesse transfrontaliere</li>
+        <li>Cible PME genevoises avec infogerance complete</li>
+        <li>Taille humaine &rarr; promesse relationnelle identique</li>
+    </ul>
+    <strong>Consequence :</strong> NBM est le seul acteur analyse qui peut egaler le <em>pack transfrontalier integre</em> qu'ABAX Info souhaite revendiquer contre XEFI et Koesio. Il faut pouvoir le differencier par l'offre (IA, automation, Visibilite) et la methodologie (Hygiene/Transformation, briques standardisees).
+</div>
+
+<!-- ════════ 4. MICRO CENTER ════════ -->
+<h2 id="s4"><span class="num">4.</span> Micro Center &mdash; Divonne-les-Bains &amp; Cessy (01)</h2>
+
+<div class="card cyan">
+    <h4>Carte d'identite</h4>
+    <table>
+        <thead><tr><th>Indicateur</th><th>Valeur</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Site</strong></td><td>micro-center.fr</td></tr>
+            <tr><td><strong>Fondation</strong></td><td>2010 (14+ ans)</td></tr>
+            <tr><td><strong>Siege 1</strong></td><td>36 rue du Mont Blanc, 01220 Divonne-les-Bains</td></tr>
+            <tr><td><strong>Siege 2</strong></td><td>2650 route de Geneve, 01170 Cessy</td></tr>
+            <tr><td><strong>Filiale suisse</strong></td><td>Micro Center Geneve (micro-center.ch)</td></tr>
+            <tr><td><strong>Zone d'intervention</strong></td><td>Pays de Gex, Geneve, Bassin Lemanique, Ferney, Saint-Genis, Annemasse</td></tr>
+            <tr><td><strong>Positionnement</strong></td><td>&laquo; Votre partenaire informatique de confiance &raquo; &mdash; mix B2B + B2C</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Catalogue de services (large)</h3>
+<ul>
+    <li><strong>Depannage PC/Mac</strong> &mdash; reinstallation OS, transfert fichiers, reseau, malwares</li>
+    <li><strong>Reparation iPhone/iPad</strong> &mdash; ecrans, cartes meres, deverrouillage, changements couleur</li>
+    <li><strong>Creation de sites internet</strong> &mdash; vitrines, e-commerce, outils web sur-mesure, SEO</li>
+    <li><strong>Videosurveillance IP</strong> &mdash; cameras, capteurs, alarmes, acces 24/7</li>
+    <li><strong>Recuperation de donnees</strong> &mdash; salle blanche ISO 100 (differenciateur technique)</li>
+    <li><strong>Transfert K7 &rarr; DVD/USB</strong> (service B2C)</li>
+    <li><strong>Configuration PC sur mesure</strong></li>
+    <li><strong>Systemes d'alarme</strong></li>
+    <li><strong>Support a distance</strong> (TeamViewer)</li>
+</ul>
+
+<h3>Partenaires techno</h3>
+<ul>
+    <li><strong>Acer</strong> (certifie)</li>
+    <li><strong>Lenovo</strong> (certifie)</li>
+    <li><strong>TeamViewer</strong></li>
+    <li><em>Absences notables :</em> pas de Microsoft Partner, HP, Dell, AWS, Azure visible &rarr; positionnement B2B limite</li>
+</ul>
+
+<div class="highlight amber-box">
+    <strong>Profil hybride :</strong> Micro Center n'est <strong>pas un pur concurrent B2B infogerance</strong>. C'est un atelier informatique etendu qui melange <em>reparation materiel + videosurveillance + creation de sites + SAV smartphone</em>. Son catalogue trahit une cible PME de proximite (commerces, artisans, independants) plutot que des PME structurees cherchant un DSI externalise.
+</div>
+
+<!-- ════════ 5. CLIENTS MICRO CENTER ════════ -->
+<h2 id="s5"><span class="num">5.</span> Clients references sur micro-center.fr</h2>
+
+<p>La page d'accueil de Micro Center affiche <strong>23 logos clients</strong>. L'analyse sectorielle donne une lecture tres nette du <em>profil reel</em> de leurs clients : majoritairement des <strong>commerces, restaurants et services de proximite</strong> du bassin lemanique &mdash; <strong>pas des PME structurees</strong>.</p>
+
+<h3>Liste exhaustive (23 references)</h3>
+
+<div class="client-grid">
+    <div class="client-chip"><strong>Restauration</strong>Casa Italia</div>
+    <div class="client-chip"><strong>Restauration</strong>China Thai</div>
+    <div class="client-chip"><strong>Restauration</strong>Le Div Cafe</div>
+    <div class="client-chip"><strong>Restauration</strong>L'Incontro</div>
+    <div class="client-chip"><strong>Restauration</strong>Mamma Mia</div>
+    <div class="client-chip"><strong>Restauration</strong>Plaisir d'Asie</div>
+    <div class="client-chip"><strong>Restauration</strong>Le Bon Accueil</div>
+    <div class="client-chip"><strong>Cave / Vin</strong>La Nature du Vin</div>
+    <div class="client-chip"><strong>Cave / Vin</strong>Vinotheque du Leman</div>
+    <div class="client-chip"><strong>Cave / Vin</strong>Le Lingot d'Orge</div>
+    <div class="client-chip"><strong>Immobilier</strong>Stephane Plaza Immobilier</div>
+    <div class="client-chip"><strong>Immobilier</strong>Agence Bastien</div>
+    <div class="client-chip"><strong>Amenagement</strong>Placard Design</div>
+    <div class="client-chip"><strong>Amenagement</strong>Studio Segny</div>
+    <div class="client-chip"><strong>Artisanat</strong>Quincaillerie / Serrurerie du Leman</div>
+    <div class="client-chip"><strong>Artisanat</strong>Technofroid</div>
+    <div class="client-chip"><strong>Recyclage</strong>SBA Recyclage</div>
+    <div class="client-chip"><strong>Service auto</strong>Carte grise Gex</div>
+    <div class="client-chip"><strong>Services pro</strong>Ioburo</div>
+    <div class="client-chip"><strong>Bijouterie</strong>Tresor</div>
+    <div class="client-chip"><strong>Non identifie</strong>Antidote</div>
+    <div class="client-chip"><strong>Non identifie</strong>Angel</div>
+    <div class="client-chip"><strong>Non identifie</strong>&nbsp;</div>
+</div>
+
+<h3>Lecture sectorielle</h3>
+
+<table>
+    <thead><tr><th>Secteur</th><th>Nombre</th><th>Part</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Restauration</strong></td><td>7</td><td>~30 %</td></tr>
+        <tr><td><strong>Caves / vin / epicerie fine</strong></td><td>3</td><td>~13 %</td></tr>
+        <tr><td><strong>Immobilier</strong></td><td>2</td><td>~9 %</td></tr>
+        <tr><td><strong>Amenagement / decoration</strong></td><td>2</td><td>~9 %</td></tr>
+        <tr><td><strong>Artisanat / commerce</strong></td><td>2</td><td>~9 %</td></tr>
+        <tr><td><strong>Services divers (auto, bijouterie, recyclage, bureau)</strong></td><td>4</td><td>~17 %</td></tr>
+        <tr><td><strong>Non identifies</strong></td><td>3</td><td>~13 %</td></tr>
+    </tbody>
+</table>
+
+<div class="highlight green-box">
+    <strong>Signal strategique pour ABAX Info :</strong>
+    <ul style="margin-top:8px;margin-bottom:0">
+        <li>Micro Center est dominant sur <strong>la restauration locale</strong> et les <strong>caves a vin / epicerie fine</strong> du Pays de Gex &mdash; cibles petites (1-5 postes), budget IT reduit.</li>
+        <li>Ces clients correspondent au segment <strong>&laquo; tres petits comptes &raquo;</strong> qu'ABAX Info a interet a <em>ne pas</em> attaquer frontalement (faible valeur contractuelle, forte rotation).</li>
+        <li>A l'inverse, <strong>Stephane Plaza Immobilier</strong> et <strong>Agence Bastien</strong> (immobilier) sont des franchises /reseaux potentiellement multi-sites &mdash; verifier si Micro Center les sert vraiment en infogerance structurelle ou seulement en depannage ponctuel.</li>
+        <li>La faiblesse de Micro Center sur le <strong>B2B PME structuree</strong> (pas de reference industrie, logistique, sante, collectivites) laisse tout le champ PME &laquo; 10-100 postes &raquo; a ABAX Info.</li>
+    </ul>
+</div>
+
+<!-- ════════ 6. COMPARATIF ════════ -->
+<h2 id="s6"><span class="num">6.</span> Tableau comparatif des trois acteurs</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Critere</th>
+            <th>NBM Europe</th>
+            <th>NBM Suisse</th>
+            <th>Micro Center</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>Anciennete</strong></td><td>25+ ans</td><td>20+ ans</td><td>14+ ans (2010)</td></tr>
+        <tr><td><strong>Implantation</strong></td><td>Prevessin-Moens (FR)</td><td>Les Acacias, Geneve (CH)</td><td>Divonne + Cessy (FR) + Geneve</td></tr>
+        <tr><td><strong>Cible principale</strong></td><td>PME + collectivites</td><td>PME genevoises</td><td>Commerces + TPE + particuliers</td></tr>
+        <tr><td><strong>Infogerance</strong></td><td style="color:var(--green)">Oui &mdash; coeur metier</td><td style="color:var(--green)">Oui &mdash; coeur metier</td><td style="color:var(--amber)">Partiel (depannage)</td></tr>
+        <tr><td><strong>Cybersecurite</strong></td><td style="color:var(--green)">Oui</td><td style="color:var(--green)">Oui</td><td style="color:var(--amber)">Non affiche</td></tr>
+        <tr><td><strong>Telephonie IP</strong></td><td style="color:var(--green)">Oui</td><td style="color:var(--green)">Oui</td><td style="color:var(--red)">Non</td></tr>
+        <tr><td><strong>Creation sites web</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--red)">Non</td><td style="color:var(--green)">Oui (vitrines + e-commerce)</td></tr>
+        <tr><td><strong>Reparation smartphone</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--red)">Non</td><td style="color:var(--green)">Oui (B2C)</td></tr>
+        <tr><td><strong>Videosurveillance</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--red)">Non</td><td style="color:var(--green)">Oui</td></tr>
+        <tr><td><strong>Automation / IA</strong></td><td style="color:var(--red)">Non</td><td style="color:var(--red)">Non</td><td style="color:var(--red)">Non</td></tr>
+        <tr><td><strong>Pack CH+FR integre</strong></td><td style="color:var(--amber)">Via groupe NBM</td><td style="color:var(--amber)">Via groupe NBM</td><td style="color:var(--amber)">Via Micro Center CH</td></tr>
+        <tr><td><strong>Tarifs publics</strong></td><td>Non</td><td>Non</td><td>Non (devis gratuit)</td></tr>
+        <tr><td><strong>Contenu SEO / blog</strong></td><td style="color:var(--amber)">Limite</td><td style="color:var(--amber)">Limite</td><td style="color:var(--amber)">Blog mentionne</td></tr>
+        <tr><td><strong>References visibles</strong></td><td>4 logos + avis Google</td><td>4 logos</td><td>23 logos</td></tr>
+    </tbody>
+</table>
+
+<!-- ════════ 7. CARTOGRAPHIE ════════ -->
+<h2 id="s7"><span class="num">7.</span> Cartographie concurrentielle elargie</h2>
+
+<p>Ces trois nouveaux acteurs <strong>completent</strong> la cartographie XEFI/Koesio deja realisee. Lecture par zone :</p>
+
+<table>
+    <thead><tr><th>Zone</th><th>Acteurs presents</th><th>Densite concurrentielle</th></tr></thead>
+    <tbody>
+        <tr>
+            <td><strong>Geneve ville</strong></td>
+            <td>ABAX, NBM Suisse, XEFI (2 agences), Micro Center CH</td>
+            <td style="color:var(--red)">Forte</td>
+        </tr>
+        <tr>
+            <td><strong>Pays de Gex (Ferney, Divonne, Cessy, Gex)</strong></td>
+            <td>NBM Europe, Micro Center (2 implantations), Koesio Ville-la-Grand</td>
+            <td style="color:var(--red)">Tres forte</td>
+        </tr>
+        <tr>
+            <td><strong>Annemasse / Chablais</strong></td>
+            <td>XEFI Fillinges, Koesio Ville-la-Grand</td>
+            <td style="color:var(--amber)">Moyenne</td>
+        </tr>
+        <tr>
+            <td><strong>Annecy / Haute-Savoie sud</strong></td>
+            <td>Koesio Annecy</td>
+            <td style="color:var(--green)">Faible &mdash; opportunite</td>
+        </tr>
+        <tr>
+            <td><strong>Bellegarde / Haut-Jura</strong></td>
+            <td>NBM (CCPB, Bellegarde)</td>
+            <td style="color:var(--amber)">NBM installe sur collectivites</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="highlight red-box">
+    <strong>Verdict territorial :</strong> Le Pays de Gex est <strong>le marche le plus dispute</strong> de toute la zone ABAX Info. Trois concurrents locaux (NBM + Micro Center x2) y sont deja ancres. La differenciation par la geographie est impossible &mdash; il faut differencier <strong>par l'offre</strong> (IA, automation, Visibilite) et <strong>par la methodologie</strong> (Hygiene + Transformation, 21 briques standardisees).
+</div>
+
+<!-- ════════ 8. SWOT ════════ -->
+<h2 id="s8"><span class="num">8.</span> SWOT ABAX Info face a ce trio</h2>
+
+<div class="swot">
+    <div class="swot-cell" style="border-top:3px solid var(--green)">
+        <div class="sw-label" style="color:var(--green)">Forces ABAX</div>
+        <ul style="margin-bottom:0">
+            <li>Offre 3 piliers integree (Visibilite + Croissance + Operations) &mdash; unique dans ce groupe</li>
+            <li>Methodologie Hygiene/Transformation &mdash; aucun concurrent ne l'a structuree</li>
+            <li>Partenariat AXION &mdash; capacites IA / automation / n8n jamais vues chez NBM ni Micro Center</li>
+            <li>Expertise Suisse romande 20+ ans (egale a NBM)</li>
+            <li>Positionnement PME structurees (10-100 postes) &mdash; niche ignoree par Micro Center</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--amber)">
+        <div class="sw-label" style="color:var(--amber)">Faiblesses ABAX</div>
+        <ul style="margin-bottom:0">
+            <li>Presence digitale actuelle faible (chantier Pilier 1)</li>
+            <li>Peu de references clients publiees sur le site</li>
+            <li>Aucun avis Google structure (NBM a le 5/5)</li>
+            <li>Marque &laquo; ABAX Info &raquo; moins visible localement que &laquo; Micro Center &raquo; (23 logos commercants)</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--cyan)">
+        <div class="sw-label" style="color:var(--cyan)">Opportunites</div>
+        <ul style="margin-bottom:0">
+            <li><strong>Segment PME 10-100 postes</strong> orphelin chez Micro Center</li>
+            <li>Collectivites hors zone NBM &mdash; 40 nouveaux maires 2026</li>
+            <li>Aucun concurrent ne propose automation/IA &rarr; terrain vierge</li>
+            <li>Aucun concurrent ne publie de contenu long-form &rarr; SEO GEO facile a capter</li>
+            <li>Pack transfrontalier avec contrat et methodologie uniques (vs NBM binational mais sans offre structuree)</li>
+        </ul>
+    </div>
+    <div class="swot-cell" style="border-top:3px solid var(--red)">
+        <div class="sw-label" style="color:var(--red)">Menaces</div>
+        <ul style="margin-bottom:0">
+            <li>NBM Suisse &mdash; concurrent frontal avec meme ADN et antecedence</li>
+            <li>NBM deja installe sur les collectivites (CCPB, Bellegarde)</li>
+            <li>Micro Center a une notoriete retail forte (23 logos visibles)</li>
+            <li>Risque de guerre des prix sur le segment TPE (5-10 postes)</li>
+            <li>Cumul des concurrents locaux (3) + regionaux (XEFI, Koesio) = forte pression</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ════════ 9. OPPORTUNITES ════════ -->
+<h2 id="s9"><span class="num">9.</span> Opportunites strategiques pour ABAX Info</h2>
+
+<h3>1. Neutraliser NBM Suisse par l'offre</h3>
+<p>NBM Suisse est le <strong>seul vrai concurrent frontal</strong>. L'anciennete est egale, le positionnement identique, le binational aussi. La seule maniere de gagner ce face-a-face : <strong>offrir ce que NBM ne propose pas</strong> &mdash; Pilier Visibilite (SEO/GEO/LinkedIn), Pilier Croissance (CRM + acquisition), et surtout les <strong>21 capability bricks AXION</strong> sur l'IA et l'automation. NBM restera sur son catalogue IT classique.</p>
+
+<h3>2. Laisser Micro Center a son marche B2C/commerce</h3>
+<p>Le portefeuille clients de Micro Center (restaurants, caves, commerces) est <strong>volontairement hors cible ABAX Info</strong>. Ne pas entrer en concurrence prix sur ce segment. En revanche, recuperer les clients qui <em>grossissent</em> au-dela de 10 postes et dont Micro Center ne suit plus la complexite (ERP, conformite, multi-site).</p>
+
+<h3>3. Occuper les zones ou NBM n'est pas (Annecy, Chablais haut)</h3>
+<p>NBM couvre bien Pays de Gex + Geneve, mais est moins visible sur <strong>Annecy et le Chablais haut</strong> (Thonon, Evian). Ces zones sont aussi sous-exploitees par XEFI et Koesio. Cible secondaire pour 2027.</p>
+
+<h3>4. Capitaliser sur les collectivites hors zone NBM</h3>
+<p>NBM a CCPB et Bellegarde. Il reste <strong>85 communes + 40 nouveaux maires 2026</strong> dans la base ABAX (CRM Mairies) dont aucune n'est explicitement NBM. Prioriser les communes de Haute-Savoie et du Pays de Gex hors Bellegardien.</p>
+
+<h3>5. Construire la preuve sociale manquante</h3>
+<p>Micro Center a 23 logos. NBM a 4 + avis Google 5/5. ABAX Info doit rapidement :</p>
+<ul>
+    <li>Publier une page &laquo; Ils nous font confiance &raquo; avec 10-15 logos clients</li>
+    <li>Collecter 10-20 avis Google pour 2026</li>
+    <li>Produire 3-5 cas clients (industrie, sante, services) distincts du retail/restauration Micro Center</li>
+</ul>
+
+<div class="highlight green-box" style="margin-top:28px">
+    <strong>Recommandation centrale &mdash; le trio local :</strong>
+    <ul style="margin-top:8px;margin-bottom:0">
+        <li><strong>NBM Suisse = concurrent principal</strong> &mdash; battre par la profondeur d'offre (automation, IA, methodologie structuree)</li>
+        <li><strong>NBM Europe = concurrent collectivites</strong> &mdash; contourner en ciblant les nouveaux maires et les communes non-Bellegardien</li>
+        <li><strong>Micro Center = marche distinct</strong> &mdash; ne pas attaquer, mais se positionner en &laquo; niveau au-dessus &raquo; pour attraper les PME qui sortent de leur peri&shy;metre</li>
+        <li><strong>La vraie bataille</strong> se joue sur la <strong>preuve sociale visible</strong> et sur la <strong>promesse d'offre integree</strong> &mdash; ABAX Info a l'avance methodologique mais doit la rendre visible.</li>
+    </ul>
+</div>
+
+<div class="footer">
+    Confidentiel &mdash; AXION Smart Swiss Operations | Analyse concurrentielle NBM Europe + NBM Suisse + Micro Center pour ABAX Info<br>
+    Sources : nbm-europe.com, nbm-suisse.ch, micro-center.fr (analyse directe 24 avril 2026)
+</div>
+
+</div>
+</body>
+</html>
