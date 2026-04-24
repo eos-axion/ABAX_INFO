@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>AXION · Compte rendu atelier — 17 avril 2026 — ABAX Info</title>
+<link rel="icon" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf2;
+  --border:#dde4ed;--border2:#c8d3e3;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.10);
+  --teal:#14b8a6;--teal-bg:rgba(20,184,166,.10);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.10);
+  --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.10);
+  --green:#10b981;--green-bg:rgba(16,185,129,.10);
+  --red:#ef4444;--red-bg:rgba(239,68,68,.10);
+  --orange:#f97316;--orange-bg:rgba(249,115,22,.10);
+  --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,.10);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+
+.nav{background:var(--bg1);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.5px;color:var(--teal);}
+.nav-meta{font-size:12px;color:var(--text3);}
+.nav-meta span{color:var(--text2);}
+
+.hero{background:var(--bg1);border-bottom:1px solid var(--border);padding:32px 40px;}
+.hero-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:10px;}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.6;max-width:700px;margin-bottom:20px;}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;}
+.meta-value{font-size:13px;font-weight:600;color:var(--text);}
+
+.page{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:0;}
+
+.toc{padding:32px 24px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);}
+.toc h3{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.toc a{display:block;font-size:12px;color:var(--text2);text-decoration:none;padding:5px 8px;border-radius:5px;margin-bottom:2px;transition:all .15s;}
+.toc a:hover{background:var(--bg2);color:var(--text);}
+.toc a.section{font-weight:700;color:var(--text);font-size:11px;margin-top:10px;margin-bottom:4px;}
+.toc a.sub{padding-left:16px;font-size:11px;}
+
+.content{padding:40px 48px;}
+
+.section{margin-bottom:48px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+.section-header.teal{border-bottom-color:var(--teal);}
+.section-header.blue{border-bottom-color:var(--blue);}
+.section-header.green{border-bottom-color:var(--green);}
+.section-header.purple{border-bottom-color:var(--purple);}
+.section-header.amber{border-bottom-color:var(--amber);}
+.section-header.orange{border-bottom-color:var(--orange);}
+.section-header.cyan{border-bottom-color:var(--cyan);}
+.section-header.red{border-bottom-color:var(--red);}
+.section-icon{font-size:20px;}
+.section-num{font-size:11px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.section h2{font-size:18px;font-weight:800;}
+
+.decision{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:12px;}
+.decision-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.decision-title{font-size:14px;font-weight:700;color:var(--text);}
+.decision-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.decision-impact{margin-top:10px;padding:8px 12px;background:var(--teal-bg);border:1px solid rgba(20,184,166,.2);border-radius:6px;font-size:11px;color:var(--teal);}
+.decision-impact strong{color:var(--teal);font-weight:700;}
+.decision-impact.amber{background:var(--amber-bg);border-color:rgba(245,158,11,.2);color:var(--amber);}
+.decision-impact.amber strong{color:var(--amber);}
+.decision ul{margin-top:8px;padding-left:18px;}
+.decision ul li{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:2px;}
+.decision ul li strong{color:var(--text);font-weight:600;}
+
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.badge-decision{background:var(--green-bg);border:1px solid var(--green);color:var(--green);}
+.badge-open{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
+.badge-insight{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-action-abax{background:var(--blue-bg);border:1px solid var(--blue);color:var(--blue);}
+.badge-action-axion{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-livrable{background:var(--cyan-bg);border:1px solid var(--cyan);color:var(--cyan);}
+
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2px 6px;color:var(--amber);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--bg2);}
+thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody td{padding:10px 14px;color:var(--text2);vertical-align:top;line-height:1.6;}
+tbody td:first-child{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;font-size:11px;}
+.table-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+
+.summary-box{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
+.summary-box p{font-size:14px;color:var(--text2);line-height:1.8;}
+.summary-stats{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.stat{text-align:center;padding:12px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;}
+.stat .snum{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.stat .slabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+.participants{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.participant{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;}
+.p-name{font-size:13px;font-weight:700;color:var(--text);}
+.p-role{font-size:11px;color:var(--text3);margin-top:2px;}
+
+.next-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.next-step:last-child{border-bottom:none;}
+.ns-num{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--teal);min-width:28px;}
+.ns-body .ns-title{font-size:13px;font-weight:700;color:var(--text);}
+.ns-body .ns-desc{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.5;}
+.ns-body .ns-livrable{margin-top:4px;font-size:11px;color:var(--cyan);background:var(--cyan-bg);border:1px solid rgba(6,182,212,.2);border-radius:5px;padding:3px 8px;display:inline-block;}
+
+.info-box{background:var(--blue-bg);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.info-box strong{color:var(--blue);}
+
+.note-box{background:var(--amber-bg);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.note-box strong{color:var(--amber);}
+
+.sub-header{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:12px;margin-top:24px;text-transform:uppercase;letter-spacing:.8px;}
+
+.action-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.action-row:last-child{border-bottom:none;}
+.action-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--text3);min-width:80px;}
+.action-body{flex:1;}
+.action-title{font-size:13px;color:var(--text);font-weight:600;margin-bottom:2px;}
+.action-owner{font-size:11px;color:var(--text3);}
+
+.pillar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0;}
+.pillar-node{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px 14px;text-align:center;}
+.pillar-icon{font-size:24px;margin-bottom:8px;}
+.pillar-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.pillar-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+.pillar-desc{font-size:11px;color:var(--text3);line-height:1.4;}
+
+.quote-box{background:var(--bg1);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0;font-size:14px;font-style:italic;color:var(--text2);line-height:1.7;}
+.quote-box .quote-author{font-size:11px;color:var(--text3);font-style:normal;margin-top:6px;}
+
+.agenda-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);align-items:center;}
+.agenda-item:last-child{border-bottom:none;}
+.agenda-check{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.agenda-check.done{background:var(--green-bg);color:var(--green);border:1px solid var(--green);}
+.agenda-check.partial{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);}
+.agenda-check.todo{background:var(--bg2);color:var(--text3);border:1px solid var(--border);}
+.agenda-text{font-size:13px;color:var(--text);flex:1;}
+.agenda-status{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr;}
+  .toc{display:none;}
+  .content{padding:24px 20px;}
+  .pillar-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">AXION</div>
+  <div class="nav-meta">Compte rendu atelier &middot; <span>17 avril 2026</span> &middot; ABAX Info</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Compte rendu officiel &mdash; Phase de cadrage, Atelier 4</div>
+  <h1>Signature contrat &middot; ClickUp &middot; Offre orientee douleurs</h1>
+  <div class="hero-sub">
+    Quatrieme atelier (~1h55) centre sur la finalisation et la signature electronique du contrat (versions Suisse SARL et France SAS),
+    le choix de ClickUp comme plateforme CRM et support, la validation de la charte graphique pour automatiser la production de contenus,
+    le pivot de l'offre vers une approche orientee "douleurs entreprise" (materiel, donnees, utilisateurs) avec le simulateur spider comme reference,
+    et la preparation de la strategie de notification cybersecurite (newsletter avec teasing).
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">17 avril 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Atelier hebdomadaire &mdash; visio (Google Meet)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Duree</span>
+      <span class="meta-value">~1h55</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Phase</span>
+      <span class="meta-value" style="color:var(--teal);">Cadrage contractuel (3/3)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Prochain atelier</span>
+      <span class="meta-value" style="color:var(--amber);">Semaine du 21 avril 2026</span>
+    </div>
+  </div>
+
+  <div class="participants" style="margin-top:20px;">
+    <div class="participant">
+      <div class="p-name">Sebastien Fournier</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Djemel Chaouche</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Eric Darien</div>
+      <div class="p-role">ABAX Info</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <nav class="toc">
+    <h3>Sommaire</h3>
+    <a href="#resume" class="section">Resume executif</a>
+    <a href="#agenda" class="section">Agenda de l'atelier</a>
+    <a href="#s1" class="section">1. Contrat signe (SARL/SAS)</a>
+    <a href="#s1-remuneration" class="sub">Remuneration &amp; bascule</a>
+    <a href="#s1-responsabilite" class="sub">Responsabilite &amp; pen test</a>
+    <a href="#s1-concurrence" class="sub">Non-concurrence</a>
+    <a href="#s2" class="section">2. ClickUp &mdash; CRM &amp; support</a>
+    <a href="#s3" class="section">3. Charte graphique &amp; contenus</a>
+    <a href="#s4" class="section">4. Offre orientee douleurs</a>
+    <a href="#s4-spider" class="sub">Spider comme reference</a>
+    <a href="#s4-piliers" class="sub">3 piliers en second plan</a>
+    <a href="#s5" class="section">5. AO Fondation Trajet &mdash; questions</a>
+    <a href="#s6" class="section">6. Cybersecurite proactive</a>
+    <a href="#s6-newsletter" class="sub">Newsletter &amp; teasing</a>
+    <a href="#s6-email" class="sub">newsinfo@abaxinfo.com</a>
+    <a href="#s7" class="section">7. Prise de rendez-vous</a>
+    <a href="#s8" class="section">8. Portail client &mdash; demande</a>
+    <a href="#s9" class="section">9. KPI &amp; processus</a>
+    <a href="#decisions" class="section">10. Decisions actees</a>
+    <a href="#actions" class="section">11. Plan d'actions</a>
+    <a href="#suivant" class="section">12. Prochaines etapes</a>
+  </nav>
+
+  <div class="content">
+
+    <!-- RÉSUMÉ -->
+    <div id="resume" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">RESUME</div>
+          <h2>Resume executif</h2>
+        </div>
+      </div>
+      <div class="summary-box">
+        <p>
+          Ce quatrieme atelier a acte la <strong>signature electronique du contrat</strong> (Suisse SARL + France SAS via Odoo),
+          avec un mecanisme de bascule de remuneration a 545 CHF de CA recurrent mensuel, une responsabilite plafonnee a 2000 CHF/EUR/an,
+          une clause d'autorisation de pen tests et une non-concurrence sur l'Arc lemanique excluant l'automatisation et les logiciels metier.
+          Cote operations, <strong>ClickUp</strong> a ete retenu comme plateforme CRM et support ticketing partage, et la
+          <strong>charte graphique Jade</strong> a ete validee pour declencher l'automatisation des publications. L'offre formalisee
+          bascule vers une <strong>approche orientee "douleurs entreprise"</strong> (materiel, donnees, utilisateurs) avec le
+          simulateur spider comme reference, les 3 piliers restant en second plan. Enfin, une strategie de <strong>cybersecurite proactive</strong>
+          (newsletter teasing, email dedie <code>newsinfo@abaxinfo.com</code>) et un <strong>calendrier de prise de rendez-vous</strong>
+          (45 min + 15 min de marge, 9h-10h L-J) ont ete valides pour declencher la phase d'acquisition.
+        </p>
+        <div class="summary-stats">
+          <div class="stat"><div class="snum" style="color:var(--teal);">12</div><div class="slabel">Decisions actees</div></div>
+          <div class="stat"><div class="snum" style="color:var(--purple);">9</div><div class="slabel">Actions AXION</div></div>
+          <div class="stat"><div class="snum" style="color:var(--blue);">5</div><div class="slabel">Actions ABAX</div></div>
+          <div class="stat"><div class="snum" style="color:var(--amber);">9</div><div class="slabel">Sujets couverts</div></div>
+          <div class="stat"><div class="snum" style="color:var(--green);">OK</div><div class="slabel">Contrat signe</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="agenda" class="section">
+      <div class="section-header amber">
+        <div>
+          <div class="section-num">AGENDA</div>
+          <h2>Avancement de la phase de cadrage</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6;">
+        L'atelier 4 cloture la phase de cadrage contractuel : contrat signe, outils operationnels retenus, offre formalisee et canaux d'acquisition prets a etre enclenches. La phase d'execution peut demarrer.
+      </p>
+
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Contrat AXION &times; ABAX Info</strong> &mdash; revue, ajustements finaux, signature electronique (Odoo)</div>
+        <div class="agenda-status" style="color:var(--green);">Signe</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>CRM &amp; support ticketing</strong> &mdash; choix de ClickUp, partage de l'environnement aux 3 membres AXION</div>
+        <div class="agenda-status" style="color:var(--green);">Decide</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Charte graphique</strong> &mdash; validation Jade, prerequis pour automatiser les contenus</div>
+        <div class="agenda-status" style="color:var(--green);">Validee</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Offre formalisee</strong> &mdash; pivot vers "douleurs entreprise", spider comme reference</div>
+        <div class="agenda-status" style="color:var(--green);">Cadree</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check partial">&#9679;</div>
+        <div class="agenda-text"><strong>AO Fondation Trajet</strong> &mdash; questions preparees, relecture weekend avant soumission</div>
+        <div class="agenda-status" style="color:var(--amber);">En cours</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check partial">&#9679;</div>
+        <div class="agenda-text"><strong>Strategie cybersecurite proactive</strong> &mdash; newsletter teasing, email dedie, canaux a mapper</div>
+        <div class="agenda-status" style="color:var(--amber);">En cours</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check todo">&#8226;</div>
+        <div class="agenda-text"><strong>KPI &amp; processus</strong> &mdash; session de brainstorming a planifier (macro &rarr; micro)</div>
+        <div class="agenda-status" style="color:var(--text3);">A planifier</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 : CONTRAT -->
+    <div id="s1" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 01</div>
+          <h2>Contrat signe &mdash; SARL Suisse &amp; SAS France</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Signature electronique finalisee en seance via Odoo (11 pages)</div>
+          <span class="badge badge-decision">D-01</span>
+        </div>
+        <div class="decision-body">
+          Le contrat a ete relu in situ et les derniers ajustements integres avant signature :
+          <ul>
+            <li><strong>Date de demarrage :</strong> mention "juin 2026" retiree &mdash; laissee "a definir" (Eric : les projets peuvent deriver)</li>
+            <li><strong>Cohérence typographique :</strong> "ABAX INFO" uniformise en majuscules (rechercher/remplacer respectant la casse)</li>
+            <li><strong>Terminologie francaise :</strong> timing &rarr; planning, pricing &rarr; tarification, go live &rarr; lancement, scope &rarr; perimetre</li>
+            <li><strong>Format signature :</strong> electronique Odoo (contresignature page par page, une seule impression finale)</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Impact :</strong> la phase de cadrage contractuel est close. AXION peut declencher les introductions
+          commerciales et l'alimentation du CRM ClickUp des ce weekend.
+        </div>
+      </div>
+
+      <div id="s1-remuneration">
+        <div class="sub-header">Remuneration &amp; mecanisme de bascule</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Bascule automatique du taux des que le CA recurrent mensuel atteint 545 CHF</div>
+            <span class="badge badge-decision">D-02</span>
+          </div>
+          <div class="decision-body">
+            La mecanique de remuneration du contrat Suisse a ete clarifiee :
+            <ul>
+              <li><strong>Taux de base :</strong> 545 CHF / mois (socle conserve)</li>
+              <li><strong>Bascule :</strong> des que le <strong>CA recurrent mensuel genere via le systeme d'acquisition</strong> atteint 545 CHF (cumul un ou plusieurs clients)</li>
+              <li><strong>Taux superieur :</strong> 190 CHF / mois en additionnel &mdash; voilat la transition pour l'equipe AXION</li>
+              <li><strong>Facturation :</strong> trimestrielle, sur le trimestre complet ecoule (avril-mai-juin factures en juillet)</li>
+              <li><strong>Base de calcul :</strong> chiffre d'affaires facture (pas encaisse) &mdash; gestion des impayes traitee ad hoc</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">France SAS couverte par le contrat Suisse &mdash; zero cout direct</div>
+            <span class="badge badge-decision">D-03</span>
+          </div>
+          <div class="decision-body">
+            ABAX Info France etant filiale d'ABAX Info Suisse, il a ete decide de :
+            <ul>
+              <li><strong>Ne pas facturer de pilier cote France</strong> (tarif 0 EUR)</li>
+              <li><strong>Documenter</strong> dans le contrat francais que "les couts sont integres au contrat Suisse" avec numero de reference</li>
+              <li><strong>Joindre</strong> le contrat Suisse en annexe du contrat francais pour tracabilite</li>
+              <li><strong>Clients existants</strong> explicitement exclus du perimetre de commission (toute nouvelle action commerciale remet le compteur a zero)</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Principe :</strong> continuite de raisonnement, une seule entite mere qui porte la relation commerciale AXION &times; ABAX.
+          </div>
+        </div>
+
+        <div class="note-box">
+          <strong>Licences CRM :</strong> les licences ClickUp restent portees par ABAX Info. Les autres outils (N8N et consorts) sont generes / portes par AXION. Cette distinction a ete explicitee dans la section "systeme d'acquisition" du contrat.
+        </div>
+      </div>
+
+      <div id="s1-responsabilite">
+        <div class="sub-header">Obligation de moyens &amp; responsabilite</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Obligation de moyens + plafond de responsabilite a 2000 CHF/EUR par an</div>
+            <span class="badge badge-decision">D-05</span>
+          </div>
+          <div class="decision-body">
+            La formulation initiale melangeait obligation de moyens et responsabilite financiere. Les deux sujets ont ete dissocies :
+            <ul>
+              <li><strong>Obligation de moyens :</strong> AXION met en &oelig;uvre les outils (CRM, reseaux sociaux, campagnes), sans engagement de resultat chiffre (pas de X prospects signes par jour)</li>
+              <li><strong>Responsabilite financiere :</strong> limitee au montant des prestations effectivement facturees pour le projet concerne (hors abonnement recurrent), avec un <strong>maximum annuel de 2000 CHF / 2000 EUR</strong></li>
+              <li><strong>Negligence grave</strong> (mauvaise configuration d'outils, faille de securite) : meme plafond applique, a reviser avec l'avocate si les impacts client depassent ce seuil</li>
+            </ul>
+          </div>
+          <div class="decision-impact amber">
+            <strong>Point a suivre :</strong> le plafond de 2000 sur la negligence grave reste a valider avec l'avocate d'Eric &mdash; une faille sur ClickUp / Autotask pourrait exposer les donnees clients ABAX et declencher des reclamations depassant ce montant.
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Clause d'autorisation explicite des pen tests (ouverts + fermes)</div>
+            <span class="badge badge-decision">D-06</span>
+          </div>
+          <div class="decision-body">
+            ABAX Info est <strong>autorise contractuellement</strong> a effectuer des tests de penetration et de securite
+            sur l'infrastructure AXION, a tout moment, sans preavis (principe Netflix / Amazon : verification continue de la resilience) :
+            <ul>
+              <li><strong>Pen test ouvert :</strong> agent installe sur un poste, scan reseau local, identification de failles exploitables depuis l'interieur</li>
+              <li><strong>Pen test ferme :</strong> test a l'aveugle depuis l'exterieur (nom de domaine, fournisseurs, liens VPS Hostinger)</li>
+              <li><strong>Justification :</strong> sans cette clause, ces tests ne sont pas legaux &mdash; l'autorisation doit etre explicite</li>
+              <li><strong>Budget :</strong> inclus dans le plafond de responsabilite de 2000 CHF/EUR</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; Demain vous dites : ecoutez, nous on fait un outil, vous avez la possibilite de reboucher les trous. Ca va punir ceux qui ont pas voulu faire le truc et recompenser ceux qui ont investi au bon moment. &raquo;
+          <div class="quote-author">&mdash; Eric Darien, sur l'ethique des outils de pen test et l'enjeu 2026</div>
+        </div>
+      </div>
+
+      <div id="s1-concurrence">
+        <div class="sub-header">Non-concurrence &mdash; perimetre geographique et sectoriel</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Arc lemanique &mdash; rayon ~10 km autour de la frontiere France-Suisse</div>
+            <span class="badge badge-decision">D-07</span>
+          </div>
+          <div class="decision-body">
+            Le perimetre geographique a ete borne pragmatiquement :
+            <ul>
+              <li><strong>Limites nord :</strong> Morges (Vaud)</li>
+              <li><strong>Limites sud :</strong> Pays de Gex, Bellegarde, Annemasse, Saint-Julien, Valserhone</li>
+              <li><strong>Formulation contractuelle :</strong> "Arc lemanique, ~10 km autour de la frontiere France-Suisse"</li>
+              <li><strong>Au-dela :</strong> hors zone de chalandise &mdash; pas de contrainte</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Services informatiques hors automatisation et logiciels metier/supply</div>
+            <span class="badge badge-decision">D-07b</span>
+          </div>
+          <div class="decision-body">
+            Formulation par exclusion (plus robuste qu'une enumeration positive) :
+            <ul>
+              <li><strong>Couvert :</strong> services informatiques generaux (integration, infogerance, conseil, cybersecurite)</li>
+              <li><strong>Exclus explicitement :</strong> automatisation, logiciels metier/supply chain, agents vocaux, telephonie avancee &mdash; ce sont les c&oelig;urs de metier AXION</li>
+              <li><strong>Justification :</strong> "tout ce qui est automatisation passera de toute facon par AXION quand on travaillera ensemble"</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Principe :</strong> exclure les domaines pointus plutot que lister les domaines couverts &mdash; evite de devoir amender le contrat si un nouveau domaine emerge cote ABAX.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 : CLICKUP -->
+    <div id="s2" class="section">
+      <div class="section-header blue">
+        <div>
+          <div class="section-num">SECTION 02</div>
+          <h2>ClickUp &mdash; CRM &amp; support ticketing</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">ClickUp retenu pour le CRM partage et l'outil de support</div>
+          <span class="badge badge-decision">D-08</span>
+        </div>
+        <div class="decision-body">
+          Trois options ont ete evaluees pour heberger le CRM :
+          <ul>
+            <li><strong>Google Drive :</strong> ecarte &mdash; frictions avec adresses Gmail pro/perso (experience comptable d'Eric)</li>
+            <li><strong>SharePoint :</strong> ecarte &mdash; oblige a un compte Microsoft (environnement propre, rigide)</li>
+            <li><strong>ClickUp :</strong> retenu &mdash; independant, permet d'inviter les 3 membres AXION + compte admin ABAX, connecteurs Cloudflow disponibles pour alimenter le CRM automatiquement</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Structure :</strong> un espace partage + un espace support/ticketing &mdash; Eric a deja cree l'environnement, l'invitation sera envoyee aux trois membres AXION et au compte admin.
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Approche prospection :</strong> la strategie de prospection sera construite autour de ClickUp. AXION commence l'alimentation du CRM des reception des acces et teste les workflows sur les premiers prospects (mairies nouvellement elues, cf. section 9).
+      </div>
+    </div>
+
+    <!-- SECTION 3 : CHARTE GRAPHIQUE -->
+    <div id="s3" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 03</div>
+          <h2>Charte graphique &amp; automatisation des contenus</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Charte graphique Jade validee &mdash; prerequis pour automatiser</div>
+          <span class="badge badge-decision">D-09</span>
+        </div>
+        <div class="decision-body">
+          La validation initiale de la charte graphique et du style etait cruciale pour enclencher l'automatisation :
+          <ul>
+            <li><strong>Role Jade :</strong> direction artistique, charte graphique &mdash; interventions ponctuelles a la validation initiale</li>
+            <li><strong>Principe :</strong> une fois le style et le theme valides, plus besoin de reviser systematiquement &mdash; la production bascule en pilotage automatique</li>
+            <li><strong>Ratios a definir :</strong> posts standards / carrousels / photos / videos &mdash; ajustement au fur et a mesure des retours de performance</li>
+            <li><strong>Mesure d'impact :</strong> vues, likes, commentaires, partages &mdash; metriques qui orientent les futurs formats</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        &laquo; Au debut effectivement on check, on check. Une fois que c'est valide, ca deroule et on se prend pas la tete, c'est automatise. &raquo;
+        <div class="quote-author">&mdash; Sebastien Fournier, sur le passage en automatisation des publications</div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 : OFFRE -->
+    <div id="s4" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 04</div>
+          <h2>Offre formalisee &mdash; orientation "douleurs entreprise"</h2>
+        </div>
+      </div>
+
+      <div id="s4-spider">
+        <div class="sub-header">Spider comme reference &mdash; pivot de l'angle commercial</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Offre orientee douleurs, simulateur spider comme point de reference</div>
+            <span class="badge badge-decision">D-10</span>
+          </div>
+          <div class="decision-body">
+            Eric Darien a retravaille l'offre ce weekend pour basculer d'une logique "IT service / produit" vers une logique "douleurs entreprise" :
+            <ul>
+              <li><strong>Vision chef d'entreprise :</strong> "C'est quoi l'etat de mon parc ? Comment travaillent mes collaborateurs ? Est-ce que mes donnees sont sauvegardees ?"</li>
+              <li><strong>Transposition interne ABAX :</strong> Eric traduit ensuite ces douleurs en solutions Hardware / Users / Data &mdash; le client ne voit que le probleme et sa resolution</li>
+              <li><strong>Independance vendor :</strong> ne plus s'axer sur un revendeur ou un produit specifique &mdash; parler resultat, pas moyen</li>
+              <li><strong>Visualisation :</strong> le spider reste en reference visuelle &mdash; chaque branche affiche un niveau de standard (sous-standard / standard / premium) avec prix en face</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Accroche commerciale :</strong> "Vous courez des risques. Quand vous tirez la toile complete, tout est pris en compte &mdash; vous etes serein, avec un prix en face."
+          </div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; Moi en plus de ca, ca me permet de pas m'axer sur un revendeur specifique, mais d'etre plutot sur un resultat et pas sur un produit particulier. &raquo;
+          <div class="quote-author">&mdash; Eric Darien, sur le pivot de l'offre</div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; Le resultat plus que le moyen. &raquo;
+          <div class="quote-author">&mdash; Sebastien Fournier</div>
+        </div>
+      </div>
+
+      <div id="s4-piliers">
+        <div class="sub-header">3 piliers en support, pas en premiere visibilite</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Hardware / Users / Data conserves mais en second plan</div>
+            <span class="badge badge-insight">Positionnement</span>
+          </div>
+          <div class="decision-body">
+            La structure 3 piliers actee a l'atelier 3 reste pertinente mais change de statut commercial :
+          </div>
+        </div>
+
+        <div class="pillar-grid" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="pillar-node" style="border-color:rgba(245,158,11,.3);">
+            <div class="pillar-icon">&#128187;</div>
+            <div class="pillar-num" style="color:var(--amber);">Douleur 1</div>
+            <div class="pillar-title">Materiel</div>
+            <div class="pillar-desc">"Je passe du temps a bidouiller mon informatique pour que ca marche." &rarr; support Hardware</div>
+          </div>
+          <div class="pillar-node" style="border-color:rgba(59,130,246,.3);">
+            <div class="pillar-icon">&#128101;</div>
+            <div class="pillar-num" style="color:var(--blue);">Douleur 2</div>
+            <div class="pillar-title">Utilisateurs</div>
+            <div class="pillar-desc">"Mes collaborateurs perdent du temps, je ne sais pas ce qu'ils font." &rarr; support Users</div>
+          </div>
+          <div class="pillar-node" style="border-color:rgba(16,185,129,.3);">
+            <div class="pillar-icon">&#128274;</div>
+            <div class="pillar-num" style="color:var(--green);">Douleur 3</div>
+            <div class="pillar-title">Donnees</div>
+            <div class="pillar-desc">"Je ne suis pas sur que mes donnees soient sauvegardees." &rarr; support Data</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>Integration cyber :</strong> la composante cybersecurite est integree dans l'offre finalisee ce weekend &mdash; elle s'ajoute aux 3 piliers sans modifier l'architecture globale.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 : AO FONDATION TRAJET -->
+    <div id="s5" class="section">
+      <div class="section-header orange">
+        <div>
+          <div class="section-num">SECTION 05</div>
+          <h2>AO Fondation Trajet &mdash; questions preparees</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Liste de questions de cadrage prete &mdash; relecture weekend</div>
+          <span class="badge badge-open">En attente</span>
+        </div>
+        <div class="decision-body">
+          Les questions a poser a la Fondation Trajet avant formalisation de la reponse ont ete structurees sur le portail :
+          <ul>
+            <li><strong>Perimetre :</strong> perimetre exact de l'AO, cas d'automatisation (restes flous), structure de programme / gouvernance, timeline</li>
+            <li><strong>Environnement technique :</strong> stack existant, integrations, contraintes securite</li>
+            <li><strong>Formation :</strong> taille de l'equipe a former (pool informatique uniquement, pas les utilisateurs finaux)</li>
+            <li><strong>Budget :</strong> cadrer un budget realiste &mdash; le cout principal est la prestation (les licences representent ~5% du cout total)</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Principe budgetaire :</strong> "Le budget, tu peux pas le definir tant que tu as pas repondu a ces questions." Les licences sont un cout subi, la maitrise est sur la prestation de service.
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>Suite :</strong> Eric relit le bloc questions ce weekend. La formalisation de la reponse attend le rendez-vous de clarification avec la Fondation Trajet (sollicite via Michel / Computer Shop, cf. atelier 3).
+      </div>
+    </div>
+
+    <!-- SECTION 6 : CYBER PROACTIF -->
+    <div id="s6" class="section">
+      <div class="section-header red">
+        <div>
+          <div class="section-num">SECTION 06</div>
+          <h2>Strategie cybersecurite proactive</h2>
+        </div>
+      </div>
+
+      <div id="s6-newsletter">
+        <div class="sub-header">Declencheur &mdash; cas Microsoft et opportunite</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Notifications proactives &mdash; modele "teasing" avec valeur ajoutee</div>
+            <span class="badge badge-decision">D-11</span>
+          </div>
+          <div class="decision-body">
+            Une mise a jour de securite Microsoft (acces bureau a distance) a recemment verrouille plusieurs systemes clients &mdash;
+            4 appels en cascade chez un collaborateur d'Eric. Le constat : ABAX est bien place pour devenir la source d'alerte de reference :
+            <ul>
+              <li><strong>Cible :</strong> clients ABAX existants + PME de la zone (prospects tiedes)</li>
+              <li><strong>Modele teasing :</strong> info partielle diffusee librement, info complete reservee aux abonnes &mdash; inspire du modele Alp Chain (2 niveaux de compte-rendu apres conferences IA supply chain)</li>
+              <li><strong>Regle d'or :</strong> pas de pub, que de la valeur ajoutee &mdash; "envoyer l'information, pas la publicite"</li>
+              <li><strong>Canaux envisages :</strong> LinkedIn, newsletter email, sequences emails cibles &mdash; AXION cartographie les canaux par typologie de destinataire</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; On croit beaucoup au concept du petit lead magnet, ton petit appetizer. Mais si tu veux le vrai truc, il faut passer au niveau d'au-dessus. &raquo;
+          <div class="quote-author">&mdash; Sebastien Fournier, sur la monetisation progressive du contenu cyber</div>
+        </div>
+      </div>
+
+      <div id="s6-email">
+        <div class="sub-header">Infrastructure email dediee</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Creation de newsinfo@abaxinfo.com pour l'envoi de newsletter</div>
+            <span class="badge badge-decision">D-11b</span>
+          </div>
+          <div class="decision-body">
+            Pour preserver la reputation du domaine <code>abaxinfo.com</code> et distinguer les flux :
+            <ul>
+              <li><strong>newsinfo@abaxinfo.com :</strong> envoi de newsletter et alertes cyber aux clients et prospects tiedes (domaine principal preserve)</li>
+              <li><strong>Prospection a froid :</strong> domaine separe a prevoir plus tard (protocole SMTP dedie, evite les penalites sur abaxinfo.com)</li>
+              <li><strong>Contact entrant :</strong> <code>contact@abaxinfo.com</code> reste dedie aux retours via site internet</li>
+              <li><strong>Protocoles d'envoi :</strong> Mailgun / Mailchimp pour les envois de masse sans attente de retour</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Principe :</strong> "Si tu veux un retour sur le meme canal, il faut une vraie boite mail. Si tu fais de l'envoi one-shot, un protocole transactionnel suffit."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7 : RENDEZ-VOUS -->
+    <div id="s7" class="section">
+      <div class="section-header cyan">
+        <div>
+          <div class="section-num">SECTION 07</div>
+          <h2>Calendrier de prise de rendez-vous qualifies</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Bookings / Calendly &mdash; creneaux 45 min + 15 min de marge, 9h-10h L-J</div>
+          <span class="badge badge-decision">D-12</span>
+        </div>
+        <div class="decision-body">
+          Pour permettre a AXION de qualifier les prospects et declencher des rendez-vous sans friction :
+          <ul>
+            <li><strong>Outil :</strong> Bookings (Google Workspace) ou Calendly &mdash; Eric configure et partage le lien</li>
+            <li><strong>Duree creneaux :</strong> 45 minutes + 15 minutes de marge (eviter les chainages serres)</li>
+            <li><strong>Plages :</strong> 9h-10h les lundi, mardi, mercredi, jeudi (vendredi envisageable)</li>
+            <li><strong>Pourquoi debut de matinee :</strong> en cas d'appel client entrant, Eric peut temporiser &mdash; pas d'interruption d'intervention en cours</li>
+            <li><strong>Delai premier slot :</strong> ~30 heures (laisser au client le temps d'organiser son agenda)</li>
+            <li><strong>Integration :</strong> lien avec le calendrier principal d'Eric &mdash; indisponibilites auto-bloquees (vacances, interventions)</li>
+            <li><strong>Texte du lien :</strong> "Interesse pour un diagnostic de votre infrastructure ?" &mdash; pose le contexte avant le call</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Transition future :</strong> ces creneaux sont prevus pour le demarrage. A terme, les techniciens ABAX prennent le relais sur les qualifications &mdash; Eric se concentre sur les closings de haute valeur.
+      </div>
+    </div>
+
+    <!-- SECTION 8 : PORTAIL -->
+    <div id="s8" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 08</div>
+          <h2>Portail client &mdash; demandes d'evolution</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Compte-rendus affiches sur une colonne chronologique unique</div>
+          <span class="badge badge-open">A livrer</span>
+        </div>
+        <div class="decision-body">
+          Apres tour d'horizon du portail en seance, Eric a formule une demande d'amelioration :
+          <ul>
+            <li><strong>Constat :</strong> la grille 2 colonnes est moins lisible &mdash; surtout sur mobile</li>
+            <li><strong>Demande :</strong> afficher les compte-rendus en colonne unique chronologique (plus recent en haut)</li>
+            <li><strong>Scope :</strong> onglet "Ateliers" du portail &mdash; conserver le classement Dernier / Archive</li>
+            <li><strong>Responsive :</strong> verifier le rendu mobile &mdash; actuellement deja colonne unique, confirmer le comportement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <strong>Usage portail :</strong> Eric confirme l'interet de la plateforme comme base de connaissance des ateliers. Les compte-rendus (archive des discussions) alimentent progressivement le savoir commun &mdash; c'est un support pour capitaliser entre les ateliers.
+      </div>
+    </div>
+
+    <!-- SECTION 9 : KPI -->
+    <div id="s9" class="section">
+      <div class="section-header amber">
+        <div>
+          <div class="section-num">SECTION 09</div>
+          <h2>KPI &amp; processus &mdash; chantier macro</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Session de brainstorming dediee avant facturation Pilier 3</div>
+          <span class="badge badge-open">A planifier</span>
+        </div>
+        <div class="decision-body">
+          Eric Darien identifie le chantier KPI comme le plus complexe et le plus long :
+          <ul>
+            <li><strong>Prerequis :</strong> les process entreprise doivent etre bien definis avant de remonter les KPI proprement</li>
+            <li><strong>Formation equipe :</strong> l'equipe ABAX doit etre formee aux pratiques avant la mesure &mdash; evite de remodeler l'existant</li>
+            <li><strong>Approche :</strong> macro d'abord (in / operationnel / out) puis descente progressive vers le micro</li>
+            <li><strong>Template AXION :</strong> operative model niveaux 1-2-3 (strategique, tactique, operationnel, taches, atomique) &mdash; AXION partage la reference</li>
+            <li><strong>Contexte RH :</strong> Eric envisage l'integration d'un technicien supplementaire &mdash; idealement a integrer sur process valides plutot que remodeler l'existant</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Implication :</strong> la facturation recurrente du Pilier 3 (KPI) demarrera plus tard que prevu &mdash; focus d'abord sur les Piliers 1 et 2 pour generer les premiers CA recurrents et declencher la bascule 545 CHF.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 10 : DÉCISIONS -->
+    <div id="decisions" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 10</div>
+          <h2>Decisions actees</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Decision</th>
+              <th>Section</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>D-01</td><td>Contrat signe electroniquement via Odoo (Suisse SARL + France SAS, 11 pages)</td><td>Contrat</td></tr>
+            <tr><td>D-02</td><td>Remuneration : taux de base 545 CHF, bascule vers 190 CHF additionnel des que le CA recurrent mensuel atteint 545 CHF</td><td>Contrat</td></tr>
+            <tr><td>D-03</td><td>France SAS integree au contrat Suisse &mdash; 0 EUR pilier, reference + annexe contrat Suisse</td><td>Contrat</td></tr>
+            <tr><td>D-04</td><td>Facturation trimestrielle sur trimestre complet ecoule (base : CA facture, pas encaisse)</td><td>Contrat</td></tr>
+            <tr><td>D-05</td><td>Obligation de moyens + plafond de responsabilite a 2000 CHF/EUR par an</td><td>Contrat</td></tr>
+            <tr><td>D-06</td><td>Clause d'autorisation explicite des pen tests (ouverts + fermes) sur l'infrastructure AXION</td><td>Contrat</td></tr>
+            <tr><td>D-07</td><td>Non-concurrence : Arc lemanique (~10 km autour frontiere FR/CH), exclusion automatisation et logiciels metier</td><td>Contrat</td></tr>
+            <tr><td>D-08</td><td>ClickUp retenu comme plateforme CRM partagee et outil de support ticketing (3 membres AXION + admin ABAX)</td><td>Operations</td></tr>
+            <tr><td>D-09</td><td>Charte graphique Jade validee &mdash; bascule en automatisation des contenus</td><td>Contenus</td></tr>
+            <tr><td>D-10</td><td>Offre orientee "douleurs entreprise" (materiel, donnees, utilisateurs), spider comme reference visuelle</td><td>Offre</td></tr>
+            <tr><td>D-11</td><td>Strategie cyber proactive : newsletter teasing via <code>newsinfo@abaxinfo.com</code>, protocoles Mailgun/Mailchimp</td><td>Cybersecurite</td></tr>
+            <tr><td>D-12</td><td>Calendrier rendez-vous Bookings/Calendly : creneaux 45 min + 15 min marge, 9h-10h L-J</td><td>Acquisition</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 11 : ACTIONS -->
+    <div id="actions" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 11</div>
+          <h2>Plan d'actions</h2>
+        </div>
+      </div>
+
+      <div class="sub-header">Actions AXION</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-01</span></div>
+        <div class="action-body">
+          <div class="action-title">Faire les introductions commerciales apres signature et envoyer les contacts</div>
+          <div class="action-owner">Sebastien Fournier &middot; Weekend 19-20 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-02</span></div>
+        <div class="action-body">
+          <div class="action-title">Mettre a jour le portail : affichage des compte-rendus en colonne chronologique unique</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-03</span></div>
+        <div class="action-body">
+          <div class="action-title">Examiner l'offre formalisee d'Eric, les questions AO et integrer la composante cyber</div>
+          <div class="action-owner">Sebastien Fournier &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-04</span></div>
+        <div class="action-body">
+          <div class="action-title">Preparer la campagne emailing aux mairies nouvellement elues (apres finalisation de l'offre)</div>
+          <div class="action-owner">Equipe AXION &middot; Fin avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-05</span></div>
+        <div class="action-body">
+          <div class="action-title">Retravailler la notion de charge avec le modele spider (risques + couts visuels)</div>
+          <div class="action-owner">Sebastien Fournier &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-06</span></div>
+        <div class="action-body">
+          <div class="action-title">Developper des propositions de mapping types de communication &harr; canaux (prospects froids / tiedes / chauds)</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-07</span></div>
+        <div class="action-body">
+          <div class="action-title">Soumettre le brouillon du premier post LinkedIn a Sebastien pour examen</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-08</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager le template operative model (niveaux 1-2-3) avec Eric pour cadrer la session KPI</div>
+          <div class="action-owner">Sebastien Fournier &middot; Avant session KPI</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-09</span></div>
+        <div class="action-body">
+          <div class="action-title">Organiser la session de brainstorming processus / KPI (macro &rarr; micro)</div>
+          <div class="action-owner">Le groupe &middot; A planifier</div>
+        </div>
+      </div>
+
+      <div class="sub-header" style="margin-top:32px;">Actions ABAX Info (Eric Darien / Jade)</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-10</span></div>
+        <div class="action-body">
+          <div class="action-title">Finaliser contrat (Jade) : couts contrat Suisse en annexe du contrat France, date, cohérence "ABAX INFO"</div>
+          <div class="action-owner">Jade &middot; Fait en seance</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-11</span></div>
+        <div class="action-body">
+          <div class="action-title">Finaliser l'offre formalisee (integrer cyber, spider comme reference, orientation douleurs)</div>
+          <div class="action-owner">Eric Darien &middot; Weekend 19-20 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-12</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager l'environnement ClickUp et inviter les 3 membres AXION + admin</div>
+          <div class="action-owner">Eric Darien &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-13</span></div>
+        <div class="action-body">
+          <div class="action-title">Creer la boite mail <code>newsinfo@abaxinfo.com</code> et donner l'acces a AXION</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-14</span></div>
+        <div class="action-body">
+          <div class="action-title">Configurer le calendrier Bookings/Calendly (creneaux 45+15 min, 9h-10h L-J) et envoyer le lien</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 21 avril</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 12 : PROCHAINES ÉTAPES -->
+    <div id="suivant" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 12</div>
+          <h2>Prochaines etapes</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6;">
+        Le contrat etant signe, la semaine du 21 avril bascule sur l'execution : preparation du premier post LinkedIn,
+        ouverture des canaux d'acquisition (ClickUp, calendrier, newsletter cyber), finalisation de l'offre et
+        soumission de l'AO Fondation Trajet.
+      </p>
+
+      <div class="next-step">
+        <div class="ns-num">1</div>
+        <div class="ns-body">
+          <div class="ns-title">Finalisation de l'offre formalisee &mdash; weekend 19-20 avril</div>
+          <div class="ns-desc">
+            Eric integre la composante cyber, cale le spider comme reference et verifie les coherences de couts.
+            Revue AXION en debut de semaine suivante.
+          </div>
+          <div class="ns-livrable">Livrable : offre formalisee v2</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">2</div>
+        <div class="ns-body">
+          <div class="ns-title">Partage ClickUp et introductions commerciales</div>
+          <div class="ns-desc">
+            Eric ouvre l'acces CRM aux 3 membres AXION + admin. Sebastien lance les introductions et
+            AXION demarre l'alimentation CRM sur les mairies nouvellement elues.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">3</div>
+        <div class="ns-body">
+          <div class="ns-title">Publication du premier post LinkedIn</div>
+          <div class="ns-desc">
+            Brouillon AXION soumis a Sebastien pour examen, puis publication sur ABAX Info + relai Eric.
+            Premiere mesure d'impact (vues, likes, commentaires).
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">4</div>
+        <div class="ns-body">
+          <div class="ns-title">Ouverture du canal cybersecurite &mdash; newsinfo@abaxinfo.com</div>
+          <div class="ns-desc">
+            Creation de la boite mail, configuration Mailgun/Mailchimp. Premiere alerte :
+            capitaliser sur la mise a jour Microsoft (acces bureau a distance) comme cas d'usage.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">5</div>
+        <div class="ns-body">
+          <div class="ns-title">Mise en ligne du calendrier de prise de rendez-vous</div>
+          <div class="ns-desc">
+            Configuration Bookings/Calendly avec creneaux 45+15 min sur le debut de matinee L-J,
+            connexion au calendrier principal d'Eric, texte d'accueil.
+          </div>
+          <div class="ns-livrable">Livrable : lien calendrier partageable</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">6</div>
+        <div class="ns-body">
+          <div class="ns-title">Campagne mailing mairies nouvellement elues</div>
+          <div class="ns-desc">
+            Lancement apres finalisation de l'offre. Ciblage : Ferney-Voltaire, Prevessin-Moens,
+            Pontarlier (opportunite GMAO evoquee) et autres mairies identifiees.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">7</div>
+        <div class="ns-body">
+          <div class="ns-title">Session de brainstorming KPI / processus</div>
+          <div class="ns-desc">
+            A planifier apres relecture du template operative model. Approche macro (in / operationnel / out)
+            puis descente vers le micro. Prerequis a l'integration d'un nouveau technicien ABAX.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">8</div>
+        <div class="ns-body">
+          <div class="ns-title">Soumission de l'AO Fondation Trajet</div>
+          <div class="ns-desc">
+            Apres relecture par Eric ce weekend et (si confirme) rendez-vous de clarification avec la Fondation Trajet.
+            Approche modulaire : diagnostic forfaitaire + use cases a la carte + structure de gouvernance.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top:48px;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:var(--text3);font-size:11px;">
+      Confidentiel &mdash; AXION Smart Swiss Operations &middot; Compte rendu atelier ABAX Info du 17 avril 2026<br>
+      Source : enregistrement Google Meet, transcription Gemini, notes AXION
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
