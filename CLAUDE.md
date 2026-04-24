@@ -97,6 +97,16 @@ proposition/
 | 09/04/2026 | Livraison portail client (Cloudflare Pages), contrat PDF, restructuration repo |
 | 10/04/2026 | Atelier 3 — on-site chez Eric, 10h — consolidation plan d'actions, présence digitale |
 
+## Golden rules — Portail client (`public/index.html`)
+
+1. **Layout colonnes** : chaque onglet utilise `.cols-2` avec deux colonnes nommées (`.col-label`). Jamais de liste verticale unique.
+2. **Ordre chronologique strict** : dans chaque colonne, le document le plus récent est en haut. La date de référence est le **dernier commit git touchant le fichier** (`git log --format="%ai" -- <fichier> | head -1`).
+3. **Dégradé d'opacité progressif** : 1.0 (plus récent) → 0.85 → 0.72 → 0.50 (plus ancien). Ne jamais mettre tous les items à la même opacité.
+4. **Avant tout ajout de carte** : vérifier la date git du nouveau fichier, le positionner dans la colonne correspondante selon la règle 2, et recalculer les opacités de toute la colonne.
+5. **Mise à jour de la date** : modifier la ligne "Mis à jour le…" dans le hero à chaque modification du portail.
+6. **Structure `vcard`** : toutes les cartes du portail utilisent `vcard` (jamais `card` horizontal). Structure obligatoire : `vcard-icon`, `vcard-tag`, `vcard-title`, `vcard-desc`, `vcard-footer` (avec `vcard-arrow`).
+7. **Commits et push** : toujours committer et pousser après modification du portail — Cloudflare Pages déploie automatiquement depuis `main`.
+
 ## Notes importantes
 - **Attribution enregistrements :** Les compte-rendus générés depuis le laptop de Sébastien Fournier attribuaient parfois les propos d'Eric Darien à "Seb Fournier". Toujours vérifier et corriger en "Eric Darien" dans les sections 1-7 des compte-rendus.
 - **Appels d'offres :** Eric a transmis des AO le 3 avril — à discuter à l'atelier 3 et planifier la semaine du 13 avril.
