@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>AXION · Compte rendu atelier — 24 avril 2026 — ABAX Info</title>
+<link rel="icon" href="https://www.axion.supply/res/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf2;
+  --border:#dde4ed;--border2:#c8d3e3;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.10);
+  --teal:#14b8a6;--teal-bg:rgba(20,184,166,.10);
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,.10);
+  --purple:#8b5cf6;--purple-bg:rgba(139,92,246,.10);
+  --green:#10b981;--green-bg:rgba(16,185,129,.10);
+  --red:#ef4444;--red-bg:rgba(239,68,68,.10);
+  --orange:#f97316;--orange-bg:rgba(249,115,22,.10);
+  --cyan:#06b6d4;--cyan-bg:rgba(6,182,212,.10);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+
+.nav{background:var(--bg1);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.5px;color:var(--teal);}
+.nav-meta{font-size:12px;color:var(--text3);}
+.nav-meta span{color:var(--text2);}
+
+.hero{background:var(--bg1);border-bottom:1px solid var(--border);padding:32px 40px;}
+.hero-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:10px;}
+.hero h1{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.6;max-width:780px;margin-bottom:20px;}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;}
+.meta-value{font-size:13px;font-weight:600;color:var(--text);}
+
+.page{display:grid;grid-template-columns:240px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:0;}
+
+.toc{padding:32px 24px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;border-right:1px solid var(--border);}
+.toc h3{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.toc a{display:block;font-size:12px;color:var(--text2);text-decoration:none;padding:5px 8px;border-radius:5px;margin-bottom:2px;transition:all .15s;}
+.toc a:hover{background:var(--bg2);color:var(--text);}
+.toc a.section{font-weight:700;color:var(--text);font-size:11px;margin-top:10px;margin-bottom:4px;}
+.toc a.sub{padding-left:16px;font-size:11px;}
+
+.content{padding:40px 48px;}
+
+.section{margin-bottom:48px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+.section-header.teal{border-bottom-color:var(--teal);}
+.section-header.blue{border-bottom-color:var(--blue);}
+.section-header.green{border-bottom-color:var(--green);}
+.section-header.purple{border-bottom-color:var(--purple);}
+.section-header.amber{border-bottom-color:var(--amber);}
+.section-header.orange{border-bottom-color:var(--orange);}
+.section-header.cyan{border-bottom-color:var(--cyan);}
+.section-header.red{border-bottom-color:var(--red);}
+.section-icon{font-size:20px;}
+.section-num{font-size:11px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.section h2{font-size:18px;font-weight:800;}
+
+.decision{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:12px;}
+.decision-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.decision-title{font-size:14px;font-weight:700;color:var(--text);}
+.decision-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.decision-impact{margin-top:10px;padding:8px 12px;background:var(--teal-bg);border:1px solid rgba(20,184,166,.2);border-radius:6px;font-size:11px;color:var(--teal);}
+.decision-impact strong{color:var(--teal);font-weight:700;}
+.decision-impact.amber{background:var(--amber-bg);border-color:rgba(245,158,11,.2);color:var(--amber);}
+.decision-impact.amber strong{color:var(--amber);}
+.decision ul{margin-top:8px;padding-left:18px;}
+.decision ul li{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:2px;}
+.decision ul li strong{color:var(--text);font-weight:600;}
+
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.badge-decision{background:var(--green-bg);border:1px solid var(--green);color:var(--green);}
+.badge-open{background:var(--amber-bg);border:1px solid var(--amber);color:var(--amber);}
+.badge-insight{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-action-abax{background:var(--blue-bg);border:1px solid var(--blue);color:var(--blue);}
+.badge-action-axion{background:var(--purple-bg);border:1px solid var(--purple);color:var(--purple);}
+.badge-action-group{background:var(--teal-bg);border:1px solid var(--teal);color:var(--teal);}
+.badge-livrable{background:var(--cyan-bg);border:1px solid var(--cyan);color:var(--cyan);}
+
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:2px 6px;color:var(--amber);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--bg2);}
+thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody td{padding:10px 14px;color:var(--text2);vertical-align:top;line-height:1.6;}
+tbody td:first-child{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;font-size:11px;}
+.table-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+
+.summary-box{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
+.summary-box p{font-size:14px;color:var(--text2);line-height:1.8;}
+.summary-stats{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.stat{text-align:center;padding:12px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;}
+.stat .snum{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.stat .slabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+.participants{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.participant{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;}
+.p-name{font-size:13px;font-weight:700;color:var(--text);}
+.p-role{font-size:11px;color:var(--text3);margin-top:2px;}
+
+.next-step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+.next-step:last-child{border-bottom:none;}
+.ns-num{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--teal);min-width:28px;}
+.ns-body .ns-title{font-size:13px;font-weight:700;color:var(--text);}
+.ns-body .ns-desc{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.5;}
+.ns-body .ns-livrable{margin-top:4px;font-size:11px;color:var(--cyan);background:var(--cyan-bg);border:1px solid rgba(6,182,212,.2);border-radius:5px;padding:3px 8px;display:inline-block;}
+
+.info-box{background:var(--blue-bg);border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.info-box strong{color:var(--blue);}
+
+.note-box{background:var(--amber-bg);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;margin:12px 0;}
+.note-box strong{color:var(--amber);}
+
+.sub-header{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:12px;margin-top:24px;text-transform:uppercase;letter-spacing:.8px;}
+
+.action-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.action-row:last-child{border-bottom:none;}
+.action-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--text3);min-width:80px;}
+.action-body{flex:1;}
+.action-title{font-size:13px;color:var(--text);font-weight:600;margin-bottom:2px;}
+.action-owner{font-size:11px;color:var(--text3);}
+
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;}
+.tier-node{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:16px 14px;}
+.tier-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.tier-title{font-size:14px;font-weight:700;margin-bottom:6px;}
+.tier-desc{font-size:11px;color:var(--text2);line-height:1.5;}
+
+.quote-box{background:var(--bg1);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0;font-size:14px;font-style:italic;color:var(--text2);line-height:1.7;}
+.quote-box .quote-author{font-size:11px;color:var(--text3);font-style:normal;margin-top:6px;}
+
+.agenda-item{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);align-items:center;}
+.agenda-item:last-child{border-bottom:none;}
+.agenda-check{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.agenda-check.done{background:var(--green-bg);color:var(--green);border:1px solid var(--green);}
+.agenda-check.partial{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);}
+.agenda-check.todo{background:var(--bg2);color:var(--text3);border:1px solid var(--border);}
+.agenda-text{font-size:13px;color:var(--text);flex:1;}
+.agenda-status{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr;}
+  .toc{display:none;}
+  .content{padding:24px 20px;}
+  .tier-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">AXION</div>
+  <div class="nav-meta">Compte rendu atelier &middot; <span>24 avril 2026</span> &middot; ABAX Info</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Compte rendu officiel &mdash; Phase d'execution, Atelier 6</div>
+  <h1>Offre V2 &middot; AO Fondation Trajet &middot; Brevo CRM &middot; gowithabaxinfo.com</h1>
+  <div class="hero-sub">
+    Sixieme atelier (~1h45) centre sur la finalisation de l'offre V2 (3 niveaux essentiel/standard/premium par maturite securite),
+    le cadrage de l'AO Fondation Trajet en mode programme management (financement 600-700 KCHF / 2-3 ans, attente DAT),
+    le pivot Brevo comme CRM central avec synchronisation Autotask, le setup de la prospection cold emailing
+    sur le domaine dedie <code>gowithabaxinfo.com</code> (Google Workspace), la mise en service de Microsoft Bookings,
+    et l'identification de NBM Europe comme reference concurrentielle du Pays de Gex.
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">24 avril 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Atelier hebdomadaire &mdash; visio (Google Meet)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Duree</span>
+      <span class="meta-value">~1h45</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Phase</span>
+      <span class="meta-value" style="color:var(--teal);">Execution &mdash; activation prospection</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Prochain atelier</span>
+      <span class="meta-value" style="color:var(--amber);">Vendredi 1er mai 2026</span>
+    </div>
+  </div>
+
+  <div class="participants" style="margin-top:20px;">
+    <div class="participant">
+      <div class="p-name">Sebastien Fournier</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Djemel Chaouche</div>
+      <div class="p-role">AXION</div>
+    </div>
+    <div class="participant">
+      <div class="p-name">Eric Darien</div>
+      <div class="p-role">ABAX Info</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <nav class="toc">
+    <h3>Sommaire</h3>
+    <a href="#resume" class="section">Resume executif</a>
+    <a href="#agenda" class="section">Agenda de l'atelier</a>
+    <a href="#s1" class="section">1. Offre V2 &amp; simulateur</a>
+    <a href="#s1-niveaux" class="sub">3 niveaux par maturite</a>
+    <a href="#s1-pdf" class="sub">PDF devis graphique</a>
+    <a href="#s2" class="section">2. Step Zero &mdash; autodiagnostic</a>
+    <a href="#s3" class="section">3. AO Fondation Trajet</a>
+    <a href="#s3-cadrage" class="sub">Programme management</a>
+    <a href="#s3-priorites" class="sub">Priorites &amp; echeances</a>
+    <a href="#s4" class="section">4. Charte graphique &amp; Jade</a>
+    <a href="#s5" class="section">5. Cold emailing &mdash; gowithabaxinfo</a>
+    <a href="#s6" class="section">6. Brevo CRM &amp; ClickUp</a>
+    <a href="#s6-autotask" class="sub">Sync Autotask</a>
+    <a href="#s7" class="section">7. Microsoft Bookings</a>
+    <a href="#s8" class="section">8. Veille concurrentielle</a>
+    <a href="#decisions" class="section">9. Decisions actees</a>
+    <a href="#actions" class="section">10. Plan d'actions</a>
+    <a href="#suivant" class="section">11. Prochaines etapes</a>
+  </nav>
+
+  <div class="content">
+
+    <!-- RESUME -->
+    <div id="resume" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">RESUME</div>
+          <h2>Resume executif</h2>
+        </div>
+      </div>
+      <div class="summary-box">
+        <p>
+          Ce sixieme atelier a verrouille les outils operationnels de la phase d'acquisition.
+          L'<strong>offre V2</strong> est calee sur trois niveaux (essentiel / standard / premium) bases sur la maturite
+          de securite et non sur la taille du client, avec un simulateur destine au commercial qui genere un PDF
+          de devis graphique sans jargon technique. AXION prendra en charge la version client &mdash; un <strong>Step Zero</strong>
+          d'autodiagnostic (~10 questions macro) qui sera l'aimant principal du tunnel de vente.
+          L'<strong>AO Fondation Trajet</strong> est requalifie : ce n'est pas un AO formel mais une demande de financement
+          (600-700 KCHF sur 2-3 ans, echeance fin 2027) &mdash; ABAX repond en mode <strong>programme management</strong>
+          (phases independantes, pas projet unique) en attente du DAT cote client. La prospection s'active :
+          <strong>Brevo</strong> devient le CRM central avec synchronisation API Autotask (lecture seule), le domaine
+          <code>gowithabaxinfo.com</code> heberge le cold emailing via Google Workspace dedie, et Microsoft Bookings
+          est mis en service (lundi-jeudi 9h-10h). Cote concurrence, <strong>NBM Europe</strong> est ajoute comme
+          reference du Pays de Gex aux cotes de Koesio et XEFI.
+        </p>
+        <div class="summary-stats">
+          <div class="stat"><div class="snum" style="color:var(--teal);">14</div><div class="slabel">Decisions actees</div></div>
+          <div class="stat"><div class="snum" style="color:var(--purple);">7</div><div class="slabel">Actions AXION</div></div>
+          <div class="stat"><div class="snum" style="color:var(--blue);">9</div><div class="slabel">Actions ABAX</div></div>
+          <div class="stat"><div class="snum" style="color:var(--teal);">2</div><div class="slabel">Actions groupe</div></div>
+          <div class="stat"><div class="snum" style="color:var(--amber);">8</div><div class="slabel">Sujets couverts</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="agenda" class="section">
+      <div class="section-header amber">
+        <div>
+          <div class="section-num">AGENDA</div>
+          <h2>Agenda de l'atelier &mdash; sujets court terme prospection</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6;">
+        Sujets cibles court terme pour debloquer et activer la prospection. L'objectif est de progresser
+        rapidement pour generer du chiffre d'affaires recurrent et basculer vers la remuneration superieure.
+      </p>
+
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>AO Fondation Trajet</strong> &mdash; statut, requalification, prochaines etapes</div>
+        <div class="agenda-status" style="color:var(--green);">Cadre</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Charte graphique avec Jade</strong> &mdash; alignement, organisation production contenus</div>
+        <div class="agenda-status" style="color:var(--green);">Aligne</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Setup mailbox cold emailing</strong> &mdash; calendrier RDV commercial &middot; acces ClickUp</div>
+        <div class="agenda-status" style="color:var(--green);">En cours</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Veille concurrentielle</strong> &mdash; revue rapide Koesio &amp; XEFI + ajout NBM Europe</div>
+        <div class="agenda-status" style="color:var(--green);">Complete</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-check done">&#10003;</div>
+        <div class="agenda-text"><strong>Offre V2 &amp; simulateur</strong> &mdash; revue de la version 1.3 partagee avant atelier</div>
+        <div class="agenda-status" style="color:var(--green);">Validee</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 : OFFRE V2 -->
+    <div id="s1" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 01</div>
+          <h2>Offre V2 &mdash; 3 niveaux par maturite securite</h2>
+        </div>
+      </div>
+
+      <div id="s1-niveaux">
+        <div class="sub-header">Pivot : la maturite securite, pas la taille de l'entreprise</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Offre standardisee en 3 niveaux essentiel / standard / premium</div>
+            <span class="badge badge-decision">D-01</span>
+          </div>
+          <div class="decision-body">
+            Eric a retravaille l'offre apres l'atelier 4 et partage la version V1.3 en amont. Le cadrage definitif :
+            <ul>
+              <li><strong>Logique :</strong> niveau de service base sur la <strong>maturite et le besoin de securite</strong> du client (pas sur la taille de l'entreprise)</li>
+              <li><strong>Exemple :</strong> un cabinet d'avocat de 5 personnes peut exiger un niveau premium ; une PMI industrielle de 50 personnes peut suffire en essentiel</li>
+              <li><strong>Composantes communes :</strong> chaque ligne d'offre (protection poste, sauvegarde, supervision...) existe dans les 3 niveaux avec une profondeur croissante</li>
+              <li><strong>Reformulation client :</strong> "protection poste avec remediation en heure ouvree" / "remediation 24/7" plutot que d'enoncer la techno sous-jacente</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Principe :</strong> la presentation client reste sur des concepts generaux (protection, suivi, supervision) ; la technique disparait au profit du niveau de service et du SLA.
+          </div>
+        </div>
+
+        <div class="tier-grid">
+          <div class="tier-node" style="border-color:rgba(20,184,166,.3);">
+            <div class="tier-num" style="color:var(--teal);">Niveau 1</div>
+            <div class="tier-title">Essentiel</div>
+            <div class="tier-desc">Antivirus standard, sauvegarde de base, supervision en heures ouvrees. Pour secteurs a faible exposition.</div>
+          </div>
+          <div class="tier-node" style="border-color:rgba(59,130,246,.3);">
+            <div class="tier-num" style="color:var(--blue);">Niveau 2</div>
+            <div class="tier-title">Standard</div>
+            <div class="tier-desc">Antivirus comportemental, sauvegarde + DRP, supervision etendue. Cible majoritaire PME.</div>
+          </div>
+          <div class="tier-node" style="border-color:rgba(139,92,246,.3);">
+            <div class="tier-num" style="color:var(--purple);">Niveau 3</div>
+            <div class="tier-title">Premium</div>
+            <div class="tier-desc">Detection autonome &amp; isolation poste, remediation 24/7, conformite renforcee. Secteurs sensibles.</div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Trois plans imbriques : A (client) &rarr; B (commercial) &rarr; C (technique)</div>
+            <span class="badge badge-decision">D-02</span>
+          </div>
+          <div class="decision-body">
+            Le simulateur est structure en trois passages successifs avec heritage des reponses :
+            <ul>
+              <li><strong>Plan A &mdash; client :</strong> autodiagnostic basique (cf. Step Zero, section 2)</li>
+              <li><strong>Plan B &mdash; commercial :</strong> approche orientee douleurs (sensibilite donnees, problemes collaborateurs) &mdash; sans technique</li>
+              <li><strong>Plan C &mdash; technicien :</strong> ajustements techniques fins lors d'un troisieme rendez-vous, pour granuler le chiffrage</li>
+              <li><strong>Definition responsabilites :</strong> integree dans le simulateur car plusieurs acteurs peuvent intervenir chez le client (IT interne, prestataire reseau, firewall externe...)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="s1-pdf">
+        <div class="sub-header">Livrable client : un devis graphique sans jargon</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Le simulateur genere un PDF structure type "devis graphique"</div>
+            <span class="badge badge-decision">D-03</span>
+          </div>
+          <div class="decision-body">
+            Le simulateur reste un outil interne ABAX (commercial + technicien). Il produit un document PDF destine au client :
+            <ul>
+              <li><strong>Logo client :</strong> reprise du nom de la societe et de son contexte</li>
+              <li><strong>Visuel synthetique :</strong> graphique resumant le niveau de protection choisi par axe</li>
+              <li><strong>Texte commercial :</strong> explicatif, accompagnant, sans information technique &mdash; "pour que monsieur-madame tout le monde puisse comprendre"</li>
+              <li><strong>Limites du service :</strong> indication explicite de ce qui n'est pas couvert + recommandations pour aller plus loin</li>
+              <li><strong>Cout :</strong> cout du niveau de service choisi clairement articule en sortie</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Difference vs atelier 4 :</strong> le simulateur n'est pas en libre service client. C'est l'outil du commercial pendant le rendez-vous d'audit, puis le PDF est partage au client comme support de decision.
+          </div>
+        </div>
+
+        <div class="quote-box">
+          &laquo; L'idee, c'est de rester sur "protection de poste" &mdash; mais protection de poste avec remediation en heure ouvree, ou remediation 24/7. Voilà, c'est plus dans ce sens-la que ca va etre presente sur l'offre, pour eviter de mettre des informations techniques. &raquo;
+          <div class="quote-author">&mdash; Eric Darien, sur la formalisation par niveau de service</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 : STEP ZERO -->
+    <div id="s2" class="section">
+      <div class="section-header cyan">
+        <div>
+          <div class="section-num">SECTION 02</div>
+          <h2>Step Zero &mdash; autodiagnostic client (mode A)</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">AXION developpe la version client de l'outil &mdash; Step Zero du tunnel</div>
+          <span class="badge badge-decision">D-04</span>
+        </div>
+        <div class="decision-body">
+          Sebastien a propose et acte la division du travail : Eric continue d'enrichir l'outil interne (B + C) ;
+          AXION construit l'outil client (mode A) qui sera heberge sur la landing page :
+          <ul>
+            <li><strong>Format :</strong> ~10 questions macro (vs 26 commerciales / 45 techniques) pour preserver le taux de completion</li>
+            <li><strong>Tactique :</strong> faire repondre aux questions douleurs avant de demander les coordonnees &mdash; le prospect a investi du temps, il finit le formulaire</li>
+            <li><strong>Scoring :</strong> attribution d'un score sur 4 axes &mdash; maturite, ambition, budget, motivation court terme</li>
+            <li><strong>Sortie :</strong> coordonnees prospect + scoring &mdash; AXION priorise les rendez-vous commerciaux ABAX sur les leads "souffrent + veulent avancer + ont du budget"</li>
+            <li><strong>Hebergement :</strong> Eric partage l'outil interne en HTML, AXION le hoste en sous-domaine ou sur landing &mdash; mises a jour autonomes</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Angle du questionnaire :</strong> ne pas critiquer l'informaticien du prospect (cf. Naim, "avez-vous le bon informaticien ?") mais cibler la <strong>solution informatique</strong> et le <strong>risque business</strong> &mdash; "votre informatique met-elle votre business en risque ?"
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Tunnel global :</strong> Step Zero (autodiagnostic site) &rarr; Plan B (rendez-vous commercial) &rarr; Plan C (rendez-vous technique) &rarr; PDF devis graphique. Chaque etape herite des reponses precedentes pour eviter la repetition.
+      </div>
+
+      <div class="quote-box">
+        &laquo; Pose-lui toutes les questions qui font le plus mal au debut. Au bout de 10 questions, il a investi du temps, donc il met son nom et son numero pour aller au bout. Et toi, tu fais un scoring : qui souffre, qui veut avancer, qui a de l'argent. &raquo;
+        <div class="quote-author">&mdash; Sebastien Fournier, sur la mecanique du Step Zero</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 : AO FONDATION TRAJET -->
+    <div id="s3" class="section">
+      <div class="section-header orange">
+        <div>
+          <div class="section-num">SECTION 03</div>
+          <h2>AO Fondation Trajet &mdash; programme management, pas projet</h2>
+        </div>
+      </div>
+
+      <div id="s3-cadrage">
+        <div class="sub-header">Requalification &mdash; pas un AO formel, demande de financement</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">L'AO Fondation Trajet est en fait une demande de financement interne</div>
+            <span class="badge badge-decision">D-05</span>
+          </div>
+          <div class="decision-body">
+            Eric a tenu un rendez-vous on-site mardi 22 avril (1h30) pour clarifier l'AO. La situation :
+            <ul>
+              <li><strong>Format :</strong> mis en forme d'AO par la fondation pour avoir plusieurs acteurs dans la boucle, mais ce n'est pas reellement un appel d'offres</li>
+              <li><strong>Objectif client :</strong> obtenir des billes pour batir un budget et solliciter un financement aupres de la direction</li>
+              <li><strong>Volumetrie :</strong> 600 a 700 KCHF sur 2 a 3 ans, ideal fin 2027</li>
+              <li><strong>Contexte :</strong> integration Microsoft realisee il y a 2 ans en mode Zero Trust, avec problemes de securite (acces SharePoint trop ouverts) &mdash; integration IA gelee jusqu'a remediation</li>
+              <li><strong>Equipe IT cliente :</strong> 250 collaborateurs, 4 admins (gestion globale / M365 tenant / Teams &amp; postes / encadrement formation des ayants droit) &mdash; ressources insuffisantes pour porter le programme seul</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Reponse en programme management &mdash; phases independantes</div>
+            <span class="badge badge-decision">D-06</span>
+          </div>
+          <div class="decision-body">
+            Plutot que repondre au format AO existant (incoherent), Eric a propose au client une refonte du deroule :
+            <ul>
+              <li><strong>Pas de gestion de projet unique</strong> &mdash; le financement est debloque dans le temps, mieux vaut avoir des phases independantes mobilisables</li>
+              <li><strong>Programme management :</strong> structure chapeau qui chapote les differents projets (resilience, securite, sensibilisation, machines, IA, formation)</li>
+              <li><strong>Avantage :</strong> on peut demarrer sans attendre l'integralite du financement, et on ne detricote pas si une phase decale ou change</li>
+              <li><strong>Reception client :</strong> tres positive &mdash; ils ont pris conscience qu'ils avaient besoin d'etre conseilles</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Positionnement AXION-ABAX :</strong> on est en amont de l'AO, on aide le client a structurer son besoin. Si AO formel apres, ABAX est dans le jeu (et probablement bien place) ; si pas d'AO, ABAX a deja le plan, le budget et la road map en main.
+          </div>
+        </div>
+      </div>
+
+      <div id="s3-priorites">
+        <div class="sub-header">Priorites, echeances et modele de facturation</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Priorites alignees client/ABAX : resilience &gt; securite &gt; sensibilisation &gt; machines</div>
+            <span class="badge badge-decision">D-07</span>
+          </div>
+          <div class="decision-body">
+            Le faible niveau de maturite des utilisateurs et le risque IA ont conduit a un consensus sur l'ordre :
+            <ol style="padding-left:18px;margin-top:8px;">
+              <li><strong>Resilience &amp; securite</strong> + plan de reprise</li>
+              <li><strong>Sensibilisation utilisateurs</strong> &mdash; formation aux bonnes pratiques</li>
+              <li><strong>Mise a niveau du parc machines</strong></li>
+              <li><strong>Phase ulterieure :</strong> integration IA + plan de formation continue</li>
+            </ol>
+          </div>
+          <div class="decision-impact">
+            <strong>Suite immediate :</strong> rendez-vous a organiser avec l'equipe IA / automatisation pour affiner cette deuxieme phase. Eric prepare un formulaire d'evaluation des besoins de formation a transmettre aux equipes du client (questionnaire utilisateurs &rarr; comparaison avec les attendus direction &rarr; plan de formation).
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Cadrage non facture &mdash; pas de prefinancement cote client</div>
+            <span class="badge badge-decision">D-08</span>
+          </div>
+          <div class="decision-body">
+            Le client n'a pas de prefinancement disponible pour la phase de cadrage :
+            <ul>
+              <li><strong>Pas de double facturation :</strong> un seul cycle de facturation, sur le package final &mdash; pas de "phase 1 audit / phase 2 execution"</li>
+              <li><strong>Investissement en mode pari :</strong> AXION-ABAX donnent le minimum vital pour que le client ait envie d'aller plus loin avec eux, sans donner suffisamment de detail pour que cela soit copie-colle dans un AO concurrent</li>
+              <li><strong>Reflexion strategique detaillee :</strong> conservee en interne, integree au package final</li>
+              <li><strong>Investissement justifie par :</strong> probabilite forte que le client devienne l'acteur de reference du programme &mdash; "on garde le rythme, on devient l'acteur de reference"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">Echeance cadrage : avant fin juin &mdash; conditionnee a la reception du DAT</div>
+            <span class="badge badge-open">En attente</span>
+          </div>
+          <div class="decision-body">
+            Le client doit transmettre la <strong>Documentation d'Architecture Technique (DAT)</strong> en cours de finalisation chez lui :
+            <ul>
+              <li><strong>Sans DAT :</strong> ABAX devrait travailler sur des suppositions ou un audit prealable &mdash; les deux generent des ajustements de devis non acceptables (le client ne peut pas monter le budget de 600 a 1000 KCHF apres coup)</li>
+              <li><strong>Avec DAT :</strong> base de travail propre, redecoupage des phases, proposition commerciale finalisee</li>
+              <li><strong>Action immediate :</strong> Eric relance le client en aval de l'atelier pour obtenir une date de transmission DAT</li>
+              <li><strong>Echeance ABAX cible :</strong> avant fin juin pour le cadrage finalise (4 semaines initialement annoncees ne tiennent plus)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <strong>Ateliers formels :</strong> les ateliers de cadrage avec la fondation seront documentes (CR formel, planning ressources). L'engagement client se mesure a sa disponibilite a allouer ses propres ressources sur ces seances.
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 : CHARTE GRAPHIQUE -->
+    <div id="s4" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 04</div>
+          <h2>Charte graphique &amp; alignement Jade</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Point Jade &times; Eric lundi prochain &mdash; production de contenus</div>
+          <span class="badge badge-decision">D-09</span>
+        </div>
+        <div class="decision-body">
+          La charte graphique a ete partagee. Le calage logistique :
+          <ul>
+            <li><strong>Lundi 28 avril :</strong> Eric fait le point avec Jade pour finaliser l'exploitation de la charte sur les supports</li>
+            <li><strong>Jade &rarr; AXION :</strong> Jade prend ensuite contact avec l'equipe AXION pour planifier un catch-up de coordination</li>
+            <li><strong>Objectif :</strong> demarrer la production de contenus sur les reseaux sociaux (LinkedIn principalement) avec un style et un theme verrouilles</li>
+            <li><strong>Suite :</strong> production en automatisation des que Jade et AXION ont valide les modeles (cf. atelier 4)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 : COLD EMAILING -->
+    <div id="s5" class="section">
+      <div class="section-header blue">
+        <div>
+          <div class="section-num">SECTION 05</div>
+          <h2>Cold emailing &mdash; gowithabaxinfo.com</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Domaine dedie <code>gowithabaxinfo.com</code> achete chez Gandi</div>
+          <span class="badge badge-decision">D-10</span>
+        </div>
+        <div class="decision-body">
+          Pour preserver la reputation du domaine principal <code>abaxinfo.com</code> en cas de blacklist sur la prospection :
+          <ul>
+            <li><strong>Domaine :</strong> <code>gowithabaxinfo.com</code> achete par Eric chez Gandi en seance</li>
+            <li><strong>Redirection :</strong> <code>gowithabaxinfo.com</code> redirige vers <code>abaxinfo.com</code> &mdash; un prospect curieux qui tape l'URL atterrit sur le site officiel</li>
+            <li><strong>Cas usage :</strong> envoi en masse de prospection a froid, sans risquer le domaine principal</li>
+            <li><strong>Boite recue :</strong> protegee &mdash; l'adresse d'envoi peut etre changee si blacklistee, sans perdre les receptions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Google Workspace dedie pour <code>gowithabaxinfo.com</code></div>
+          <span class="badge badge-decision">D-11</span>
+        </div>
+        <div class="decision-body">
+          Plutot que d'integrer le nouveau domaine au tenant Microsoft existant :
+          <ul>
+            <li><strong>Hebergement :</strong> espace professionnel Google Workspace dedie au domaine de prospection</li>
+            <li><strong>Pourquoi :</strong> avoir les outils Google + Microsoft en parallele permet d'utiliser le meilleur des deux mondes selon les outils integres</li>
+            <li><strong>Reduction AXION :</strong> Sebastien partage son code de reduction Google Workspace (~30 a 50% sur 1 an)</li>
+            <li><strong>Adresse principale :</strong> <code>Eric@gowithabaxinfo.com</code> (prenom plutot qu'alias generique &mdash; meilleur taux d'ouverture en cold)</li>
+            <li><strong>Reechauffement :</strong> Instantly comme outil de warming des boites cold (specialise reechauffage et envoi en masse)</li>
+            <li><strong>Administration globale :</strong> tenant Microsoft conserve pour tout l'administratif et le metier &mdash; Google reserve aux outils complementaires</li>
+          </ul>
+        </div>
+        <div class="decision-impact">
+          <strong>Suite :</strong> Eric ouvre le Google Workspace, AXION transmet les enregistrements DNS necessaires (SPF, DKIM, DMARC) pour l'autorite de l'envoi.
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Bonnes pratiques cold :</strong> peu de liens dans le corps des emails, vrais prenoms pour personnalisation, eviter les mentions trop commerciales pour passer les filtres MailInBlack et equivalents.
+      </div>
+    </div>
+
+    <!-- SECTION 6 : BREVO + CLICKUP -->
+    <div id="s6" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 06</div>
+          <h2>Brevo CRM central &amp; ClickUp partage</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Brevo retenu comme CRM pivot &mdash; dispo et deja utilise</div>
+          <span class="badge badge-decision">D-12</span>
+        </div>
+        <div class="decision-body">
+          AXION etait initialement parti sur ActiveCampaign mais Brevo (deja en place chez ABAX pour les voeux et webinars) couvre le perimetre :
+          <ul>
+            <li><strong>CRM central :</strong> Brevo regroupera prospection cold (via <code>gowithabaxinfo.com</code>) et clients existants &mdash; pivot unique</li>
+            <li><strong>Volumetrie disponible :</strong> 10 000 emails / mois, &gt;1000 contacts deja synchronises</li>
+            <li><strong>Acces partages :</strong> Eric a renvoye une invitation a <code>admin@axion.supply</code> avec les bons droits (CRM contacts, entreprises, marketing, API/SMTP, transactional email)</li>
+            <li><strong>SMS exclu :</strong> ABAX ne fait pas de campagnes SMS &mdash; droits non transmis</li>
+            <li><strong>Alternative N8N :</strong> instance N8N personnelle d'Eric existante mais en mode lab &mdash; bascule cloud si besoin de prod</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">ClickUp &mdash; espace de travail dedie a partager apres examen</div>
+          <span class="badge badge-decision">D-13</span>
+        </div>
+        <div class="decision-body">
+          ABAX utilise ClickUp pour la gestion des taches et projets, avec synchronisation Outlook pour le suivi temps :
+          <ul>
+            <li><strong>Structure existante :</strong> espaces iOS (automatisation), admin, commercial, technique (clients) &mdash; partage prevu hors zone confidentielle</li>
+            <li><strong>Approche AXION :</strong> regarder l'existant ABAX comme reference, puis proposer la structure du nouvel espace de travail "acquisition"</li>
+            <li><strong>Coherence :</strong> la proposition doit s'aligner sur les pratiques internes ABAX pour faciliter l'adoption par les equipes</li>
+            <li><strong>Toutes les actions = taches ClickUp :</strong> regle generale, synchronisees Outlook pour KPI temps</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="s6-autotask">
+        <div class="sub-header">Synchronisation API Autotask &rarr; Brevo (lecture seule)</div>
+
+        <div class="decision">
+          <div class="decision-header">
+            <div class="decision-title">API Autotask en lecture pour taguer les clients actifs dans Brevo</div>
+            <span class="badge badge-decision">D-14</span>
+          </div>
+          <div class="decision-body">
+            Autotask reste la source de verite pour les clients actifs (synchronise avec Outlook). Les besoins :
+            <ul>
+              <li><strong>Entites a exposer :</strong> <code>Contact</code> (= client actif), <code>Contract</code>, <code>Companies</code> &mdash; AXION confirme le perimetre apres exploration du modele</li>
+              <li><strong>Token API :</strong> Eric genere un token d'acces lecture sur les entites identifiees</li>
+              <li><strong>Flux :</strong> N8N (cote AXION) lit Autotask &rarr; tag les contacts comme "client actif" dans Brevo &rarr; permet de segmenter prospection vs upsell</li>
+              <li><strong>Onboarding nouveau client :</strong> creation Autotask reste manuelle (process humain ABAX) &mdash; le tag Brevo se met a jour au cycle suivant</li>
+              <li><strong>Sens unique :</strong> pas d'ecriture dans Autotask depuis Brevo &mdash; Autotask reste l'outil metier "elements vivants"</li>
+            </ul>
+          </div>
+          <div class="decision-impact">
+            <strong>Pas d'acces Autotask pour AXION :</strong> licence necessaire et outil metier IT &mdash; l'acces se fait via API uniquement.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7 : MICROSOFT BOOKINGS -->
+    <div id="s7" class="section">
+      <div class="section-header cyan">
+        <div>
+          <div class="section-num">SECTION 07</div>
+          <h2>Microsoft Bookings &mdash; calendrier RDV qualifies</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Page de reservation Microsoft Bookings activee en seance</div>
+          <span class="badge badge-decision">D-15</span>
+        </div>
+        <div class="decision-body">
+          Apres comparaison avec Calendly, ABAX reste sur Microsoft Bookings (deja inclus dans le tenant) :
+          <ul>
+            <li><strong>Creneaux :</strong> lundi et jeudi, 9h-10h, RDV de 45 minutes</li>
+            <li><strong>Periode gelee :</strong> 24 a 48 heures avant le creneau (pas de prise au depourvu)</li>
+            <li><strong>Pourquoi debut de matinee :</strong> en cas d'appel client urgent, Eric peut temporiser sans interrompre une intervention en cours</li>
+            <li><strong>Synchronisation :</strong> calendrier principal d'Eric &mdash; double-booking auto-bloque (vacances, interventions)</li>
+            <li><strong>Suite immediate :</strong> Eric finalise la page (texte d'accueil, branding) et partage le lien</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Aligne sur l'atelier 4 :</strong> les parametres (45 min, 9h-10h L-J, periode gelee) reprennent integralement la decision D-12 de l'atelier du 17 avril &mdash; le choix de l'outil reste Microsoft Bookings cote ABAX.
+      </div>
+    </div>
+
+    <!-- SECTION 8 : VEILLE CONCURRENTIELLE -->
+    <div id="s8" class="section">
+      <div class="section-header red">
+        <div>
+          <div class="section-num">SECTION 08</div>
+          <h2>Veille concurrentielle &mdash; NBM Europe ajoute</h2>
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">NBM Europe identifie comme reference du Pays de Gex</div>
+          <span class="badge badge-decision">D-16</span>
+        </div>
+        <div class="decision-body">
+          Lors de la revue rapide Koesio + XEFI, Eric alerte sur le concurrent dominant local :
+          <ul>
+            <li><strong>NBM Europe :</strong> reference du Pays de Gex sur l'infogerance &mdash; nombreuses mairies historiquement geree par eux</li>
+            <li><strong>NBM Suisse :</strong> succursale ouverte en Suisse, perimetre encore reduit cote frontaliere</li>
+            <li><strong>Micro Center :</strong> petit acteur tres visible sur la communication, surtout sur les services &mdash; pas dans la meme cour que NBM en taille</li>
+            <li><strong>Partenaire ABAX (Yannique) :</strong> ancien associe NBM, gere reseau/telephonie/alarme/surveillance &mdash; possede la liste des clients NBM, peut servir de source pour cibler les mairies</li>
+          </ul>
+        </div>
+        <div class="decision-impact amber">
+          <strong>Vigilance :</strong> ancien associe NBM connu pour son agressivite verbale (Eric rapporte des comportements emprunts d'agressivite). Conflit anticipe sur les premiers gains de clients NBM &mdash; "c'est business" mais a tracer.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-header">
+          <div class="decision-title">Approche identification infogerance par DNS &mdash; outils dig &amp; analyse MX</div>
+          <span class="badge badge-decision">D-17</span>
+        </div>
+        <div class="decision-body">
+          Sebastien rapporte avoir identifie l'infogerance d'une cible via la reponse SMTP (rebond avec mention <code>xefi.mail.com</code>). Eric confirme une approche systematique :
+          <ul>
+            <li><strong>Commande <code>dig</code> :</strong> revele les enregistrements MX et DNS d'un domaine cible</li>
+            <li><strong>Lecture des MX :</strong> identifie le fournisseur de securite mail (MailInBlack visible ou absent &rarr; potentiellement non protege)</li>
+            <li><strong>Outil ABAX :</strong> Eric a developpe en interne un outil d'analyse de feuilles de securite domaines &mdash; il transmet la liste a AXION</li>
+            <li><strong>Cas usage :</strong> campagne de sensibilisation securite mail ciblee sur les prospects identifies non proteges &mdash; approche analytique, sans agressivite</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Question transfrontaliere :</strong> ABAX se positionne comme acteur de l'Arc lemanique (Suisse + Pays de Gex). Differenciation naturelle vs Koesio (presence symbolique a Geneve uniquement) et NBM (France principalement). Cf. fiches d'analyse concurrentielle dans l'onglet Croissance.
+      </div>
+    </div>
+
+    <!-- SECTION 9 : DECISIONS -->
+    <div id="decisions" class="section">
+      <div class="section-header green">
+        <div>
+          <div class="section-num">SECTION 09</div>
+          <h2>Decisions actees</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Decision</th>
+              <th>Section</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>D-01</td><td>Offre V2 standardisee en 3 niveaux essentiel/standard/premium bases sur la maturite securite (pas la taille)</td><td>Offre</td></tr>
+            <tr><td>D-02</td><td>Simulateur structure en 3 plans imbriques A (client) &rarr; B (commercial) &rarr; C (technique)</td><td>Offre</td></tr>
+            <tr><td>D-03</td><td>Le simulateur genere un PDF "devis graphique" sans jargon, partage en sortie de RDV commercial</td><td>Offre</td></tr>
+            <tr><td>D-04</td><td>AXION developpe le Step Zero (mode A, ~10 questions macro) pour la landing page &mdash; aimant du tunnel</td><td>Acquisition</td></tr>
+            <tr><td>D-05</td><td>AO Fondation Trajet requalifie : pas un AO formel mais demande de financement (600-700 KCHF / 2-3 ans)</td><td>AO Trajet</td></tr>
+            <tr><td>D-06</td><td>Reponse en programme management &mdash; phases independantes, pas projet unique</td><td>AO Trajet</td></tr>
+            <tr><td>D-07</td><td>Priorites projet : resilience &amp; securite &gt; sensibilisation &gt; machines, puis IA &amp; formation</td><td>AO Trajet</td></tr>
+            <tr><td>D-08</td><td>Cadrage non facture &mdash; investissement en mode pari, integration au package final</td><td>AO Trajet</td></tr>
+            <tr><td>D-09</td><td>Charte graphique : point Eric &times; Jade lundi 28 avril, puis catch-up Jade &times; AXION</td><td>Contenus</td></tr>
+            <tr><td>D-10</td><td>Domaine <code>gowithabaxinfo.com</code> achete chez Gandi pour la prospection cold &mdash; redirection vers <code>abaxinfo.com</code></td><td>Cold emailing</td></tr>
+            <tr><td>D-11</td><td>Google Workspace dedie pour <code>gowithabaxinfo.com</code>, adresse <code>Eric@gowithabaxinfo.com</code></td><td>Cold emailing</td></tr>
+            <tr><td>D-12</td><td>Brevo retenu comme CRM pivot (clients + prospection) &mdash; ActiveCampaign abandonne</td><td>CRM</td></tr>
+            <tr><td>D-13</td><td>ClickUp partage comme reference pour structurer l'espace de travail "acquisition"</td><td>CRM</td></tr>
+            <tr><td>D-14</td><td>API Autotask en lecture seule (Contact, Contract, Companies) pour taguer les clients actifs dans Brevo</td><td>CRM</td></tr>
+            <tr><td>D-15</td><td>Microsoft Bookings : creneaux lundi-jeudi 9h-10h, RDV 45 min, periode gelee 24-48h</td><td>RDV</td></tr>
+            <tr><td>D-16</td><td>NBM Europe ajoute comme reference du Pays de Gex (+ Micro Center comme acteur visible)</td><td>Concurrence</td></tr>
+            <tr><td>D-17</td><td>Approche identification infogerance via <code>dig</code> + analyse MX/DNS &mdash; outil ABAX a partager</td><td>Concurrence</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 10 : ACTIONS -->
+    <div id="actions" class="section">
+      <div class="section-header purple">
+        <div>
+          <div class="section-num">SECTION 10</div>
+          <h2>Plan d'actions</h2>
+        </div>
+      </div>
+
+      <div class="sub-header">Actions AXION</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-01</span></div>
+        <div class="action-body">
+          <div class="action-title">Developper l'outil client autodiagnostic (Step Zero, mode A) pour la landing page</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-02</span></div>
+        <div class="action-body">
+          <div class="action-title">Identifier les entites Autotask necessaires (Contact, Contract, Companies) et leur usage</div>
+          <div class="action-owner">Sebastien Fournier &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-03</span></div>
+        <div class="action-body">
+          <div class="action-title">Configurer le domaine <code>gowithabaxinfo.com</code> &mdash; transmettre les enregistrements DNS a Eric</div>
+          <div class="action-owner">Equipe AXION &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-04</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager le code de reduction Google Workspace avec Eric</div>
+          <div class="action-owner">Sebastien Fournier &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-05</span></div>
+        <div class="action-body">
+          <div class="action-title">Partager le mot de passe admin Gmail via Nor Pass a ABAX</div>
+          <div class="action-owner">Sebastien Fournier &middot; Immediat</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-06</span></div>
+        <div class="action-body">
+          <div class="action-title">Lancer la prospection mairies Pays de Gex / 74 (cold emailing) des activation gowithabaxinfo.com</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-axion">A-07</span></div>
+        <div class="action-body">
+          <div class="action-title">Mettre a jour la veille concurrentielle &mdash; ajouter NBM Europe et Micro Center</div>
+          <div class="action-owner">Equipe AXION &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+
+      <div class="sub-header" style="margin-top:32px;">Actions ABAX Info (Eric Darien / Jade)</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-08</span></div>
+        <div class="action-body">
+          <div class="action-title">Concevoir le formulaire d'evaluation des besoins de formation et le transmettre aux equipes Fondation Trajet</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-09</span></div>
+        <div class="action-body">
+          <div class="action-title">Relancer le client Fondation Trajet pour obtenir une date de transmission DAT</div>
+          <div class="action-owner">Eric Darien &middot; Apres-midi du 24 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-10</span></div>
+        <div class="action-body">
+          <div class="action-title">Faire le point avec Jade lundi 28 avril sur l'exploitation de la charte graphique</div>
+          <div class="action-owner">Eric Darien &middot; Lundi 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-11</span></div>
+        <div class="action-body">
+          <div class="action-title">Acces ClickUp et Brevo &mdash; renvoyer les invitations avec autorisations completes (CRM, marketing, API/SMTP, transactional)</div>
+          <div class="action-owner">Eric Darien &middot; Fait en seance / a finaliser</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-12</span></div>
+        <div class="action-body">
+          <div class="action-title">Preparer la liste des comptes existants (outils, plateformes) a partager a AXION</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-13</span></div>
+        <div class="action-body">
+          <div class="action-title">Generer le token API Autotask en lecture sur les entites identifiees par AXION</div>
+          <div class="action-owner">Eric Darien &middot; Apres reception perimetre AXION</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-14</span></div>
+        <div class="action-body">
+          <div class="action-title">Finaliser la page de reservation Microsoft Bookings (texte, branding) et partager le lien</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-15</span></div>
+        <div class="action-body">
+          <div class="action-title">Ouvrir le Google Workspace pour <code>gowithabaxinfo.com</code> et creer <code>Eric@gowithabaxinfo.com</code></div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-16</span></div>
+        <div class="action-body">
+          <div class="action-title">Configurer la redirection <code>gowithabaxinfo.com</code> &rarr; <code>abaxinfo.com</code></div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-abax">A-17</span></div>
+        <div class="action-body">
+          <div class="action-title">Envoyer la liste des outils d'analyse de securite domaines (dig &amp; equivalents) a AXION</div>
+          <div class="action-owner">Eric Darien &middot; Semaine du 28 avril</div>
+        </div>
+      </div>
+
+      <div class="sub-header" style="margin-top:32px;">Actions groupe / Jade</div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-group">A-18</span></div>
+        <div class="action-body">
+          <div class="action-title">Formaliser le tunnel de vente complet : suspect &rarr; Step Zero &rarr; Plan B &rarr; Plan C &rarr; client paye</div>
+          <div class="action-owner">Le groupe &middot; A planifier</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-id"><span class="badge badge-action-group">A-19</span></div>
+        <div class="action-body">
+          <div class="action-title">Catch-up Jade &times; AXION pour la coordination production de contenus</div>
+          <div class="action-owner">Jade &middot; Apres point Eric &times; Jade</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 11 : PROCHAINES ETAPES -->
+    <div id="suivant" class="section">
+      <div class="section-header teal">
+        <div>
+          <div class="section-num">SECTION 11</div>
+          <h2>Prochaines etapes</h2>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6;">
+        La semaine du 28 avril active simultanement plusieurs canaux : la prospection cold emailing
+        (gowithabaxinfo + Brevo), le calendrier Bookings, le coordinatement Jade pour les contenus, et
+        la sortie du Step Zero pour alimenter la landing page. L'AO Fondation Trajet attend le DAT du client.
+        Prochain atelier : vendredi 1er mai (semaine raccourcie cote AXION et ABAX, mais session maintenue).
+      </p>
+
+      <div class="next-step">
+        <div class="ns-num">1</div>
+        <div class="ns-body">
+          <div class="ns-title">Activation du tunnel cold emailing &mdash; semaine du 28 avril</div>
+          <div class="ns-desc">
+            Eric ouvre Google Workspace pour <code>gowithabaxinfo.com</code>, configure DNS et redirection.
+            AXION transmet les enregistrements DNS et amorce la campagne mairies Pays de Gex / 74 via Brevo.
+          </div>
+          <div class="ns-livrable">Livrable : premiere campagne cold lancee</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">2</div>
+        <div class="ns-body">
+          <div class="ns-title">Step Zero AXION &mdash; mise en ligne sur landing page</div>
+          <div class="ns-desc">
+            Construction de la version client du diagnostic (~10 questions macro), scoring sur maturite,
+            ambition, budget, motivation. Sortie : coordonnees prospect + score &rarr; Brevo.
+          </div>
+          <div class="ns-livrable">Livrable : autodiagnostic client en ligne</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">3</div>
+        <div class="ns-body">
+          <div class="ns-title">Synchronisation Autotask &harr; Brevo</div>
+          <div class="ns-desc">
+            AXION confirme les entites necessaires &rarr; Eric genere un token de lecture &rarr; AXION
+            cable le flux dans N8N pour taguer les clients actifs dans Brevo.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">4</div>
+        <div class="ns-body">
+          <div class="ns-title">Production de contenus &mdash; Jade dans la boucle</div>
+          <div class="ns-desc">
+            Eric &times; Jade lundi 28 avril pour finaliser l'exploitation de la charte. Catch-up Jade &times; AXION
+            ensuite pour planifier les premieres publications.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">5</div>
+        <div class="ns-body">
+          <div class="ns-title">AO Fondation Trajet &mdash; attente DAT client</div>
+          <div class="ns-desc">
+            Eric relance dans la journee. Une fois le DAT recu, redecoupage des phases en programme management,
+            preparation du formulaire de besoins formation, planification du RDV equipe IA / automatisation.
+          </div>
+          <div class="ns-livrable">Echeance cible : avant fin juin</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">6</div>
+        <div class="ns-body">
+          <div class="ns-title">Veille concurrentielle &mdash; integration NBM Europe</div>
+          <div class="ns-desc">
+            AXION ajoute NBM Europe (et NBM Suisse) aux fiches concurrentielles deja produites pour XEFI
+            et Koesio. Mention de Micro Center comme acteur visible mais hors taille.
+          </div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">7</div>
+        <div class="ns-body">
+          <div class="ns-title">Calendrier Bookings &mdash; ouverture des prises de RDV</div>
+          <div class="ns-desc">
+            Eric finalise le branding de la page de reservation Microsoft Bookings. Lien partage a AXION
+            pour insertion dans les sequences cold &amp; sur la landing.
+          </div>
+          <div class="ns-livrable">Livrable : lien Bookings partageable</div>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">8</div>
+        <div class="ns-body">
+          <div class="ns-title">Atelier 7 &mdash; vendredi 1er mai 2026</div>
+          <div class="ns-desc">
+            Suivi de l'activation cold, premiers retours Step Zero, statut DAT Fondation Trajet,
+            premiers RDV pris via Bookings. Session maintenue malgre le ferie.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top:48px;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:var(--text3);font-size:11px;">
+      Confidentiel &mdash; AXION Smart Swiss Operations &middot; Compte rendu atelier ABAX Info du 24 avril 2026<br>
+      Source : enregistrement Google Meet, transcription Gemini, notes AXION
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
